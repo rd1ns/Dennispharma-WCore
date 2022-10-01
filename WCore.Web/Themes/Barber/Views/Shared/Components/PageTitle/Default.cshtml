@@ -1,0 +1,79 @@
+﻿@model PageTitleViewModel
+@{
+
+    var _workContext = EngineContext.Current.Resolve<WCore.Core.IWorkContext>();
+    var _seoSettings = EngineContext.Current.Resolve<WCore.Core.Domain.Settings.SeoSettings>();
+    var _storeInformationSettings = EngineContext.Current.Resolve<StoreInformationSettings>();
+
+    string pageTitleClass = "bg-overlay-black-60";
+    string pageTitleAttribute = "";
+    bool pageTitleIsSmall = false;
+
+
+    if (Model.PageTitle != null && string.IsNullOrEmpty(Model.PageTitle.Image))
+    {
+        Model.PageTitle.Image = _storeInformationSettings.PageTitleImage;
+    }
+}
+@switch (_storeInformationSettings.DefaultStoreThemePageTitle)
+{
+    case "center":
+        pageTitleClass = "center bg-overlay-black-60 parallax";
+        pageTitleAttribute = " data-jarallax='{'speed': 0.6}'";
+        break;
+    case "dark bg":
+        pageTitleClass = "black-bg";
+        break;
+    case "dark overlay":
+        pageTitleClass = "center dark-overlay parallax";
+        break;
+    case "default":
+        break;
+    case "light bg":
+        pageTitleClass = "gray-bg";
+        break;
+    case "light overlay":
+        pageTitleClass = "center light-overlay parallax";
+        break;
+    case "pattern":
+        pageTitleClass = "pattern";
+        break;
+    case "parallax":
+        pageTitleClass = "bg-overlay-black-60 parallax";
+        pageTitleAttribute = "{'speed': 0.6}";
+        break;
+    case "right":
+        pageTitleClass = "right bg-overlay-black-60 parallax";
+        pageTitleAttribute = "{'speed': 0.6}";
+        break;
+    case "small":
+        pageTitleClass = "small gray-bg";
+        pageTitleIsSmall = true;
+        break;
+    default:
+        break;
+}
+@if (Model.PageTitle != null)
+{
+    <section class="page-title @pageTitleClass " data-jarallax="@pageTitleAttribute" style="background-image: url(@Model.PageTitle.Image)">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12" style="display: flex;justify-content: flex-end;">
+                    <div class="page-title-name">
+                        <h1>@Model.PageTitle.Title</h1>
+                        @if (!pageTitleIsSmall)
+                        {
+                            <p>@Model.PageTitle.ShortTitle</p>
+                        }
+                    </div><!---Sayfa adı eklentis
+                    <ul class="page-breadcrumb">
+                        <li><a href="#"><i class="fa fa-home"></i> @T("common.home.page.title") </a> <i class="fa fa-angle-double-right"></i></li>
+                        <li><span>@Model.PageTitle.Title</span> </li>
+                    </ul>
+                    -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+}

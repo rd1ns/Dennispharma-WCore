@@ -1,0 +1,196 @@
+﻿@model StoreModel
+@{
+    ViewData["PageMainTitle"] = T("Admin.Configuration.Stores.Title");
+    ViewData["PageTitle"] = Model.Id == 0 ? T("Admin.Configuration.Stores.Add") : T("Admin.Configuration.Stores.Edit");
+    ViewData["SystemTitle"] = ViewData["PageTitle"] + " / " + ViewData["PageMainTitle"];
+    ViewData["ControllerName"] = "Store";
+
+    @if (Model.Id == 0)
+    {
+        Model.DisplayOrder = 0;
+    }
+}
+<div class="content  d-flex flex-column flex-column-fluid" id="kt_content">
+    <div class="subheader py-2 py-lg-6  subheader-solid " id="kt_subheader">
+        <div class=" container-fluid  d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
+            <div class="d-flex align-items-center flex-wrap mr-1">
+                <div class="d-flex align-items-baseline flex-wrap mr-5">
+                    <h5 class="text-dark font-weight-bold my-1 mr-5">
+                        @ViewData["PageTitle"]
+                    </h5>
+                    <ul class="breadcrumb breadcrumb-transparent breadcrumb-dot font-weight-bold p-0 my-2 font-size-sm">
+                        <li class="breadcrumb-item">
+                            <a href="/admin/@ViewData["ControllerName"]" class="text-muted">
+                                @ViewData["PageMainTitle"]
+                            </a>
+                        </li>
+                        <li class="breadcrumb-item">
+                            @if (Model.Id == 0)
+                            {
+                                <b>@T("admin.common.new")</b>
+                            }
+                            else
+                            {
+                                @Model.Name
+                            }
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="d-flex align-items-center">
+                <partial name="_AddOrEditHeaderButtons" model="@Tuple.Create(Model.Id,"StoreForm")" />
+            </div>
+        </div>
+    </div>
+    <div class="d-flex flex-column-fluid">
+        <div class="container-fluid">
+            <div class="card card-custom">
+                <div class="card-body">
+                    <WCore-tabs id="activity-edit" asp-tab-name-to-select="tab-details" asp-render-selected-tab-input="false">
+                        <WCore-tab asp-name="tab-details" asp-title="@T("Admin.Configuration.Details")" asp-default="true">
+                            <form id="StoreForm" asp-action="AddOrEdit" asp-controller="@ViewData["ControllerName"]" enctype="multipart/form-data">
+                                @(Html.LocalizedEditor<WCore.Web.Areas.Admin.Models.Stores.StoreModel, WCore.Web.Areas.Admin.Models.Stores.StoreLocalizedModel>("store-localized",
+                                @<div>
+                                    <div class="form-group row">
+                                        <WCore-label asp-for="Locales[item].Name" />
+                                        <div class="col-lg-10 col-md-6 col-sm-12">
+                                            <WCore-editor asp-for="Locales[item].Name"  asp-type="form-control form-control-sm form-control-solid" />
+                                        </div>
+                                    </div>
+                                     <input type="hidden" asp-for="@Model.Locales[item].LanguageId" />
+                                </div>,
+                                @<div>
+                                    <div class="form-group row">
+                                        <WCore-label asp-for="Name" />
+                                        <div class="col-lg-10 col-md-6 col-sm-12">
+                                            <WCore-editor asp-for="Name"   asp-required="true" asp-type="form-control form-control-sm form-control-solid" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <WCore-label asp-for="Url" />
+                                        <div class="col-lg-10 col-md-6 col-sm-12">
+                                            <WCore-editor asp-for="Url"   asp-required="true" asp-type="form-control form-control-sm form-control-solid" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group mb-0 row">
+                                        <WCore-label asp-for="SslEnabled" />
+                                        <div class="col-lg-10 col-md-6 col-sm-12">
+                                            <div class="checkbox-inline">
+                                                <label class="checkbox pt-3">
+                                                    <input asp-for="SslEnabled" />
+                                                    <span></span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <WCore-label asp-for="Hosts" />
+                                        <div class="col-lg-10 col-md-6 col-sm-12">
+                                            <WCore-editor asp-for="Name" asp-required="true" asp-type="form-control form-control-sm form-control-solid" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <WCore-label asp-for="DefaultLanguageId" />
+                                        <div class="col-9">
+                                            <WCore-select asp-for="DefaultLanguageId" asp-items="Model.AvailableLanguages" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <WCore-label asp-for="DisplayOrder" />
+                                        <div class="col-lg-10 col-md-6 col-sm-12">
+                                            <WCore-editor asp-for="DisplayOrder" asp-type="form-control form-control-sm form-control-solid" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <WCore-label asp-for="CompanyName" />
+                                        <div class="col-lg-10 col-md-6 col-sm-12">
+                                            <WCore-editor asp-for="CompanyName"   asp-required="true" asp-type="form-control form-control-sm form-control-solid" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <WCore-label asp-for="CompanyAddress" />
+                                        <div class="col-lg-10 col-md-6 col-sm-12">
+                                            <WCore-editor asp-for="CompanyAddress"   asp-required="true" asp-type="form-control form-control-sm form-control-solid" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <WCore-label asp-for="CompanyPhoneNumber" />
+                                        <div class="col-lg-10 col-md-6 col-sm-12">
+                                            <WCore-editor asp-for="CompanyPhoneNumber"   asp-required="true" asp-type="form-control form-control-sm form-control-solid" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <WCore-label asp-for="CompanyVat" />
+                                        <div class="col-lg-10 col-md-6 col-sm-12">
+                                            <WCore-editor asp-for="CompanyVat"   asp-required="true" asp-type="form-control form-control-sm form-control-solid" />
+                                        </div>
+                                    </div>
+                                </div>))
+                                <input type="hidden" asp-for="Id" />
+                            </form>
+                        </WCore-tab>
+                    </WCore-tabs>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+@section Scripts{
+    <script>
+        $("#StoreForm").submit(function (e) {
+            e.preventDefault();
+            var data = new FormData();
+            //Form data
+            var form_data = $('#StoreForm').serializeArray();
+            $.each(form_data, function (key, input) {
+                var inputId = $("[name='" + input.name + "']").attr("id");
+                var editor = tinyMCE.editors[inputId];
+                var IsEditor = editor == null ? false : true;
+                if (IsEditor) {
+                    var myContent = editor.getContent();
+                    data.append(input.name, myContent);
+                }
+                else {
+                    data.append(input.name, input.value);
+                }
+            });
+
+            var url = $(this).attr('action');
+            var id = @Model.Id;
+            $.ajax({
+                type: "POST",
+                url: "/admin/"+url,
+                processData: false,
+                contentType: false,
+                data: data,
+                success: function (data) {
+                    if (id == 0) {
+                        window.location.href = "/admin/store";
+                    }
+                    else if (!data.continueEditing) {
+                        Swal.fire({
+                            title: '@T("admin.notification.success")',
+                            text: "@T("admin.notification.editcontinue")",
+                            icon: 'success',
+                            showCancelButton: true,
+                            confirmButtonColor: '#3085d6',
+                            cancelButtonColor: '#d33',
+                            confirmButtonText: 'Evet',
+                            cancelButtonText: 'Hayır',
+                            timer: 3000,
+                            timerProgressBar: true
+                        }).then((result) => {
+                            if (!result.value) {
+                                window.location.href = "/admin/store/";
+                            }
+                        })
+                    }
+                }
+            });
+        });
+    </script>
+}

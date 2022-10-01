@@ -1,0 +1,166 @@
+﻿@model CongressPaperTypeModel
+@{
+    Layout = "_LayoutPopup";
+    ViewData["PageMainTitle"] = T("Admin.Configuration.CongressPaperTypes.Title");
+    ViewData["PageTitle"] = Model.Id == 0 ? T("Admin.Configuration.CongressPaperTypes.Add") : T("Admin.Configuration.CongressPaperTypes.Edit");
+    ViewData["SystemTitle"] = ViewData["PageTitle"] + " / " + ViewData["PageMainTitle"];
+    ViewData["ControllerName"] = "Congress";
+
+    @if (Model.Id == 0)
+    {
+        Model.DisplayOrder = 0;
+        Model.IsActive = true;
+    }
+}
+<div class="modal fade" id="CongressModal" role="dialog" aria-labelledby="UserBranchModalTitle" aria-hidden="true">
+    <div class="modal-dialog modal-xl" role="document">
+        <div class="modal-content">
+            <div class="modal-body modal-load p-0">
+                <div class="card card-custom">
+                    <div class="card-header" style="">
+                        <div class="card-title">
+                            @(Model.Id == 0 ? T("Admin.Configuration.CongressPaperTypes.Add") : T("Admin.Configuration.CongressPaperTypes.Edit"))
+                        </div>
+                        <div class="card-toolbar">
+                            <partial name="_AddOrEditHeaderButtons" model="@Tuple.Create(Model.Id,"PaperTypeForm")" />
+                        </div>
+                    </div>
+                    <form id="PaperTypeForm" asp-action="PaperType" asp-controller="@ViewData["ControllerName"]" enctype="multipart/form-data">
+                        <div class="card card-custom">
+                            <div class="card-body">
+                                <WCore-tabs id="CongressPaperType-edit" asp-tab-name-to-select="tab-details" asp-render-selected-tab-input="false">
+                                    <WCore-tab asp-name="tab-details" asp-title="@T("Admin.Configuration.Details")" asp-default="true">
+                                        @(Html.LocalizedEditor<CongressPaperTypeModel, CongressPaperTypeLocalizedModel>("paperType-localized",
+                                @<div>
+                                    <div class="form-group row">
+                                        <WCore-label asp-for="Locales[item].Title" />
+                                        <div class="col-lg-10 col-md-6 col-sm-12">
+                                            <WCore-editor asp-for="Locales[item].Title"  asp-type="form-control form-control-sm form-control-solid" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group row mb-3">
+                                        <WCore-label asp-for="Locales[item].Body" />
+                                        <div class="col-lg-10 col-md-6 col-sm-12">
+                                            <WCore-editor asp-for="Locales[item].Body" asp-template="RichEditor" asp-form-name="PaperTypeForm"/>
+                                        </div>
+                                    </div>
+                                     <input type="hidden" asp-for="@Model.Locales[item].LanguageId" />
+                                </div>,
+                                @<div>
+                                    <div class="form-group row">
+                                        <WCore-label asp-for="Title" />
+                                        <div class="col-lg-10 col-md-6 col-sm-12">
+                                            <WCore-editor asp-for="Title"   asp-required="true" asp-type="form-control form-control-sm form-control-solid" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group row mb-3">
+                                        <WCore-label asp-for="Body" />
+                                        <div class="col-lg-10 col-md-6 col-sm-12">
+                                            <WCore-editor asp-for="Body"  asp-template="RichEditor"  asp-form-name="PaperTypeForm"/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <WCore-label asp-for="DisplayOrder" />
+                                        <div class="col-lg-10 col-md-6 col-sm-12">
+                                            <WCore-editor asp-for="DisplayOrder" asp-type="form-control form-control-sm form-control-solid" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group mb-0 row">
+                                        <WCore-label asp-for="ShowOn" />
+                                        <div class="col-lg-10 col-md-6 col-sm-12">
+                                            <div class="checkbox-inline">
+                                                <label class="checkbox pt-3">
+                                                    <input asp-for="ShowOn" />
+                                                    <span></span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group mb-0 row">
+                                        <WCore-label asp-for="IsActive" />
+                                        <div class="col-lg-10 col-md-6 col-sm-12">
+                                            <div class="checkbox-inline">
+                                                <label class="checkbox pt-3">
+                                                    <input asp-for="IsActive" />
+                                                    <span></span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group mb-0 row">
+                                        <WCore-label asp-for="Deleted" />
+                                        <div class="col-lg-10 col-md-6 col-sm-12">
+                                            <div class="checkbox-inline">
+                                                <label class="checkbox pt-3">
+                                                    <input asp-for="Deleted" />
+                                                    <span></span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>))
+                                        <input type="hidden" asp-for="Id" />
+                                        <input type="hidden" asp-for="CongressId" />
+                                    </WCore-tab>
+                                </WCore-tabs>
+                            </div>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+@section Scripts{
+    <script>
+        $(function () {
+            $('#CongressModal').modal('show');
+        })
+        $("#PaperTypeForm").submit(function (e) {
+            e.preventDefault();
+            var data = new FormData();
+
+            debugger;
+            //Form data
+            var form_data = $('#PaperTypeForm').serializeArray();
+            $.each(form_data, function (key, input) {
+                var inputId = $("#PaperTypeForm [name='" + input.name + "']").attr("id");
+                var editor = tinyMCE.editors[inputId];
+                var IsEditor = editor == null ? false : true;
+                if (IsEditor) {
+                    var myContent = editor.getContent();
+                    data.append(input.name, myContent);
+                }
+                else {
+                    data.append(input.name, input.value);
+                }
+            });
+
+            var url = $(this).attr('action');
+            var id = @Model.Id;
+            $.ajax({
+                type: "POST",
+                url: "/admin/"+url,
+                processData: false,
+                contentType: false,
+                data: data,
+                success: function (data) {
+                        Swal.fire({
+                            title: '@T("admin.notification.success")',
+                            icon: 'success',
+                            showCancelButton: false,
+                            showConfimButton: false,
+                            timer: 1000,
+                            timerProgressBar: true
+                        }).then((result) => {
+                            $('#CongressModal').modal('hide');
+                        })
+                }
+            });
+        });
+    </script>
+}

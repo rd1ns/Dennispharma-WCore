@@ -1,0 +1,46 @@
+﻿@model LanguageSelectorModel
+
+@inject WCore.Core.IWebHelper webHelper
+
+@if (Model.AvailableLanguages.Count > 0)
+{
+    var returnUrl = webHelper.GetRawUrl(Context.Request);
+    if (Model.UseImages)
+    {
+        <li>
+            <div class="dropdown p-0">
+                <button type="button" class="btn btn-primary btn-sm dropdown-toggle rounded-0" data-toggle="dropdown">
+                    <img class="pr-1" src="@Url.Content("~/images/flags/" + Model.CurrentLanguage.FlagImageFileName)" alt="@Model.CurrentLanguage.Name"> @Model.CurrentLanguage.Name
+                </button>
+                <div class="dropdown-menu rounded-0">
+
+                    @foreach (var lang in Model.AvailableLanguages)
+                    {
+                        <a style="color:#000 !important" class="pl-1 pr-0 dropdown-item" href="@Url.RouteUrl("ChangeLanguage", new { langid = lang.Id, returnUrl }, webHelper.CurrentRequestProtocol)" title="@lang.Name">
+                            <img class="pr-1" title='@lang.Name' alt='@lang.Name' @(lang.Id == Model.CurrentLanguage.Id ? " class=selected" : null) src="@Url.Content("~/images/flags/" + @lang.FlagImageFileName) " />
+                            @lang.Name
+                        </a>
+                    }
+                </div>
+            </div>
+        </li>
+    }
+    else
+    {
+        <li>
+            <span>
+                <a href="#" class="pl-0">@Model.CurrentLanguage.Name</a>
+            </span>
+        </li>
+        <ul class="drop-down-multilevel left-side">
+            @foreach (var lang in Model.AvailableLanguages)
+            {
+                <li>
+                    <span>
+                        <a href="@Url.RouteUrl("ChangeLanguage", new { langid = lang.Id, returnUrl }, webHelper.CurrentRequestProtocol)" title="@lang.Name">@lang.Name</a>
+                    </span>
+                </li>
+            }
+        </ul>
+    }
+}

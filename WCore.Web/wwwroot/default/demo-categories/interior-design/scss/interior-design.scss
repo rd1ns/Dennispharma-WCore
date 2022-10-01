@@ -1,0 +1,113 @@
+/*
+Template:  Webster - Responsive Multi-purpose HTML5 Template
+Author: potenzaglobalsolutions.com
+Design and Developed by: potenzaglobalsolutions.com
+
+NOTE: This file contains the styling for the Interior Design Template. You can edit/add anything in this file!
+*/
+
+h1 {
+	font-family: 'Poppins', sans-serif;
+	font-weight: normal;
+	margin-top: 0px;
+	text-transform: capitalize;
+}
+h2 {
+	font-family: 'Poppins', sans-serif;
+	font-weight: normal;
+	margin-top: 0px;
+	text-transform: capitalize;
+}
+h3 {
+	font-family: 'Poppins', sans-serif;
+	font-weight: normal;
+	margin-top: 0px;
+	text-transform: capitalize;
+}
+h4 {
+	font-family: 'Poppins', sans-serif;
+	font-weight: normal;
+	margin-top: 0px;
+	text-transform: capitalize;
+	line-height: 30px;
+}
+h5 {
+	font-family: 'Poppins', sans-serif;
+	font-weight: normal;
+	margin-top: 0px;
+	text-transform: capitalize;
+}
+h6 {
+	font-family: 'Poppins', sans-serif;
+	font-weight: normal;
+	margin-top: 0px;
+	text-transform: capitalize;
+}
+.interior-counter {
+	.counter {
+		label {
+			font-family: 'Poppins', sans-serif;
+			font-size: 20px;
+			line-height: 26px;
+		}
+		span {
+			color: #ba893f;
+		}
+	}
+}
+.interior-action-box {
+	.action-box {
+		position: relative;
+		margin-top: -40px;
+		z-index: 9;
+	}
+}
+.bg-overlay-theme-20 {
+	&:before {
+		background: rgba(53, 74, 107, 0.2);
+		content: "";
+		height: 100%;
+		left: 0;
+		position: absolute;
+		top: 0;
+		width: 100%;
+		z-index: -1;
+	}
+}
+.bg-overlay-theme-50 {
+	&:before {
+		background: rgba(53, 74, 107, 0.5);
+		content: "";
+		height: 100%;
+		left: 0;
+		position: absolute;
+		top: 0;
+		width: 100%;
+		z-index: -1;
+	}
+}
+.bg-overlay-theme-70 {
+	&:before {
+		background: rgba(53, 74, 107, 0.7);
+		content: "";
+		height: 100%;
+		left: 0;
+		position: absolute;
+		top: 0;
+		width: 100%;
+		z-index: -1;
+	}
+}
+.bg-overlay-theme-90 {
+	&:before {
+		background: rgba(53, 74, 107, 0.9);
+		content: "";
+		height: 100%;
+		left: 0;
+		position: absolute;
+		top: 0;
+		width: 100%;
+		z-index: -1;
+	}
+}
+

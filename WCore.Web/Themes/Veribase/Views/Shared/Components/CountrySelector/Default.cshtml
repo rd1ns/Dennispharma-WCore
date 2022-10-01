@@ -1,0 +1,22 @@
+﻿@model CountrySelectorModel
+
+@inject WCore.Core.IWebHelper webHelper
+
+@if (Model.AvailableCountries.Count > 0)
+{
+    var returnUrl = webHelper.GetRawUrl(Context.Request);
+    <li>
+        <div class="dropdown p-0">
+            <button type="button" class="btn btn-primary btn-sm dropdown-toggle rounded-0" data-toggle="dropdown">@Model.CurrentCountry.Name
+            </button>
+            <div class="dropdown-menu rounded-0">
+
+                @foreach (var country in Model.AvailableCountries)
+                {
+                    <a style="color:#000 !important" class="pl-1 pr-0 dropdown-item" href="@Url.RouteUrl("ChangeCountry", new { userCountry = country.Id, returnUrl }, webHelper.CurrentRequestProtocol)" title="@country.Name">@country.Name
+                    </a>
+                }
+            </div>
+        </div>
+    </li>
+}

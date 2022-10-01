@@ -1,0 +1,41 @@
+/*============================================================================================*/
+/* Your custom styles below */
+/*============================================================================================*/
+
+.slick-nav {
+    background-color: #2ebadb99;
+    border: none;
+    color: #fff;
+    font-size: 20px;
+}
+
+.slick-prev {
+    display: block;
+    position: absolute;
+    z-index: 1000;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.slick-next {
+    display: block;
+    position: absolute;
+    right: 0px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1000;
+}
+
+#videobcg {
+    position: sticky;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -100;
+}
+
+#video-content {
+    position: relative;
+    width: 100%;
+}

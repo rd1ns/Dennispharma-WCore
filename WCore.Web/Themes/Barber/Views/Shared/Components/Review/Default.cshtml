@@ -1,0 +1,95 @@
+﻿@model ReviewViewModel
+@{
+    var stars = Model.ReviewList.Reviews.GroupBy(o => o.Star).Select(group => Tuple.Create(group.Key, group.Count()));
+    var starSum = Model.ReviewList.Reviews.GroupBy(o => o.Star);
+    var totalReview = starSum.Sum(o => o.Key);
+}
+
+<div class="card">
+    <div class="card-header" id="reviews">
+        @T("common.skiresort.reviews")
+    </div>
+    <div class="card-body">
+        <div class="reviews-container">
+            <div class="row">
+                <div class="col-lg-3">
+                    <div id="review_summary">
+                        <strong>@totalReview</strong>
+                        <small>@string.Format(T("common.skiresort.reviews.rating.description").ToString(), Model.ReviewList.Reviews.Count())</small>
+                    </div>
+                </div>
+                <div class="col-lg-9">
+                    @for (int i = 1; i < 6; i++)
+                    {
+                        var totalStar = stars.FirstOrDefault(o => o.Item1 == i);
+                        @if (totalStar != null)
+                        {
+
+                            var sumStar = decimal.Parse(totalStar.Item2.ToString());
+                            var starPercent = (decimal.Parse(totalStar.Item2.ToString()) / totalReview) * 100;
+                            var starPercentLast = (100* sumStar) / totalReview;
+                            <div class="row">
+                                <div class="col-lg-10 col-9">
+                                    @Math.Round(starPercentLast, 1)
+                                    <div class="progress">
+                                        <div class="progress-bar" role="progressbar" style="width: @(starPercentLast+"%")" aria-valuenow="@sumStar" aria-valuemin="0" aria-valuemax="5"></div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-2 col-3"><small class="position-absolute"><strong> @i @T("common.rating.star") (@totalStar.Item2)</strong></small></div>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="row">
+                                <div class="col-lg-10 col-9">
+                                    <div class="progress">
+                                        <div class="progress-bar" role="progressbar" style="width:0" aria-valuenow="0" aria-valuemin="0" aria-valuemax="5"></div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-2 col-3"><small class="position-absolute"><strong> @i @T("common.rating.star") (0)</strong></small></div>
+                            </div>
+                        }
+                    }
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header" id="reviews">
+                @T("common.skiresort.leaveareview")
+            </div>
+            <div class="card-body">
+                <form>
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                            <label>@T("Admin.Configuration.NameSurname") *</label>
+                            <input type="text" name="name_review" required id="name_review" placeholder="" class="form-control">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label>@T("Admin.Configuration.Email") *</label>
+                            <input type="email" name="email_review" required id="email_review" class="form-control">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label>@T("Admin.Configuration.Rating") </label>
+                            <div class="custom-select-form">
+                                <select name="rating_review" id="rating_review" class="wide">
+                                    <option value="1">1 (@T("Admin.Configuration.Lowest"))</option>
+                                    <option value="2">2</option>
+                                    <option value="3" selected="">3 (@T("Admin.Configuration.Medium"))</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5 (@T("Admin.Configuration.Highest")) </option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-12">
+                            <label>@T("Admin.Configuration.YourReview")</label>
+                            <textarea name="review_text" id="review_text" required class="form-control" style="height:130px;"></textarea>
+                        </div>
+                        <div class="form-group col-md-12 add_top_20">
+                            <input type="submit" value="@T("Admin.Configuration.Submit")" class="btn_1" id="submit-review">
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

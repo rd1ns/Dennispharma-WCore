@@ -1,0 +1,82 @@
+﻿@using WCore.Core.Domain.Settings
+@inject SeoSettings _seoSettings
+@inject StoreInformationSettings _storeInformationSettings;
+@inject IThemeContext _themeContext;
+
+@{
+    var pageTitleSeoAdjustment = _seoSettings.PageTitleSeoAdjustment;
+    var pageTitleSeparator = _seoSettings.PageTitleSeparator;
+    var defaultTitle = _seoSettings.DefaultTitle;
+    var defaultMetaDescription = _seoSettings.DefaultMetaDescription;
+    var defaultMetaKeywords = _seoSettings.DefaultMetaKeywords;
+    var Title = "";
+    switch (pageTitleSeoAdjustment)
+    {
+        case PageTitleSeoAdjustment.PagenameAfterStorename:
+            Title = defaultTitle + " " + pageTitleSeparator + " " + ViewBag.Title;
+            break;
+        case PageTitleSeoAdjustment.StorenameAfterPagename:
+            Title = ViewBag.Title + " " + pageTitleSeparator + " " + defaultTitle;
+            break;
+    }
+}
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="author" content="webupbilisim">
+<title>@Title</title>
+
+<meta name="keywords" content="@ViewBag.Keywords">
+<meta name="description" content="@ViewBag.Description">
+
+@if (_seoSettings.TwitterMetaTags)
+{
+    <meta name="twitter:card" content="@ViewBag.TwtterCard" />
+    <meta name="twitter:title" content="@ViewBag.TwtterTitle" />
+    <meta name="twitter:description" content="@ViewBag.TwtterDescription" />
+    <meta name="twitter:url" content="@ViewBag.TwtterUrl" />
+    <meta name="twitter:image" content="@ViewBag.TwtterImage" />
+}
+@if (_seoSettings.OpenGraphMetaTags)
+{
+    <meta property="og:title" content="@ViewBag.OgTitle" />
+    <meta property="og:description" content="@ViewBag.OgDescription" />
+    <meta property="og:image" content="@ViewBag.OgImage" />
+    <meta property="og:url" content="@ViewBag.OgUrl" />
+}
+
+
+<!-- Favicons-->
+<link rel="shortcut icon" href="@_storeInformationSettings.LogoPicture" type="image/x-icon">
+<link rel="apple-touch-icon" type="image/x-icon" href="@_storeInformationSettings.LogoPicture">
+<link rel="apple-touch-icon" type="image/x-icon" sizes="72x72" href="@_storeInformationSettings.LogoPicture">
+<link rel="apple-touch-icon" type="image/x-icon" sizes="114x114" href="@_storeInformationSettings.LogoPicture">
+<link rel="apple-touch-icon" type="image/x-icon" sizes="144x144" href="@_storeInformationSettings.LogoPicture">
+
+<!--Bootstrap css -->
+<link href="/@_storeInformationSettings.DefaultStoreTheme/css/bootstrap.min.css" rel="stylesheet">
+
+<!--font-awosome icon css-->
+<link rel="stylesheet" href="/@_storeInformationSettings.DefaultStoreTheme/css/font-awesome.min.css">
+
+<!--elegant icon css-->
+<link rel="stylesheet" href="/@_storeInformationSettings.DefaultStoreTheme/vendors/elegant-icon/style.css">
+
+<!--google fonts-->
+<link href='https://fonts.googleapis.com/css?family=Lora:400,700' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Arimo:400,400italic,700' rel='stylesheet' type='text/css'>
+
+<!--main css-->
+<link rel="stylesheet" href="/@_storeInformationSettings.DefaultStoreTheme/css/style.css">
+<link rel="stylesheet" href="/@_storeInformationSettings.DefaultStoreTheme/css/responsive.css">
+
+<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+<script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+<![endif]-->
+
+
+<link href="/@_storeInformationSettings.DefaultStoreTheme/css/sweetalert2.css" rel="stylesheet" />
+<link href="/@_storeInformationSettings.DefaultStoreTheme/js/fancybox/dist/jquery.fancybox.min.css" rel="stylesheet" />

@@ -1,0 +1,30 @@
+﻿@{
+    ViewData["PageMainTitle"] = "Hata";
+    ViewData["PageTitle"] = "Sayfa bulunamadı.";
+    ViewData["Title"] = ViewData["PageTitle"] + " / " + ViewData["PageMainTitle"];
+}
+<div class="content  d-flex flex-column flex-column-fluid" id="kt_content">
+    <!--begin::Entry-->
+    <div class="d-flex flex-column-fluid">
+        <!--begin::Container-->
+        <div class=" container-fluid ">
+            <!--begin::UserPage-->
+            <div class="card card-custom">
+                <div class="card-header" style="">
+                    <div class="card-title">
+                        <h3 class="card-label">
+                            @ViewData["PageTitle"] <i class="mr-2"></i>
+                            <small class="">@ViewData["PageMainTitle"]</small>
+                        </h3>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <p>Aradığın sayfa bulunamadı.</p>
+                </div>
+            </div>
+            <!--end::UserPage-->
+        </div>
+        <!--end::Container-->
+    </div>
+    <!--end::Entry-->
+</div>

@@ -1,0 +1,119 @@
+﻿@inject SeoSettings _seoSettings
+@inject IWebHelper _webHelper
+@inject WCore.Core.IWorkContext _workContext
+
+@model CongressModel
+@{
+    ViewBag.Title = Model.Title;
+
+    @if (_seoSettings.TwitterMetaTags)
+    {
+        ViewBag.TwtterCard = "";
+        ViewBag.TwtterTitle = Model.Title;
+        ViewBag.TwtterUrl = _webHelper.GetThisPageUrl(true);
+        ViewBag.TwtterImage = _webHelper.GetStoreLocation().Substring(0, _webHelper.GetStoreLocation().Length - 1) + Model.Banner;
+    }
+
+    @if (_seoSettings.OpenGraphMetaTags)
+    {
+        ViewBag.OgTitle = Model.Title;
+        ViewBag.OgUrl = _webHelper.GetStoreLocation();
+        ViewBag.OgImage = _webHelper.GetStoreLocation().Substring(0, _webHelper.GetStoreLocation().Length - 1) + Model.Banner;
+    }
+}
+<!--=================================
+page-title-->
+
+@await Component.InvokeAsync("PageTitle", Model.PageTitle)
+<!--=================================
+page-title -->
+<!--=================================
+content -->
+
+<section class="blog blog-single white-bg page-section-ptb">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="blog-entry mb-10">
+                    <div class="blog-detail">
+                        <div class="entry-content">
+                            @Html.Raw(Model.Body)
+                            <div class="tab nav-bt border">
+                                <ul class="nav nav-tabs nav-fill mb-0" id="myTab" role="tablist">
+                                    <li class="nav-item">
+                                        <a class="nav-link active show" id="home-03-tab" data-toggle="tab" href="#home-03" role="tab" aria-controls="home-03" aria-selected="true">Kongre Görseli</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" id="profile-03-tab" data-toggle="tab" href="#profile-03" role="tab" aria-controls="profile-03" aria-selected="false">Bildiri Özetleri </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" id="portfolio-03-tab" data-toggle="tab" href="#portfolio-03" role="tab" aria-controls="portfolio-03" aria-selected="false">Kongre Sunumları </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" id="contact-03-tab" data-toggle="tab" href="#contact-03" role="tab" aria-controls="contact-03" aria-selected="false">Ödül Kazanan Çalışmalar </a>
+                                    </li>
+                                </ul>
+                                <div class="tab-content p-2" id="myTabContent">
+                                    <div class="tab-pane fade active show" id="home-03" role="tabpanel" aria-labelledby="home-03-tab">
+                                        <div class="row">
+                                            <div class="col-lg-12">
+                                                <img src="@Model.Banner" class="img-fluid" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane fade" id="profile-03" role="tabpanel" aria-labelledby="profile-03-tab">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                @if (Model.CongressPaperTypes.CongressPaperTypes != null)
+                                                {
+                                                    <div class="accordion accordion-border shadow mb-30">
+                                                        @foreach (var congressPaperTypes in Model.CongressPaperTypes.CongressPaperTypes)
+                                                        {
+                                                            <div class="acd-group">
+                                                                <a href="#" class="acd-heading">@congressPaperTypes.Title</a>
+                                                                <div class="acd-des px-1" style="display: none;">
+                                                                    @Html.Raw(congressPaperTypes.Body)
+                                                                </div>
+                                                            </div>
+                                                        }
+                                                    </div>
+                                                }
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane fade" id="portfolio-03" role="tabpanel" aria-labelledby="portfolio-03-tab">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                @if (Model.CongressPresentationTypes.CongressPresentationTypes != null)
+                                                {
+                                                    <div class="accordion plus-icon shadow mb-30">
+                                                        @foreach (var congressPresentationTypes in Model.CongressPresentationTypes.CongressPresentationTypes)
+                                                        {
+                                                            <div class="acd-group border">
+                                                                <a href="#" class="acd-heading">@congressPresentationTypes.Title</a>
+                                                                <div class="acd-des px-1" style="display: none;">
+                                                                    @Html.Raw(congressPresentationTypes.Body)
+                                                                </div>
+                                                            </div>
+                                                        }
+                                                    </div>
+                                                }
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane fade" id="contact-03" role="tabpanel" aria-labelledby="contact-03-tab">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                @Html.Raw(Model.AwardWinningWorks)
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

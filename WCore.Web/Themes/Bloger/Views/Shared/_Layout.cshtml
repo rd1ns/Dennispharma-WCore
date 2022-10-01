@@ -1,0 +1,77 @@
+﻿@{
+    var _workContext = EngineContext.Current.Resolve<IWorkContext>();
+    var _storeInformationSettings = EngineContext.Current.Resolve<StoreInformationSettings>();
+    var _themeContext = EngineContext.Current.Resolve<IThemeContext>();
+
+    var wrapperClassName = "wrapper";
+    @switch (_storeInformationSettings.DefaultStoreThemeHeaderType)
+    {
+        case "center":
+            break;
+        case "full":
+            break;
+    }
+
+    var bodyClass = "";
+
+    if (ViewBag.CurrentPageType != null)
+    {
+        if ((PageType)ViewBag.CurrentPageType == PageType.ScrollContent)
+        {
+            bodyClass = "";
+        }
+    }
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <partial name="_Head" />
+    @RenderSection("Styles", required: false)
+
+    <style>
+        body.wcore-main-bg {
+            @*background-image: url(@_storeInformationSettings.BgImage);*@
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: cover;
+            position: relative;
+        }
+        body.wcore-pattern {
+            background-image: url( @_storeInformationSettings.BgPattern );
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: cover;
+            position: relative;
+        }
+    </style>
+
+
+</head>
+<body class="@bodyClass  @(string.IsNullOrEmpty(_storeInformationSettings.BgImage) ? "":"") @(string.IsNullOrEmpty(_storeInformationSettings.BgPattern) ? "":"")">
+    <!-- wrapper end -->
+    @*<input type="hidden" name="WorkingCurrency" id="WorkingCurrency" value="@_workContext.WorkingCurrency.Id" />
+    <input type="hidden" name="WorkingLanguage" id="WorkingLanguage" value="@_workContext.WorkingLanguage.Id" />
+    <input type="hidden" name="WorkingTheme" id="WorkingTheme" value="@_themeContext.WorkingThemeName" />*@
+    <!-- wrapper start -->
+
+    <div class="preloader">
+        <div class="left_pre"></div>
+        <div class="right_pre"></div>
+        <div class="row m0 content">z
+            <div class="circle">
+                <div class="red">
+                    <div class="rotator">
+                        <img src="/@_themeContext.WorkingThemeName/images/curve.png" alt="">
+                    </div>
+                    <a href="#" class="logo">Bloger</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <partial name="_Header" />
+    @RenderBody()
+    <partial name="_Bottom" />
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

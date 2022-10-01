@@ -1,0 +1,54 @@
+﻿@model List<ProjectCategoryModel>
+@using Fiyap.Core
+@using Fiyap.Core.Infrastructure
+@{
+    var _workContext = EngineContext.Current.Resolve<IWorkContext>();
+    var _webHelper = EngineContext.Current.Resolve<IWebHelper>();
+}
+
+@helper GetProject(ProjectModel projectModel, IWorkContext workContext)
+{
+    var link = "/" + workContext.CurrentLanguage.UniqueSeoCode + "/" + projectModel.Url;
+
+    <a href="@link">
+        <img class="card-img-top img-src" src="@projectModel.Cover" alt="">
+    </a>
+    <div class="card-body bg-company d-none">
+        <a href="@link" class="text-white">
+            <h5 class="card-title mb-0">@projectModel.Title</h5>
+        </a>        
+        <p class="card-text">@projectModel.ShortBody</p>
+    </div>
+}
+
+<div id="filters" class="button-group mb-3 w-100 d-block">
+    <nav class="nav nav-pills">
+        <a class="nav-link active is-checked btn-light float-left rounded-0" data-filter="*">TÜMÜ</a>
+        @foreach (var item in Model)
+        {
+            <a class="nav-link btn-light rounded-0" data-filter=".@item.Id">@item.Title</a>
+        }
+    </nav>
+</div>
+
+<div class="grid row">
+    @foreach (var productCategory in Model)
+    {
+        foreach (var projects in productCategory.Projects)
+        {
+            <div class="mb-sm-3 mb-md-3 col-lg-3 element-item transition @productCategory.Id">
+                <div class="card">
+                    @GetProject(projects, _workContext)
+                </div>
+            </div>
+        }
+    }
+</div>
+
+<style>
+    .img-src {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+    }
+</style>

@@ -1,0 +1,262 @@
+/*
+Template:  Webster - Responsive Multi-purpose HTML5 Template
+Author: potenzaglobalsolutions.com
+Design and Developed by: potenzaglobalsolutions.com
+
+NOTE: This file contains the styling for the GYM Template. You can edit/add anything in this file!
+*/
+
+/*table-gym*/
+/*name*/
+h1 {
+	font-family: 'Montserrat', sans-serif;
+	font-weight: normal;
+	color: #1d2152 !important;
+	margin-top: 0px;
+	text-transform: capitalize;
+	font-weight: bold;
+}
+h2 {
+	font-family: 'Montserrat', sans-serif;
+	font-weight: normal;
+	color: #1d2152 !important;
+	margin-top: 0px;
+	text-transform: capitalize;
+	font-weight: bold;
+}
+h3 {
+	font-family: 'Montserrat', sans-serif;
+	font-weight: normal;
+	color: #1d2152 !important;
+	margin-top: 0px;
+	text-transform: capitalize;
+	font-weight: bold;
+}
+h4 {
+	font-family: 'Montserrat', sans-serif;
+	font-weight: normal;
+	color: #1d2152 !important;
+	margin-top: 0px;
+	text-transform: capitalize;
+	font-weight: bold;
+}
+h5 {
+	font-family: 'Montserrat', sans-serif;
+	font-weight: normal;
+	color: #1d2152 !important;
+	margin-top: 0px;
+	text-transform: capitalize;
+	font-weight: bold;
+}
+h6 {
+	font-family: 'Montserrat', sans-serif;
+	font-weight: normal;
+	color: #1d2152 !important;
+	margin-top: 0px;
+	text-transform: capitalize;
+	font-weight: bold;
+}
+.table-gym {
+	thead {
+		background: transparent;
+		tr {
+			th {
+				padding: 20px 20px;
+				text-align: left;
+				font-weight: bold;
+				background: #1d2152;
+				border-color: #000;
+				color: #d12326;
+				text-transform: uppercase;
+			}
+		}
+	}
+	tbody {
+		tr {
+			td {
+				padding: 20px 20px;
+				text-align: left;
+				font-weight: bold;
+				img {
+					width: 30px;
+					height: 30px;
+					margin-right: 15px;
+				}
+			}
+		}
+	}
+}
+.black-bg {
+	background: #1d2152 !important;
+}
+.price {
+	.header {
+		background: #1d2152 !important;
+	}
+}
+.course-name {
+	background: #ffffff !important;
+	background: #1d2152;
+	padding: 30px 20px;
+	a {
+		color: #1d2152 !important;
+	}
+}
+.text-white {
+	color: #ffffff !important;
+}
+.feature-box {
+	&:hover {
+		h4 {
+			color: #ffffff !important;
+		}
+		p {
+			color: #ffffff !important;
+		}
+	}
+	.feature-border {
+		background: #d12326;
+	}
+}
+.feature-box.active {
+	h4 {
+		color: #ffffff !important;
+	}
+	p {
+		color: #ffffff !important;
+	}
+}
+.success-stories {
+	.owl-carousel {
+		.owl-dots {
+			.owl-dot {
+				&:hover {
+					span {
+						background: #1d2152;
+					}
+				}
+			}
+			.owl-dot.active {
+				span {
+					background: #1d2152;
+				}
+			}
+		}
+	}
+}
+.gym-success {
+	.owl-carousel {
+		.owl-dots {
+			bottom: 20px;
+		}
+	}
+}
+.tab {
+	.nav.nav-tabs {
+		>li {
+			>a.active {
+				background: #d12326;
+				border-color: transparent;
+			}
+		}
+	}
+}
+.nav.nav-tabs {
+	>li {
+		>a.active {
+			&:focus {
+				background: #d12326;
+				border-color: transparent;
+			}
+			&:hover {
+				background: #d12326;
+				border-color: transparent;
+			}
+		}
+	}
+}
+.footer-widget {
+	background: transparent;
+	border-color: #141738;
+}
+.opening-time {
+	ul {
+		li {
+			border-color: #141738;
+		}
+	}
+}
+.pricing-table.boxed {
+	border-color: #141738;
+}
+.button {
+	&:hover {
+		background: #1d2152;
+		border-color: #1d2152;
+	}
+	&:focus {
+		background: #1d2152;
+		border-color: #1d2152;
+	}
+}
+.bg-overlay-theme-20 {
+	&:before {
+		background: rgba(29,33,82, 0.2);
+		content: "";
+		height: 100%;
+		left: 0;
+		position: absolute;
+		top: 0;
+		width: 100%;
+		z-index: 0;
+	}
+}
+.bg-overlay-theme-50 {
+	&:before {
+		background: rgba(29,33,82, 0.5);
+		content: "";
+		height: 100%;
+		left: 0;
+		position: absolute;
+		top: 0;
+		width: 100%;
+		z-index: 0;
+	}
+}
+.bg-overlay-theme-70 {
+	&:before {
+		background: rgba(29,33,82, 0.7);
+		content: "";
+		height: 100%;
+		left: 0;
+		position: absolute;
+		top: 0;
+		width: 100%;
+		z-index: 0;
+	}
+}
+.bg-overlay-theme-80 {
+	&:before {
+		background: rgba(29,33,82, 0.8);
+		content: "";
+		height: 100%;
+		left: 0;
+		position: absolute;
+		top: 0;
+		width: 100%;
+		z-index: 0;
+	}
+}
+.bg-overlay-theme-90 {
+	&:before {
+		background: rgba(29,33,82, 0.9);
+		content: "";
+		height: 100%;
+		left: 0;
+		position: absolute;
+		top: 0;
+		width: 100%;
+		z-index: 0;
+	}
+}
+

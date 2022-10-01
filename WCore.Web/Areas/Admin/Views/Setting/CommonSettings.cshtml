@@ -1,0 +1,268 @@
+﻿@model CommonSettingsModel
+@{
+
+    ViewData["PageMainTitle"] = T("Admin.Configuration.Settings");
+    ViewData["PageTitle"] = T("admin.configuration.settings.common.title");
+    ViewData["SystemTitle"] = ViewData["PageTitle"] + " / " + ViewData["PageMainTitle"];
+    ViewData["ControllerName"] = "Setting";
+    ViewData["ActionName"] = "commonSettings";
+}
+<div class="content  d-flex flex-column flex-column-fluid" id="kt_content">
+    <div class="subheader py-2 py-lg-6  subheader-solid " id="kt_subheader">
+        <div class=" container-fluid  d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
+            <div class="d-flex align-items-center flex-wrap mr-1">
+                <div class="d-flex align-items-baseline flex-wrap mr-5">
+                    <h5 class="text-dark font-weight-bold my-1 mr-5">
+                        @ViewData["PageTitle"]
+                    </h5>
+                    <ul class="breadcrumb breadcrumb-transparent breadcrumb-dot font-weight-bold p-0 my-2 font-size-sm">
+                        <li class="breadcrumb-item">
+                            @ViewData["PageMainTitle"]
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="d-flex align-items-center">
+                <partial name="_AddOrEditHeaderButtons" model="@Tuple.Create(0,"CommonSettingsForm")" />
+            </div>
+        </div>
+    </div>
+    <div class="d-flex flex-column-fluid">
+        <div class="container-fluid">
+            <form id="CommonSettingsForm" action="/admin/@ViewData["ControllerName"]/@ViewData["ActionName"]" method="post" enctype="multipart/form-data">
+                <div class="card card-custom">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-xl-12 my-2">
+                                <div class="form-group row ">
+                                    <WCore-label asp-for="SubjectFieldOnContactUsForm" />
+                                    <div class="col-lg-10 col-md-6 col-sm-12">
+                                        <div class="checkbox-inline">
+                                            <label class="checkbox pt-3">
+                                                <input asp-for="SubjectFieldOnContactUsForm" />
+                                                <span></span>
+                                            </label>
+                                        </div>
+                                        <span asp-validation-for="SubjectFieldOnContactUsForm"></span>
+                                    </div>
+                                </div>
+                                <div class="form-group row ">
+                                    <WCore-label asp-for="UseSystemEmailForContactUsForm" />
+                                    <div class="col-lg-10 col-md-6 col-sm-12">
+                                        <div class="checkbox-inline">
+                                            <label class="checkbox pt-3">
+                                                <input asp-for="UseSystemEmailForContactUsForm" />
+                                                <span></span>
+                                            </label>
+                                        </div>
+                                        <span asp-validation-for="UseSystemEmailForContactUsForm"></span>
+                                    </div>
+                                </div>
+                                <div class="form-group row ">
+                                    <WCore-label asp-for="UseStoredProcedureForLoadingCategories" />
+                                    <div class="col-lg-10 col-md-6 col-sm-12">
+                                        <div class="checkbox-inline">
+                                            <label class="checkbox pt-3">
+                                                <input asp-for="UseStoredProcedureForLoadingCategories" />
+                                                <span></span>
+                                            </label>
+                                        </div>
+                                        <span asp-validation-for="UseStoredProcedureForLoadingCategories"></span>
+                                    </div>
+                                </div>
+                                <div class="form-group row ">
+                                    <WCore-label asp-for="DisplayJavaScriptDisabledWarning" />
+                                    <div class="col-lg-10 col-md-6 col-sm-12">
+                                        <div class="checkbox-inline">
+                                            <label class="checkbox pt-3">
+                                                <input asp-for="DisplayJavaScriptDisabledWarning" />
+                                                <span></span>
+                                            </label>
+                                        </div>
+                                        <span asp-validation-for="DisplayJavaScriptDisabledWarning"></span>
+                                    </div>
+                                </div>
+                                <div class="form-group row ">
+                                    <WCore-label asp-for="UseFullTextSearch" />
+                                    <div class="col-lg-10 col-md-6 col-sm-12">
+                                        <div class="checkbox-inline">
+                                            <label class="checkbox pt-3">
+                                                <input asp-for="UseFullTextSearch" />
+                                                <span></span>
+                                            </label>
+                                        </div>
+                                        <span asp-validation-for="UseFullTextSearch"></span>
+                                    </div>
+                                </div>
+                                <div class="form-group row ">
+                                    <WCore-label asp-for="Log404Errors" />
+                                    <div class="col-lg-10 col-md-6 col-sm-12">
+                                        <div class="checkbox-inline">
+                                            <label class="checkbox pt-3">
+                                                <input asp-for="Log404Errors" />
+                                                <span></span>
+                                            </label>
+                                        </div>
+                                        <span asp-validation-for="Log404Errors"></span>
+                                    </div>
+                                </div>
+                                <div class="form-group row ">
+                                    <WCore-label asp-for="BreadcrumbDelimiter" />
+                                    <div class="col-lg-10 col-md-6 col-sm-12">
+                                        <WCore-editor asp-for="BreadcrumbDelimiter" />
+                                    </div>
+                                </div>
+                                <div class="form-group row ">
+                                    <WCore-label asp-for="RenderXuaCompatible" />
+                                    <div class="col-lg-10 col-md-6 col-sm-12">
+                                        <div class="checkbox-inline">
+                                            <label class="checkbox pt-3">
+                                                <input asp-for="RenderXuaCompatible" />
+                                                <span></span>
+                                            </label>
+                                        </div>
+                                        <span asp-validation-for="RenderXuaCompatible"></span>
+                                    </div>
+                                </div>
+                                <div class="form-group row ">
+                                    <WCore-label asp-for="XuaCompatibleValue" />
+                                    <div class="col-lg-10 col-md-6 col-sm-12">
+                                        <WCore-editor asp-for="XuaCompatibleValue" />
+                                    </div>
+                                </div>
+                                <div class="form-group row ">
+                                    <WCore-label asp-for="IgnoreLogWordlist" />
+                                    <div class="col-lg-10 col-md-6 col-sm-12">
+                                        <WCore-editor asp-for="IgnoreLogWordlist" />
+                                    </div>
+                                </div>
+                                <div class="form-group row ">
+                                    <WCore-label asp-for="BbcodeEditorOpenLinksInNewWindow" />
+                                    <div class="col-lg-10 col-md-6 col-sm-12">
+                                        <div class="checkbox-inline">
+                                            <label class="checkbox pt-3">
+                                                <input asp-for="BbcodeEditorOpenLinksInNewWindow" />
+                                                <span></span>
+                                            </label>
+                                        </div>
+                                        <span asp-validation-for="BbcodeEditorOpenLinksInNewWindow"></span>
+                                    </div>
+                                </div>
+                                <div class="form-group row ">
+                                    <WCore-label asp-for="PopupForTermsOfServiceLinks" />
+                                    <div class="col-lg-10 col-md-6 col-sm-12">
+                                        <div class="checkbox-inline">
+                                            <label class="checkbox pt-3">
+                                                <input asp-for="PopupForTermsOfServiceLinks" />
+                                                <span></span>
+                                            </label>
+                                        </div>
+                                        <span asp-validation-for="PopupForTermsOfServiceLinks"></span>
+                                    </div>
+                                </div>
+                                <div class="form-group row ">
+                                    <WCore-label asp-for="JqueryMigrateScriptLoggingActive" />
+                                    <div class="col-lg-10 col-md-6 col-sm-12">
+                                        <div class="checkbox-inline">
+                                            <label class="checkbox pt-3">
+                                                <input asp-for="JqueryMigrateScriptLoggingActive" />
+                                                <span></span>
+                                            </label>
+                                        </div>
+                                        <span asp-validation-for="JqueryMigrateScriptLoggingActive"></span>
+                                    </div>
+                                </div>
+                                <div class="form-group row ">
+                                    <WCore-label asp-for="SupportPreviousWCorecommerceVersions" />
+                                    <div class="col-lg-10 col-md-6 col-sm-12">
+                                        <div class="checkbox-inline">
+                                            <label class="checkbox pt-3">
+                                                <input asp-for="SupportPreviousWCorecommerceVersions" />
+                                                <span></span>
+                                            </label>
+                                        </div>
+                                        <span asp-validation-for="SupportPreviousWCorecommerceVersions"></span>
+                                    </div>
+                                </div>
+                                <div class="form-group row ">
+                                    <WCore-label asp-for="UseResponseCompression" />
+                                    <div class="col-lg-10 col-md-6 col-sm-12">
+                                        <div class="checkbox-inline">
+                                            <label class="checkbox pt-3">
+                                                <input asp-for="UseResponseCompression" />
+                                                <span></span>
+                                            </label>
+                                        </div>
+                                        <span asp-validation-for="UseResponseCompression"></span>
+                                    </div>
+                                </div>
+                                <div class="form-group row ">
+                                    <WCore-label asp-for="StaticFilesCacheControl" />
+                                    <div class="col-lg-10 col-md-6 col-sm-12">
+                                        <WCore-editor asp-for="StaticFilesCacheControl" />
+                                    </div>
+                                </div>
+                                <div class="form-group row ">
+                                    <WCore-label asp-for="FaviconAndAppIconsHeadCode" />
+                                    <div class="col-lg-10 col-md-6 col-sm-12">
+                                        <WCore-editor asp-for="FaviconAndAppIconsHeadCode" />
+                                    </div>
+                                </div>
+                                <div class="form-group row ">
+                                    <WCore-label asp-for="EnableHtmlMinification" />
+                                    <div class="col-lg-10 col-md-6 col-sm-12">
+                                        <div class="checkbox-inline">
+                                            <label class="checkbox pt-3">
+                                                <input asp-for="EnableHtmlMinification" />
+                                                <span></span>
+                                            </label>
+                                        </div>
+                                        <span asp-validation-for="EnableHtmlMinification"></span>
+                                    </div>
+                                </div>
+                                <div class="form-group row ">
+                                    <WCore-label asp-for="EnableJsBundling" />
+                                    <div class="col-lg-10 col-md-6 col-sm-12">
+                                        <div class="checkbox-inline">
+                                            <label class="checkbox pt-3">
+                                                <input asp-for="EnableJsBundling" />
+                                                <span></span>
+                                            </label>
+                                        </div>
+                                        <span asp-validation-for="EnableJsBundling"></span>
+                                    </div>
+                                </div>
+                                <div class="form-group row ">
+                                    <WCore-label asp-for="EnableCssBundling" />
+                                    <div class="col-lg-10 col-md-6 col-sm-12">
+                                        <div class="checkbox-inline">
+                                            <label class="checkbox pt-3">
+                                                <input asp-for="EnableCssBundling" />
+                                                <span></span>
+                                            </label>
+                                        </div>
+                                        <span asp-validation-for="EnableCssBundling"></span>
+                                    </div>
+                                </div>
+                                <div class="form-group row ">
+                                    <WCore-label asp-for="ScheduleTaskRunTimeout" />
+                                    <div class="col-lg-10 col-md-6 col-sm-12">
+                                        <div class="checkbox-inline">
+                                            <label class="checkbox pt-3">
+                                                <input asp-for="ScheduleTaskRunTimeout" />
+                                                <span></span>
+                                            </label>
+                                        </div>
+                                        <span asp-validation-for="ScheduleTaskRunTimeout"></span>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

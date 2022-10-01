@@ -1,0 +1,35 @@
+/*
+Template:  Webster - Responsive Multi-purpose HTML5 Template
+Author: potenzaglobalsolutions.com
+Design and Developed by: potenzaglobalsolutions.com
+
+NOTE: This file contains the styling for the agency Template. You can edit/add anything in this file!
+*/
+ 
+h1, h2, h3, h4, h5, h6 { font-family: 'Roboto', sans-serif; color: #363636; margin-top: 0px; text-transform: capitalize; }
+ 
+.button { font-weight: bold; }
+.button, .form-control, #back-to-top .top, .footer-Newsletter .form-control { border-radius: 0; }
+
+@media (min-width: 992px) {  
+.header.text-dark #onepagenav .mega-menu .menu-links > li.active > a { color: #ffffff; }
+#onepagenav .mega-menu .menu-links > li > a { display: inline; margin-left: 5px; margin-right: 5px; padding: 5px 10px; -o-transition: all 0.6s ease-out; -ms-transition: all 0.6s ease-out; -moz-transition: all 0.6s ease-out; -ms-transition: all 0.6s ease-out; }
+#onepagenav.onepage-hover-01 .mega-menu .menu-links > li > a:hover, #onepagenav.onepage-hover-01 .mega-menu .menu-links > li.active > a { color: #ffffff; box-shadow: inset 178px 0px 0px 0px #37c5a6;  -webkit-box-shadow: inset 178px 0px 0px 0px #37c5a6; -o-box-shadow: inset 178px 0px 0px 0px #37c5a6; -ms-box-shadow: inset 178px 0px 0px 0px #37c5a6; -moz-box-shadow: inset 178px 0px 0px 0px #37c5a6; color: #fff; transition: all 0.9s ease-in; -webkit-transition: all 0.9s ease-in; -webkit-transition: all 0.9s ease-in; -moz-transition: all 0.9s ease-in; -ms-transition: all 0.9s ease-in; -o-transition: all 0.9s ease-in; }
+}
+
+.agency-banner-bg {  padding: 20px; margin-top: 20px; box-shadow: 0 0 40px rgba(0,0,0,.1); }
+.slider-parallax.agency-banner { height: 60vh;  }
+
+.agency-banner .slider-content { padding: 0 40px 0 200px; }
+.agency-banner .slider-content .agency-banner-left { display: table-cell; }
+.agency-banner .slider-content .agency-banner-right { display: table-cell; }
+.agency-banner .slider-content h1 { padding: 100px 20px 20px 20px; border: 8px solid #37c5a6; display: inline-block; font-size: 50px; margin-right: 20px; font-family: 'Poppins', sans-serif; }
+.agency-banner .slider-content span { font-size: 50px; font-style: normal; font-weight: 800; line-height: 40px; padding-top: 107px; }
+.agency-banner .slider-content p { font-size: 18px; }
+
+/*agency-video*/
+.agency-video, .agency-map { box-shadow: 0 0 40px rgba(0,0,0,.1); padding: 20px; }
+
+.navbar-inverse .navbar-nav.hover-effect-01>li { padding-left:4px; padding-right: 4px; }
+
+

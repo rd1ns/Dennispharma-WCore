@@ -1,0 +1,83 @@
+/*
+Template:  Webster - Responsive Multi-purpose HTML5 Template
+Author: potenzaglobalsolutions.com
+Design and Developed by: potenzaglobalsolutions.com
+
+NOTE: This file contains the styling for the burger Template. You can edit/add anything in this file!
+*/
+
+/** selection **/
+*::-moz-selection { background: #df9b3f; color: #fff; text-shadow: none; }
+::-moz-selection { background: #df9b3f; color: #fff; text-shadow: none; }
+::selection { background: #df9b3f; color: #fff; text-shadow: none; }
+ 
+
+h2 { font-size: 40px; line-height: 40px; font-weight: 300;}
+
+.button { border-radius: 0; font-size: 16px; font-weight: 800;  }
+
+#onepagenav .mega-menu .menu-links > li > a { font-size: 16px; font-weight: bold; text-transform: uppercase; }
+ #onepagenav .mega-menu .menu-links > li > a:hover, #onepagenav .mega-menu .menu-links > li.active > a { color: rgba(255,255,255,0.6) !important; }
+
+/*burger-banner*/
+.burger-banner .slider-content-middle { z-index: 2; }
+.burger-banner span { font-size: 20px; font-weight: 800; }
+.burger-banner h1 { font-size: 120px; line-height: 120px; font-weight: 900; }
+.burger-banner p { font-size: 30px; line-height: 30px; font-weight: 800; color: rgba(0,0,0,0.3); }
+.burger-banner-ani { display: block; position: relative; width: 500px; margin: 0 auto; }
+.burger-banner-ani img { width: 100%; height: 100%; display: block; }
+.p-mainbg{  position: relative; z-index: 0;  }
+.burger-banner-ani .p-mainbg > div {-webkit-transition: all 0.3s ease-in-out 0s; -moz-transition: all 0.3s ease-in-out 0s;  -ms-transition: all 0.3s ease-in-out 0s;  -o-transition: all 0.3s ease-in-out 0s; transition: all 0.3s ease-out 0s; position:absolute; right: 25px;}
+.burger-item-01{ top: 15px; z-index: 02 }
+.burger-item-02{ top: 155px; z-index: 03 }
+.burger-item-03{ top: 160px; z-index: 04 }
+.burger-item-04{ top: 225px; z-index: 03 }
+.burger-item-05{ top: 250px; z-index: 02}
+.burger-item-06{ top: 320px; z-index: 01 }
+.burger-banner:hover .burger-banner-ani .burger-item-01{top: -20px;}
+.burger-banner:hover .burger-banner-ani .burger-item-02{top: 125px;}
+.burger-banner:hover .burger-banner-ani .burger-item-03{top: 120px;}
+.burger-banner:hover .burger-banner-ani .burger-item-04{top: 200px;}
+.burger-banner:hover .burger-banner-ani .burger-item-05{top: 235px;}
+.burger-banner .bg-top-before, .burger-banner .bg-bottom-before { height: 100%; }
+
+.bg-top-before, .bg-bottom-before { position: relative; }
+.bg-top-before:before { background-image: url(../../../demo-one-page/burger/images/bg-02.png); top: -1px; background-repeat: no-repeat;  content: ""; position: absolute; height: 110px; width: 100%; }
+.bg-bottom-before:before { background-image: url(../../../demo-one-page/burger/images/bg.png); bottom: -1px; background-repeat: no-repeat;  content: ""; position: absolute; height: 110px; width: 100%; }
+
+/*burger-welcome*/
+.burger-welcome-content { padding-top: 80px; padding-left: 100px; }
+
+/*burger-about*/
+.burger-about-content-right { margin-left: -100px;  }
+.burger-about h3 { position: relative; }
+.burger-about h3:before { position: absolute; content: ""; left: -50px; top: -20px; width: 116px; height: 90px; background: url(../../../demo-one-page/burger/images/pattern.png); }
+.burger-about .burger-about-content-right h3:before { left: inherit; position: absolute; content: ""; right: 0px; top: -30px; width: 116px; height: 90px; background: url(../../../demo-one-page/burger/images/pattern.png); }
+
+/*burger-custom-content*/
+.burger-custom-content h2 { font-size: 100px; line-height: 100px; font-weight: 900; }
+
+/*burger-menu*/
+.burger-menu .menu-item span { font-size: 24px; }
+
+/*burger-blog*/
+.burger-blog .blog-entry { background: transparent; box-shadow: none; }
+.burger-blog .blog-entry .blog-detail { background: transparent; padding: 0; box-shadow: none; }
+.burger-blog .blog-entry .blog-detail a { color: #ffffff; }
+.burger-blog .blog-entry .blog-detail .entry-meta a:hover, .burger-blog .blog-entry .blog-detail .entry-title a:hover { color: #323232; }
+
+/*burger-contact*/
+.burger-contact { position: relative; }
+.burger-contact-box { padding: 50px; }
+.burger-contact-box .addresss-info p, .burger-contact-box .addresss-info li a, .burger-contact-box .addresss-info li, .burger-contact-box .addresss-info i { color: #ffffff; }
+.burger-contact .burger-contact-bg { position: absolute; width: 100%; left: 100px; top: 100px; }
+.burger-contact .burger-contact-bg .burger-contact-box { position: relative; z-index: 9; }
+
+/*color*/
+.theme-color, .button.white, .button.button-border.white:hover, .button.button-border.white:focus  { color: #df9b3f;}
+.theme-bg, .button, #back-to-top .top { background: #df9b3f; }
+.button { border-color: #df9b3f; }
+.bg-overlay-theme-70:before { background: rgba(223,155,63, 0.7); }
+
+}
+

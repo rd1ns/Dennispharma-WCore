@@ -1,0 +1,141 @@
+﻿@model HomeViewModel
+@inject WCore.Core.IWorkContext _workContext
+@{
+    ViewBag.Title = T("common.home.page.title");
+    ViewBag.Page = "Home";
+    if (Model.Page != null)
+    {
+        ViewBag.CurrentPageType = Model.Page.PageType;
+    }
+}
+@if (Model.Page != null && Model.Page.PageType == PageType.ScrollContent)
+{
+    <div id="multiscroll">
+
+        <div class="ms-left">
+            @if (!string.IsNullOrEmpty(Model.Page.LeftBody))
+            {
+                <div class="ms-section">@Html.Raw(Model.Page.LeftBody)</div>
+            }
+            @foreach (var subPage in Model.Page.SubPages)
+            {
+                <div class="ms-section">@Html.Raw(subPage.LeftBody)</div>
+            }
+        </div>
+        <div class="ms-right">
+            @if (!string.IsNullOrEmpty(Model.Page.RightBody))
+            {
+                <div class="ms-section">@Html.Raw(Model.Page.RightBody)</div>
+            }
+            @foreach (var subPage in Model.Page.SubPages)
+            {
+                <div class="ms-section">@Html.Raw(subPage.RightBody)</div>
+            }
+        </div>
+    </div>
+
+    @section Scripts{
+        <script>
+            $(document).ready(function () {
+                $('#multiscroll').multiscroll({
+                    verticalCentered: true,
+                    scrollingSpeed: 700,
+                    easing: 'easeInQuart',
+                    easingcss3: 'ease-out',
+                    menu: false,
+                    sectionsColor: [],
+                    navigation: true,
+                    navigationPosition: 'right',
+                    navigationColor: '#ffffff',
+                    navigationTooltips: [],
+                    loopBottom: false,
+                    loopTop: false,
+                    css3: false,
+                    paddingTop: 168,
+                    paddingBottom: 0,
+                    normalScrollElements: null,
+                    scrollOverflow: false,
+                    scrollOverflowOptions: null,
+                    keyboardScrolling: true,
+                    touchSensitivity: 5,
+
+                    //responsive
+                    responsiveWidth: 0,
+                    responsiveHeight: 0,
+                    responsiveExpand: false,
+
+                    // Custom selectors
+                    sectionSelector: '.ms-section',
+                    leftSelector: '.ms-left',
+                    rightSelector: '.ms-right',
+
+                    //events
+                    onLeave: function (index, nextIndex, direction) { },
+                    afterLoad: function (anchorLink, index) { },
+                    afterRender: function () { },
+                    afterResize: function () { },
+                });
+            });
+        </script>
+    }
+    @section Styles{
+    }
+}
+else
+{
+    @await Component.InvokeAsync("Slider")
+    @if (Model.Page != null)
+    {
+        @if (Model.Page.DynamicFormId != 0)
+        {
+            @await Component.InvokeAsync("DynamicForm", new { dynamicFormId = Model.Page.DynamicFormId })
+        }
+        @Html.Raw(Model.Page.Body)
+    }
+    @if (Model.NewsList.Newses.Any())
+    {
+        <!--=================================
+        news -->
+
+        <section class="page-section-ptb popup-gallery corporate-02-portfolio">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="section-title text-center">
+                            <h2 class="title">@T("Common.News.Title")</h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="owl-carousel" data-items="4" data-md-items="4" data-sm-items="3" data-xs-items="2" data-xx-items="1" data-space="40">
+                            @foreach (var item in Model.NewsList.Newses)
+                            {
+                                <div class="item">
+                                    <div class="portfolio-item image-text">
+                                        <img src="@item.Image" alt="">
+                                        <div class="portfolio-overlay">
+                                            <h4 class="text-white"> <a href="/@_workContext.WorkingLanguage.UniqueSeoCode/@item.SeName">@item.Title</a> </h4>
+                                            <span class="text-white"> <a href="/@_workContext.WorkingLanguage.UniqueSeoCode/@item.NewsCategory.SeName"> @item.NewsCategory.Title  </a> </span>
+                                        </div>
+                                        <a class="popup portfolio-img" href="@item.Image"><i class="fa fa-arrows-alt"></i></a>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!--=================================
+        news -->
+    }
+    @section Scripts{
+
+    }
+
+    @section Styles{
+    }
+
+}

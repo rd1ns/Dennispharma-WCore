@@ -1,0 +1,298 @@
+/*
+
+Template:  Webster - Responsive Multi-purpose HTML5 Template
+Author: potenzaglobalsolutions.com
+Design and Developed by: potenzaglobalsolutions.com
+
+NOTE: This file contains the styling for the christmas Template. You can edit/add anything in this file!
+
+*/
+
+h1 {
+	font-family: 'Courgette', serif;
+	font-weight: normal;
+	margin-top: 0px;
+	text-transform: capitalize;
+}
+h2 {
+	font-family: 'Courgette', serif;
+	font-weight: normal;
+	margin-top: 0px;
+	text-transform: capitalize;
+}
+h3 {
+	font-family: 'Courgette', serif;
+	font-weight: normal;
+	margin-top: 0px;
+	text-transform: capitalize;
+}
+h4 {
+	font-family: 'Courgette', serif;
+	font-weight: normal;
+	margin-top: 0px;
+	text-transform: capitalize;
+}
+h5 {
+	font-family: 'Courgette', serif;
+	font-weight: normal;
+	margin-top: 0px;
+	text-transform: capitalize;
+}
+h6 {
+	font-family: 'Courgette', serif;
+	font-weight: normal;
+	margin-top: 0px;
+	text-transform: capitalize;
+}
+.christmas {
+	.logo-small {
+		height: 120px;
+	}
+	.coming-soon {
+		h1 {
+			font-family: 'Pacifico', cursive;
+			font-size: 50px;
+			line-height: 50px;
+			margin-bottom: 50px;
+		}
+		.countdown.large {
+			span {
+				font-weight: 800;
+			}
+		}
+	}
+}
+.christmas.bg-overlay-black-40 {
+	&:before {
+		z-index: -1;
+	}
+}
+.christmas-coming-soon {
+	position: fixed;
+	width: 100%;
+}
+.snow-effect {
+	position: absolute;
+	top: 0;
+}
+.christmas-box {
+	background: rgba(0, 0, 0, .2);
+	padding: 40px 20px;
+	img {
+		width: 80px;
+	}
+}
+.christmas-about {
+	.feature-text {
+		position: relative;
+		z-index: 1;
+		.feature-icon {
+			span {
+				z-index: -1;
+				font-size: 100px;
+				font-weight: 500;
+				line-height: 60px;
+				position: absolute;
+				z-index: 0;
+				color: rgba(0, 0, 0, 0.1);
+				padding-left: 0;
+				left: 0;
+				right: 0;
+			}
+		}
+		.feature-info {
+			p {
+				font-size: 18px;
+				font-weight: 500;
+				font-style: italic;
+				padding: 0 40px;
+				position: relative;
+				z-index: 1;
+			}
+		}
+	}
+}
+.tab-border {
+	.nav.nav-tabs {
+		>li {
+			>a.active {
+				color: #d12326;
+				&:focus {
+					color: #d12326;
+				}
+				&:hover {
+					color: #d12326;
+				}
+			}
+		}
+	}
+}
+.christmas-countdown {
+	.countdown {
+		margin: 0px 8px;
+	}
+}
+.christmas-form {
+	box-shadow: 0 0 30px rgba(0,0,0,.3);
+	position: relative;
+	bottom: -20px;
+	margin-bottom: 10px;
+	.gray-bg {
+		padding: 30px 40px;
+	}
+	.register-form {
+		padding: 30px;
+	}
+}
+.christmas-form-content {
+	h2 {
+		font-size: 70px;
+		line-height: 70px;
+	}
+}
+.christmas-event {
+	.objects-left {
+		z-index: 0;
+		.objects-2 {
+			position: absolute;
+			left: -28px;
+			bottom: 90px;
+		}
+	}
+	.tab {
+		.nav.nav-tabs {
+			li {
+				a {
+					font-size: 20px;
+					font-weight: 600;
+				}
+			}
+		}
+	}
+	.blog-image {
+		width: 140px;
+	}
+	.blog-date {
+		span {
+			font-size: 40px;
+			line-height: 40px;
+			display: block;
+			padding: 18px 0 0;
+			font-weight: 600;
+		}
+	}
+	.blog-detail {
+		background: #ffffff;
+		border-top: 0px;
+		.entry-title {
+			a {
+				font-size: 22px;
+				font-weight: 600;
+				line-height: 24px;
+				color: #353535;
+				line-height: 28px;
+				font-family: 'Courgette', serif;
+				&:hover {
+					color: #d12326;
+				}
+			}
+		}
+	}
+	.entry-meta {
+		ul {
+			li {
+				display: inline-block;
+				margin-right: 12px;
+				i {
+					color: #d12326;
+					padding-right: 6px;
+				}
+				a {
+					color: #353535;
+					line-height: 0px;
+					padding-right: 5px;
+					i {
+						padding-right: 6px;
+						color: #d12326;
+					}
+					&:hover {
+						color: #d12326;
+					}
+				}
+			}
+		}
+	}
+}
+.christmas-team {
+	position: relative;
+	z-index: 9;
+	.objects-right {
+		z-index: -1;
+		.objects-5 {
+			position: absolute;
+			right: -28px;
+			bottom: 0px;
+		}
+	}
+}
+.footer-one-page.white-bg {
+	p {
+		color: #626262;
+	}
+	.footer-Newsletter {
+		.form-control {
+			background: rgba(0, 0, 0, 0.04);
+			color: #323232;
+			&::-webkit-input-placeholder {
+				color: #323232 !important;
+			}
+			&:-moz-placeholder {
+				color: #323232 !important;
+			}
+			&::-moz-placeholder {
+				color: #323232 !important;
+			}
+			&:-ms-input-placeholder {
+				color: #323232 !important;
+			}
+		}
+	}
+	.footer-widget {
+		border-top-color: rgba(0, 0, 0, 0.2);
+	}
+}
+.footer.footer-one-page.white-bg {
+	h5 {
+		color: #626262;
+	}
+}
+@media (min-width: 992px) {
+	.mega-menu {
+		.menu-links {
+			>li {
+				a {
+					border-bottom: 2px solid transparent;
+					color: #ffffff !important;
+					text-transform: capitalize;
+					padding-left: 4px;
+					padding-right: 4px;
+					margin-left: 6px;
+					margin-right: 6px;
+					display: inline;
+					&:hover {
+						border-bottom: 2px solid #d12326;
+						color: #ffffff;
+					}
+				}
+			}
+			>li.active {
+				a {
+					border-bottom: 2px solid #d12326;
+					color: #ffffff;
+				}
+			}
+		}
+	}
+}
+
+

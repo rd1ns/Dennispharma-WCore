@@ -1,0 +1,22 @@
+/*
+Template:  Webster - Responsive Multi-purpose HTML5 Template
+Author: potenzaglobalsolutions.com
+Design and Developed by: potenzaglobalsolutions.com
+
+NOTE: This file contains the styling for the band Template. You can edit/add anything in this file!
+*/
+ 
+ body { font-family: 'Paytone One', sans-serif;  }
+ h1, h2, h3, h4, h5, h6 { font-family: 'Paytone One', sans-serif;  }
+
+.error-03 { background: #236185; } 
+.error-03 .content h2 { font-size: 50px; color: #94d8ff; line-height: 50px; } 
+.error-03 .content h1 { font-size: 60px; color: #94d8ff; line-height: 60px; margin-top: 0px; font-weight: bold; } 
+.error-03 .content p { font-size: 26px; color: #94d8ff; line-height: 30px; }
+.error-03 .error-404 h1 { font-size: 160px; display: inline-block; text-transform: uppercase; color: rgba(0,0,0,0.2); margin: 0px; } 
+.error-03 .error-404 h2 { font-size: 60px; display: inline-block; text-transform: uppercase; color: rgba(0,0,0,0.2); margin: 0px; } 
+
+footer.error-03 { background: #de9313; } 
+footer.error-03 ul li a { color: #ffffff; font-size: 16px; }
+footer.error-03 ul li a:hover { color: rgba(255, 255, 255, 0.4); }
+footer.error-03 .social-icons { display: inline-block; text-align: center; }

@@ -1,0 +1,180 @@
+﻿@inject SeoSettings _seoSettings
+@inject IWebHelper _webHelper
+@inject WCore.Core.IWorkContext _workContext
+
+@model RestaurantModel
+@{
+    ViewBag.Title = Model.Title;
+    ViewBag.MetaTitle = Model.MetaTitle;
+    ViewBag.MetaKeywords = Model.MetaKeywords;
+    ViewBag.MetaDescription = Model.MetaDescription;
+
+    @if (_seoSettings.TwitterMetaTags)
+    {
+        ViewBag.TwtterCard = "";
+        ViewBag.TwtterTitle = Model.MetaTitle;
+        ViewBag.TwtterDescription = Model.MetaDescription;
+        ViewBag.TwtterUrl = _webHelper.GetThisPageUrl(true);
+        ViewBag.TwtterImage = Model.Image;
+    }
+
+    @if (_seoSettings.OpenGraphMetaTags)
+    {
+        ViewBag.OgTitle = Model.MetaTitle;
+        ViewBag.OgDescription = Model.MetaDescription;
+        ViewBag.OgUrl = _webHelper.GetStoreLocation();
+        ViewBag.OgImage = Model.Image;
+    }
+
+    ViewBag.Page = "Restaurant";
+    ViewBag.Collapse = "Show";
+}
+<main>
+    <section class="hero_in hotels_detail">
+        <div class="wrapper">
+            <div class="container">
+                <h1 class="fadeInUp"><span></span>@Model.Title</h1>
+            </div>
+            <span class="magnific-gallery">
+                <a href="/panagea/img/gallery/hotel_list_1.jpg" class="btn_photos" title="Photo title" data-effect="mfp-zoom-in">@T("common.view.photos")</a>
+                <a href="/panagea/img/gallery/hotel_list_2.jpg" title="Photo title" data-effect="mfp-zoom-in"></a>
+                <a href="/panagea/img/gallery/hotel_list_3.jpg" title="Photo title" data-effect="mfp-zoom-in"></a>
+            </span>
+        </div>
+    </section>
+    <!--/hero_in-->
+
+    <div class="bg_color_2">
+        <nav class="secondary_nav sticky_horizontal">
+            <div class="container">
+                <ul class="clearfix p-0">
+                    <li><a href="#description" class="active">@T("common.view.description")</a></li>
+                    @if (!string.IsNullOrEmpty(Model.Features))
+                    {
+                        <li><a href="#feature">@T("common.restaurant.feature")</a></li>
+                    }
+                    <li><a href="#location">@T("common.restaurant.location")</a></li>
+                    <li><a href="#reviews">@T("common.restaurant.reviews")</a></li>
+                    <li><a href="#sidebar">@T("common.view.booking")</a></li>
+                </ul>
+            </div>
+        </nav>
+        <div class="container margin_60_35 bg-white border-left border-right">
+            <div class="row">
+                <div class="col-lg-8">
+                    <section id="description">
+                        @Html.Raw(Model.ShortBody)
+                        <br />
+                        @Html.Raw(Model.Body)
+                        <hr>
+                        @if (!string.IsNullOrEmpty(Model.Features))
+                        {
+                            <div class="card">
+                                <div class="card-header" id="feature">
+                                    @T("common.restaurant.feature")
+                                </div>
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-12">
+                                            @Html.Raw(Model.Features)
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr>
+                        }
+                        @if (Model.Descriptions.Any())
+                        {
+                            <div class="row">
+                                @foreach (var description in Model.Descriptions)
+                                {
+                                    <div class="col-12 isotope-item popular">
+                                        <div class="card">
+                                            <div class="card-header" id="description-@description.Id">
+                                                @description.Title
+                                            </div>
+                                            <div class="card-body">
+                                                @Html.Raw(description.Body)
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+                        }
+                        <div class="card">
+                            <div class="card-header" id="location">
+                                @T("common.restaurant.location")
+                            </div>
+                            <div class="card-body">
+                                <div id="map" class="map map_single"></div>
+                            </div>
+                        </div>
+                    </section>
+
+                    @await Component.InvokeAsync("Review", new { entityKey = Model.Id, entityGroup = EntityGroup.Restaurant })
+                </div>
+                <aside class="col-lg-4" id="sidebar">
+                    @await Component.InvokeAsync("Search")
+                    <div class="box_detail booking">
+                        <div class="box_style_cat" id="faq_box">
+                            <ul id="cat_nav">
+                                @if (Model.Descriptions.Any())
+                                {
+                                    foreach (var description in Model.Descriptions)
+                                    {
+                                        <li><a href="#description-@description.Id"><i class="icon_document_alt"></i> @description.Title</a></li>
+                                    }
+                                }
+                            </ul>
+                        </div>
+                        <a href="wishlist.html" class="btn_1 full-width outline wishlist liked"><i class="icon_heart"></i> Add to wishlist</a>
+                        <div class="text-center"><small>No money charged in this step</small></div>
+                    </div>
+                    <ul class="share-buttons">
+                        <li><a class="fb-share" href="#0"><i class="social_facebook"></i> Share</a></li>
+                        <li><a class="twitter-share" href="#0"><i class="social_twitter"></i> Tweet</a></li>
+                        <li><a class="gplus-share" href="#0"><i class="social_googleplus"></i> Share</a></li>
+                    </ul>
+                </aside>
+            </div>
+        </div>
+    </div>
+</main>
+@section Scripts{
+    <!-- Map -->
+    <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyApP5AHpxWoetYkls_eEWuXqpx3Fl6PJfg"></script>
+    <script src="/panagea/js/map_single_hotel.js"></script>
+    <script src="/panagea/js/infobox.js"></script>
+
+    <!-- DATEPICKER  -->
+    <script>
+        $(function () {
+            $('input[name="dates"]').daterangepicker({
+                autoUpdateInput: false,
+                parentEl: '.scroll-fix',
+                minDate: new Date(),
+                opens: 'left',
+                locale: {
+                    cancelLabel: 'Clear'
+                }
+            });
+            $('input[name="dates"]').on('apply.daterangepicker', function (ev, picker) {
+                $(this).val(picker.startDate.format('MM-DD-YY') + ' > ' + picker.endDate.format('MM-DD-YY'));
+            });
+            $('input[name="dates"]').on('cancel.daterangepicker', function (ev, picker) {
+                $(this).val('');
+            });
+        });</script>
+
+    <!-- INPUT QUANTITY  -->
+    <script src="/panagea/js/input_qty.js"></script>
+}
+
+@section Styles{
+    <style>
+    .hero_in.hotels_detail::before {
+        background: url( @(string.IsNullOrEmpty(Model.Image) ? "/panagea/img/hero_in_hotels_detail.jpg" : Model.Image)) center center no-repeat !important;
+        background-size: cover;
+    }
+    </style>
+}

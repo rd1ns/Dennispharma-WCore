@@ -1,0 +1,70 @@
+/*
+Template:  Webster - Responsive Multi-purpose HTML5 Template
+Author: potenzaglobalsolutions.com
+Design and Developed by: potenzaglobalsolutions.com
+
+NOTE: This file contains the styling for the Plumber Template. You can edit/add anything in this file!
+*/
+body { font-family: 'Patua One', cursive; font-size: 16px; }
+h1, h2, h3, h4, h5, h6 { font-family: 'Patua One', cursive; }
+
+.bg-overlay-theme-90:before {  background: rgba(255,210,0, 0.9); content: ""; height: 100%; left: 0; position: absolute; top: 0; width: 100%; z-index: 0; }
+.form-control { border-radius: 0; }
+
+.button { border-radius: 0; text-transform: uppercase; font-family: 'Patua One', cursive; font-size: 18px; }
+
+/*navbar*/
+#onepagenav .mega-menu .menu-links > li > a { font-size: 22px; }
+#onepagenav .mega-menu .menu-links > li > a:hover, #onepagenav .mega-menu .menu-links > li.active > a { color: #0245b8 !important; }
+
+/*section-title*/
+.section-title span { font-size: 20px; }
+.section-title h2 { font-size: 50px; line-height: 50px; }
+
+/*plumber-banner*/
+.plumber-banner .container, .plumber-banner .row { height: 100%; }
+.plumber-banner .slider-content-image {  position: absolute; bottom: -50px; }
+.plumber-banner .slider-content-text {  display: inline-block;  position: absolute; top: 50%; transform: translateY(-50%); -webkit-transform: translateY(-50%); -o-transform: translateY(-50%); -ms-transform: translateY(-50%); -moz-transform: translateY(-50%);  }
+.plumber-banner h1 { font-size: 100px; line-height: 100px; text-transform: capitalize; font-style: italic; }
+
+/*about-plumber*/
+
+.about-plumber-box { box-shadow: 0px 0px 16px 0 rgba(0, 0, 0, 0.1); position: relative; z-index: 2; }
+.about-plumber-box .about-plumber-box-content { padding: 40px 60px; }
+
+/*service-plumber*/
+.service-plumber .feature-box { box-shadow: 0px 5px 16px 0 rgba(0, 0, 0, 0.1); background: #ffffff; margin: 10px 10px 20px; }
+.service-plumber .feature-box:hover:before, .service-plumber .feature-box.active:before { background: rgba(255,210,0, 0.9) }
+.service-plumber .feature-box.active i, .service-plumber .feature-box.active p { color: #323232; }
+.service-plumber .feature-box:hover i, .service-plumber .feature-box:hover p { color: #323232; }
+.service-plumber .feature-box:hover h4 { color: #323232; }
+
+/*plumber-work-process*/
+.plumber-work-process .feature-text.square:hover .feature-icon span { background: #0245b8; }
+
+/*testimonial-plumber*/
+.testimonial-plumber { padding-bottom: 160px; }
+.testimonial-plumber:before { background: rgba(2,69,184, 0.9); content: ""; height: 100%; left: 0; position: absolute; top: 0; width: 100%; z-index: 0; }
+.testimonial-plumber .testimonial .testimonial-info p  { font-size: 26px; font-style: italic; } 
+.testimonial-plumber .testimonial .author-info strong { font-size: 24px; }
+
+/*plumber-contact*/
+.plumber-contact-bg { padding: 30px; box-shadow:  0px 5px 16px 0 rgba(0, 0, 0, 0.1); position: relative; margin-top: -100px; background: #ffffff; }
+.plumber-contact .contact-form .section-field { width: 100%; margin-right: 0; }
+.plumber-contact .contact-form .section-field .form-control { background: #f7c605; font-size: 18px;  }
+.action-box { padding: 30px 0; }
+
+/*footer*/
+.footer-plumber .social-icons.medium li a { background: #ffffff; }
+.footer-plumber p, .footer-plumber a, .footer-plumber .addresss-info li, .footer-plumber .addresss-info li a, .footer-plumber .footer-useful-link ul li a, .footer-plumber .addresss-info p, .footer-plumber .addresss-info i { color: #323232; font-size: 18px; }
+.footer-plumber a:hover, .footer-plumber .footer-useful-link ul li a:hover { color: rgba(0,0,0,0.5); }
+
+/*color*/
+.blue-bg  { background: #0245b8; }
+.theme-color, .about-plumber-box-content, .text-blue, .service-plumber .feature-box.active h4 { color: #0245b8; }
+
+
+
+
+
+

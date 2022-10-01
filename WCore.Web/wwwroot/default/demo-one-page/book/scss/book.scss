@@ -1,0 +1,175 @@
+/*
+Template:  Webster - Responsive Multi-purpose HTML5 Template
+Author: potenzaglobalsolutions.com
+Design and Developed by: potenzaglobalsolutions.com
+
+NOTE: This file contains the styling for the Plumber Template. You can edit/add anything in this file!
+*/
+
+h1 {
+	font-family: 'Roboto', sans-serif;
+}
+h2 {
+	font-family: 'Roboto', sans-serif;
+}
+h3 {
+	font-family: 'Roboto', sans-serif;
+}
+h4 {
+	font-family: 'Roboto', sans-serif;
+}
+h5 {
+	font-family: 'Roboto', sans-serif;
+}
+h6 {
+	font-family: 'Roboto', sans-serif;
+}
+.button {
+	border-radius: 3px;
+}
+#onepagenav {
+	.mega-menu {
+		.menu-links {
+			>li {
+				>a {
+					font-size: 16px;
+					font-weight: bold;
+				}
+			}
+		}
+	}
+}
+.book-banner {
+	position: relative;
+	padding-bottom: 130px;
+	z-index: 1;
+	.book-banner-bottom {
+		&:before {
+			position: absolute;
+			height: 130px;
+			width: 100%;
+			background: url(../../../demo-one-page/book/images/banner/02.jpg);
+			background-repeat: no-repeat;
+			bottom: 0px;
+			content: "";
+			z-index: 0;
+		}
+	}
+	.container {
+		height: 100%;
+	}
+	.row {
+		height: 100%;
+	}
+	.slider-content-image {
+		position: absolute;
+		bottom: -50px;
+		z-index: 9;
+		.book {
+			position: absolute;
+			bottom: 0;
+			z-index: 9;
+		}
+		.text {
+			position: absolute;
+			bottom: 0;
+			z-index: 8;
+			left: -50px;
+		}
+	}
+	.slider-content-text {
+		display: inline-block;
+		position: absolute;
+		top: 50%;
+		transform: translateY(-50%);
+		-webkit-transform: translateY(-50%);
+		-o-transform: translateY(-50%);
+		-ms-transform: translateY(-50%);
+		-moz-transform: translateY(-50%);
+		h1 {
+			font-size: 70px;
+			line-height: 70px;
+		}
+		h2 {
+			font-size: 50px;
+			line-height: 50px;
+		}
+		p {
+			font-size: 24px;
+			line-height: 40px;
+			font-family: 'Roboto', sans-serif;
+			font-weight: 600;
+		}
+		span {
+			font-size: 16px;
+			line-height: 40px;
+			font-family: 'Roboto', sans-serif;
+			background: #323232;
+			color: #ffffff;
+			padding: 6px 12px;
+		}
+	}
+}
+.book-about {
+	.dropcap {
+		width: inherit;
+		height: inherit;
+		background: transparent;
+		font-size: 60px;
+		line-height: 60px;
+		font-weight: 200;
+		color: #323232;
+	}
+	blockquote {
+		border-color: #ed5001;
+	}
+}
+.book-counter {
+	.counter {
+		background: #ffffff;
+		box-shadow: 0 0 15px 0 rgba(0,0,0,0.1);
+		padding: 50px 30px 40px;
+		position: relative;
+		margin-top: -100px;
+		.icon {
+			background: #ed5001;
+			padding: 16px;
+			border-radius: 3px;
+			font-size: 24px;
+		}
+		.timer {
+			display: block;
+		}
+	}
+}
+.book-custom-block {
+	padding-bottom: 200px;
+	h2 {
+		font-size: 60px;
+		line-height: 70px;
+	}
+	p {
+		line-height: 30px;
+	}
+}
+.book-custom-block-02-content {
+	padding: 50px;
+	background: #ffffff;
+	border-radius: 3px;
+}
+.book-order {
+	.book-order-button {
+		display: inline-flex;
+	}
+	a {
+		display: inline-block;
+		margin: 0 3px;
+	}
+	.googleplay {
+		img {
+			height: 50px;
+			border-radius: 3px;
+		}
+	}
+}
+

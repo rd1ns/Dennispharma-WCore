@@ -1,0 +1,529 @@
+﻿@using WCore.Framework.UI
+@using WCore.Core.Domain.Users;
+@{
+    var _workContext = EngineContext.Current.Resolve<WCore.Core.IWorkContext>();
+}
+
+
+<script>var HOST_URL = "https://preview.keenthemes.com/metronic/theme/html/tools/preview";</script>
+<!--begin::Global Config(global config for global JS scripts)-->
+<script>
+    var KTAppSettings = {
+        "breakpoints": {
+            "sm": 576,
+            "md": 768,
+            "lg": 992,
+            "xl": 1200,
+            "xxl": 1400
+        },
+        "colors": {
+            "theme": {
+                "base": {
+                    "white": "#ffffff",
+                    "primary": "#3699FF",
+                    "secondary": "#E5EAEE",
+                    "success": "#1BC5BD",
+                    "info": "#8950FC",
+                    "warning": "#FFA800",
+                    "danger": "#F64E60",
+                    "light": "#E4E6EF",
+                    "dark": "#181C32"
+                },
+                "light": {
+                    "white": "#ffffff",
+                    "primary": "#E1F0FF",
+                    "secondary": "#EBEDF3",
+                    "success": "#C9F7F5",
+                    "info": "#EEE5FF",
+                    "warning": "#FFF4DE",
+                    "danger": "#FFE2E5",
+                    "light": "#F3F6F9",
+                    "dark": "#D6D6E0"
+                },
+                "inverse": {
+                    "white": "#ffffff",
+                    "primary": "#ffffff",
+                    "secondary": "#3F4254",
+                    "success": "#ffffff",
+                    "info": "#ffffff",
+                    "warning": "#ffffff",
+                    "danger": "#ffffff",
+                    "light": "#464E5F",
+                    "dark": "#ffffff"
+                }
+            },
+            "gray": {
+                "gray-100": "#F3F6F9",
+                "gray-200": "#EBEDF3",
+                "gray-300": "#E4E6EF",
+                "gray-400": "#D1D3E0",
+                "gray-500": "#B5B5C3",
+                "gray-600": "#7E8299",
+                "gray-700": "#5E6278",
+                "gray-800": "#3F4254",
+                "gray-900": "#181C32"
+            }
+        },
+        "font-family": "Poppins"
+    };
+</script>
+<!--end::Global Config-->
+<!--begin::Global Theme Bundle(used by all pages)-->
+<!--end::Global Theme Bundle-->
+<!--begin::Page Vendors(used by this page)-->
+<script src="/admin/assets/plugins/custom/fullcalendar/fullcalendar.bundle.js?v=7.0.6"></script>
+@*<script src="//maps.google.com/maps/api/js?key=AIzaSyBTGnKT7dt597vo9QgeQ7BFhvSRP4eiMSM?v=7.0.6"></script>
+    <script src="/admin/assets/plugins/custom/gmaps/gmaps.js?v=7.0.6"></script>*@
+<!--end::Page Vendors-->
+<!--begin::Page Scripts(used by this page)-->
+<script src="/admin/assets/js/pages/widgets.js?v=7.0.6"></script>
+<!--end::Page Scripts-->
+<!--end::Page Scripts-->
+@if (ViewBag.UseTagify == "OK")
+{<!--begin::Page Scripts(used by this page)-->
+    <script src="/admin/assets/js/pages/crud/forms/widgets/tagify.js?v=7.0.6"></script>
+    <!--end::Page Scripts-->
+    <script src="/admin/assets/plugins/custom/filepond/filepond-plugin-file-encode/dist/filepond-plugin-file-encode.min.js"></script>
+    <script src="/admin/assets/plugins/custom/filepond/filepond-plugin-file-validate-size/dist/filepond-plugin-file-validate-size.min.js"></script>
+    <script src="/admin/assets/plugins/custom/filepond/filepond-plugin-image-exif-orientation/dist/filepond-plugin-image-exif-orientation.min.js"></script>
+    <script src="/admin/assets/plugins/custom/filepond/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.min.js"></script>
+    <script src="/admin/assets/plugins/custom/filepond/filepond-plugin-image-edit/dist/filepond-plugin-image-edit.js"></script>
+    <script src="/admin/assets/plugins/custom/filepond/dist/filepond.min.js"></script>
+}
+<script src="/admin/assets/plugins/custom/filepond2/filepond.min.js"></script>
+<script src="/admin/assets/plugins/custom/filepond2/filepond-plugin-image-preview.min.js"></script>
+<script src="/admin/assets/plugins/custom/filepond2/filepond.jquery.js"></script>
+
+@Html.WCoreCssFiles(ResourceLocation.Footer)
+@Html.WCoreScripts(ResourceLocation.Footer)
+<div id="divModal"></div>
+<div class="modal fade" id="CompanyModal" tabindex="-1" data-backdrop="static" role="dialog" aria-labelledby="CompanyModalTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
+        <div class="modal-content">
+            <div class="modal-body p-0"></div>
+        </div>
+    </div>
+</div>
+<style>
+    .k-list .k-item, .k-list-optionlabel {
+        padding: 3px 0.5rem !important;
+    }
+
+    .k-grid .btn {
+        padding: 5px 10px;
+    }
+
+    .btn {
+        border-radius: 0;
+    }
+</style>
+<script>
+
+    $("body").on("click", ".btnRecordDelete", function () {
+        var controller = $(this).attr("data-controller");
+        var action = $(this).attr("data-action");
+        var id = $(this).attr("data-id");
+        Swal.fire({
+            title: 'Eminmisiniz?',
+            text: "Kaydı silmek istediğiniz eminmisiniz?",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Evet',
+            cancelButtonText: 'Hayır',
+            timer: 3000,
+            timerProgressBar: true
+        }).then((result) => {
+            if (result.value) {
+                $.ajax({
+                    type: "POST",
+                    url: '/admin/' + controller + '/' + action + '',
+                    data: { id: id, delete: true },
+                    success: function (data) {
+                        Swal.fire({
+                            title: '@T("admin.notification.success")',
+                            icon: 'success',
+                            showCancelButton: false,
+                            showConfirmButton: false,
+                            timer: 500,
+                            timerProgressBar: true
+                        }).then((result) => {
+                            if (!result.value) {
+                                window.location.href = "/admin/" + controller;
+                            }
+                        });
+                    },
+                    error: function (d) {
+                        console.log(d);
+                    }
+                });
+            }
+        })
+    });
+
+    $("body").on("click", "#btnEntitySave", function () {
+        var formId = $(this).attr("data-form-id");
+        console.log(formId);
+        $("#" + formId + "").submit();
+    });
+
+    $(document).ajaxComplete(function () {
+        $(".btnDisableable").attr("disabled", false);
+        $("#btnSearch").attr("disabled", false);
+        $("#btnClearSearch").attr("disabled", false);
+    });
+    $(document).ajaxStart(function () {
+        $(".btnDisableable").attr("disabled", true);
+        $("#btnSearch").attr("disabled", true);
+        $("#btnClearSearch").attr("disabled", true);
+
+        $("#btnSelectCompany").attr("disabled", true);
+    });
+</script>
+@*<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-lg  modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-body p-1">
+                    <div id="roxyCustomPanel2" style="display: none;">
+                        <iframe src="/editor/Roxy_Fileman/index.html?integration=tinymce4&type=image&txtFieldId=txtSelectedFile" style="width:100%;height:400px" frameborder="0">
+                        </iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>*@
+
+<div class="modal fade" tabindex="-1" aria-labelledby="gridSystemModalLabel" id="myPriceModal" role="dialog">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <form id="PriceForm" asp-action="AddOrEdit" asp-controller="Price" enctype="multipart/form-data">
+                <div class="modal-header">
+                    <h4 class="modal-title"></h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body"></div>
+                <div class="modal-footer">
+                    <button type="submit" class="btnDisableable btn btn-sm btn-info font-weight-bolder mr-2">@T("Admin.Configuration.Save")</button>
+                    <button type="button" class="btn btn-sm btn-default" data-dismiss="modal">@T("Admin.Configuration.Close")</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<script>
+    $("body").on("click", ".openModal", function (e) {
+        e.preventDefault();
+        var url = $(this).attr("data-href");
+
+        $("#divModal").load(url, function (responseTxt, statusTxt, xhr) {
+            if (statusTxt == "error")
+                alert("Error: " + xhr.status + ": " + xhr.statusText);
+        });
+    });
+
+    $('body').on('click', '[data-toggle="modal"]', function () {
+        $('#' + $(this).data("target") + ' .modal-body').html("<div class='text-center '>LOADING</div>");
+        $('#' + $(this).data("target") + ' .modal-body').load($(this).data("remote"));
+        $('#' + $(this).data("target") + ' .modal-title').html("Para Birimi");
+        $('#' + $(this).data("target") + '').modal('show');
+    });
+
+    $("#PriceForm").submit(function (e) {
+        e.preventDefault();
+        var data = new FormData();
+        //Form data
+        var form_data = $('#PriceForm').serializeArray();
+        $.each(form_data, function (key, input) {
+            data.append(input.name, input.value);
+        });
+        //File data
+
+        var url = $(this).attr('action');
+        $.ajax({
+            type: "POST",
+            url: "/admin/"+url,
+            processData: false,
+            contentType: false,
+            data: data,
+            success: function (data) {
+                Swal.fire({
+                    title: '@T("admin.notification.success")',
+                    icon: 'success',
+                    showCancelButton: false,
+                    showConfirmButton: false,
+                    timer: 1000,
+                    timerProgressBar: true
+                }).then((result) => {
+                    if (!result.value) {
+                        $(".pTable .k-pager-refresh.k-link").click();
+                    }
+                })
+            }
+        });
+    });
+
+    $(document).on({
+        'show.bs.modal': function () {
+            var zIndex = 1040 + (10 * $('.modal:visible').length);
+            $(this).css('z-index', zIndex);
+            setTimeout(function () {
+                $('.modal-backdrop').not('.modal-stack').css('z-index', zIndex - 1).addClass('modal-stack');
+            }, 0);
+        },
+        'hidden.bs.modal': function () {
+            $(this).remove();
+            if ($('.modal:visible').length > 0) {
+                // restore the modal-open class to the body element, so that scrolling works
+                // properly after de-stacking a modal.
+                setTimeout(function () {
+                    $(document.body).addClass('modal-open');
+                }, 0);
+            }
+        }
+    }, '.modal');
+</script>
+<script>
+    function GetPaperTypeSelectList(elementId, optionLabel, congressId, cascadeFromElement, selectedId, isEnabled, isReadOnly) {
+        isEnabled = (typeof isEnabled === "undefined") ? true : isEnabled;
+        isReadOnly = (typeof isReadOnly === "undefined") ? false : isReadOnly;
+        selectedId = (typeof selectedId === "undefined") ? 0 : selectedId;
+        optionLabel = (typeof selectedId === "undefined") ? "@T("Admin.Configuration.Select")" : optionLabel;
+        $(elementId).kendoDropDownList({
+            dataTextField: "Title",
+            dataValueField: "Id",
+            optionLabel: "@T("Admin.Configuration.PaperTypes") ",
+            cascadeFrom: cascadeFromElement,
+            enable: isEnabled,
+            dataSource: {
+                type: "json",
+                serverPaging: true,
+                serverFiltering: true,
+                serverSorting: true,
+                transport: {
+                    read: {
+                        url: "/Admin/Congress/GetCongressPaperTypeFilteredItems/",
+                        type: "POST",
+                        dataType: "json",
+                        data: function () {
+                            var data = {
+                                "CongressId": congressId.val(),
+                                "Skip": 0,
+                                "Take":10
+                            };
+                            addAntiForgeryToken(data);
+                            return data;
+                        }
+                    }
+                },
+                schema: {
+                    data: "Data",
+                    total: "RecordsFiltered",
+                    errors: "Errors"
+                },
+            },
+            select: function (e) { },
+            dataBound: function (e) {
+                console.log(selectedId);
+                e.sender.value(selectedId)
+                e.sender.readonly(GetUserIsReadOnlyPermission(isReadOnly));
+                e.sender.enable(GetUserIsEnabledPermission(isEnabled));
+            }
+        });
+    }
+
+    function GetNewsCategorySelectList(elementId, optionLabel,cascadeFromElement, selectedId, isEnabled, isReadOnly) {
+        isEnabled = (typeof isEnabled === "undefined") ? true : isEnabled;
+        isReadOnly = (typeof isReadOnly === "undefined") ? false : isReadOnly;
+        selectedId = (typeof selectedId === "undefined") ? 0 : selectedId;
+        optionLabel = (typeof selectedId === "undefined") ? "@T("Admin.Configuration.Select")" : optionLabel;
+        $(elementId).kendoDropDownList({
+            dataTextField: "Title",
+            dataValueField: "Id",
+            optionLabel: "@T("Admin.Configuration.NewsCategory") ",
+            cascadeFrom: cascadeFromElement,
+            enable: isEnabled,
+            dataSource: {
+                type: "json",
+                serverPaging: true,
+                serverFiltering: true,
+                serverSorting: true,
+                transport: {
+                    read: {
+                        url: "/Admin/NewsCategory/GetFilteredItems/",
+                        type: "POST",
+                        dataType: "json",
+                        data: function () {
+                            var data = {
+                                "Skip": 0,
+                                "Take":10
+                            };
+                            addAntiForgeryToken(data);
+                            return data;
+                        }
+                    }
+                },
+                schema: {
+                    data: "Data",
+                    total: "RecordsFiltered",
+                    errors: "Errors"
+                },
+            },
+            select: function (e) { },
+            dataBound: function (e) {
+                e.sender.value(selectedId)
+                e.sender.readonly(GetUserIsReadOnlyPermission(isReadOnly));
+                e.sender.enable(GetUserIsEnabledPermission(isEnabled));
+            }
+        });
+    }
+
+    function GetTeamCategorySelectList(elementId, optionLabel, cascadeFromElement, selectedId, isEnabled, isReadOnly) {
+        isEnabled = (typeof isEnabled === "undefined") ? true : isEnabled;
+        isReadOnly = (typeof isReadOnly === "undefined") ? false : isReadOnly;
+        selectedId = (typeof selectedId === "undefined") ? 0 : selectedId;
+        optionLabel = (typeof optionLabel === "undefined") ? "@T("Admin.Configuration.Select")" : optionLabel;
+        $(elementId).kendoDropDownList({
+            dataTextField: "Title",
+            dataValueField: "Id",
+            optionLabel: optionLabel,
+            cascadeFrom: cascadeFromElement,
+            enable: isEnabled,
+            dataSource: {
+                type: "json",
+                serverPaging: true,
+                serverFiltering: true,
+                serverSorting: true,
+                transport: {
+                    read: {
+                        url: "/Admin/TeamCategory/GetFilteredItems/",
+                        type: "POST",
+                        dataType: "json",
+                        data: function () {
+                            var data = {
+                                "Skip": 0,
+                                "Take":10
+                            };
+                            addAntiForgeryToken(data);
+                            return data;
+                        }
+                    }
+                },
+                schema: {
+                    data: "Data",
+                    total: "RecordsFiltered",
+                    errors: "Errors"
+                },
+            },
+            select: function (e) { },
+            dataBound: function (e) {
+                e.sender.value(selectedId)
+                e.sender.readonly(GetUserIsReadOnlyPermission(isReadOnly));
+                e.sender.enable(GetUserIsEnabledPermission(isEnabled));
+            }
+        });
+    }
+
+    function GetPageSelectList(elementId, optionLabel, selectedId, isEnabled, isReadOnly) {
+        isEnabled = (typeof isEnabled === "undefined") ? true : isEnabled;
+        isReadOnly = (typeof isReadOnly === "undefined") ? false : isReadOnly;
+        selectedId = (typeof selectedId === "undefined") ? 0 : selectedId;
+        optionLabel = (typeof optionLabel === "undefined") ? "@T("Admin.Configuration.Select")" : optionLabel;
+        $(elementId).kendoDropDownList({
+            dataTextField: "Title",
+            dataValueField: "Id",
+            optionLabel: optionLabel,
+            enable: isEnabled,
+            dataSource: {
+                type: "json",
+                serverPaging: true,
+                serverFiltering: true,
+                serverSorting: true,
+                transport: {
+                    read: {
+                        url: "/Admin/Page/PagesWithBreadcrumb/",
+                        type: "POST",
+                        dataType: "json",
+                        data: function () {
+                            var data = {
+                                "ParentId": 0,
+                                "IsSub":false,
+                                "Skip": 0,
+                                "Take":10
+                            };
+                            addAntiForgeryToken(data);
+                            return data;
+                        }
+                    }
+                }
+            },
+            select: function (e) { },
+            dataBound: function (e) {
+                e.sender.value(selectedId)
+                e.sender.readonly(GetUserIsReadOnlyPermission(isReadOnly));
+                e.sender.enable(GetUserIsEnabledPermission(isEnabled));
+            }
+        });
+    }
+
+    function GetAcademyCategorySelectList(elementId, optionLabel, selectedId, isEnabled, isReadOnly) {
+        isEnabled = (typeof isEnabled === "undefined") ? true : isEnabled;
+        isReadOnly = (typeof isReadOnly === "undefined") ? false : isReadOnly;
+        selectedId = (typeof selectedId === "undefined") ? 0 : selectedId;
+        optionLabel = (typeof optionLabel === "undefined") ? "@T("Admin.Configuration.Select")" : optionLabel;
+        $(elementId).kendoDropDownList({
+            dataTextField: "Title",
+            dataValueField: "Id",
+            optionLabel: optionLabel,
+            enable: isEnabled,
+            dataSource: {
+                type: "json",
+                serverPaging: true,
+                serverFiltering: true,
+                serverSorting: true,
+                transport: {
+                    read: {
+                        url: "/Admin/AcademyCategory/GetFilteredItems/",
+                        type: "POST",
+                        dataType: "json",
+                        data: function () {
+                            var data = {
+                                "Skip": 0,
+                                "Take":10
+                            };
+                            addAntiForgeryToken(data);
+                            return data;
+                        }
+                    }
+                },
+                schema: {
+                    data: "Data",
+                    total: "RecordsFiltered",
+                    errors: "Errors"
+                },
+            },
+            select: function (e) { },
+            dataBound: function (e) {
+                e.sender.value(selectedId)
+                e.sender.readonly(GetUserIsReadOnlyPermission(isReadOnly));
+                e.sender.enable(GetUserIsEnabledPermission(isEnabled));
+            }
+        });
+    }
+
+
+
+    function GetUserIsReadOnlyPermission(isReadOnly) {
+        return isReadOnly;
+    }
+    function GetUserIsEnabledPermission(isEnabled) {
+        return isEnabled;
+    }
+</script>
+<script>
+    function RemoveImage(elementId) {
+
+        $(elementId).remove();
+        $(elementId.replace("_Img", "")).val("");
+    }
+</script>

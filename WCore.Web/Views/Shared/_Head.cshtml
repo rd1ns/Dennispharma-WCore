@@ -1,0 +1,71 @@
+﻿@using WCore.Core.Domain.Settings
+@inject WCore.Core.Domain.Settings.SeoSettings _seoSettings
+@inject WCore.Core.Domain.StoreInformationSettings _storeInformationSettings;
+
+@{
+    var pageTitleSeoAdjustment = _seoSettings.PageTitleSeoAdjustment;
+    var pageTitleSeparator = _seoSettings.PageTitleSeparator;
+    var defaultTitle = _seoSettings.DefaultTitle;
+    var defaultMetaDescription = _seoSettings.DefaultMetaDescription;
+    var defaultMetaKeywords = _seoSettings.DefaultMetaKeywords;
+    var Title = "";
+    switch (pageTitleSeoAdjustment)
+    {
+        case PageTitleSeoAdjustment.PagenameAfterStorename:
+            Title = defaultTitle + " " + pageTitleSeparator + " " + ViewBag.Title;
+            break;
+        case PageTitleSeoAdjustment.StorenameAfterPagename:
+            Title = ViewBag.Title + " " + pageTitleSeparator + " " + defaultTitle;
+            break;
+    }
+}
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="author" content="webupbilisim">
+<title>@Title</title>
+
+<meta name="keywords" content="@ViewBag.Keywords">
+<meta name="description" content="@ViewBag.Description">
+
+@if (_seoSettings.TwitterMetaTags)
+{
+    <meta name="twitter:card" content="@ViewBag.TwtterCard" />
+    <meta name="twitter:title" content="@ViewBag.TwtterTitle" />
+    <meta name="twitter:description" content="@ViewBag.TwtterDescription" />
+    <meta name="twitter:url" content="@ViewBag.TwtterUrl" />
+    <meta name="twitter:image" content="@ViewBag.TwtterImage" />
+}
+@if (_seoSettings.OpenGraphMetaTags)
+{
+    <meta property="og:title" content="@ViewBag.OgTitle" />
+    <meta property="og:description" content="@ViewBag.OgDescription" />
+    <meta property="og:image" content="@ViewBag.OgImage" />
+    <meta property="og:url" content="@ViewBag.OgUrl" />
+}
+
+
+<!-- Favicons-->
+<link rel="shortcut icon" href="@_storeInformationSettings.LogoPicture" type="image/x-icon">
+<link rel="apple-touch-icon" type="image/x-icon" href="@_storeInformationSettings.LogoPicture">
+<link rel="apple-touch-icon" type="image/x-icon" sizes="72x72" href="@_storeInformationSettings.LogoPicture">
+<link rel="apple-touch-icon" type="image/x-icon" sizes="114x114" href="@_storeInformationSettings.LogoPicture">
+<link rel="apple-touch-icon" type="image/x-icon" sizes="144x144" href="@_storeInformationSettings.LogoPicture">
+
+<!-- GOOGLE WEB FONT -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<!-- BASE CSS -->
+<link href="/panagea/css/bootstrap.min.css" rel="stylesheet">
+<link href="/panagea/css/style.css" rel="stylesheet">
+<link href="/panagea/css/vendors.css" rel="stylesheet">
+<link href="/panagea/css/sweetalert2.css" rel="stylesheet" />
+<link href="/panagea/slick/slick.css" rel="stylesheet" />
+<link href="~/panagea/fontawesome/css/all.css" rel="stylesheet" />
+<link href="/panagea/fontawesome/css/fontawesome.css" rel="stylesheet" />
+
+<!-- ALTERNATIVE COLORS CSS -->
+<link href="#" id="colors" rel="stylesheet">
+
+<!-- YOUR CUSTOM CSS -->
+<link href="/panagea/css/custom.css" rel="stylesheet">

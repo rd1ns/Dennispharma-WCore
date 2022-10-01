@@ -1,0 +1,301 @@
+﻿@model PageListModel
+@inject IWorkContext _workContext
+@inject SeoSettings _seoSettings
+@inject StoreInformationSettings _storeInformationSettings
+@using Microsoft.AspNetCore.Html
+
+@{
+
+    var hasTopbar = false;
+    var isFancy = false;
+    var isLeft = false;
+    var menuClassName = "";
+    var headerClassName = "";
+    var menuAttribute = "";
+    var menuListItemClass = "container";
+
+    @switch (_storeInformationSettings.DefaultStoreThemeHeaderType)
+    {
+        case "dark":
+            break;
+        case "dark topbar":
+            break;
+        case "dark with topbar":
+            break;
+        case "default":
+            break;
+        case "fancy":
+            isFancy = true;
+            break;
+        case "fancy topbar":
+            isFancy = true;
+            break;
+        case "full width":
+            menuListItemClass = "container-fluid";
+            break;
+        case "light":
+            break;
+        case "light topbar":
+            break;
+        case "light transparent topbar":
+            break;
+        case "light transparent topbar fullwidth":
+            menuListItemClass = "container-fluid";
+            break;
+        case "left menu":
+            break;
+        case "left fixed":
+            isLeft = true;
+            break;
+        case "logo center":
+            break;
+        case "onepage":
+            break;
+        case "transparent":
+            break;
+        case "transparent fullwidth":
+            menuListItemClass = "container-fluid";
+            break;
+        case "transparent overlay":
+            break;
+        case "transparent topbar":
+            break;
+        case "vertical left":
+            menuClassName = "vertical-left";
+            menuAttribute = "data-pos='vertical-left'";
+            isLeft = true;
+            break;
+        default:
+            menuListItemClass = "container";
+            break;
+    }
+    @functions{
+
+        void GetSubPages(List<PageModel> Pages)
+        {
+            <ul class="drop-down-multilevel">
+                @foreach (var subPage in Pages)
+                {
+                    var link = "/" + subPage.SeName + "";
+                    <li>
+                        <a href="@link">@subPage.Title @Html.Raw((subPage.SubPages.Any() ? "<i class='fa fa-angle-down fa-indicator'></i>" : ""))</a>
+                        @if (subPage.SubPages.Any())
+                        {
+                            GetSubPages(subPage.SubPages);
+                        }
+                    </li>
+                }
+            </ul>
+        }
+        void GetMenu(string headerClassName = "", string menuClassName = "", string menuAttribute = "", bool hasTolbar = false, string menuListItemClass = "")
+        {
+            <nav id="menu" class="mega-menu menuFullWidth @menuClassName" @menuAttribute>
+                <section class="menu-list-items">
+                    <div class="@menuListItemClass">
+                        <div class="row">
+                            <div class="col-lg-12 col-md-12">
+                                <ul class="menu-logo">
+                                    <li>
+                                        <a href="@Url.RouteUrl("Homepage")"><img id="logo_img" src="@_storeInformationSettings.LogoPicture" alt="logo"> </a>
+                                    </li>
+                                </ul>
+                                <!-- menu links -->
+                                <div class="menu-bar">
+                                    <ul class="menu-links">
+                                        @foreach (var item in Model.Pages.OrderBy(o=>o.DisplayOrder))
+                                        {
+                                            var link = "/" + item.SeName + "";
+                                            if (item.HomePage)
+                                            {
+                                                link = "/";
+                                            }
+                                            if (item.RedirectPage)
+                                            {
+                                                link = item.RedirectPageUrl;
+                                            }
+                                            <li>
+                                                <a href="@link"> @item.Title @Html.Raw((item.SubPages.Any() ? "<i class='fa fa-angle-down fa-indicator'></i>" : ""))</a>
+                                                @if (item.SubPages.Any())
+                                                {
+                                                    GetSubPages(item.SubPages);
+                                                }
+                                            </li>
+                                        }
+                                    </ul>
+
+                                    <div class="search-cart">
+                                        <div class="search">
+                                            <a class="search-btn not_click" href="javascript:void(0);"></a>
+                                            <div class="search-box not-click">
+
+                                                @if (ViewBag.Page != "ShoppingCart")
+                                                {
+                                                    <ul class="d-none">
+                                                        <li>
+                                                            <a id="sidebarmenu-toggle" href="#" class="open-menu cart-menu-btn toggle" title="Cart"><strong>0</strong></a>
+                                                        </li>
+
+                                                    </ul>
+                                                }
+                                            </div>
+                                        </div>
+                                        <div class="shpping-cart d-none">
+                                            <a class="cart-btn" href="#"> <i class="fa fa-shopping-cart icon"></i> <strong class="item">2</strong></a>
+                                            <div class="cart">
+                                                <div class="cart-title">
+                                                    <h6 class="uppercase mb-0">Shopping cart</h6>
+                                                </div>
+                                                <div class="cart-item">
+                                                    <div class="cart-image">
+                                                        <img class="img-fluid" src="#" alt="">
+                                                    </div>
+                                                    <div class="cart-name clearfix">
+                                                        <a href="#">Product name <strong>x2</strong> </a>
+                                                        <div class="cart-price">
+                                                            <del>$24.99</del> <ins>$12.49</ins>
+                                                        </div>
+                                                    </div>
+                                                    <div class="cart-close">
+                                                        <a href="#"> <i class="fa fa-times-circle"></i> </a>
+                                                    </div>
+                                                </div>
+                                                <div class="cart-item">
+                                                    <div class="cart-image">
+                                                        <img class="img-fluid" src="#" alt="">
+                                                    </div>
+                                                    <div class="cart-name clearfix">
+                                                        <a href="#">Product name <strong>x2</strong></a>
+                                                        <div class="cart-price">
+                                                            <del>$24.99</del> <ins>$12.49</ins>
+                                                        </div>
+                                                    </div>
+                                                    <div class="cart-close">
+                                                        <a href="#"> <i class="fa fa-times-circle"></i> </a>
+                                                    </div>
+                                                </div>
+                                                <div class="cart-total">
+                                                    <h6 class="mb-15"> Total: $104.00</h6>
+                                                    <a class="button" href="shop-shopping-cart.html">View Cart</a>
+                                                    <a class="button black" href="shop-checkout.html">Checkout</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </nav>
+        }
+        void GetLeftMenu(string headerClassName = "", string menuClassName = "", string menuAttribute = "", bool hasTolbar = false, string menuListItemClass = "")
+        {
+            <nav id="menu" class="mega-menu menuFullWidth @menuClassName" @menuAttribute>
+                <section class="menu-list-items">
+                    <ul class="menu-logo">
+                        <li>
+                            <a href="/@_workContext.WorkingLanguage.UniqueSeoCode/"><img class="logo-big" id="logo_img" src="@_storeInformationSettings.LogoPicture" alt="logo"> </a>
+                        </li>
+                    </ul>
+                    <div class="menu-bar">
+                        <ul class="menu-links">
+                            @foreach (var item in Model.Pages)
+                            {
+                                var link = "/" + item.SeName + "";
+                                if (item.HomePage)
+                                {
+                                    link = "/" + _workContext.WorkingLanguage.UniqueSeoCode;
+                                }
+                                <li>
+                                    <a href="@link"> @item.Title @Html.Raw((item.SubPages.Any() ? "<i class='fa fa-angle-down fa-indicator'></i>" : ""))</a>
+                                    @if (item.SubPages.Any())
+                                    {
+                                        GetSubPages(item.SubPages);
+                                    }
+                                </li>
+                            }
+                        </ul>
+
+                        <div class="search-cart d-none">
+                            <div class="search">
+                                <a class="search-btn not_click" href="javascript:void(0);"></a>
+                                <div class="search-box not-click">
+
+                                </div>
+                            </div>
+                            <div class="shpping-cart d-none">
+                                <a class="cart-btn" href="#"> <i class="fa fa-shopping-cart icon"></i> <strong class="item">2</strong></a>
+                                <div class="cart">
+                                    <div class="cart-title">
+                                        <h6 class="uppercase mb-0">Shopping cart</h6>
+                                    </div>
+                                    <div class="cart-item">
+                                        <div class="cart-image">
+                                            <img class="img-fluid" src="images/shop/01.jpg" alt="">
+                                        </div>
+                                        <div class="cart-name clearfix">
+                                            <a href="#">Product name <strong>x2</strong> </a>
+                                            <div class="cart-price">
+                                                <del>$24.99</del> <ins>$12.49</ins>
+                                            </div>
+                                        </div>
+                                        <div class="cart-close">
+                                            <a href="#"> <i class="fa fa-times-circle"></i> </a>
+                                        </div>
+                                    </div>
+                                    <div class="cart-item">
+                                        <div class="cart-image">
+                                            <img class="img-fluid" src="images/shop/01.jpg" alt="">
+                                        </div>
+                                        <div class="cart-name clearfix">
+                                            <a href="#">Product name <strong>x2</strong></a>
+                                            <div class="cart-price">
+                                                <del>$24.99</del> <ins>$12.49</ins>
+                                            </div>
+                                        </div>
+                                        <div class="cart-close">
+                                            <a href="#"> <i class="fa fa-times-circle"></i> </a>
+                                        </div>
+                                    </div>
+                                    <div class="cart-total">
+                                        <h6 class="mb-15"> Total: $104.00</h6>
+                                        <a class="button" href="shop-shopping-cart.html">View Cart</a>
+                                        <a class="button black" href="shop-checkout.html">Checkout</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </nav>
+        }
+    }
+}
+@if (isFancy)
+{
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12">
+                @{
+                    GetMenu(headerClassName, menuClassName, menuAttribute, hasTopbar, menuListItemClass);
+                }
+            </div>
+        </div>
+    </div>
+}
+else if (isLeft)
+{
+    GetLeftMenu(headerClassName, menuClassName, menuAttribute, hasTopbar, menuListItemClass);
+}
+else
+{
+    GetMenu(headerClassName, menuClassName, menuAttribute, hasTopbar, menuListItemClass);
+}
+
+
+<nav id="menu" class="main-menu d-none">
+    <ul>
+        @await Component.InvokeAsync("LanguageSelector")
+        @await Component.InvokeAsync("CurrencySelector")
+    </ul>
+</nav>

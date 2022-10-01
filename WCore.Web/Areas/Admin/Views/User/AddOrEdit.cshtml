@@ -1,0 +1,268 @@
+﻿@model UserModel
+@{
+    ViewData["PageMainTitle"] = T("Admin.Configuration.Users.Title");
+    ViewData["PageTitle"] = Model.Id == 0 ? T("Admin.Configuration.Users.Add") : T("Admin.Configuration.Users.Edit");
+    ViewData["SystemTitle"] = ViewData["PageTitle"] + " / " + ViewData["PageMainTitle"];
+    ViewData["ControllerName"] = "User";
+
+    if (Model.Id == 0)
+    {
+        Model.CreatedOn = DateTime.Now;
+        Model.UpdatedOn = DateTime.Now;
+        Model.IsActive = true;
+        Model.Deleted = false;
+    }
+    else
+    {
+        Model.UpdatedOn = DateTime.Now;
+    }
+}
+<div class="content  d-flex flex-column flex-column-fluid" id="kt_content">
+    <div class="subheader py-2 py-lg-6  subheader-solid " id="kt_subheader">
+        <div class=" container-fluid  d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
+            <div class="d-flex align-items-center flex-wrap mr-1">
+                <div class="d-flex align-items-baseline flex-wrap mr-5">
+                    <h5 class="text-dark font-weight-bold my-1 mr-5">
+                        @ViewData["PageTitle"]
+                    </h5>
+                    <ul class="breadcrumb breadcrumb-transparent breadcrumb-dot font-weight-bold p-0 my-2 font-size-sm">
+                        <li class="breadcrumb-item">
+                            <a href="/admin/@ViewData["ControllerName"]" class="text-muted">
+                                @ViewData["PageMainTitle"]
+                            </a>
+                        </li>
+                        <li class="breadcrumb-item">
+                            @if (Model.Id == 0)
+                            {
+                                <b>@T("admin.common.new")</b>
+                            }
+                            else
+                            {
+                                <span>@Model.FirstName @Model.LastName [@Model.EMail]</span>
+                            }
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="d-flex align-items-center">
+                <partial name="_AddOrEditHeaderButtons" model="@Tuple.Create(Model.Id,"UserForm")" />
+            </div>
+        </div>
+    </div>
+    <div class="d-flex flex-column-fluid">
+        <div class="container-fluid">
+            <div class="card card-custom">
+                <div class="card-body">
+                    <WCore-tabs id="skiresort-edit" asp-tab-name-to-select="tab-details" asp-render-selected-tab-input="false">
+                        <WCore-tab asp-name="tab-details" asp-title="@T("Admin.Configuration.Details")">
+                            <form id="UserForm" asp-action="AddOrEdit" asp-controller="@ViewData["ControllerName"]" enctype="multipart/form-data">
+                                <div class="card card-custom">
+                                    <div class="card-body">
+                                        <div class="col-xl-12 my-2">
+                                            <div class="form-group row">
+                                                <WCore-label asp-for="UserAgencyId" />
+                                                <div class="col-lg-10 col-md-6 col-sm-12">
+                                                    <WCore-select asp-for="UserAgencyId" asp-items="Model.UserAgencies" class="form-control form-control-sm form-control-solid" />
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <WCore-label asp-for="UserType" />
+                                                <div class="col-lg-10 col-md-6 col-sm-12">
+                                                    <WCore-select asp-for="UserType" asp-items="Model.UserTypes" class="form-control form-control-sm form-control-solid" />
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <WCore-label asp-for="FirstName" />
+                                                <div class="col-lg-10 col-md-6 col-sm-12">
+                                                    <WCore-editor asp-for="FirstName" asp-required="true" asp-type="form-control form-control-sm form-control-solid" />
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <WCore-label asp-for="MiddleName" />
+                                                <div class="col-lg-10 col-md-6 col-sm-12">
+                                                    <WCore-editor asp-for="MiddleName" asp-type="form-control form-control-sm form-control-solid" />
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <WCore-label asp-for="LastName" />
+                                                <div class="col-lg-10 col-md-6 col-sm-12">
+                                                    <WCore-editor asp-for="LastName" asp-required="true" asp-type="form-control form-control-sm form-control-solid" />
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <WCore-label asp-for="EMail" />
+                                                <div class="col-lg-10 col-md-6 col-sm-12">
+                                                    <input type="email" asp-for="EMail" class="form-control form-control form-control-sm form-control-solid text-box single-line" />
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <WCore-label asp-for="Phone" />
+                                                <div class="col-lg-10 col-md-6 col-sm-12">
+                                                    <input type="text" asp-for="Phone" class="form-control form-control form-control-sm form-control-solid text-box single-line" />
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <WCore-label asp-for="Username" />
+                                                <div class="col-lg-10 col-md-6 col-sm-12">
+                                                    <WCore-editor asp-for="Username" asp-type="form-control form-control-sm form-control-solid" />
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <WCore-label asp-for="Password" />
+                                                <div class="col-lg-10 col-md-6 col-sm-12">
+                                                    <input type="password" asp-for="Password" value="@Model.Password" required class="form-control form-control form-control-sm form-control-solid text-box single-line" />
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <WCore-label asp-for="Avatar" />
+                                                <div class="col-lg-10 col-md-6 col-sm-12">
+                                                    @if (!string.IsNullOrEmpty(Model.Avatar))
+                                                    {
+                                                        <img src="@Model.Avatar" style="max-height:200px;" />
+                                                    }
+                                                    <input type="file" name="Avatar" accept="image/gif, image/jpeg, image/png" id="Avatar" class="form-control pt-2" />
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <WCore-label asp-for="RoleGroupId" />
+                                                <div class="col-lg-4 col-md-4 col-sm-12">
+                                                    <WCore-select asp-for="RoleGroupId" asp-items="Model.RoleGroups" class="form-control form-control-sm form-control-solid" />
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <WCore-label asp-for="CreatedOn" />
+                                                <div class="col-lg-10 col-md-6 col-sm-12">
+                                                    <WCore-editor asp-for="CreatedOn" asp-required="true" asp-type="form-control-sm form-control-solid" />
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <WCore-label asp-for="UpdatedOn" />
+                                                <div class="col-lg-10 col-md-6 col-sm-12">
+                                                    <WCore-editor asp-for="UpdatedOn" asp-required="true" asp-type="form-control-sm form-control-solid" />
+                                                </div>
+                                            </div>
+                                            <div class="form-group mb-0 row">
+                                                <WCore-label asp-for="IsActive" />
+                                                <div class="col-lg-10 col-md-6 col-sm-12">
+                                                    <div class="checkbox-inline">
+                                                        <label class="checkbox pt-3">
+                                                            <input asp-for="IsActive" />
+                                                            <span></span>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group mb-0 row">
+                                                <WCore-label asp-for="Deleted" />
+                                                <div class="col-lg-10 col-md-6 col-sm-12">
+                                                    <div class="checkbox-inline">
+                                                        <label class="checkbox pt-3">
+                                                            <input asp-for="Deleted" />
+                                                            <span></span>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group mb-0 row">
+                                                <WCore-label asp-for="IsAgencyManager" />
+                                                <div class="col-lg-10 col-md-6 col-sm-12">
+                                                    <div class="checkbox-inline">
+                                                        <label class="checkbox pt-3">
+                                                            <input asp-for="IsAgencyManager" />
+                                                            <span></span>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group mb-0 row">
+                                                <WCore-label asp-for="IsAgencyStaff" />
+                                                <div class="col-lg-10 col-md-6 col-sm-12">
+                                                    <div class="checkbox-inline">
+                                                        <label class="checkbox pt-3">
+                                                            <input asp-for="IsAgencyStaff" />
+                                                            <span></span>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!--end::Group-->
+                                        </div>
+                                    </div>
+                                </div>
+                                <input id="send-info" name="send-info" type="hidden" value="false" />
+                                <input type="hidden" asp-for="Id" />
+                            </form>
+                        </WCore-tab>
+                    </WCore-tabs>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts{
+    <script>
+        $("#UserForm").submit(function (e) {
+
+            e.preventDefault();
+            var data = new FormData();
+
+
+            //Form data
+            var form_data = $('#UserForm').serializeArray();
+            $.each(form_data, function (key, input) {
+                data.append(input.name, input.value);
+            });
+
+            //File data
+            var file_data = $("#Avatar")[0].files;
+            for (var i = 0; i < file_data.length; i++) {
+                data.append("file", file_data[i]);
+            }
+            var url = $(this).attr('action');
+            var id = @Model.Id;
+            var userAgencyId = $("#UserAgencyId").val();
+
+            $.ajax({
+                type: "POST",
+                url: "/admin/"+url,
+                processData: false,
+                contentType: false,
+                data: data,
+                success: function (data) {
+                    if (id == 0) {
+                        if (userAgencyId != 0) {
+                            window.location.href = "/admin/useragency/" + userAgencyId;
+                        } else {
+                            window.location.href = "/admin/@ViewData["ControllerName"]";
+                        }
+                    }
+                    else {
+                        Swal.fire({
+                            title: '@T("admin.notification.success")',
+                            text: "@T("admin.notification.editcontinue")",
+                            icon: 'success',
+                            showCancelButton: true,
+                            confirmButtonColor: '#3085d6',
+                            cancelButtonColor: '#d33',
+                            confirmButtonText: 'Evet',
+                            cancelButtonText: 'Hayır',
+                            timer: 3000,
+                            timerProgressBar: true
+                        }).then((result) => {
+                            if (!result.value) {
+                                if (userAgencyId != 0) {
+                                    window.location.href = "/admin/useragency/addoredit/" + userAgencyId;
+                                } else {
+                                    window.location.href = "/admin/@ViewData["ControllerName"]";
+                                }
+                            }
+                        })
+                    }
+                }
+            });
+        });
+    </script>
+}

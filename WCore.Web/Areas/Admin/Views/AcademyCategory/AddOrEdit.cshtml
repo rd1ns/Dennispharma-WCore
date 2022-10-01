@@ -1,0 +1,228 @@
+﻿@model AcademyCategoryModel
+@{
+    ViewData["PageMainTitle"] = T("Admin.Configuration.AcademyCategories.Title");
+    ViewData["PageTitle"] = Model.Id == 0 ? T("Admin.Configuration.AcademyCategories.Add") : T("Admin.Configuration.AcademyCategories.Edit");
+    ViewData["SystemTitle"] = ViewData["PageTitle"] + " / " + ViewData["PageMainTitle"];
+    ViewData["ControllerName"] = "AcademyCategory";
+
+    @if (Model.Id == 0)
+    {
+        Model.IsActive = true;
+        Model.Deleted = false;
+        Model.ShowOn = true;
+        Model.DisplayOrder = 0;
+    }
+}
+<div class="content  d-flex flex-column flex-column-fluid" id="kt_content">
+    <div class="subheader py-2 py-lg-6  subheader-solid " id="kt_subheader">
+        <div class=" container-fluid  d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
+            <div class="d-flex align-items-center flex-wrap mr-1">
+                <div class="d-flex align-items-baseline flex-wrap mr-5">
+                    <h5 class="text-dark font-weight-bold my-1 mr-5">
+                        @ViewData["PageTitle"]
+                    </h5>
+                    <ul class="breadcrumb breadcrumb-transparent breadcrumb-dot font-weight-bold p-0 my-2 font-size-sm">
+                        <li class="breadcrumb-item">
+                            <a href="/admin/@ViewData["ControllerName"]" class="text-muted">
+                                @ViewData["PageMainTitle"]
+                            </a>
+                        </li>
+                        <li class="breadcrumb-item">
+                            @if (Model.Id == 0)
+                            {
+                                <b>@T("admin.common.new")</b>
+                            }
+                            else
+                            {
+                                @Model.Title
+                            }
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="d-flex align-items-center">
+                <partial name="_AddOrEditHeaderButtons" model="@Tuple.Create(Model.Id,"AcademyCategoryForm")" />
+            </div>
+        </div>
+    </div>
+    <div class="d-flex flex-column-fluid">
+        <div class="container-fluid">
+            <div class="card card-custom">
+                <div class="card-body">
+                    <WCore-tabs id="academyCategory-edit" asp-tab-name-to-select="tab-details" asp-render-selected-tab-input="false">
+                        <WCore-tab asp-name="tab-details" asp-title="@T("Admin.Configuration.Details")" asp-default="true">
+                            <form id="AcademyCategoryForm" asp-action="AddOrEdit" asp-controller="@ViewData["ControllerName"]" enctype="multipart/form-data">
+                                @(Html.LocalizedEditor<AcademyCategoryModel, AcademyCategoryLocalizedModel>("skiresort-localized",
+                                @<div>
+                                    <div class="form-group row">
+                                        <WCore-label asp-for="Locales[item].Title" />
+                                        <div class="col-lg-10 col-md-6 col-sm-12">
+                                            <WCore-editor asp-for="Locales[item].Title"  asp-type="form-control form-control-sm form-control-solid" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <WCore-label asp-for="Locales[item].SeName" />
+                                        <div class="col-lg-10 col-md-6 col-sm-12">
+                                            <WCore-editor asp-for="Locales[item].SeName" asp-type="form-control form-control-sm form-control-solid" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group row mb-3">
+                                        <WCore-label asp-for="Locales[item].Body" />
+                                        <div class="col-lg-10 col-md-6 col-sm-12">
+                                            <WCore-editor asp-for="Locales[item].Body" asp-template="RichEditor" />
+                                        </div>
+                                    </div>
+                                     <input type="hidden" asp-for="@Model.Locales[item].LanguageId" />
+                                </div>,
+                                @<div>
+                                    <div class="form-group row">
+                                        <WCore-label asp-for="Title" />
+                                        <div class="col-lg-10 col-md-6 col-sm-12">
+                                            <WCore-editor asp-for="Title"   asp-required="true" asp-type="form-control form-control-sm form-control-solid" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <WCore-label asp-for="SeName" />
+                                        <div class="col-lg-10 col-md-6 col-sm-12">
+                                            <WCore-editor asp-for="SeName" asp-type="form-control form-control-sm form-control-solid" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group row mb-3">
+                                        <WCore-label asp-for="Body" />
+                                        <div class="col-lg-10 col-md-6 col-sm-12">
+                                            <WCore-editor asp-for="Body"  asp-template="RichEditor"  />
+                                        </div>
+                                    </div>
+                                    <div class="form-group row mb-3">
+                                        <WCore-label asp-for="Image" />
+                                        <div class="col-lg-10 col-md-6 col-sm-12">
+                                            @if (!string.IsNullOrEmpty(Model.Image))
+                                            {
+                                                <img src="@Model.Image" style="max-height:200px; margin-bottom:15px; border:1px solid #cecece;" />
+                                            }
+                                            <input type="file" name="Image" accept="image/gif, image/jpeg, image/png" id="Image" class="form-control pt-2" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group row mb-3">
+                                        <WCore-label asp-for="Banner" />
+                                        <div class="col-lg-10 col-md-6 col-sm-12">
+                                            @if (!string.IsNullOrEmpty(Model.Banner))
+                                            {
+                                                <img src="@Model.Banner" style="max-height:200px; margin-bottom:15px; border:1px solid #cecece;" />
+                                            }
+                                            <input type="file" name="Banner" accept="image/gif, image/jpeg, image/png" id="Banner" class="form-control pt-2" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <WCore-label asp-for="DisplayOrder" />
+                                        <div class="col-lg-10 col-md-6 col-sm-12">
+                                            <WCore-editor asp-for="DisplayOrder" asp-type="form-control form-control-sm form-control-solid" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group mb-0 row">
+                                        <WCore-label asp-for="ShowOn" />
+                                        <div class="col-lg-10 col-md-6 col-sm-12">
+                                            <div class="checkbox-inline">
+                                                <label class="checkbox pt-3">
+                                                    <input asp-for="ShowOn" />
+                                                    <span></span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group mb-0 row">
+                                        <WCore-label asp-for="IsActive" />
+                                        <div class="col-lg-10 col-md-6 col-sm-12">
+                                            <div class="checkbox-inline">
+                                                <label class="checkbox pt-3">
+                                                    <input asp-for="IsActive" />
+                                                    <span></span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group mb-0 row">
+                                        <WCore-label asp-for="Deleted" />
+                                        <div class="col-lg-10 col-md-6 col-sm-12">
+                                            <div class="checkbox-inline">
+                                                <label class="checkbox pt-3">
+                                                    <input asp-for="Deleted" />
+                                                    <span></span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>))
+                                <input type="hidden" asp-for="Id" />
+                            </form>
+                        </WCore-tab>
+                    </WCore-tabs>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+
+@section Scripts{    
+    <script>
+        $("#AcademyCategoryForm").submit(function (e) {
+            e.preventDefault();
+            var data = new FormData();
+            //Form data
+            var form_data = $('#AcademyCategoryForm').serializeArray();
+            $.each(form_data, function (key, input) {
+                var inputId = $("[name='" + input.name + "']").attr("id");
+                var editor = tinyMCE.editors[inputId];
+                var IsEditor = editor == null ? false : true;
+                if (IsEditor) {
+                    var myContent = editor.getContent();
+                    data.append(input.name, myContent);
+                }
+                else {
+                    data.append(input.name, input.value);
+                }
+            });
+            //File data
+            var file_data = $("input[type='file']");
+            for (var i = 0; i < file_data.length; i++) {
+                var f = file_data[i];
+                data.append(f.name, f.files[0]);
+            }
+            var url = $(this).attr('action');
+            var id = @Model.Id;
+            $.ajax({
+                type: "POST",
+                url: "/admin/"+url,
+                processData: false,
+                contentType: false,
+                data: data,
+                success: function (data) {
+                    if (id == 0) {
+                        window.location.href = "/admin/academyCategory";
+                    }
+                    else if (!data.continueEditing) {
+                        Swal.fire({
+                            title: '@T("admin.notification.success")',
+                            text: "@T("admin.notification.editcontinue")",
+                            icon: 'success',
+                            showCancelButton: true,
+                            confirmButtonColor: '#3085d6',
+                            cancelButtonColor: '#d33',
+                            confirmButtonText: 'Evet',
+                            cancelButtonText: 'Hayır',
+                            timer: 3000,
+                            timerProgressBar: true
+                        }).then((result) => {
+                            if (!result.value) {
+                                window.location.href = "/admin/academyCategory/addoredit/" + $("#SkiSchoolId").val();
+                            }
+                        })
+                    }
+                }
+            });
+        });
+    </script>    
+}

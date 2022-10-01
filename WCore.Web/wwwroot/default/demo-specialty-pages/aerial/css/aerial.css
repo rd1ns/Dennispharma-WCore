@@ -1,0 +1,22 @@
+/*
+Template:  Webster - Responsive Multi-purpose HTML5 Template
+Author: potenzaglobalsolutions.com
+Design and Developed by: potenzaglobalsolutions.com
+
+NOTE: This file contains the styling for the band Template. You can edit/add anything in this file!
+*/
+ 
+.button { font-weight: bold; }
+.coming-soon-effects { width: 100%; display: block; position: absolute; height: 100vh; overflow: hidden; background-repeat: no-repeat; background-attachment: fixed;
+    background-position: center center; background-size: cover !important;}
+.coming-soon-effects .coming-soon h1 {  font-size: 50px; line-height: 50px; margin-bottom: 50px;  } 
+.coming-soon-birds .countdown p { font-weight: bold; }
+.coming-soon-middle { padding: 0; }
+.coming-soon-aerial .container-fluid { padding: 50px 100px  }
+.coming-soon-aerial .coming-soon-form.contact-form input { width:70%; margin: 0; }
+.coming-soon-aerial .footer-Newsletter.transparent .form-control { background: rgba(255, 255, 255, 0.3); color: #ffffff; }
+.coming-soon-aerial .footer-Newsletter.transparent .form-control { box-shadow: none; color: #ffffff; } 
+.coming-soon-aerial .footer-Newsletter.transparent .form-control::-moz-placeholder { color: #ffffff; }
+.coming-soon-aerial .footer-Newsletter.transparent .form-control::-ms-input-placeholder { color: #ffffff; }
+.coming-soon-aerial .footer-Newsletter.transparent .form-control::-webkit-input-placeholder { color: #ffffff; }
+

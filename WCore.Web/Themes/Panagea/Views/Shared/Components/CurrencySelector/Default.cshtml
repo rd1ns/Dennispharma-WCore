@@ -1,0 +1,24 @@
+﻿@model CurrencySelectorModel
+
+@inject WCore.Core.IWebHelper webHelper
+
+@if (Model.AvailableCurrencies.Count > 1)
+{
+    var returnUrl = webHelper.GetRawUrl(Context.Request);
+
+    <li>
+        <span>
+            <a href="#" class="pl-0">@Model.CurrentCurrency.Name </a>
+        </span>
+        <ul class="drop-down-multilevel left-side">
+            @foreach (var cur in Model.AvailableCurrencies)
+            {
+                <li>
+                    <span>
+                        <a href="@Url.RouteUrl("ChangeCurrency", new { customercurrency = cur.Id, returnUrl }, webHelper.CurrentRequestProtocol)" title="@cur.Name">@cur.Name</a>
+                    </span>
+                </li>
+            }
+        </ul>
+    </li>
+}

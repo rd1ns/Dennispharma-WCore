@@ -1,0 +1,132 @@
+/*
+Template:  Webster - Responsive Multi-purpose HTML5 Template
+Author: potenzaglobalsolutions.com
+Design and Developed by: potenzaglobalsolutions.com
+
+NOTE: This file contains the styling for the magazine Template. You can edit/add anything in this file!
+*/
+
+h1 {
+	font-family: 'Roboto', sans-serif;
+	font-weight: normal;
+	margin-top: 0px;
+	text-transform: capitalize;
+	font-weight: bold;
+}
+h2 {
+	font-family: 'Roboto', sans-serif;
+	font-weight: normal;
+	margin-top: 0px;
+	text-transform: capitalize;
+	font-weight: bold;
+}
+h3 {
+	font-family: 'Roboto', sans-serif;
+	font-weight: normal;
+	margin-top: 0px;
+	text-transform: capitalize;
+	font-weight: bold;
+}
+h4 {
+	font-family: 'Roboto', sans-serif;
+	font-weight: normal;
+	margin-top: 0px;
+	text-transform: capitalize;
+	font-weight: bold;
+}
+h5 {
+	font-family: 'Roboto', sans-serif;
+	font-weight: normal;
+	margin-top: 0px;
+	text-transform: capitalize;
+	font-weight: bold;
+}
+h6 {
+	font-family: 'Roboto', sans-serif;
+	font-weight: normal;
+	margin-top: 0px;
+	text-transform: capitalize;
+	font-weight: bold;
+}
+.header.logo-center.magazine-header {
+	box-shadow: none;
+	.menu-logo {
+		width: 20%;
+		margin-right: 2%;
+		float: left;
+	}
+	.mega-menu {
+		img {
+			margin: inherit;
+		}
+		.menu-logo {
+			>li {
+				line-height: 0;
+			}
+		}
+	}
+	.add-banner {
+		width: 75%;
+		float: right;
+	}
+}
+.header.light {
+	.mega-menu {
+		.menu-links {
+			>li {
+				>a {
+					&:hover {
+						color: #ed5001;
+					}
+				}
+			}
+		}
+	}
+}
+.social-big-magazine {
+	ul {
+		li {
+			display: inline-block;
+			padding: 10px;
+			width: 82px;
+			margin-bottom: 3px;
+			text-align: center;
+			background: rgba(255, 255, 255, 0.1);
+			i {
+				color: #ffffff;
+				display: block;
+				width: 30px;
+				height: 30px;
+				line-height: 30px;
+				background: rgba(0, 0, 0, 0.2);
+				border-radius: 50%;
+				margin: 0 auto;
+			}
+			span {
+				display: block;
+				text-align: center;
+				color: #ffffff;
+				margin-top: 10px;
+				font-size: 11px;
+			}
+		}
+		li.facebook {
+			background: #5d82d1;
+		}
+		li.pinterest {
+			background: #e13138;
+		}
+		li.linkedin {
+			background: #238cc8;
+		}
+		li.youtube {
+			background: #ef4e41;
+		}
+		li.twitter {
+			background: #40bff5;
+		}
+		li.dribbble {
+			background: #f7659c;
+		}
+	}
+}

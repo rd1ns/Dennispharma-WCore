@@ -1,0 +1,55 @@
+/*
+Template:  Webster - Responsive Multi-purpose HTML5 Template
+Author: potenzaglobalsolutions.com
+Design and Developed by: potenzaglobalsolutions.com
+
+NOTE: This file contains the styling for the band Template. You can edit/add anything in this file!
+*/
+ 
+ body { font-family: 'Raleway', sans-serif; }
+ h1, h2, h3, h4, h5, h6 { font-family: 'Raleway', sans-serif; }
+
+ /*************************************
+	    	    404 error
+**************************************/
+.error-05-bg { background-size: cover !important; background-repeat: no-repeat; background-position: center bottom; position: absolute; height: 100%; width: 100%; }
+.error-05 { padding: 50px 0px;  }
+.error-05 .text-center { position: relative; z-index: 9; }
+.error-05 h1 { font-size: 130px; font-weight: 900; color: #fff; text-shadow: 4px 6px 0px #7db1c1; text-transform: uppercase; line-height: 130px; }
+.error-05 h3 { font-size: 70px; line-height: 70px; font-weight: 900; color: #fff; text-shadow: 4px 6px 0px #7db1c1; text-transform: uppercase; margin-top: 0px; }
+.error-05 span { font-size: 70px; line-height: 70px; font-weight: 900; color: #434b5c; text-shadow: 4px 6px 0px #7db1c1; text-transform: uppercase; margin-top: 0px; }
+.error-05 p { font-size: 26px; line-height: 30px; font-weight: 800; color: #434b5c; text-shadow: 2px 1px 0px #7db1c1; text-transform: uppercase; margin-top: 0px; }
+.error-05 .container-fluid { padding: 0px !important; }
+.error-05 .error-bottom .tree { position: absolute; left: 0px; bottom: 0px; }
+.error-05 .error-bottom .penguin { position: absolute;  left: 50%; bottom: 70px; transform: translateX(-50%); -webkit-transform: translateX(-50%); -o-transform: translateX(-50%); -ms-transform: translateX(-50%); -moz-transform: translateX(-50%); }
+.error-05 .error-bottom .back-to-home { position: absolute; right: 100px; bottom: 150px; }
+.error-05 .button-home { display: none; }
+.error-05 .button-home a { display: inline-block; background: #543011; color: #fff; font-size: 16px; text-transform: uppercase; padding: 10px 20px; font-weight: 600; border-radius: 5px; margin-top: 50px; }
+.error-05 .button-home a:hover { background: #fff; color: #543011; }
+.error-05 .error-bottom .board { width: 190px; height: 248px; display: inline-block; background-image: url("../../../demo-specialty-pages/error-05/images/board.png"); background-repeat: no-repeat; position: absolute; top: 2px;  left: 277px; z-index: 0; -moz-animation: 4s ease 0s normal none infinite board; -moz-transform-origin: center top;-webkit-animation:board 4s infinite ease-in-out; -webkit-transform-origin:top;
+    -o-animation: 4s ease 0s normal none infinite board; -o-transform-origin: center top; -o-animation:board 4s infinite ease-in-out; -o-transform-origin:top; -ms-animation: 4s ease 0s normal none infinite board; -ms-transform-origin: center top; -ms-animation:board 4s infinite ease-in-out; -ms-transform-origin:top; animation: 4s ease 0s normal none infinite board; transform-origin: center top; animation:board 4s infinite ease-in-out; transform-origin:top; }
+ @-moz-keyframes board  {
+    0%{-moz-transform:rotate(-2deg)}
+    50%{-moz-transform:rotate(2deg)}
+    100%{-moz-transform:rotate(-2deg)}
+}
+@-webkit-keyframes board  {
+    0%{-webkit-transform:rotate(-2deg)}
+    50%{-webkit-transform:rotate(2deg)}
+    100%{-webkit-transform:rotate(-2deg)}
+}
+@-o-keyframes board  {
+    0%{-o-transform:rotate(-2deg)}
+    50%{-o-transform:rotate(2deg)}
+    100%{-o-transform:rotate(-2deg)}
+}
+@-ms-keyframes board  {
+    0%{-ms-transform:rotate(-2deg)}
+    50%{-ms-transform:rotate(2deg)}
+    100%{-ms-transform:rotate(-2deg)}
+}
+@keyframes board  {
+    0%{transform:rotate(-2deg)}
+    50%{transform:rotate(2deg)}
+    100%{transform:rotate(-2deg)}
+}

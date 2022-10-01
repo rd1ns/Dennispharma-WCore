@@ -1,0 +1,220 @@
+﻿@model UserRegistrationFormModel
+@{
+    var _workContext = EngineContext.Current.Resolve<IWorkContext>();
+    var _themeProvider = EngineContext.Current.Resolve<IThemeProvider>();
+    var _seoSettings = EngineContext.Current.Resolve<SeoSettings>();
+    var _storeInformationSettings = EngineContext.Current.Resolve<StoreInformationSettings>();
+
+    Model.Title = "";
+}
+<div class="page-section-ptb bg-white">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="clearfix">
+
+                    <form class="form-horizontal group-border stripped" method="post" action="/Common/UserRegistrationForm" id="UserRegistrationForm">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="card recent-activites">
+                                    <h5 class="card-header">Kişisel Bilgiler</h5>
+                                    <div class="card-body">
+                                        <div class="form-group row">
+                                            <WCore-label asp-for="Title" />
+                                            <div class="col-lg-4 col-md-6 col-sm-12">
+                                                <input asp-for="Title" class="form-control form-control-sm form-control-solid" />
+                                            </div>
+                                            <WCore-label asp-for="Gender" />
+                                            <div class="col-lg-4 col-md-6 col-sm-12">
+                                                <WCore-editor asp-for="Gender" asp-type="form-control form-control-sm form-control-solid" />
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <WCore-label asp-for="FirstName" />
+                                            <div class="col-lg-4 col-md-6 col-sm-12">
+                                                <WCore-editor asp-for="FirstName" asp-type="form-control form-control-sm form-control-solid" />
+                                            </div>
+                                            <WCore-label asp-for="LastName" />
+                                            <div class="col-lg-4 col-md-6 col-sm-12">
+                                                <WCore-editor asp-for="LastName" asp-type="form-control form-control-sm form-control-solid" />
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <WCore-label asp-for="IdNo" />
+                                            <div class="col-lg-4 col-md-6 col-sm-12">
+                                                <WCore-editor asp-for="IdNo" asp-type="form-control form-control-sm form-control-solid" />
+                                                <small>Lütfen uygun formatta giriniz (99999999999)</small>
+                                            </div>
+                                            <WCore-label asp-for="BirthDate" />
+                                            <div class="col-lg-4 col-md-6 col-sm-12">
+                                                <WCore-editor asp-for="BirthDate" asp-type="form-control form-control-sm form-control-solid" />
+                                                <small>Lütfen uygun formatta giriniz (gg/aa/yyyy)</small>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <WCore-label asp-for="MotherName" />
+                                            <div class="col-lg-4 col-md-6 col-sm-12">
+                                                <WCore-editor asp-for="MotherName" asp-type="form-control form-control-sm form-control-solid" />
+                                            </div>
+                                            <WCore-label asp-for="FatherName" />
+                                            <div class="col-lg-4 col-md-6 col-sm-12">
+                                                <WCore-editor asp-for="FatherName" asp-type="form-control form-control-sm form-control-solid" />
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <WCore-label asp-for="Email" />
+                                            <div class="col-lg-4 col-md-6 col-sm-12">
+                                                <WCore-editor asp-for="Email" asp-type="form-control form-control-sm form-control-solid" />
+                                            </div>
+                                            <WCore-label asp-for="Phone" />
+                                            <div class="col-lg-4 col-md-6 col-sm-12">
+                                                <WCore-editor asp-for="Phone" asp-type="form-control form-control-sm form-control-solid" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div><!-- End .card -->
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="card recent-activites">
+                                    <h4 class="card-header">Ek İletişim Bilgileri</h4>
+                                    <div class="card-body">
+                                        <div class="form-group row">
+                                            <WCore-label asp-for="CompanyName" />
+                                            <div class="col-lg-4 col-md-6 col-sm-12">
+                                                <WCore-editor asp-for="CompanyName" asp-type="form-control form-control-sm form-control-solid" />
+                                            </div>
+                                            <WCore-label asp-for="CompanyDepartment" />
+                                            <div class="col-lg-4 col-md-6 col-sm-12">
+                                                <WCore-editor asp-for="CompanyDepartment" asp-type="form-control form-control-sm form-control-solid" />
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <WCore-label asp-for="CompanyAddress" />
+                                            <div class="col-lg-10 col-md-6 col-sm-12">
+                                                <WCore-editor asp-for="CompanyAddress" asp-type="form-control form-control-sm form-control-solid" />
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <WCore-label asp-for="HomeAddress" />
+                                            <div class="col-lg-10 col-md-6 col-sm-12">
+                                                <WCore-editor asp-for="HomeAddress" asp-type="form-control form-control-sm form-control-solid" />
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <WCore-label asp-for="City" />
+                                            <div class="col-lg-10 col-md-6 col-sm-12">
+                                                <WCore-editor asp-for="City" asp-type="form-control form-control-sm form-control-solid" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="card recent-activites">
+                                            <!-- Start .card -->
+                                            <h4 class="card-header">Ek Bilgiler</h4>
+                                            <div class="card-body">
+                                                <div class="form-group row">
+                                                    <WCore-label asp-for="Profession" />
+                                                    <div class="col-lg-10 col-md-6 col-sm-12">
+                                                        <WCore-editor asp-for="Profession" asp-type="form-control form-control-sm form-control-solid" />
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <WCore-label asp-for="InstitutionExpert" />
+                                                    <div class="col-lg-10 col-md-6 col-sm-12">
+                                                        <WCore-editor asp-for="InstitutionExpert" asp-type="form-control form-control-sm form-control-solid" />
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <WCore-label asp-for="ProfessionDate" />
+                                                    <div class="col-lg-4 col-md-6 col-sm-12">
+                                                        <WCore-editor asp-for="ProfessionDate" asp-type="form-control form-control-sm form-control-solid" />
+                                                    </div>
+                                                    <WCore-label asp-for="ProfessionDocumentNo" />
+                                                    <div class="col-lg-4 col-md-6 col-sm-12">
+                                                        <WCore-editor asp-for="ProfessionDocumentNo" asp-type="form-control form-control-sm form-control-solid" />
+                                                    </div>
+                                                </div>
+                                                <hr class="mb-3">
+                                                <div class="form-group row">
+                                                    <WCore-label asp-for="SideBranch" />
+                                                    <div class="col-lg-2 col-md-6 col-sm-12">
+                                                        <WCore-editor asp-for="SideBranch" asp-type="form-control form-control-sm form-control-solid" />
+                                                    </div>
+                                                    <WCore-label asp-for="SideBranchDocumentDate" />
+                                                    <div class="col-lg-2 col-md-6 col-sm-12">
+                                                        <WCore-editor asp-for="SideBranchDocumentDate" asp-type="form-control form-control-sm form-control-solid" />
+                                                    </div>
+                                                    <WCore-label asp-for="SideBranchDocumentNo" />
+                                                    <div class="col-lg-2 col-md-6 col-sm-12">
+                                                        <WCore-editor asp-for="SideBranchDocumentNo" asp-type="form-control form-control-sm form-control-solid" />
+                                                    </div>
+                                                </div>
+                                                <hr class="mb-3">
+                                                <div class="form-group row">
+                                                    <WCore-label asp-for="ReferenceName" />
+                                                    <div class="col-lg-4 col-md-6 col-sm-12">
+                                                        <WCore-editor asp-for="ReferenceName" asp-type="form-control form-control-sm form-control-solid" />
+                                                    </div>
+                                                    <WCore-label asp-for="ReferenceEmail" />
+                                                    <div class="col-lg-4 col-md-6 col-sm-12">
+                                                        <WCore-editor asp-for="ReferenceEmail" asp-type="form-control form-control-sm form-control-solid" />
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <WCore-label asp-for="ReferenceName" />
+                                                    <div class="col-lg-4 col-md-6 col-sm-12">
+                                                        <WCore-editor asp-for="ReferenceName" asp-type="form-control form-control-sm form-control-solid" />
+                                                    </div>
+                                                    <WCore-label asp-for="ReferenceEmail" />
+                                                    <div class="col-lg-4 col-md-6 col-sm-12">
+                                                        <WCore-editor asp-for="ReferenceEmail" asp-type="form-control form-control-sm form-control-solid" />
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <div class="col-lg-2 text-right">
+                                                        <div class="checkbox-inline">
+                                                            <label class="checkbox">
+                                                                <input asp-for="ShareInfo" />
+                                                                <span></span>
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                    <WCore-label asp-for="ShareInfo" class="col-lg-10 mb-0" />
+                                                </div>
+                                                <div class="form-group row">
+                                                    <div class="col-lg-12 float-right">
+                                                        <div id="user-register-catpcha" class="user-register-catpcha"></div>
+                                                        <div class="catpcha-error"></div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <div class="col-lg-12 text-right">
+                                                        <button class="button tp-caption pull-right" type="submit">ÜYELİK FORMUNU KAYDET</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    #UserRegistrationForm .form-control{
+        padding:10px;
+    }
+    #UserRegistrationForm .control-label {
+        margin: 1px;
+    }
+</style>

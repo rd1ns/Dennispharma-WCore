@@ -1,0 +1,87 @@
+﻿@model CategoryModel
+
+<div class="panel-body">
+    <div class="form-group advanced-setting">
+        <div class="col-md-3">
+            <wCore-label asp-for="Published" />
+        </div>
+        <div class="col-md-9">
+            <wCore-editor asp-for="Published" />
+            <span asp-validation-for="Published"></span>
+        </div>
+    </div>
+    <div class="form-group advanced-setting">
+        <div class="col-md-3">
+            <wCore-label asp-for="ShowOnHomepage" />
+        </div>
+        <div class="col-md-9">
+            <wCore-editor asp-for="ShowOnHomepage" />
+            <span asp-validation-for="ShowOnHomepage"></span>
+        </div>
+    </div>
+    <div class="form-group advanced-setting">
+        <div class="col-md-3">
+            <wCore-label asp-for="IncludeInTopMenu" />
+        </div>
+        <div class="col-md-9">
+            <wCore-editor asp-for="IncludeInTopMenu" />
+            <span asp-validation-for="IncludeInTopMenu"></span>
+        </div>
+    </div>
+    <div class="form-group advanced-setting">
+        <div class="col-md-3">
+            <wCore-label asp-for="AllowUsersToSelectPageSize" />
+        </div>
+        <div class="col-md-9">
+            <wCore-editor asp-for="AllowUsersToSelectPageSize" />
+            <span asp-validation-for="AllowUsersToSelectPageSize"></span>
+        </div>
+    </div>
+    <wCore-nested-setting asp-for="AllowUsersToSelectPageSize">
+        <div id="pnlPageSize" class="form-group advanced-setting">
+            <div class="col-md-3">
+                <wCore-label asp-for="PageSize" />
+            </div>
+            <div class="col-md-9">
+                <wCore-editor asp-for="PageSize" />
+                <span asp-validation-for="PageSize"></span>
+            </div>
+        </div>
+        <div id="pnlPageSizeOptions" class="form-group advanced-setting">
+            <div class="col-md-3">
+                <wCore-label asp-for="PageSizeOptions" />
+            </div>
+            <div class="col-md-9">
+                <wCore-editor asp-for="PageSizeOptions" />
+                <span asp-validation-for="PageSizeOptions"></span>
+            </div>
+        </div>
+    </wCore-nested-setting>
+    <div class="form-group advanced-setting">
+        <div class="col-md-3">
+            <wCore-label asp-for="PriceRanges" />
+        </div>
+        <div class="col-md-9">
+            <wCore-editor asp-for="PriceRanges" />
+            <span asp-validation-for="PriceRanges"></span>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-3">
+            <wCore-label asp-for="DisplayOrder" />
+        </div>
+        <div class="col-md-9">
+            <wCore-editor asp-for="DisplayOrder" />
+            <span asp-validation-for="DisplayOrder"></span>
+        </div>
+    </div>
+    <div class="form-group" @(Model.AvailableCategoryTemplates.SelectionIsNotPossible() ? Html.Raw("style=\"display:none\"") : null)>
+        <div class="col-md-3">
+            <wCore-label asp-for="CategoryTemplateId" />
+        </div>
+        <div class="col-md-9">
+            <wCore-select asp-for="CategoryTemplateId" asp-items="Model.AvailableCategoryTemplates" />
+            <span asp-validation-for="CategoryTemplateId"></span>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,35 @@
+﻿@inject SeoSettings _seoSettings
+@inject IWebHelper _webHelper
+@inject WCore.Core.IWorkContext _workContext
+
+@model TeamCategoryModel
+@{
+
+
+
+    ViewBag.Title = Model.Title;
+    ViewBag.MetaTitle = Model.Title;
+
+    @if (_seoSettings.TwitterMetaTags)
+    {
+        ViewBag.TwtterCard = "";
+        ViewBag.TwtterTitle = Model.Title;
+        ViewBag.TwtterUrl = _webHelper.GetThisPageUrl(true);
+    }
+
+    @if (_seoSettings.OpenGraphMetaTags)
+    {
+        ViewBag.OgTitle = Model.Title;
+        ViewBag.OgUrl = _webHelper.GetStoreLocation();
+    }
+}
+<!--=================================
+page-title-->
+
+@await Component.InvokeAsync("PageTitle", Model.PageTitle)
+<!--=================================
+page-title -->
+<!--=================================
+content -->
+
+@await Component.InvokeAsync("TeamCategory", new { TeamCategoryId = Model.Id })

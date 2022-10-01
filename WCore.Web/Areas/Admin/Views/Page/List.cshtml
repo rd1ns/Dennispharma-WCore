@@ -1,0 +1,371 @@
+﻿@model PageSearchModel
+@{
+    ViewData["PageMainTitle"] = T("Admin.Configuration.Pages.Title");
+    ViewData["PageTitle"] = T("Admin.Configuration.Pages.List");
+    ViewData["SystemTitle"] = ViewData["PageTitle"] + " / " + ViewData["PageMainTitle"];
+    ViewData["ControllerName"] = "Page";
+}
+<div class="content  d-flex flex-column flex-column-fluid" id="kt_content">
+    <div class="subheader py-2 py-lg-6  subheader-solid " id="kt_subheader">
+        <div class=" container-fluid  d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
+            <div class="d-flex align-items-center flex-wrap mr-1">
+                <div class="d-flex align-items-baseline flex-wrap mr-5">
+                    <h5 class="text-dark font-weight-bold my-1 mr-5">
+                        @ViewData["PageTitle"]
+                    </h5>
+                    <ul class="breadcrumb breadcrumb-transparent breadcrumb-dot font-weight-bold p-0 my-2 font-size-sm">
+                        <li class="breadcrumb-item">
+                            <a href="" class="text-muted">
+                                @ViewData["PageMainTitle"]
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="d-flex align-items-center">
+                <a href="/Admin/@ViewData["ControllerName"]/AddOrEdit/0" class="btnDisableable btn btn-sm btn-success font-weight-bolder mr-2">
+                    <i class="ki ki-plus icon-xs"></i>
+                    @T("Admin.Configuration.AddNew")
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="d-flex flex-column-fluid">
+        <div class="container-fluid">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row mb-3">
+                        <div class="col-xl-12 my-2">
+                            <div class="form-group row">
+                                <WCore-label asp-for="ShowOn" />
+                                <div class="col-lg-4 col-md-6 col-sm-12">
+                                    <select id="ShowOn" name="ShowOn" class="form-control form-control-sm form-control-solid">
+                                        <option selected value="">@T("admin.configuration.all")</option>
+                                        <option value="true">@T("admin.configuration.true")</option>
+                                        <option value="false">@T("admin.configuration.false")</option>
+                                    </select>
+                                </div>
+                                <WCore-label asp-for="HomePage" />
+                                <div class="col-lg-4 col-md-6 col-sm-12">
+                                    <select id="HomePage" name="HomePage" class="form-control form-control-sm form-control-solid">
+                                        <option selected value="">@T("admin.configuration.all")</option>
+                                        <option value="true">@T("admin.configuration.true")</option>
+                                        <option value="false">@T("admin.configuration.false")</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <WCore-label asp-for="IsActive" />
+                                <div class="col-lg-4 col-md-4 col-sm-12">
+                                    <select class="form-control form-control-sm form-control-solid" id="IsActive" name="IsActive">
+                                        <option selected value="">@T("Admin.Configuration.All")</option>
+                                        <option value="true">@T("Admin.Configuration.True")</option>
+                                        <option value="false">@T("Admin.Configuration.False")</option>
+                                    </select>
+                                </div>
+                                <WCore-label asp-for="Deleted" />
+                                <div class="col-lg-4 col-md-4 col-sm-12">
+                                    <select class="form-control form-control-sm form-control-solid" id="Deleted" name="Deleted">
+                                        <option value="">@T("Admin.Configuration.All")</option>
+                                        <option value="true">@T("Admin.Configuration.True")</option>
+                                        <option selected value="false">@T("Admin.Configuration.False")</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <WCore-label asp-for="Query" />
+                                <div class="col-lg-4 col-md-4 col-sm-12">
+                                    <WCore-editor asp-for="Query" asp-type="form-control form-control-sm form-control-solid" />
+                                </div>
+                                <WCore-label asp-for="RedirectPage" />
+                                <div class="col-lg-4 col-md-6 col-sm-12">
+                                    <select id="RedirectPage" name="RedirectPage" class="form-control form-control-sm form-control-solid">
+                                        <option selected value="">@T("admin.configuration.all")</option>
+                                        <option value="true">@T("admin.configuration.true")</option>
+                                        <option value="false">@T("admin.configuration.false")</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-12 text-right">
+                                    <button class="btn btn-default btn-sm" type="button" id="btnClearSearch"><i class="fa fa-broom"></i> @T("admin.common.clearsearch")</button>
+                                    <button class="btn btn-primary btn-sm" type="button" id="btnSearch"><i class="fa fa-search"></i> @T("admin.common.search")</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="page_datatable"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+            var dataSource = new kendo.data.TreeListDataSource({
+                transport: {
+                    type: "json",
+                    read: {
+                        url: "/Admin/Page/GetFilteredItems",
+                        type: "POST",
+                        dataType: "json",
+                        data: function () {
+                            var data = {
+                                "ShowOn": $("#ShowOn").val(),
+                                "ShowHome": $("#ShowHome").val(),
+                                "IsActive": $("#IsActive").val(),
+                                "Deleted": $("#Deleted").val(),
+                                "PageType": $("#PageType").val(),
+                                "FooterLocation": $("#FooterLocation").val(),
+                                "Query": $("#Query").val()
+                            };
+                            addAntiForgeryToken(data);
+                            return data;
+                        }
+                    }
+                },
+                schema: {
+                    model: {
+                        id: "Id",
+                        parentId: "ParentId",
+                        fields: {
+                            Id: { type: "number", nullable: false },
+                            ParentId: { field: "ParentId", nullable: false, editable: true, type: "number" },
+                            Title: { editable: true, type: "string" }
+                        }
+                    }
+                },
+                requestEnd: function (e) {
+                    console.log(e.type);
+                    if (e.type == "create" || e.type == "update") {
+                        this.read();
+                    }
+                },
+                error: function (e) {
+                    console.log(e);
+                    // Cancel the changes
+                    this.cancelChanges();
+                },
+                pageSize: 50,
+                serverPaging: true,
+                serverFiltering: true,
+                serverSorting: true
+            });
+
+            $("#page_datatable").kendoTreeList({
+                dataSource: dataSource,
+                autoSync: true,
+                pageable: {
+                    refresh: true,
+                    pageSizes: [50, 100, 200, 300, 500, 1000, 3000],
+                    @Html.Partial("_GridPagerMessages")
+                },
+                filterable: true,
+                scrollable: false,
+                columns: [{
+                        title: "@T("Admin.Configuration.Title")",
+                        field: "Title",
+                        template: '<a href="/admin/page/addoredit/#=Id#" class="btn btn-sm btn-link" title="Edit details"><i class="la la-edit"></i> #=Title#</a>'
+                    },{
+                        title: "@T("Admin.Configuration.PageType")",
+                        field: "PageTypeName"
+                    },{
+                        field: "GalleryId",
+                        title: "@T("Admin.Configuration.Gallery")  @T("Admin.Configuration.Title")",
+                        template: '# if(Gallery == null) { # <span class="btn btn-xs btn-light">@T("Admin.Configuration.Gallery")  @T("Admin.Configuration.NotSelected")</span> #}' +
+                            '  else { # <a href="/admin/gallery/addoredit/#=GalleryId#" class="btn btn-sm btn-light"><i class="la la-edit"></i> #=Gallery.Title#</a> #} #'
+                    },{
+                        field: "DynamicFormId",
+                        title: "@T("Admin.Configuration.DynamicForm")  @T("Admin.Configuration.Title")",
+                        template: '# if(DynamicForm == null) { # <span class="btn btn-xs btn-light">@T("Admin.Configuration.DynamicForm")  @T("Admin.Configuration.NotSelected")</span> #}' +
+                            '  else { # <a href="/admin/dynamicform/addoredit/#=DynamicFormId#" class="btn btn-sm btn-light"><i class="la la-edit"></i> #=DynamicForm.Title#</a> #} #'
+                    },{
+                        title: "@T("Admin.Configuration.FooterLocation")",
+                        field: "FooterLocationName"
+                    },{
+                        title: "@T("Admin.Configuration.DisplayOrder")",
+                        headerAttributes: { style: "text-align:center" },
+                        attributes: { style: "text-align:center" },
+                        field: "DisplayOrder",
+                        width: 80,
+                        filterable: false
+                    },{
+                        field: "HomePage",
+                        title: "@T("Admin.Configuration.HomePage")",
+                        headerAttributes: { style: "text-align:center" },
+                        attributes: { style: "text-align:center" },
+                        template: '# if(HomePage) {# <span class="btn btn-sm btn-success">@T("admin.configuration.true")</span> #} else {# <span class="btn btn-sm btn-danger">@T("admin.configuration.false")</span> #} #',
+                        width: 80,
+                        filterable: false
+                    },{
+                        field: "ShowOn",
+                        title: "@T("Admin.Configuration.ShowOn")",
+                        headerAttributes: { style: "text-align:center" },
+                        attributes: { style: "text-align:center" },
+                        template: '# if(ShowOn) {# <span class="btn btn-sm btn-success">@T("admin.configuration.true")</span> #} else {# <span class="btn btn-sm btn-danger">@T("admin.configuration.false")</span> #} #',
+                        width: 80,
+                        filterable: false
+                    },{
+                        field: "IsActive",
+                        title: "@T("Admin.Configuration.IsActive")",
+                        headerAttributes: { style: "text-align:center" },
+                        attributes: { style: "text-align:center" },
+                        template: '# if(IsActive) {# <span class="btn btn-sm btn-success">@T("admin.configuration.true")</span> #} else {# <span class="btn btn-sm btn-danger">@T("admin.configuration.false")</span> #} #',
+                        width: 80,
+                        filterable: false
+                    },{
+                        field: "Deleted",
+                        title: "@T("Admin.Configuration.Deleted")",
+                        headerAttributes: { style: "text-align:center" },
+                        attributes: { style: "text-align:center" },
+                        template: '# if(Deleted) {# <span class="btn btn-sm btn-success">@T("admin.configuration.true")</span> #} else {# <span class="btn btn-sm btn-danger">@T("admin.configuration.false")</span> #} #',
+                        width: 80,
+                        filterable: false
+                    },{
+                        field: "RedirectPage",
+                        title: "@T("Admin.Configuration.RedirectPage")",
+                        headerAttributes: { style: "text-align:center" },
+                        attributes: { style: "text-align:center" },
+                        template: '# if(RedirectPage) {# <span class="btn btn-sm btn-success">@T("admin.configuration.true")</span> #} else {# <span class="btn btn-sm btn-danger">@T("admin.configuration.false")</span> #} #',
+                        width: 80,
+                        filterable: false
+                    },{
+                        field: "Id",
+                        title: "@T("admin.common.delete")",
+                        width: 80,
+                        filterable: false,
+                        headerAttributes: { style: "text-align:center" },
+                        attributes: { style: "text-align:center" },
+                        template: '<a href="javascript:void(0)" data-id="#=Id#" class="btn btn-sm btn-clean btn-icon btnDelete" title="Delete">\
+                                        <i class="la la-trash"></i>\
+                                    </a>'
+                    },{
+                        title: "@T("Admin.Configuration.Copy")",
+                        headerAttributes: { style: "text-align:center" },
+                        attributes: { style: "text-align:center" },
+                        width: 80,
+                        field: "Title",
+                    template: '<a href="javascript:void(0)" class="btnCopyPage btn btn-sm btn-link"  data-id="#=Id#" data-title="#=Title#" title="Copy details"><i class="la la-copy"></i></a>',
+                        filterable: false,
+                    }
+                ]
+            });
+
+            $("body").on("click", "#page_datatable .btnCopyPage", function (e) {
+                Swal.fire({
+                    title: 'Kopyalama Ayarları',
+                    icon: 'warning',
+                    html:
+                        '<div id="divPageCopy">' +
+                        '   <small>Id</small>' +
+                        '   <input id="copyId" value="' + $(this).attr("data-id") + '" readonly class="form-control form-control-sm py-1 m-0 mb-1">' +
+                        '   <small>Başlıklar (dil için virgülle ayırınız)</small>' +
+                        '   <input id="copyTitle" value="' + $(this).attr("data-title")+'-copy" class="form-control form-control-sm py-1 m-0 mb-1">' +
+                        '</div> ',
+                    focusConfirm: false,
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Evet',
+                    cancelButtonText: 'Hayır',
+                }).then((result) => {
+                    if (result.value) {
+                        var copyId = $("#divPageCopy #copyId").val();
+                        var copyTitle = $("#divPageCopy #copyTitle").val();
+
+                        if (copyTitle == "") {
+                            Swal.fire({
+                                title: 'Hata',
+                                text:'Başlık boş olamaz.',
+                                icon: 'error',
+                                showCancelButton: false,
+                                showConfirmButton: false,
+                                timer: 1000,
+                                timerProgressBar: true
+                            });
+                            return;
+                        }
+
+                        $.ajax({
+                            type: "GET",
+                            url: '/admin/page/copy',
+                            data: { id: copyId, titles: copyTitle },
+                            success: function (data) {
+                                pageDatatable.data("kendoGrid").dataSource.read();
+                                Swal.fire({
+                                    title: 'Başarılı',
+                                    icon: 'success',
+                                    showCancelButton: false,
+                                    showConfirmButton: false,
+                                    timer: 1000,
+                                    timerProgressBar: true
+                                });
+                            },
+                            error: function (d) {
+                                console.log(d);
+                            }
+                        });
+                    }
+                })
+            });
+            $("body").on("click", "#page_datatable .btnDelete", function () {
+                Swal.fire({
+                    title: 'Eminmisiniz?',
+                    text: "Kaydı silmek istediğiniz eminmisiniz?",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Evet',
+                    cancelButtonText: 'Hayır',
+                    timer: 3000,
+                    timerProgressBar: true
+                }).then((result) => {
+                    if (result.value) {
+                        var id = $(this).attr("data-id");
+                        console.log(id);
+                        $.ajax({
+                            type: "POST",
+                            url: '/admin/page/AddOrEdit',
+                            data: { id: id, delete: true },
+                            success: function (data) {
+                                pageDatatable.data("kendoGrid").dataSource.read();
+                                Swal.fire({
+                                    title: 'Başarılı',
+                                    icon: 'success',
+                                    showCancelButton: false,
+                                    showConfirmButton: false,
+                                    timer: 1000,
+                                    timerProgressBar: true
+                                });
+                            },
+                            error: function (d) {
+                                console.log(d);
+                            }
+                        });
+                    }
+                })
+            });
+            $('#btnSearch').click(function () {
+                var grid = $('#page_datatable').data('kendoTreeList');
+                grid.dataSource.page(1);
+                return false;
+            });
+            $('#btnClearSearch').click(function () {
+                $("#ShowOn").val("");
+                $("#ShowHome").val("");
+                $("#IsActive").val("");
+                $("#Deleted").val("");
+                $("#PageType").val("");
+                $("#FooterLocation").val("");
+                $("#Query").val("");
+
+                var grid = $('#page_datatable').data('kendoTreeList');
+                grid.dataSource.page(1);
+                return false;
+            });
+
+        });
+    </script>
+}

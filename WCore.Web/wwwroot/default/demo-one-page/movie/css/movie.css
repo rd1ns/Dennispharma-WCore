@@ -1,0 +1,57 @@
+/*
+Template:  Webster - Responsive Multi-purpose HTML5 Template
+Author: potenzaglobalsolutions.com
+Design and Developed by: potenzaglobalsolutions.com
+
+NOTE: This file contains the styling for the movie Template. You can edit/add anything in this file!
+*/
+ 
+
+body  { font-family: 'Oswald', sans-serif; font-size: 18px; }
+h1, h2, h3, h4, h5, h6 { font-family: 'Oswald', sans-serif; color: #363636; margin-top: 0px; text-transform: uppercase; }
+
+/** selection **/
+*::-moz-selection { background: #c9b281; color: #fff; text-shadow: none; }
+::-moz-selection { background: #c9b281; color: #fff; text-shadow: none; }
+::selection { background: #c9b281; color: #fff; text-shadow: none; }
+
+/*movie*/
+.movie-bg { background: #000c1b; }
+.movie-light-bg { background: #c9b281; }
+
+.button { font-weight: bold; }
+.button, .form-control, #back-to-top .top, .footer-Newsletter .form-control { border-radius: 0; }
+
+ /*header*/
+#onepagenav .mega-menu .menu-links > li > a { font-size: 18px; text-transform: uppercase; }
+
+/*section-title*/
+.section-title-movie { padding: 20px; background: #1f2834; text-align: center; display: inline-block; margin-bottom: 40px; }
+.section-title-movie h2 { color: #fff; text-transform: uppercase; margin-bottom: 0; border:5px solid #ffffff; padding: 10px 100px; display: inline-block; }
+
+/*.slider-content-middle*/
+.movie-banner .slider-content-middle { padding: 0 60px; top: 80%; }
+.movie-banner .slider-content .banner-popup { margin-top: -30px; width: 52%; float: right; box-shadow: 5px 0 30px 0 rgba(0,0,0,9) }
+
+/*movie-story*/
+.movie-story b { font-size: 32px; line-height: 40px; display: block; }
+
+/*movie-about*/
+.movie-about a { color: #626262; }
+.movie-team a { color: #ffffff; }
+
+/*popup-video */
+.movie-videos .popup-video-image.bottom-button a i {  bottom: 0; top: inherit; right: inherit; left: 0; transform: inherit; border-radius: 0; background: #000c1b; }
+.movie-videos .popup-video-image:before { background: inherit; }
+
+/*sponsors*/
+.sponsors { box-shadow: 0 0px 22px rgb(0, 0, 0); padding: 30px 20px; display: block; }
+
+/*footer*/
+ .footer p { font-size: 18px; }
+ #footer-fixed { box-shadow: none; }
+
+/*color*/
+a:hover, .navbar-inverse .navbar-nav>.active>a, .navbar-inverse .navbar-nav>.active>a:focus, .navbar-inverse .navbar-nav>.active>a:hover, .navbar-inverse .navbar-nav>li>a:hover, .theme-color, .footer-widget a, .mega-menu .menu-links > li.active a, .mega-menu .menu-links > li > a:hover { color: #c9b281; }
+.button, .owl-carousel .owl-dots .owl-dot:hover span, .owl-carousel .owl-dots .owl-dot.active span, .popup-video-image a i, #back-to-top .top, .dropcap, .button.gray:hover, .button.gray.active, .button.gray:focus { background: #c9b281; }
+.button, .button.gray:hover, .button.gray.active, .button.gray:focus { border-color: #c9b281; }

@@ -1,0 +1,56 @@
+/*
+Template:  Webster - Responsive Multi-purpose HTML5 Template
+Author: potenzaglobalsolutions.com
+Design and Developed by: potenzaglobalsolutions.com
+
+NOTE: This file contains the styling for the medical Template. You can edit/add anything in this file!
+*/
+ 
+h1, h2, h3, h4, h5, h6 { font-family: 'Montserrat', sans-serif; font-weight: normal; color: #323232; margin-top: 0px; text-transform: capitalize; font-weight: bold; }
+
+.form-control, .nice-select { border-radius: 3px; }
+.button { border-radius: 3px; }
+.social-icons.rounded li a { border-radius: 3px; }
+.nice-select .current   { color: #ffffff; }
+.contact-form.border-form .nice-select:after { border-color: #ffffff; }
+.appointment .appointment-bg { margin-top: -80px; position: relative; z-index: 9; }
+.appointment-bg { padding: 50px 30px; }
+.contact-form.border-form .form-control { color: #323232; }
+.appointment-bg .contact-form.border-form .form-control::-moz-placeholder { color: #ffffff; }
+.appointment-bg .contact-form.border-form .form-control::-ms-input-placeholder { color: #ffffff; }
+.appointment-bg .contact-form.border-form .form-control::-webkit-input-placeholder { color: #ffffff; }
+
+.medical-tab .tab .nav.nav-tabs { margin-bottom: 0; }
+.medical-tab .tab .nav.nav-tabs li a i { display: block; margin-bottom: 15px; padding-right: 0;  }
+.medical-tab .tab .nav.nav-tabs li a { display: block; font-size: 16px; padding-bottom: 20px; position: relative; color: #ffffff; padding: 12px 16px; }
+.medical-tab .nav-border .nav.nav-tabs li a { border:0; }
+.medical-tab .tab .nav.nav-tabs li { text-align: center; }
+.medical-tab .tab .nav.nav-tabs li a.active { background: transparent; }
+.medical-tab .tab .nav.nav-tabs li a.active:before { width: 0; position: absolute; content: ""; height: 0; bottom: 0; left: 46%; border-style: solid; border-width: 0 10px 10px 10px;
+    border-color: transparent transparent #fff transparent; }
+
+/*table-medical*/
+.table-medical thead { background: transparent; }
+.table-medical thead tr th { padding: 20px 20px; text-align: left;font-weight: bold; background: #323232; border-color:#000; color: #ffffff; text-transform: uppercase; }
+.table-medical tbody tr td { padding: 10px 20px; text-align: left; }
+.table-medical .table-bordered { border-top: 0; }
+
+.bg-overlay-theme-20:before {  background: rgba(41, 155, 232, 0.2); content: ""; height: 100%; left: 0; position: absolute; top: 0; width: 100%; z-index: 0; }
+.bg-overlay-theme-50:before {  background: rgba(41, 155, 232, 0.5); content: ""; height: 100%; left: 0; position: absolute; top: 0; width: 100%; z-index: 0; }
+.bg-overlay-theme-70:before {  background: rgba(41, 155, 232, 0.7); content: ""; height: 100%; left: 0; position: absolute; top: 0; width: 100%; z-index: 0; }
+.bg-overlay-theme-90:before {  background: rgba(41, 155, 232, 0.9); content: ""; height: 100%; left: 0; position: absolute; top: 0; width: 100%; z-index: 0; }
+
+
+/*medical-about*/
+.author-info strong { color: #000; }
+
+/*medical-schedule*/
+.emergency-cases-info i { float: left; padding-right: 40px; font-size: 48px; color: #000; }
+.emergency-cases-info { padding: 35px; }
+
+/*medical-appointment*/
+.addresss-info i { color: #000;  }
+.addresss-info p { color: #000;  }
+.addresss-info li a { color: #000;  }
+.addresss-info li { color: #000;  } 
+.appointment ul li { margin-bottom: 20px; }

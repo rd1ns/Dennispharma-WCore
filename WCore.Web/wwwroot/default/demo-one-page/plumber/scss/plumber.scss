@@ -1,0 +1,279 @@
+/*
+Template:  Webster - Responsive Multi-purpose HTML5 Template
+Author: potenzaglobalsolutions.com
+Design and Developed by: potenzaglobalsolutions.com
+
+NOTE: This file contains the styling for the Plumber Template. You can edit/add anything in this file!
+*/
+
+body {
+	font-family: 'Patua One', cursive;
+	font-size: 16px;
+}
+h1 {
+	font-family: 'Patua One', cursive;
+}
+h2 {
+	font-family: 'Patua One', cursive;
+}
+h3 {
+	font-family: 'Patua One', cursive;
+}
+h4 {
+	font-family: 'Patua One', cursive;
+}
+h5 {
+	font-family: 'Patua One', cursive;
+}
+h6 {
+	font-family: 'Patua One', cursive;
+}
+.bg-overlay-theme-90 {
+	&:before {
+		background: rgba(255,210,0, 0.9);
+		content: "";
+		height: 100%;
+		left: 0;
+		position: absolute;
+		top: 0;
+		width: 100%;
+		z-index: 0;
+	}
+}
+.form-control {
+	border-radius: 0;
+}
+.button {
+	border-radius: 0;
+	text-transform: uppercase;
+	font-family: 'Patua One', cursive;
+	font-size: 18px;
+}
+#onepagenav {
+	.mega-menu {
+		.menu-links {
+			>li {
+				>a {
+					font-size: 22px;
+					&:hover {
+						color: #0245b8 !important;
+					}
+				}
+			}
+			>li.active {
+				>a {
+					color: #0245b8 !important;
+				}
+			}
+		}
+	}
+}
+.section-title {
+	span {
+		font-size: 20px;
+	}
+	h2 {
+		font-size: 50px;
+		line-height: 50px;
+	}
+}
+.plumber-banner {
+	.container {
+		height: 100%;
+	}
+	.row {
+		height: 100%;
+	}
+	.slider-content-image {
+		position: absolute;
+		bottom: -50px;
+	}
+	.slider-content-text {
+		display: inline-block;
+		position: absolute;
+		top: 50%;
+		transform: translateY(-50%);
+		-webkit-transform: translateY(-50%);
+		-o-transform: translateY(-50%);
+		-ms-transform: translateY(-50%);
+		-moz-transform: translateY(-50%);
+	}
+	h1 {
+		font-size: 100px;
+		line-height: 100px;
+		text-transform: capitalize;
+		font-style: italic;
+	}
+}
+.about-plumber-box {
+	box-shadow: 0px 0px 16px 0 rgba(0, 0, 0, 0.1);
+	position: relative;
+	z-index: 2;
+	.about-plumber-box-content {
+		padding: 40px 60px;
+	}
+}
+.service-plumber {
+	.feature-box {
+		box-shadow: 0px 5px 16px 0 rgba(0, 0, 0, 0.1);
+		background: #ffffff;
+		margin: 10px 10px 20px;
+		&:hover {
+			&:before {
+				background: rgba(255,210,0, 0.9);
+			}
+			i {
+				color: #323232;
+			}
+			p {
+				color: #323232;
+			}
+			h4 {
+				color: #323232;
+			}
+		}
+	}
+	.feature-box.active {
+		&:before {
+			background: rgba(255,210,0, 0.9);
+		}
+		i {
+			color: #323232;
+		}
+		p {
+			color: #323232;
+		}
+		h4 {
+			color: #0245b8;
+		}
+	}
+}
+.plumber-work-process {
+	.feature-text.square {
+		&:hover {
+			.feature-icon {
+				span {
+					background: #0245b8;
+				}
+			}
+		}
+	}
+}
+.testimonial-plumber {
+	padding-bottom: 160px;
+	&:before {
+		background: rgba(2,69,184, 0.9);
+		content: "";
+		height: 100%;
+		left: 0;
+		position: absolute;
+		top: 0;
+		width: 100%;
+		z-index: 0;
+	}
+	.testimonial {
+		.testimonial-info {
+			p {
+				font-size: 26px;
+				font-style: italic;
+			}
+		}
+		.author-info {
+			strong {
+				font-size: 24px;
+			}
+		}
+	}
+}
+.plumber-contact-bg {
+	padding: 30px;
+	box-shadow: 0px 5px 16px 0 rgba(0, 0, 0, 0.1);
+	position: relative;
+	margin-top: -100px;
+	background: #ffffff;
+}
+.plumber-contact {
+	.contact-form {
+		.section-field {
+			width: 100%;
+			margin-right: 0;
+			.form-control {
+				background: #f7c605;
+				font-size: 18px;
+			}
+		}
+	}
+}
+.action-box {
+	padding: 30px 0;
+}
+.footer-plumber {
+	.social-icons.medium {
+		li {
+			a {
+				background: #ffffff;
+			}
+		}
+	}
+	p {
+		color: #323232;
+		font-size: 18px;
+	}
+	a {
+		color: #323232;
+		font-size: 18px;
+		&:hover {
+			color: rgba(0,0,0,0.5);
+		}
+	}
+	.addresss-info {
+		li {
+			color: #323232;
+			font-size: 18px;
+			a {
+				color: #323232;
+				font-size: 18px;
+			}
+		}
+		p {
+			color: #323232;
+			font-size: 18px;
+		}
+		i {
+			color: #323232;
+			font-size: 18px;
+		}
+	}
+	.footer-useful-link {
+		ul {
+			li {
+				a {
+					color: #323232;
+					font-size: 18px;
+					&:hover {
+						color: rgba(0,0,0,0.5);
+					}
+				}
+			}
+		}
+	}
+}
+.blue-bg {
+	background: #0245b8;
+}
+.theme-color {
+	color: #0245b8;
+}
+.about-plumber-box-content {
+	color: #0245b8;
+}
+.text-blue {
+	color: #0245b8;
+}
+
+
+
+
+
+
+

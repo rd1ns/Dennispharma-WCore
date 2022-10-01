@@ -1,0 +1,312 @@
+/*
+Template:  Webster - Responsive Multi-purpose HTML5 Template
+Author: potenzaglobalsolutions.com
+Design and Developed by: potenzaglobalsolutions.com
+
+NOTE: This file contains the styling for the burger Template. You can edit/add anything in this file!
+*/
+
+* {
+	&::-moz-selection {
+		background: #df9b3f;
+		color: #fff;
+		text-shadow: none;
+	}
+}
+&::-moz-selection {
+	background: #df9b3f;
+	color: #fff;
+	text-shadow: none;
+}
+&::selection {
+	background: #df9b3f;
+	color: #fff;
+	text-shadow: none;
+}
+h2 {
+	font-size: 40px;
+	line-height: 40px;
+	font-weight: 300;
+}
+.button {
+	border-radius: 0;
+	font-size: 16px;
+	font-weight: 800;
+	background: #df9b3f;
+	border-color: #df9b3f;
+}
+#onepagenav {
+	.mega-menu {
+		.menu-links {
+			>li {
+				>a {
+					font-size: 16px;
+					font-weight: bold;
+					text-transform: uppercase;
+					&:hover {
+						color: rgba(255,255,255,0.6) !important;
+					}
+				}
+			}
+			>li.active {
+				>a {
+					color: rgba(255,255,255,0.6) !important;
+				}
+			}
+		}
+	}
+}
+.burger-banner {
+	.slider-content-middle {
+		z-index: 2;
+	}
+	span {
+		font-size: 20px;
+		font-weight: 800;
+	}
+	h1 {
+		font-size: 120px;
+		line-height: 120px;
+		font-weight: 900;
+	}
+	p {
+		font-size: 30px;
+		line-height: 30px;
+		font-weight: 800;
+		color: rgba(0,0,0,0.3);
+	}
+	&:hover {
+		.burger-banner-ani {
+			.burger-item-01 {
+				top: -20px;
+			}
+			.burger-item-02 {
+				top: 125px;
+			}
+			.burger-item-03 {
+				top: 120px;
+			}
+			.burger-item-04 {
+				top: 200px;
+			}
+			.burger-item-05 {
+				top: 235px;
+			}
+		}
+	}
+	.bg-top-before {
+		height: 100%;
+	}
+	.bg-bottom-before {
+		height: 100%;
+	}
+}
+.burger-banner-ani {
+	display: block;
+	position: relative;
+	width: 500px;
+	margin: 0 auto;
+	img {
+		width: 100%;
+		height: 100%;
+		display: block;
+	}
+	.p-mainbg {
+		>div {
+			-webkit-transition: all 0.3s ease-in-out 0s;
+			-moz-transition: all 0.3s ease-in-out 0s;
+			-ms-transition: all 0.3s ease-in-out 0s;
+			-o-transition: all 0.3s ease-in-out 0s;
+			transition: all 0.3s ease-out 0s;
+			position: absolute;
+			right: 25px;
+		}
+	}
+}
+.p-mainbg {
+	position: relative;
+	z-index: 0;
+}
+.burger-item-01 {
+	top: 15px;
+	z-index: 02;
+}
+.burger-item-02 {
+	top: 155px;
+	z-index: 03;
+}
+.burger-item-03 {
+	top: 160px;
+	z-index: 04;
+}
+.burger-item-04 {
+	top: 225px;
+	z-index: 03;
+}
+.burger-item-05 {
+	top: 250px;
+	z-index: 02;
+}
+.burger-item-06 {
+	top: 320px;
+	z-index: 01;
+}
+.bg-top-before {
+	position: relative;
+	&:before {
+		background-image: url(../../../demo-one-page/burger/images/bg-02.png);
+		top: -1px;
+		background-repeat: no-repeat;
+		content: "";
+		position: absolute;
+		height: 110px;
+		width: 100%;
+	}
+}
+.bg-bottom-before {
+	position: relative;
+	&:before {
+		background-image: url(../../../demo-one-page/burger/images/bg.png);
+		bottom: -1px;
+		background-repeat: no-repeat;
+		content: "";
+		position: absolute;
+		height: 110px;
+		width: 100%;
+	}
+}
+.burger-welcome-content {
+	padding-top: 80px;
+	padding-left: 100px;
+}
+.burger-about-content-right {
+	margin-left: -100px;
+}
+.burger-about {
+	h3 {
+		position: relative;
+		&:before {
+			position: absolute;
+			content: "";
+			left: -50px;
+			top: -20px;
+			width: 116px;
+			height: 90px;
+			background: url(../../../demo-one-page/burger/images/pattern.png);
+		}
+	}
+	.burger-about-content-right {
+		h3 {
+			&:before {
+				left: inherit;
+				position: absolute;
+				content: "";
+				right: 0px;
+				top: -30px;
+				width: 116px;
+				height: 90px;
+				background: url(../../../demo-one-page/burger/images/pattern.png);
+			}
+		}
+	}
+}
+.burger-custom-content {
+	h2 {
+		font-size: 100px;
+		line-height: 100px;
+		font-weight: 900;
+	}
+}
+.burger-menu {
+	.menu-item {
+		span {
+			font-size: 24px;
+		}
+	}
+}
+.burger-blog {
+	.blog-entry {
+		background: transparent;
+		box-shadow: none;
+		.blog-detail {
+			background: transparent;
+			padding: 0;
+			box-shadow: none;
+			a {
+				color: #ffffff;
+			}
+			.entry-meta {
+				a {
+					&:hover {
+						color: #323232;
+					}
+				}
+			}
+			.entry-title {
+				a {
+					&:hover {
+						color: #323232;
+					}
+				}
+			}
+		}
+	}
+}
+.burger-contact {
+	position: relative;
+	.burger-contact-bg {
+		position: absolute;
+		width: 100%;
+		left: 100px;
+		top: 100px;
+		.burger-contact-box {
+			position: relative;
+			z-index: 9;
+		}
+	}
+}
+.burger-contact-box {
+	padding: 50px;
+	.addresss-info {
+		p {
+			color: #ffffff;
+		}
+		li {
+			a {
+				color: #ffffff;
+			}
+			color: #ffffff;
+		}
+		i {
+			color: #ffffff;
+		}
+	}
+}
+.theme-color {
+	color: #df9b3f;
+}
+.button.white {
+	color: #df9b3f;
+}
+.button.button-border.white {
+	&:hover {
+		color: #df9b3f;
+	}
+	&:focus {
+		color: #df9b3f;
+	}
+}
+.theme-bg {
+	background: #df9b3f;
+}
+#back-to-top {
+	.top {
+		background: #df9b3f;
+	}
+}
+.bg-overlay-theme-70 {
+	&:before {
+		background: rgba(223,155,63, 0.7);
+	}
+}
+

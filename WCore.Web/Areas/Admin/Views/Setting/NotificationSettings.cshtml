@@ -1,0 +1,276 @@
+﻿@model NotificationSettingsModel
+@{
+
+    ViewData["PageMainTitle"] = T("Admin.Configuration.Settings");
+    ViewData["PageTitle"] = T("admin.configuration.settings.notification.title");
+    ViewData["SystemTitle"] = ViewData["PageTitle"] + " / " + ViewData["PageMainTitle"];
+    ViewData["ControllerName"] = "Setting";
+    ViewData["ActionName"] = "notificationSettings";
+}
+<div class="content  d-flex flex-column flex-column-fluid" id="kt_content">
+    <div class="subheader py-2 py-lg-6  subheader-solid " id="kt_subheader">
+        <div class=" container-fluid  d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
+            <div class="d-flex align-items-center flex-wrap mr-1">
+                <div class="d-flex align-items-baseline flex-wrap mr-5">
+                    <h5 class="text-dark font-weight-bold my-1 mr-5">
+                        @ViewData["PageTitle"]
+                    </h5>
+                    <ul class="breadcrumb breadcrumb-transparent breadcrumb-dot font-weight-bold p-0 my-2 font-size-sm">
+                        <li class="breadcrumb-item">
+                            @ViewData["PageMainTitle"]
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="d-flex align-items-center">
+                <partial name="_AddOrEditHeaderButtons" model="@Tuple.Create(0,"NotificationSettingsForm")" />
+            </div>
+        </div>
+    </div>
+    <div class="d-flex flex-column-fluid">
+        <div class="container-fluid">
+            <form id="NotificationSettingsForm" action="/admin/@ViewData["ControllerName"]/@ViewData["ActionName"]" method="post" enctype="multipart/form-data">
+                <div class="card card-custom">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-xl-12 my-2">
+                                <div class="form-group row">
+                                    <WCore-label asp-for="SendRegisterNotification" />
+                                    <div class="col-lg-10 col-md-6 col-sm-12">
+                                        <div class="checkbox-inline">
+                                            <label class="checkbox pt-3">
+                                                <input asp-for="SendRegisterNotification" />
+                                                <span></span>
+                                            </label>
+                                        </div>
+                                        <span asp-validation-for="SendRegisterNotification"></span>
+                                    </div>
+                                </div>
+
+                                <div class="border mb-3 ">
+                                    <div class=" row ">
+                                        <WCore-label asp-for="SendCreateCompanyNotification" />
+                                        <div class="col-lg-10 col-md-6 col-sm-12">
+                                            <div class="checkbox-inline">
+                                                <label class="checkbox pt-3">
+                                                    <input asp-for="SendCreateCompanyNotification" />
+                                                    <span></span>
+                                                </label>
+                                            </div>
+                                            <span asp-validation-for="SendCreateCompanyNotification"></span>
+                                        </div>
+                                    </div>
+                                    <div class=" row" id="divSendCreateCompanyNotification" style="display:none;">
+                                        <WCore-label asp-for="CreateCompanyNotificationMailList" />
+                                        <div class="col-lg-10 col-md-6 col-sm-12">
+                                            <WCore-editor asp-for="CreateCompanyNotificationMailList" />
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="border mb-3 ">
+                                    <div class=" row ">
+                                        <WCore-label asp-for="SendCreateOrderNotification" />
+                                        <div class="col-lg-10 col-md-6 col-sm-12">
+                                            <div class="checkbox-inline">
+                                                <label class="checkbox pt-3">
+                                                    <input asp-for="SendCreateOrderNotification" />
+                                                    <span></span>
+                                                </label>
+                                            </div>
+                                            <span asp-validation-for="SendCreateOrderNotification"></span>
+                                        </div>
+                                    </div>
+                                    <div class=" row " id="divSendCreateOrderNotification" style="display:none;">
+                                        <WCore-label asp-for="CreateOrderNotificationMailList" />
+                                        <div class="col-lg-10 col-md-6 col-sm-12">
+                                            <WCore-editor asp-for="CreateOrderNotificationMailList" />
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="border mb-3 ">
+
+                                    <div class=" row ">
+                                        <WCore-label asp-for="SendInadequateLimitNotification" />
+                                        <div class="col-lg-10 col-md-6 col-sm-12">
+                                            <div class="checkbox-inline">
+                                                <label class="checkbox pt-3">
+                                                    <input asp-for="SendInadequateLimitNotification" />
+                                                    <span></span>
+                                                </label>
+                                            </div>
+                                            <span asp-validation-for="SendInadequateLimitNotification"></span>
+                                        </div>
+                                    </div>
+                                    <div class=" row " id="divSendInadequateLimitNotification" style="display:none;">
+                                        <WCore-label asp-for="InadequateLimitNotificationMailList" />
+                                        <div class="col-lg-10 col-md-6 col-sm-12">
+                                            <WCore-editor asp-for="InadequateLimitNotificationMailList" />
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="border mb-3 ">
+                                    <div class=" row ">
+                                        <WCore-label asp-for="SendDeniedOrderNotification" />
+                                        <div class="col-lg-10 col-md-6 col-sm-12">
+                                            <div class="checkbox-inline">
+                                                <label class="checkbox pt-3">
+                                                    <input asp-for="SendDeniedOrderNotification" />
+                                                    <span></span>
+                                                </label>
+                                            </div>
+                                            <span asp-validation-for="SendDeniedOrderNotification"></span>
+                                        </div>
+                                    </div>
+                                    <div class=" row " id="divSendDeniedOrderNotification" style="display:none;">
+                                        <WCore-label asp-for="DeniedOrderNotificationMailList" />
+                                        <div class="col-lg-10 col-md-6 col-sm-12">
+                                            <WCore-editor asp-for="DeniedOrderNotificationMailList" />
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="border mb-3 ">
+                                    <div class=" row ">
+                                        <WCore-label asp-for="SendCreateActivityNotification" />
+                                        <div class="col-lg-10 col-md-6 col-sm-12">
+                                            <div class="checkbox-inline">
+                                                <label class="checkbox pt-3">
+                                                    <input asp-for="SendCreateActivityNotification" />
+                                                    <span></span>
+                                                </label>
+                                            </div>
+                                            <span asp-validation-for="SendCreateActivityNotification"></span>
+                                        </div>
+                                    </div>
+                                    <div class=" row " id="divSendCreateActivityNotification" style="display:none;">
+                                        <WCore-label asp-for="CreateActivityNotificationMailList" />
+                                        <div class="col-lg-10 col-md-6 col-sm-12">
+                                            <WCore-editor asp-for="CreateActivityNotificationMailList" />
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="border mb-3 ">
+                                    <div class=" row ">
+                                        <WCore-label asp-for="SendCreateVehicleOrderNotification" />
+                                        <div class="col-lg-10 col-md-6 col-sm-12">
+                                            <div class="checkbox-inline">
+                                                <label class="checkbox pt-3">
+                                                    <input asp-for="SendCreateVehicleOrderNotification" />
+                                                    <span></span>
+                                                </label>
+                                            </div>
+                                            <span asp-validation-for="SendCreateVehicleOrderNotification"></span>
+                                        </div>
+                                    </div>
+                                    <div class=" row " id="divSendCreateVehicleOrderNotification" style="display:none;">
+                                        <WCore-label asp-for="CreateVehicleOrderNotificationMailList" />
+                                        <div class="col-lg-10 col-md-6 col-sm-12">
+                                            <WCore-editor asp-for="CreateVehicleOrderNotificationMailList" />
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script>
+        $(function () {
+            SendCreateCompanyNotification(@Model.SendCreateCompanyNotification.ToString().ToLower());
+            SendCreateOrderNotification(@Model.SendCreateOrderNotification.ToString().ToLower());
+            SendInadequateLimitNotification(@Model.SendInadequateLimitNotification.ToString().ToLower());
+            SendDeniedOrderNotification(@Model.SendDeniedOrderNotification.ToString().ToLower());
+            SendCreateActivityNotification(@Model.SendCreateActivityNotification.ToString().ToLower());
+            SendCreateVehicleOrderNotification(@Model.SendCreateVehicleOrderNotification.ToString().ToLower());
+        });
+
+        $("#SendCreateCompanyNotification").click(function () {
+            var value = $(this).prop('checked');
+            SendCreateCompanyNotification(value);
+        });
+        function SendCreateCompanyNotification(logic) {
+            var value = logic;
+            if (value) {
+                $("#divSendCreateCompanyNotification").show();
+            } else {
+                $("#divSendCreateCompanyNotification").hide();
+            }
+        }
+
+        $("#SendCreateOrderNotification").click(function () {
+            var value = $(this).prop('checked');
+            SendCreateOrderNotification(value);
+        });
+        function SendCreateOrderNotification(logic) {
+            var value = logic;
+            if (value) {
+                $("#divSendCreateOrderNotification").show();
+            } else {
+                $("#divSendCreateOrderNotification").hide();
+            }
+        }
+
+        $("#SendInadequateLimitNotification").click(function () {
+            var value = $(this).prop('checked');
+            SendInadequateLimitNotification(value);
+        });
+        function SendInadequateLimitNotification(logic) {
+            var value = logic;
+            if (value) {
+                $("#divSendInadequateLimitNotification").show();
+            } else {
+                $("#divSendInadequateLimitNotification").hide();
+            }
+        }
+
+        $("#SendDeniedOrderNotification").click(function () {
+            var value = $(this).prop('checked');
+            SendDeniedOrderNotification(value);
+        });
+        function SendDeniedOrderNotification(logic) {
+            var value = logic;
+            if (value) {
+                $("#divSendDeniedOrderNotification").show();
+            } else {
+                $("#divSendDeniedOrderNotification").hide();
+            }
+        }
+
+        $("#SendCreateActivityNotification").click(function () {
+            var value = $(this).prop('checked');
+            SendCreateActivityNotification(value);
+        });
+        function SendCreateActivityNotification(logic) {
+            var value = logic;
+            if (value) {
+                $("#divSendCreateActivityNotification").show();
+            } else {
+                $("#divSendCreateActivityNotification").hide();
+            }
+        }
+
+        $("#SendCreateVehicleOrderNotification").click(function () {
+            var value = $(this).prop('checked');
+            SendCreateVehicleOrderNotification(value);
+        });
+        function SendCreateVehicleOrderNotification(logic) {
+            var value = logic;
+            if (value) {
+                $("#divSendCreateVehicleOrderNotification").show();
+            } else {
+                $("#divSendCreateVehicleOrderNotification").hide();
+            }
+        }
+    </script>
+} 

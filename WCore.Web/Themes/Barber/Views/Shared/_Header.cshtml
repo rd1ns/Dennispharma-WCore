@@ -1,0 +1,188 @@
+﻿@{
+    var _workContext = EngineContext.Current.Resolve<WCore.Core.IWorkContext>();
+    var _seoSettings = EngineContext.Current.Resolve<WCore.Core.Domain.Settings.SeoSettings>();
+    var _storeInformationSettings = EngineContext.Current.Resolve<StoreInformationSettings>();
+
+    var hasTopbar = false;
+    var isVerticleLeft = false;
+    var headerId = "header";
+    var headerClassName = "";
+    var topbarClassName = "container";
+
+    var headerClass = "";
+
+    if (ViewBag.CurrentPageType != null)
+    {
+        if ((PageType)ViewBag.CurrentPageType == PageType.ScrollContent)
+        {
+            headerClass = "class=\"st-pusher\" style=\"position:initial\"";
+        }
+    }
+}
+@switch (_storeInformationSettings.DefaultStoreThemeHeaderType)
+{
+    case "center":
+        headerClassName = "center";
+        break;
+    case "full":
+        hasTopbar = true;
+        break;
+}
+<div class="st-menu st-effect-1 scrollbar right-side big-side bg-dark" id="menu-1" tabindex="1" style="overflow-y: hidden; outline: none; z-index:10000">
+    <div class="pos-bot">
+        <ul class="menu">
+            <li><a class="active" href="index-portfolio-04.html">Home </a></li>
+            <li><a href="portfolio-04-about.html">About us</a></li>
+        </ul>
+        <div class="slide-footer">
+            <div class="slide-footer-content">
+                <p>My name is Kevin Walsh. I have more than 9 years of experience in the field of Graphic/ E-Learning/Web Designing.</p>
+            </div>
+            <div class="social-icons color-icon text-social width-half clearfix">
+                <ul>
+                    <li class="social-facebook"><a href="#">  facebook  </a></li>
+                    <li class="social-instagram"><a href="#">  instagram  </a></li>
+                    <li class="social-pinterest"><a href="#">  pinterest   </a></li>
+                    <li class="social-behance"><a href="#">  behance  </a></li>
+                    <li class="social-twitter"><a href="#">  twitter  </a></li>
+                    <li class="social-google"><a href="#">  google-plus  </a></li>
+                </ul>
+            </div>
+            <div class="copy-right">
+                <p class="mt-15 mb-70">
+                    ©Copyright <span id="copyright-02">
+                        <script>document.getElementById('copyright-02').appendChild(document.createTextNode(new Date().getFullYear()))</script>2021
+                    </span> <a href="#"> Webster </a> All Rights Reserved
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+@if (isVerticleLeft)
+{
+    <div class="menu-responsive"><a href="/@_workContext.WorkingLanguage.UniqueSeoCode/"> <img src="@_storeInformationSettings.LogoPicture" class="h-100" /></a> <a class="but" href="#"><span class="ti-menu"></span> </a></div>
+}
+<div @headerClass>
+    <header id="@headerId" class="header @headerClassName" style="z-index:999">
+        @if (hasTopbar)
+        {
+            <div class="topbar">
+                <div class="@topbarClassName">
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 xs-mb-10">
+                            <div class="topbar-call text-center text-md-left">
+                                <ul>
+                                    <li><i class="fa fa-envelope-o theme-color"></i><a href="mailto:@T("common.contactus.top.email")"> <span>@T("common.contactus.top.email") </span></a></li>
+                                    <li><i class="fa fa-phone"></i> <a href="tel:@T("common.contactus.top.phone")"> <span>@T("common.contactus.top.phone") </span> </a> </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6">
+                            <div class="topbar-social text-center text-md-right">
+                                <ul>
+                                    <li>
+                                        <div class="dropdown p-0">
+                                            @if (_workContext.CurrentUser.UserType != WCore.Core.Domain.Users.UserType.Guest)
+                                            {
+                                                <a href="javascript:void(0)" class="btn btn-primary btn-sm dropdown-toggle text-white rounded-0" data-toggle="dropdown">@_workContext.CurrentUser.Email</a>
+                                            }
+                                            else
+                                            {
+                                                <a href="/auth" class="btn btn-primary btn-sm text-white rounded-0">@T("common.header.login")</a>
+                                            }
+                                            <div class="dropdown-menu rounded-0">
+                                                @switch (_workContext.CurrentUser.UserType)
+                                                {
+                                                    case WCore.Core.Domain.Users.UserType.Registered:
+                                                        <a class="ml-0 pl-2 dropdown-item bg-primary text-white" href="/akademi"><i class="icon-user"></i> @T("common.user.academy")</a>
+                                                        <a class="ml-0 pl-2 dropdown-item" href="/user"><i class="icon-user"></i> @T("common.user.profile.title")</a>
+                                                        <a class="ml-0 pl-2 dropdown-item" href="/auth/logout"><i class="icon-logout"></i>@T("common.header.logout")</a>
+                                                        break;
+                                                    case WCore.Core.Domain.Users.UserType.UnRegistered:
+                                                        break;
+                                                    case WCore.Core.Domain.Users.UserType.SearchEngine:
+                                                        break;
+                                                    case WCore.Core.Domain.Users.UserType.Task:
+                                                        break;
+                                                    case WCore.Core.Domain.Users.UserType.Agency:
+                                                        break;
+                                                    case WCore.Core.Domain.Users.UserType.Academy:
+                                                        <a class="ml-0 pl-2 dropdown-item bg-primary text-white" href="/akademi"><i class="icon-user"></i> @T("common.user.academy")</a>
+                                                        <a class="ml-0 pl-2 dropdown-item" href="/user"><i class="icon-user"></i> @T("common.user.profile.title")</a>
+                                                        <a class="ml-0 pl-2 dropdown-item" href="/auth/logout"><i class="icon-logout"></i>@T("common.header.logout")</a>
+                                                        break;
+                                                    case WCore.Core.Domain.Users.UserType.SystemAdministrator:
+                                                        <a class="ml-0 pl-2 dropdown-item bg-danger text-white" href="/admin"><i class="icon-user"></i> @T("common.user.admin")</a>
+                                                        <a class="ml-0 pl-2 dropdown-item bg-primary text-white" href="/akademi"><i class="icon-user"></i> @T("common.user.academy")</a>
+                                                        <a class="ml-0 pl-2 dropdown-item" href="/user"><i class="icon-user"></i> @T("common.user.profile.title")</a>
+                                                        <a class="ml-0 pl-2 dropdown-item" href="/auth/logout"><i class="icon-logout"></i>@T("common.header.logout")</a>
+                                                        break;
+                                                    default:
+                                                        break;
+                                                }
+                                            </div>
+                                        </div>
+                                    </li>
+                                    @if (!string.IsNullOrEmpty(_storeInformationSettings.FacebookLink))
+                                    {
+                                        <li><a target="_blank" href="@_storeInformationSettings.FacebookLink"><span class="ti-facebook"></span></a></li>
+                                    }
+                                    @if (!string.IsNullOrEmpty(_storeInformationSettings.YoutubeLink))
+                                    {
+                                        <li><a target="_blank" href="@_storeInformationSettings.YoutubeLink"><span class="ti-youtube"></span></a></li>
+                                    }
+                                    @if (!string.IsNullOrEmpty(_storeInformationSettings.TwitterLink))
+                                    {
+                                        <li><a target="_blank" href="@_storeInformationSettings.TwitterLink"><span class="ti-twitter"></span></a></li>
+                                    }
+                                    @if (!string.IsNullOrEmpty(_storeInformationSettings.InstagramLink))
+                                    {
+                                        <li><a target="_blank" href="@_storeInformationSettings.InstagramLink"><span class="ti-instagram"></span></a></li>
+                                    }
+                                    @if (!string.IsNullOrEmpty(_storeInformationSettings.LinkedinLink))
+                                    {
+                                        <li><a target="_blank" href="@_storeInformationSettings.LinkedinLink"><span class="ti-linkedin"></span></a></li>
+                                    }
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+        <!--=================================
+         mega menu -->
+        <div class="menu">
+            @await Component.InvokeAsync("TopMenu")
+        </div>
+        @if (isVerticleLeft)
+        {
+            <div class="menu-widgets text-white">
+                <div class="social-icons social-border rounded color-hover text-center">
+                    <ul>
+                        @if (!string.IsNullOrEmpty(_storeInformationSettings.FacebookLink))
+                        {
+                            <li class="social-facebook"><a target="_blank" href="@_storeInformationSettings.FacebookLink"><span class="ti-facebook"></span></a></li>
+                        }
+                        @if (!string.IsNullOrEmpty(_storeInformationSettings.YoutubeLink))
+                        {
+                            <li class="social-facebook"><a target="_blank" href="@_storeInformationSettings.YoutubeLink"><span class="ti-youtube"></span></a></li>
+                        }
+                        @if (!string.IsNullOrEmpty(_storeInformationSettings.TwitterLink))
+                        {
+                            <li class="social-facebook"><a target="_blank" href="@_storeInformationSettings.TwitterLink"><span class="ti-twitter"></span></a></li>
+                        }
+                        @if (!string.IsNullOrEmpty(_storeInformationSettings.InstagramLink))
+                        {
+                            <li class="social-facebook"><a target="_blank" href="@_storeInformationSettings.InstagramLink"><span class="ti-instagram"></span></a></li>
+                        }
+                        @if (!string.IsNullOrEmpty(_storeInformationSettings.LinkedinLink))
+                        {
+                            <li class="social-facebook"><a target="_blank" href="@_storeInformationSettings.LinkedinLink"><span class="ti-linkedin"></span></a></li>
+                        }
+                    </ul>
+                </div>
+            </div>
+        }
+    </header>
+</div>

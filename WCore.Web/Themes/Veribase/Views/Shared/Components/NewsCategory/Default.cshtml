@@ -1,0 +1,99 @@
+﻿@model NewsCategoryModel
+@{
+
+    var _workContext = EngineContext.Current.Resolve<IWorkContext>();
+    var _themeProvider = EngineContext.Current.Resolve<IThemeProvider>();
+    var _seoSettings = EngineContext.Current.Resolve<SeoSettings>();
+    var _storeInformationSettings = EngineContext.Current.Resolve<StoreInformationSettings>();
+    var newsIndex = 0;
+
+}
+
+@if (Model != null)
+{
+    <section class="white-bg blog page-section-ptb">
+        <div class="container">
+            <div class="row">
+                <div class="container">
+                    <ul class="timeline">
+                        <li class="entry-date"> <span> - </span></li>
+                        @foreach (var item in Model.Newses.Newses)
+                        {
+                            if (newsIndex == 0)
+                            {
+                                <li>
+                                    <div class="timeline-badge primary"><a href="#">@item.CreatedOn.Day <span>@item.CreatedOn.ToString("MMM")</span></a></div>
+                                    <div class="timeline-panel">
+                                        <div class="blog-entry">
+                                            <div class="entry-image clearfix">
+                                                <img class="img-fluid" src="@item.Banner" alt="">
+                                            </div>
+                                            <div class="blog-detail">
+                                                <div class="entry-title mb-10">
+                                                    <a href="/@_workContext.WorkingLanguage.UniqueSeoCode/@item.SeName">@item.Title</a>
+                                                </div>
+                                                <div class="entry-meta mb-10">
+                                                    <ul>
+                                                        <li> <i class="fa fa-folder-open-o"></i> <a href="/@_workContext.WorkingLanguage.UniqueSeoCode/@item.NewsCategory.SeName"> @item.NewsCategory.Title</a> </li>
+                                                        <li><a href="#"><i class="fa fa-calendar-o"></i> @item.CreatedOn.ToLongDateString() </a></li>
+                                                    </ul>
+                                                </div>
+                                                <div class="entry-content">
+                                                    <p>@item.Body</p>
+                                                </div>
+                                                <div class="entry-share clearfix">
+                                                    <div class="entry-button">
+                                                        <a class="button arrow" href="#">@T("Common.ReadMore")<i class="fa fa-angle-right" aria-hidden="true"></i></a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                newsIndex++;
+                            }
+                            else
+                            {
+                                <li class="timeline-inverted">
+                                    <div class="timeline-badge primary"><a href="#">@item.CreatedOn.Day <span>@item.CreatedOn.ToString("MMM")</span></a></div>
+                                    <div class="timeline-panel">
+                                        <div class="blog-entry">
+                                            <div class="entry-image clearfix">
+                                                <img class="img-fluid" src="@item.Banner" alt="">
+                                            </div>
+                                            <div class="blog-detail">
+                                                <div class="entry-title mb-10">
+                                                    <a href="/@_workContext.WorkingLanguage.UniqueSeoCode/@item.SeName">@item.Title</a>
+                                                </div>
+                                                <div class="entry-meta mb-10">
+                                                    <ul>
+                                                        <li> <i class="fa fa-folder-open-o"></i> <a href="/@_workContext.WorkingLanguage.UniqueSeoCode/@item.NewsCategory.SeName"> @item.NewsCategory.Title</a> </li>
+                                                        <li><a href="#"><i class="fa fa-calendar-o"></i> @item.CreatedOn.ToLongDateString() </a></li>
+                                                    </ul>
+                                                </div>
+                                                <div class="entry-content">
+                                                    <p>@item.Body</p>
+                                                </div>
+                                                <div class="entry-share clearfix">
+                                                    <div class="entry-button">
+                                                        <a class="button arrow" href="#">@T("Common.ReadMore")<i class="fa fa-angle-right" aria-hidden="true"></i></a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                newsIndex = 0;
+                            }
+
+                        }
+
+
+                        <li class="entry-date-bottom"> <a href="#">@T("Common.LoadMore")</a></li>
+                        <li class="clearfix" style="float: none;"></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+}

@@ -1,0 +1,75 @@
+﻿@inject SeoSettings _seoSettings
+@inject IWebHelper _webHelper
+@inject WCore.Core.IWorkContext _workContext
+
+@model PageModel
+@{
+
+
+
+    ViewBag.Title = Model.Title;
+    ViewBag.MetaTitle = Model.MetaTitle;
+    ViewBag.MetaKeywords = Model.MetaKeywords;
+    ViewBag.MetaDescription = Model.MetaDescription;
+
+    @if (_seoSettings.TwitterMetaTags)
+    {
+        ViewBag.TwtterCard = "";
+        ViewBag.TwtterTitle = Model.MetaTitle;
+        ViewBag.TwtterDescription = Model.MetaDescription;
+        ViewBag.TwtterUrl = _webHelper.GetThisPageUrl(true);
+        ViewBag.TwtterImage = _webHelper.GetStoreLocation().Substring(0, _webHelper.GetStoreLocation().Length - 1) + Model.Image;
+    }
+
+    @if (_seoSettings.OpenGraphMetaTags)
+    {
+        ViewBag.OgTitle = Model.MetaTitle;
+        ViewBag.OgDescription = Model.MetaDescription;
+        ViewBag.OgUrl = _webHelper.GetStoreLocation();
+        ViewBag.OgImage = _webHelper.GetStoreLocation().Substring(0, _webHelper.GetStoreLocation().Length - 1) + Model.Image;
+    }
+}
+
+@if (!string.IsNullOrEmpty(Model.Image))
+{
+    @await Component.InvokeAsync("PageTitle", Model.PageTitle)
+}
+<!--=================================
+page-title-->
+<!--=================================
+page-title -->
+<!--=================================
+content -->
+
+@Html.Raw(Model.Body)
+@foreach (var subPage in Model.SubPages)
+{
+    @Html.Raw(subPage.Body)
+}
+@switch (Model.PageType)
+{
+    case WCore.Core.Domain.Pages.PageType.Academy:
+        @await Component.InvokeAsync("AcademyCategory", new { AcademyCategoryId = 0 })
+        break;
+    case WCore.Core.Domain.Pages.PageType.News:
+        @await Component.InvokeAsync("NewsCategory", new { NewsCategoryId = Model.EntityId })
+        break;
+    case WCore.Core.Domain.Pages.PageType.Congress:
+        @await Component.InvokeAsync("Congress")
+        break;
+    case WCore.Core.Domain.Pages.PageType.Contact:
+        break;
+    case WCore.Core.Domain.Pages.PageType.Form:
+        @await Component.InvokeAsync("UserRegistration")
+        break;
+    default:
+        break;
+}
+@if (Model.GalleryId != 0)
+{
+    @await Component.InvokeAsync("Gallery", new { galleryId = Model.GalleryId })
+}
+@if (Model.DynamicFormId != 0)
+{
+    @await Component.InvokeAsync("DynamicForm", new { dynamicFormId = Model.DynamicFormId })
+}

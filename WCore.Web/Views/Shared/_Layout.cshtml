@@ -1,0 +1,23 @@
+﻿@{
+    var _workContext = EngineContext.Current.Resolve<WCore.Core.IWorkContext>();
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <partial name="_Head" />
+    @RenderSection("Styles", required: false)
+</head>
+<body>
+    <input type="hidden" name="WorkingCurrency" id="WorkingCurrency" value="@_workContext.WorkingCurrency.Id" />
+    <input type="hidden" name="WorkingLanguage" id="WorkingLanguage" value="@_workContext.WorkingLanguage.Id" />
+    <div class="overlay"></div>
+    <div id="page">
+        <partial name="_Header" />
+        @RenderBody()
+        @await Component.InvokeAsync("Footer")
+    </div>
+    <partial name="_Bottom" />
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

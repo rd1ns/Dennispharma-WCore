@@ -1,0 +1,98 @@
+﻿@model UserModel
+
+@{
+    Layout = null;
+    ViewBag.Title = T("common.login.title");
+    var _storeInformationSettings = EngineContext.Current.Resolve<StoreInformationSettings>();
+    var _seoSettings = EngineContext.Current.Resolve<SeoSettings>();
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <partial name="_Head" />
+</head>
+<body id="login_bg">
+
+    <nav id="menu" class="fake_menu"></nav>
+
+    <div id="preloader">
+        <div data-loader="circle-side"></div>
+    </div>
+    <div id="login">
+        <aside>
+            <figure>
+                <a href="/"><img src="@_storeInformationSettings.StickyPicture" width="110" data-retina="true" alt="" class="logo_sticky"></a>
+            </figure>
+            <form asp-controller="Auth" asp-action="Login" method="post" class="form" novalidate="novalidate" id="LoginForm">
+                <div class="form-group">
+                    <label class="font-size-h6 font-weight-bolder text-dark">@T("Admin.Configuration.Email")</label>
+                    <input asp-for="EMail" class="form-control" type="email" required />
+                    <i class="icon_mail_alt"></i>
+                </div>
+                <div class="form-group">
+                    <label class="font-size-h6 font-weight-bolder text-dark">@T("Admin.Configuration.Password")</label>
+                    <input asp-for="Password" class="form-control" type="password" required/>
+                    <i class="icon_lock_alt"></i>
+                </div>
+                <div class="clearfix add_bottom_30">
+                    <div class="checkboxes float-left">
+                        <label class="container_check">
+                            @T("Admin.Configuration.Rememberme")
+                            <input type="checkbox">
+                            <span class="checkmark"></span>
+                        </label>
+                    </div>
+                    <div class="float-right mt-1"><a id="forgot" href="/auth/forgot-password">@T("Admin.Configuration.ForgotPassword")</a></div>
+                </div>
+                <button type="submit" class="btn_1 rounded full-width">@T("Admin.Configuration.Login")</button>
+                <div class="text-center add_top_10"><strong><a href="/auth/register">@T("Admin.Configuration.Register")</a></strong></div>
+                <div class="pb-lg-0 pb-5">
+                </div>
+            </form>
+            <div class="copy">© @DateTime.Now.Year @_seoSettings.DefaultTitle</div>
+        </aside>
+    </div>
+
+    <partial name="_Bottom" />
+
+    <script>
+        $("#LoginForm").submit(function (e) {
+            e.preventDefault();
+            var url = $(this).attr("action  ");
+            $.ajax({
+                type: "POST",
+                url: "/Auth/Login",
+                data: $(this).serialize(), // se(this)rializes the form's elements.
+                success: function (data) {
+                    if (data == "") {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Hata!',
+                            html: 'Kullanıcı adı veya şifre hatalı.',
+                            position: 'top-end',
+                            showConfirmButton: false,
+                            timer: 1000,
+                            timerProgressBar: true
+                        })
+                    }
+                    else {
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Giriş başarılı!',
+                            html: 'Yönlendiriliyorsunuz..',
+                            position: 'top-end',
+                            showConfirmButton: false,
+                            timer: 1000,
+                            timerProgressBar: true
+                        })
+                        setTimeout(function () {
+                            window.location.href = "/";
+                        }, 1000)
+                    }
+                }
+            });
+
+        });
+    </script>
+</body>
+</html>

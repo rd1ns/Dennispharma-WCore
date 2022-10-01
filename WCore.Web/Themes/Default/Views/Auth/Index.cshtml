@@ -1,0 +1,170 @@
+﻿@model LoginOrRegisterModel
+
+@{
+    var _workContext = EngineContext.Current.Resolve<IWorkContext>();
+    var _themeContext = EngineContext.Current.Resolve<IThemeContext>();
+    var _storeInformationSettings = EngineContext.Current.Resolve<StoreInformationSettings>();
+    var _seoSettings = EngineContext.Current.Resolve<SeoSettings>();
+
+    ViewBag.Title = T("common.login.title");
+}
+<section class="page-section-ptb bg-overlay-white-70 login-signup parallax" style="background: url(@_storeInformationSettings.BgImage);">
+    <div class="container">
+        <div class="row no-gutter">
+            <div class="col-md-5">
+                <div class="login-box-02 bg-overlay-black-70 parallax" style="background: url(@_storeInformationSettings.BgImage);">
+                    <div class="pb-50 pos-r clearfix">
+                        <h4 class="mb-20 text-white"> @T("common.login.title") </h4>
+                        <p class="mb-30 text-white">@T("common.login.description") </p>
+                        <form asp-controller="Auth" asp-action="Login" method="post" class="form" novalidate="novalidate" id="LoginForm">
+                            <div class="login-form">
+                                <div class="section-field mb-20">
+                                    <label class="mb-10 text-white" for="name">@T("Admin.Configuration.Email")* </label>
+                                    <input asp-for="Login.Email" name="Email" class="web form-control" type="email" required />
+                                </div>
+                                <div class="section-field mb-20">
+                                    <label class="mb-10 text-white" for="Password">@T("Admin.Configuration.Password")* </label>
+                                    <input asp-for="Login.Password" name="Password" class="web form-control" type="password" required />
+                                </div>
+                                <div class="section-field">
+                                    <div class="custom-control custom-checkbox mb-30">
+                                        <input type="checkbox" name="RememberMe" class="custom-control-input" id="customControlAutosizing">
+                                        <label class="custom-control-label text-white" for="customControlAutosizing">@T("Admin.Configuration.Rememberme")</label>
+                                    </div>
+                                </div>
+                                <button type="submit" class="button">
+                                    <span>@T("Admin.Configuration.Login")</span>
+                                    <i class="fa fa-check"></i>
+                                </button>
+                                <input type="hidden" name="captchaValid" value="true" />
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-7">
+                <div class="login-box-02 theme-bg">
+                    <div class="pb-50 clearfix">
+                        <h4 class="mb-20 text-white"> @T("common.register.title") </h4>
+                        <p class="mb-30 text-white">@T("common.register.description") </p>
+                        <form asp-controller="Auth" asp-action="Register" method="post" class="form" novalidate="novalidate" id="RegisterForm">
+                            <div class="login-form">
+                                <div class="row">
+                                    <div class="section-field mb-20 col-sm-6">
+                                        <label class="mb-10 text-white" for="name">@T("Admin.Configuration.FirstName")* </label>
+                                        <input asp-for="Register.FirstName" name="FirstName" class="web form-control" type="text" required />
+                                    </div>
+                                    <div class="section-field mb-20 col-sm-6">
+                                        <label class="mb-10 text-white" for="name">@T("Admin.Configuration.LastName")* </label>
+                                        <input asp-for="Register.LastName" name="LastName" class="web form-control" type="text" required />
+                                    </div>
+                                </div>
+                                <div class="section-field mb-20">
+                                    <label class="mb-10 text-white" for="name">@T("Admin.Configuration.Email")* </label>
+                                    <input asp-for="Register.Email" name="Email" class="web form-control" type="email" required />
+                                </div>
+                                <div class="row">
+                                    <div class="section-field mb-20 col-sm-6">
+                                        <label class="mb-10 text-white" for="name">@T("Admin.Configuration.Password")* </label>
+                                        <input asp-for="Register.Password" name="Password" class="web form-control" type="password" required />
+                                    </div>
+                                    <div class="section-field mb-20 col-sm-6">
+                                        <label class="mb-10 text-white" for="name">@T("Admin.Configuration.RePassword")* </label>
+                                        <input asp-for="Register.ConfirmPassword" name="ConfirmPassword" class="web form-control" type="password" required />
+                                    </div>
+                                </div>
+                                <div class="section-field mb-20">
+                                    <label class="mb-10 text-white" for="name">@T("Admin.Configuration.CompanyName")* </label>
+                                    <input asp-for="Register.Company" name="Company" class="Password form-control" type="text" required />
+                                </div>
+                                <button type="submit" class="button">
+                                    <span>@T("Admin.Configuration.Register")</span>
+                                    <i class="fa fa-check"></i>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+@section Scripts{
+
+    <script>
+        $("#LoginForm").submit(function (e) {
+            e.preventDefault();
+            var url = $(this).attr("action  ");
+            $.ajax({
+                type: "POST",
+                url: "/Auth/Login",
+                data: $(this).serialize(), // se(this)rializes the form's elements.
+                success: function (data) {
+                    if (data == "") {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Hata!',
+                            html: 'Kullanıcı adı veya şifre hatalı.',
+                            position: 'top-end',
+                            showConfirmButton: false,
+                            timer: 1000,
+                            timerProgressBar: true
+                        })
+                    }
+                    else {
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Giriş başarılı!',
+                            html: 'Yönlendiriliyorsunuz..',
+                            position: 'top-end',
+                            showConfirmButton: false,
+                            timer: 1000,
+                            timerProgressBar: true
+                        })
+                        setTimeout(function () {
+                            window.location.href = "/";
+                        }, 1000)
+                    }
+                }
+            });
+
+        });
+        $("#RegisterForm").submit(function (e) {
+            e.preventDefault();
+            var url = $(this).attr("action");
+            $.ajax({
+                type: "POST",
+                url: "/Auth/Register",
+                data: $(this).serialize(), // se(this)rializes the form's elements.
+                success: function (data) {
+                    if (data == "") {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Hata!',
+                            html: 'Kullanıcı adı veya şifre hatalı.',
+                            position: 'top-end',
+                            showConfirmButton: false,
+                            timer: 1000,
+                            timerProgressBar: true
+                        })
+                    }
+                    else {
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Kayıt başarılı!',
+                            html: 'Yönlendiriliyorsunuz..',
+                            position: 'top-end',
+                            showConfirmButton: false,
+                            timer: 1000,
+                            timerProgressBar: true
+                        })
+                        setTimeout(function () {
+                            window.location.href = "/";
+                        }, 1000)
+                    }
+                }
+            });
+
+        });
+    </script>
+}

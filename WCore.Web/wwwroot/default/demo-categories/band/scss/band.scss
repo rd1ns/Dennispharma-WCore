@@ -1,0 +1,156 @@
+/*
+Template:  Webster - Responsive Multi-purpose HTML5 Template
+Author: potenzaglobalsolutions.com
+Design and Developed by: potenzaglobalsolutions.com
+
+NOTE: This file contains the styling for the band Template. You can edit/add anything in this file!
+*/
+
+h1 {
+	font-family: 'Dosis', sans-serif;
+	font-weight: normal;
+	color: #363636;
+	margin-top: 0px;
+	text-transform: capitalize;
+}
+h2 {
+	font-family: 'Dosis', sans-serif;
+	font-weight: normal;
+	color: #363636;
+	margin-top: 0px;
+	text-transform: capitalize;
+}
+h3 {
+	font-family: 'Dosis', sans-serif;
+	font-weight: normal;
+	color: #363636;
+	margin-top: 0px;
+	text-transform: capitalize;
+}
+h4 {
+	font-family: 'Dosis', sans-serif;
+	font-weight: normal;
+	color: #363636;
+	margin-top: 0px;
+	text-transform: capitalize;
+}
+h5 {
+	font-family: 'Dosis', sans-serif;
+	font-weight: normal;
+	color: #363636;
+	margin-top: 0px;
+	text-transform: capitalize;
+}
+h6 {
+	font-family: 'Dosis', sans-serif;
+	font-weight: normal;
+	color: #363636;
+	margin-top: 0px;
+	text-transform: capitalize;
+}
+.kety-play-icon {
+	margin-top: 10px;
+	float: left;
+	background: transparent;
+	color: #fff;
+	font-size: 12px;
+	height: 30px;
+	width: 30px;
+	line-height: 30px;
+	border-radius: 50%;
+	display: inline-block;
+	border: 2px solid #fff;
+	text-align: center;
+	padding-left: 2px;
+}
+.kety-name {
+	display: table-cell;
+	padding-left: 20px;
+	a {
+		color: #fff;
+		font-size: 20px;
+	}
+	span {
+		color: #d6d6d6;
+		font-size: 13px;
+	}
+}
+.kety-link {
+	a {
+		display: inline-block;
+		height: 30px;
+		width: 30px;
+		line-height: 30px;
+		border-radius: 50%;
+		text-align: center;
+		font-size: 13px;
+		padding-left: 2px;
+		margin-left: 10px;
+		background: transparent;
+		border: 2px solid #fff;
+	}
+}
+.kety-perry-list {
+	margin-bottom: 20px;
+	&:last-child {
+		margin-bottom: 0px;
+	}
+}
+.band-blog {
+	.blog-box {
+		border: 0;
+		padding: 80px 40px;
+		p {
+			font-size: 14px;
+			line-height: 28px;
+		}
+	}
+}
+.bg-overlay-theme-20 {
+	&:before {
+		background: rgba(195, 109, 255, 0.2);
+		content: "";
+		height: 100%;
+		left: 0;
+		position: absolute;
+		top: 0;
+		width: 100%;
+		z-index: -1;
+	}
+}
+.bg-overlay-theme-50 {
+	&:before {
+		background: rgba(195, 109, 255, 0.5);
+		content: "";
+		height: 100%;
+		left: 0;
+		position: absolute;
+		top: 0;
+		width: 100%;
+		z-index: -1;
+	}
+}
+.bg-overlay-theme-70 {
+	&:before {
+		background: rgba(195, 109, 255, 0.7);
+		content: "";
+		height: 100%;
+		left: 0;
+		position: absolute;
+		top: 0;
+		width: 100%;
+		z-index: -1;
+	}
+}
+.bg-overlay-theme-90 {
+	&:before {
+		background: rgba(195, 109, 255, 0.9);
+		content: "";
+		height: 100%;
+		left: 0;
+		position: absolute;
+		top: 0;
+		width: 100%;
+		z-index: -1;
+	}
+}

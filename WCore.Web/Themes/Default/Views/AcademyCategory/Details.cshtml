@@ -1,0 +1,51 @@
+﻿@inject SeoSettings _seoSettings
+@inject IWebHelper _webHelper
+@inject WCore.Core.IWorkContext _workContext
+
+@model AcademyCategoryModel
+@{
+    ViewBag.Title = Model.Title;
+
+    @if (_seoSettings.TwitterMetaTags)
+    {
+        ViewBag.TwtterCard = "";
+        ViewBag.TwtterUrl = _webHelper.GetThisPageUrl(true);
+        ViewBag.TwtterImage = _webHelper.GetStoreLocation().Substring(0, _webHelper.GetStoreLocation().Length - 1) + Model.Image;
+    }
+
+    @if (_seoSettings.OpenGraphMetaTags)
+    {
+        ViewBag.OgUrl = _webHelper.GetStoreLocation();
+        ViewBag.OgImage = _webHelper.GetStoreLocation().Substring(0, _webHelper.GetStoreLocation().Length - 1) + Model.Image;
+    }
+}
+<!--=================================
+page-title-->
+
+@await Component.InvokeAsync("PageTitle", Model.PageTitle)
+<!--=================================
+page-title -->
+<!--=================================
+content -->
+<section class="white-bg blog page-section-ptb">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                @Html.Raw(Model.Body)
+            </div>
+        </div>
+        <div class="row">
+            @if (Model.Academies != null)
+            {
+                <div class="col-lg-12 pb-3">
+                    <ul class="list-group list-group-flush">
+                        @foreach (var academy in Model.Academies.Academies)
+                        {
+                            <li class="list-group-item border"><a class="d-block" href="/@academy.SeName"><i class="fa fa fa-hand-paper-o"></i> @academy.Title</a></li>
+                        }
+                    </ul>
+                </div>
+            }
+        </div>
+    </div>
+</section>

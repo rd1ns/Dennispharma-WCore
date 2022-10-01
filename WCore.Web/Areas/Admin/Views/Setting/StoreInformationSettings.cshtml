@@ -1,0 +1,226 @@
+﻿@model StoreInformationSettingsModel
+@{
+
+    ViewData["PageMainTitle"] = T("Admin.Configuration.Settings");
+    ViewData["PageTitle"] = T("admin.configuration.settings.storeinformation.title");
+    ViewData["SystemTitle"] = ViewData["PageTitle"] + " / " + ViewData["PageMainTitle"];
+    ViewData["ControllerName"] = "Setting";
+    ViewData["ActionName"] = "StoreInformationSettings";
+}
+<div class="content  d-flex flex-column flex-column-fluid" id="kt_content">
+    <div class="subheader py-2 py-lg-6  subheader-solid " id="kt_subheader">
+        <div class=" container-fluid  d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
+            <div class="d-flex align-items-center flex-wrap mr-1">
+                <div class="d-flex align-items-baseline flex-wrap mr-5">
+                    <h5 class="text-dark font-weight-bold my-1 mr-5">
+                        @ViewData["PageTitle"]
+                    </h5>
+                    <ul class="breadcrumb breadcrumb-transparent breadcrumb-dot font-weight-bold p-0 my-2 font-size-sm">
+                        <li class="breadcrumb-item">
+                            @ViewData["PageMainTitle"]
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="d-flex align-items-center">
+                <partial name="_AddOrEditHeaderButtons" model="@Tuple.Create(0,"StoreInformationSettingsForm")" />
+            </div>
+        </div>
+    </div>
+    <div class="d-flex flex-column-fluid">
+        <div class="container-fluid">
+            <form id="StoreInformationSettingsForm" action="/admin/@ViewData["ControllerName"]/@ViewData["ActionName"]" method="post" enctype="multipart/form-data">
+                <div class="card card-custom">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-xl-12 my-2">
+                                <div class="form-group row mb-3">
+                                    <WCore-label asp-for="LogoPicture" />
+                                    <div class="col-lg-8 col-md-4 col-sm-12">
+                                        @if (!string.IsNullOrEmpty(Model.LogoPicture))
+                                        {
+                                            <img src="@Model.LogoPicture" id="LogoPicture_Img" style="max-height:200px; border:1px solid #cecece;" />
+                                        }
+                                        <input type="file" name="LogoPicture" accept="image/gif, image/jpeg, image/png" id="LogoPicture" class="form-control pt-2" />
+                                        <button type="button" onclick="RemoveImage('#LogoPicture_Img');" class="btn btn-primary btn-xs"><i class="fa fa-trash"></i>@T("Admin.Common.Remove")</button>
+                                    </div>
+                                </div>
+                                <div class="form-group row mb-3">
+                                    <WCore-label asp-for="StickyPicture" />
+                                    <div class="col-lg-8 col-md-4 col-sm-12">
+                                        @if (!string.IsNullOrEmpty(Model.StickyPicture))
+                                        {
+                                            <img src="@Model.StickyPicture" style="max-height:200px; border:1px solid #cecece;" />
+                                        }
+                                        <input type="file" name="StickyPicture" accept="image/gif, image/jpeg, image/png" id="StickyPicture" class="form-control pt-2" />
+                                    </div>
+                                    <div class="col-lg-2 col-md-2 col-sm-12 h-100 mb-1 justify-content-end d-flex align-self-end ">
+                                        <button class="btn btn-primary w-100 btn-sm"><i class="fa fa-trash"></i>@T("Admin.Common.Remove")</button>
+                                    </div>
+                                </div>
+                                <div class="form-group row mb-3">
+                                    <WCore-label asp-for="DefaultStoreTheme" />
+                                    <div class="col-lg-10 col-md-6 col-sm-12">
+                                        <WCore-editor asp-for="DefaultStoreTheme" />
+                                        <span asp-validation-for="DefaultStoreTheme"></span>
+                                    </div>
+                                </div>
+                                <div class="form-group row mb-3">
+                                    <WCore-label asp-for="BgPattern" />
+                                    <div class="col-lg-8 col-md-4 col-sm-12">
+                                        @if (!string.IsNullOrEmpty(Model.BgPattern))
+                                        {
+                                            <img src="@Model.BgPattern" style="max-height:50px;  border:1px solid #cecece;" />
+                                        }
+                                        <input type="file" name="BgPattern" accept="image/gif, image/jpeg, image/png" id="BgPattern" class="form-control pt-2" />
+                                    </div>
+                                    <div class="col-lg-2 col-md-2 col-sm-12 h-100 mb-1 justify-content-end d-flex align-self-end ">
+                                        <button class="btn btn-primary w-100 btn-sm"><i class="fa fa-trash"></i>@T("Admin.Common.Remove")</button>
+                                    </div>
+                                </div>
+                                <div class="form-group row mb-3">
+                                    <WCore-label asp-for="BgImage" />
+                                    <div class="col-lg-8 col-md-4 col-sm-12">
+                                        @if (!string.IsNullOrEmpty(Model.BgImage))
+                                        {
+                                            <img src="@Model.BgImage" style="max-height:200px; border:1px solid #cecece;" />
+                                        }
+                                        <input type="file" name="BgImage" accept="image/gif, image/jpeg, image/png" id="BgImage" class="form-control pt-2" />
+                                    </div>
+                                    <div class="col-lg-2 col-md-2 col-sm-12 h-100 mb-1 justify-content-end d-flex align-self-end ">
+                                        <button class="btn btn-primary w-100 btn-sm"><i class="fa fa-trash"></i> @T("Admin.Common.Remove")</button>
+                                    </div>
+                                </div>
+                                <div class="form-group row mb-3">
+                                    <WCore-label asp-for="PageTitleImage" />
+                                    <div class="col-lg-8 col-md-4 col-sm-12">
+                                        @if (!string.IsNullOrEmpty(Model.PageTitleImage))
+                                        {
+                                            <img src="@Model.PageTitleImage" style="max-height:200px; border:1px solid #cecece;" />
+                                        }
+                                        <input type="file" name="PageTitleImage" accept="image/gif, image/jpeg, image/png" id="PageTitleImage" class="form-control pt-2" />
+                                    </div>
+                                    <div class="col-lg-2 col-md-2 col-sm-12 h-100 mb-1 justify-content-end d-flex align-self-end ">
+                                        <button class="btn btn-primary w-100 btn-sm"><i class="fa fa-trash"></i>@T("Admin.Common.Remove")</button>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <WCore-label asp-for="DefaultLanguageId" />
+                                    <div class="col-9">
+                                        <WCore-select asp-for="DefaultLanguageId" asp-items="Model.Languages" />
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <WCore-label asp-for="DefaultCountryId" />
+                                    <div class="col-9">
+                                        <WCore-select asp-for="DefaultCountryId" asp-items="Model.Countries" />
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <WCore-label asp-for="DefaultStoreThemeColorScheme" />
+                                    <div class="col-9">
+                                        <WCore-select asp-for="DefaultStoreThemeColorScheme" asp-items="Model.ThemeColorSchemes" />
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <WCore-label asp-for="DefaultStoreThemeTemplateType" />
+                                    <div class="col-9">
+                                        <WCore-select asp-for="DefaultStoreThemeTemplateType" asp-items="Model.ThemeTemplateTypes" />
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <WCore-label asp-for="DefaultStoreThemeTemplateFeature" />
+                                    <div class="col-9">
+                                        <WCore-select asp-for="DefaultStoreThemeTemplateFeature" asp-items="Model.ThemeTemplateFeatures" />
+
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <WCore-label asp-for="DefaultStoreThemeLayoutType" />
+                                    <div class="col-9">
+                                        <WCore-select asp-for="DefaultStoreThemeLayoutType" asp-items="Model.ThemeLayoutTypes" />
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <WCore-label asp-for="DefaultStoreThemeGalleryType" />
+                                    <div class="col-9">
+                                        <WCore-select asp-for="DefaultStoreThemeGalleryType" asp-items="Model.ThemeGalleryTypes" />
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <WCore-label asp-for="DefaultStoreThemePageTitle" />
+                                    <div class="col-9">
+                                        <WCore-select asp-for="DefaultStoreThemePageTitle" asp-items="Model.ThemePageTitles" />
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <WCore-label asp-for="DefaultStoreThemeHeaderType" />
+                                    <div class="col-9">
+                                        <WCore-select asp-for="DefaultStoreThemeHeaderType" asp-items="Model.ThemeHeaderTypes" />
+                                    </div>
+                                </div>
+                                <div class="form-group mb-0 row">
+                                    <WCore-label asp-for="AllowUserToSelectTheme" />
+                                    <div class="col-9">
+                                        <div class="checkbox-inline">
+                                            <label class="checkbox pt-3">
+                                                <input asp-for="AllowUserToSelectTheme" />
+                                                <span></span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group mb-0 row">
+                                    <WCore-label asp-for="DisplayEuCookieLawWarning" />
+                                    <div class="col-9">
+                                        <div class="checkbox-inline">
+                                            <label class="checkbox pt-3">
+                                                <input asp-for="DisplayEuCookieLawWarning" />
+                                                <span></span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <WCore-label asp-for="FacebookLink" />
+                                    <div class="col-lg-10 col-md-6 col-sm-12">
+                                        <WCore-editor asp-for="FacebookLink" />
+                                        <span asp-validation-for="FacebookLink"></span>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <WCore-label asp-for="TwitterLink" />
+                                    <div class="col-lg-10 col-md-6 col-sm-12">
+                                        <WCore-editor asp-for="TwitterLink" />
+                                        <span asp-validation-for="TwitterLink"></span>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <WCore-label asp-for="YoutubeLink" />
+                                    <div class="col-lg-10 col-md-6 col-sm-12">
+                                        <WCore-editor asp-for="YoutubeLink" />
+                                        <span asp-validation-for="YoutubeLink"></span>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <WCore-label asp-for="InstagramLink" />
+                                    <div class="col-lg-10 col-md-6 col-sm-12">
+                                        <WCore-editor asp-for="InstagramLink" />
+                                        <span asp-validation-for="InstagramLink"></span>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <WCore-label asp-for="LinkedinLink" />
+                                    <div class="col-lg-10 col-md-6 col-sm-12">
+                                        <WCore-editor asp-for="LinkedinLink" />
+                                        <span asp-validation-for="LinkedinLink"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

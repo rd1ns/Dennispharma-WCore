@@ -1,0 +1,39 @@
+/*
+Template:  Webster - Responsive Multi-purpose HTML5 Template
+Author: potenzaglobalsolutions.com
+Design and Developed by: potenzaglobalsolutions.com
+
+NOTE: This file contains the styling for the Product Template. You can edit/add anything in this file!
+*/
+ h2 { text-transform: uppercase; font-size: 44px; line-height: 50px; font-weight: 900;	background: -webkit-gradient(linear, 100% 0, 0 0, from(#f501fd), to(#4b2ffe));
+	background: -webkit-linear-gradient(right, #f501fd, #4b2ffe); background: -moz-linear-gradient(right, #f501fd, #4b2ffe); background: -o-linear-gradient(right, #f501fd, #4b2ffe);
+	background: linear-gradient(right, #f501fd, #4b2ffe);-webkit-background-clip: text; -webkit-text-fill-color: transparent;  }
+
+.button { border-radius: 3px; font-size: 16px; }
+
+/*navbar*/
+#onepagenav .mega-menu .menu-links > li > a { font-size: 16px; text-transform: uppercase; font-weight: bold; }
+
+/*banner*/
+.product-banner .slider-content { width: 60%;  }
+.product-banner .slider-content h1 { font-size: 80px; line-height: 80px; }
+.product-banner .slider-content p { font-size: 24px; line-height: 24px; }
+
+/*product-about*/
+.product-about h4 { font-size: 26px; line-height: 40px; font-weight: 300; }
+.product-about p { font-size: 22px; line-height: 30px; font-weight: 300; display: block; }
+
+/*product-video*/
+.product-video .product-video-box { min-height: 600px;   }
+.product-video .product-video-box .vertical-align { padding: 100px; width: 100%; }
+
+/*product-box-feature*/
+.product-box-feature .feature-text.box-shadow { box-shadow: none; }
+.product-box-feature .feature-text.box-shadow:hover, .product-box-feature .feature-text.box-shadow.active { box-shadow: 0 0px 30px rgba(0,0,0,0.09); }
+
+/*product-list-home*/
+.product-list-home .product { padding: 30px; background: #ffffff; }
+.product-list-home .product .product-title a { font-size: 20px; text-transform: uppercase; letter-spacing: 4px; color: #626262; }
+.product-list-home .product .product-price p { font-size: 18px; text-transform: uppercase; letter-spacing: 4px; }
+.product-list-home .product .product-price a { font-size: 14px; text-transform: uppercase; }
+

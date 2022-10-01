@@ -1,0 +1,174 @@
+﻿@model DynamicFormModel
+@{
+
+    var _workContext = EngineContext.Current.Resolve<IWorkContext>();
+    var _themeProvider = EngineContext.Current.Resolve<IThemeProvider>();
+    var _seoSettings = EngineContext.Current.Resolve<SeoSettings>();
+    var _storeInformationSettings = EngineContext.Current.Resolve<StoreInformationSettings>();
+
+}
+
+@if (Model != null)
+{
+    if (Model.DynamicFormType == DynamicFormType.Appointment)
+    {
+        <section class="appointment">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="appointment-bg bg-overlay-theme-90 parallax" style="background-image: url('@Model.Image');" data-jarallax="{&quot;speed&quot;: 0.6}">
+                            <div class="row clearfix">
+                                <div class="col-lg-6">
+                                    @Html.Raw(Model.Body)
+                                </div>
+                                <div class="col-lg-6 col-md-6">
+                                    <form id="contactform" action="/Common/DynamicForm" method="post" enctype="multipart/form-data">
+                                        <div class="contact-form border-form clearfix">
+                                            @foreach (var item in Model.DynamicFormElements)
+                                            {
+                                                var required = item.Required ? "required" : "";
+                                                var requiredMessage = item.Required ? "*" : "";
+                                                var listElements = "<option selected>" + item.ControlLabel + requiredMessage + "</option>";
+                                                if (item.ControlElement == WCore.Core.Domain.DynamicForms.ControlElement.List)
+                                                {
+                                                    var splitValue = item.ControlValue.Split(',');
+                                                    for (int i = 0; i < splitValue.Length; i++)
+                                                    {
+                                                        listElements = listElements + "<option>" + splitValue[i] + "</option>";
+                                                    }
+                                                }
+                                                switch (item.ControlElement)
+                                                {
+                                                    case WCore.Core.Domain.DynamicForms.ControlElement.List:
+                                                        <div class="section-half-field">
+                                                            <select @required class="wide fancyselect" name="@item.ControlLabel##list">
+                                                                @Html.Raw(listElements)
+                                                            </select>
+                                                        </div>
+                                                        break;
+                                                    case WCore.Core.Domain.DynamicForms.ControlElement.Textbox:
+                                                        <div class="section-half-field"><input @required class="form-control" name="@item.ControlLabel##textbox" type="text" placeholder="@item.ControlLabel @requiredMessage" /></div>
+                                                        break;
+                                                    case WCore.Core.Domain.DynamicForms.ControlElement.Number:
+                                                        <div class="section-half-field"><input @required class="form-control" name="@item.ControlLabel##number" type="@item.ControlLabel##number" placeholder="@item.ControlLabel @requiredMessage" /></div>
+                                                        break;
+                                                    case WCore.Core.Domain.DynamicForms.ControlElement.Checkbox:
+                                                        break;
+                                                    case WCore.Core.Domain.DynamicForms.ControlElement.Radiobutton:
+                                                        break;
+                                                    case WCore.Core.Domain.DynamicForms.ControlElement.Textarea:
+                                                        <div class="section-field textarea"><textarea @required class="form-control input-message" name="@item.ControlLabel##message" rows="5" placeholder="@item.ControlLabel  @requiredMessage"></textarea></div>
+                                                        break;
+                                                    case WCore.Core.Domain.DynamicForms.ControlElement.Email:
+                                                        <div class="section-half-field"><input class="form-control" name="@item.ControlLabel##email" type="email" placeholder="@item.ControlLabel  @requiredMessage" /></div>
+                                                        break;
+                                                    case WCore.Core.Domain.DynamicForms.ControlElement.FileUpload:
+                                                        <div class="section-half-field">
+                                                            <input class="form-control p-2" name="@item.ControlLabel##email" value="Dosya Yükle" type="file" placeholder="@item.ControlLabel  @requiredMessage" />
+                                                        </div>
+                                                        break;
+                                                    default:
+                                                        break;
+                                                }
+                                            }
+                                            <div class="section-field submit-button mb-2">
+                                                <input name="action" type="hidden" value="sendEmail" />
+                                                <button id="submit" class="button" name="submit" type="submit" value="Send" style="text-transform:inherit"> @T("common.form.button.text") <i class="fa fa-paper-plane"></i> </button>
+                                            </div>
+                                            <div class="g-recaptcha section-field clearfix" data-sitekey="6LdbUuUaAAAAAEUkoyYbyuT_JWeD9jPO25EZLBWS"></div>
+                                        </div>
+                                        <input type="hidden" name="DynamicFormId" value="@Model.Id" />
+                                        <input type="hidden" name="DynamicFormTitle" value="@Model.Title" />
+                                        <div id="formmessage"></div>
+                                    </form>
+                                    <div id="ajaxloader"><img class="mx-auto mt-30 mb-30 d-block" src="/default/images/pre-loader/loader-02.svg" alt="" /></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    }
+    else
+    {
+        <section class="appointment inner white-bg page-section-ptb">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="section-title line center text-center">
+                            <h6 class="subtitle">@Model.Body</h6>
+                            <h2 class="title">@Model.Title</h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="row justify-content-center">
+                    <div class="col-md-8">
+                        <form id="contactform" action="/Common/DynamicForm" method="post" enctype="multipart/form-data">
+                            <div class="contact-form border-form clearfix">
+                                @foreach (var item in Model.DynamicFormElements)
+                                {
+                                    var required = item.Required ? "required" : "";
+                                    var requiredMessage = item.Required ? "*" : "";
+                                    var listElements = "<option selected>" + item.ControlLabel + requiredMessage + "</option>";
+                                    if (item.ControlElement == WCore.Core.Domain.DynamicForms.ControlElement.List)
+                                    {
+                                        var splitValue = item.ControlValue.Split(',');
+                                        for (int i = 0; i < splitValue.Length; i++)
+                                        {
+                                            listElements = listElements + "<option>" + splitValue[i] + "</option>";
+                                        }
+                                    }
+                                    switch (item.ControlElement)
+                                    {
+                                        case WCore.Core.Domain.DynamicForms.ControlElement.List:
+                                            <div class="section-field">
+                                                <select @required class="form-control" name="@item.ControlLabel##list">
+                                                    @Html.Raw(listElements)
+                                                </select>
+                                            </div>
+                                            break;
+                                        case WCore.Core.Domain.DynamicForms.ControlElement.Textbox:
+                                            <div class="section-field"><input @required class="form-control" name="@item.ControlLabel##textbox" type="text" placeholder="@item.ControlLabel @requiredMessage" /></div>
+                                            break;
+                                        case WCore.Core.Domain.DynamicForms.ControlElement.Number:
+                                            <div class="section-field"><input @required class="form-control" name="@item.ControlLabel##number" type="@item.ControlLabel##number" placeholder="@item.ControlLabel @requiredMessage" /></div>
+                                            break;
+                                        case WCore.Core.Domain.DynamicForms.ControlElement.Checkbox:
+                                            break;
+                                        case WCore.Core.Domain.DynamicForms.ControlElement.Radiobutton:
+                                            break;
+                                        case WCore.Core.Domain.DynamicForms.ControlElement.Textarea:
+                                            <div class="section-field textarea"><textarea @required class="form-control input-message" name="@item.ControlLabel##message" rows="5" placeholder="@item.ControlLabel  @requiredMessage"></textarea></div>
+                                            break;
+                                        case WCore.Core.Domain.DynamicForms.ControlElement.Email:
+                                            <div class="section-field"><input class="form-control" name="@item.ControlLabel##email" type="email" placeholder="@item.ControlLabel  @requiredMessage" /></div>
+                                            break;
+                                        case WCore.Core.Domain.DynamicForms.ControlElement.FileUpload:
+                                            <div class="section-field">
+                                                <input class="form-control p-2" name="@item.ControlLabel##email" value="Dosya Yükle" type="file" placeholder="@item.ControlLabel  @requiredMessage" />
+                                            </div>
+                                            break;
+                                        default:
+                                            break;
+                                    }
+                                }
+                                <div class="section-field submit-button">
+                                    <input name="action" type="hidden" value="sendEmail" />
+                                    <button id="submit" class="button" name="submit" type="submit" value="Send" style="text-transform:inherit"> @T("common.form.button.text") <i class="fa fa-paper-plane"></i> </button>
+                                </div>
+                                <div class="g-recaptcha section-field clearfix" data-sitekey="6LdbUuUaAAAAAEUkoyYbyuT_JWeD9jPO25EZLBWS"></div>
+                            </div>
+                            <input type="hidden" name="DynamicFormId" value="@Model.Id" />
+                            <input type="hidden" name="DynamicFormTitle" value="@Model.Title" />
+                            <div id="formmessage"></div>
+                        </form>
+                        <div id="ajaxloader" style="display: none;"><img class="mx-auto mt-30 mb-30 d-block" src="/default/images/pre-loader/loader-02.svg" alt="" /></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    }
+
+
+}

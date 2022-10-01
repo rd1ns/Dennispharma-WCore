@@ -1,0 +1,91 @@
+﻿@model FooterViewModel
+@{
+    var _workContext = EngineContext.Current.Resolve<WCore.Core.IWorkContext>();
+    var _seoSettings = EngineContext.Current.Resolve<WCore.Core.Domain.Settings.SeoSettings>();
+    var _storeInformationSettings = EngineContext.Current.Resolve<StoreInformationSettings>();
+}
+
+<footer class="footer page-section-pt">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-5 col-md-4 sm-mt-30">
+                <div class="about-content">
+                    <img src="@_storeInformationSettings.LogoPicture" style="max-width:200px;" class="img-fluid" />
+                    <h5 class="mt-3">@T("common.footer.aboutus.body")</h5>
+                </div>
+            </div>
+            <div class="col-lg-2 col-sm-6 sm-mb-30">
+                <div class="footer-useful-link footer-hedding">
+                    <h6 class="mb-30 mt-10 ">@T("common.footer.location.first.title")</h6>
+                    <ul>
+                        @foreach (var item in Model.PageList.Pages.Where(o => o.FooterLocation == WCore.Core.Domain.Pages.FooterLocation.First))
+                        {
+                            <li><a href="/@item.SeName">@item.Title</a></li>
+                        }
+                    </ul>
+                </div>
+            </div>
+            <div class="col-lg-2 col-sm-6 sm-mb-30">
+                <div class="footer-useful-link footer-hedding">
+                    <h6 class="mb-30 mt-10 ">@T("common.footer.location.second.title")</h6>
+                    <ul>
+                        @foreach (var item in Model.PageList.Pages.Where(o => o.FooterLocation == WCore.Core.Domain.Pages.FooterLocation.Second))
+                        {
+                            <li><a href="/@item.SeName">@item.Title</a></li>
+                        }
+                    </ul>
+                </div>
+            </div>
+            <div class="col-lg-3 col-sm-6 xs-mb-30">
+                <h6 class="mb-30 mt-10 ">@T("common.footer.contactus.title")</h6>
+                <ul class="addresss-info">
+                    <li class="mb-3"><p>@T("common.contactus.address.title")</p> </li>
+                    <li><p>@T("common.contactus.address.info")</p> </li>
+                    <li><a href="tel://@T("common.contactus.phone")"> <span>@T("common.contactus.phone.title") : @T("common.contactus.phone")</span> </a> </li>
+                    <li class="mb-3"><a href="tel://@T("common.contactus.fax")"> <span> @T("common.contactus.fax.title") : @T("common.contactus.fax")</span> </a> </li>
+                    <li class="mb-3"><a href="mailto:@T("common.contactus.email")"></a>@T("common.contactus.email") <br /> @T("common.contactus.personincharge") </li>
+                    <li><p>@T("common.contactus.tax.title") : @T("common.contactus.tax.number")</p> </li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-widget mt-20">
+            <div class="row">
+                <div class="col-lg-6 col-md-6">
+                    <p class="mt-15"> &copy;Copyright <span id="copyright">
+                    <script>document.getElementById('copyright').appendChild(document.createTextNode(new Date().getFullYear()))</script></span> <a href="#"> @_seoSettings.DefaultTitle </a> @T("common.allrightsreserved") </p>
+                </div>
+                <div class="col-lg-6 col-md-6 text-left text-md-right">
+                    <div class="social-icons color-hover mt-10">
+                        <ul>
+                            @foreach (var item in Model.PageList.Pages.Where(o => o.FooterLocation == WCore.Core.Domain.Pages.FooterLocation.Bottom))
+                            {
+                                <li><a href="/@item.SeName">@item.Title</a></li>
+                            }
+
+                            @if (!string.IsNullOrEmpty(_storeInformationSettings.FacebookLink))
+                            {
+                                <li class="social-facebook"><a target="_blank" href="@_storeInformationSettings.FacebookLink"><i class="ti-facebook"></i></a></li>
+                            }
+                            @if (!string.IsNullOrEmpty(_storeInformationSettings.YoutubeLink))
+                            {
+                                <li class="social-youtube"><a target="_blank" href="@_storeInformationSettings.YoutubeLink"><i class="ti-youtube"></i></a></li>
+                            }
+                            @if (!string.IsNullOrEmpty(_storeInformationSettings.TwitterLink))
+                            {
+                                <li class="social-twitter"><a target="_blank" href="@_storeInformationSettings.TwitterLink"><i class="ti-twitter-alt"></i></a></li>
+                            }
+                            @if (!string.IsNullOrEmpty(_storeInformationSettings.InstagramLink))
+                            {
+                                <li class="social-youtube"><a target="_blank" href="@_storeInformationSettings.InstagramLink"><span class="ti-instagram"></span></a></li>
+                            }
+                            @if (!string.IsNullOrEmpty(_storeInformationSettings.LinkedinLink))
+                            {
+                                <li class="social-youtube"><a target="_blank" href="@_storeInformationSettings.LinkedinLink"><span class="ti-linkedin"></span></a></li>
+                            }
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>

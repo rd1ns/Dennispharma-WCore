@@ -1,0 +1,24 @@
+﻿@model PageListModel
+@inject WCore.Core.IWorkContext _workContext
+@{
+
+}
+
+<nav id="menu" class="main-menu">
+    <ul>
+        @foreach (var item in Model.Pages)
+        {
+            var link = "/" + _workContext.WorkingLanguage.UniqueSeoCode + "/" + item.SeName + "";
+            if (item.HomePage)
+            {
+                link = "/" + _workContext.WorkingLanguage.UniqueSeoCode;
+            }
+            <li>
+                <span><a href="@link">@item.Title</a></span>
+            </li>
+        }
+
+        @await Component.InvokeAsync("LanguageSelector")
+        @await Component.InvokeAsync("CurrencySelector")
+    </ul>
+</nav>

@@ -1,0 +1,205 @@
+/*
+Template:  Webster - Responsive Multi-purpose HTML5 Template
+Author: potenzaglobalsolutions.com
+Design and Developed by: potenzaglobalsolutions.com
+
+NOTE: This file contains the styling for the Juice Template. You can edit/add anything in this file!
+
+*/
+
+h1 {
+	font-family: 'Pacifico', cursive;
+	font-weight: normal;
+}
+h2 {
+	font-family: 'Pacifico', cursive;
+	font-weight: normal;
+}
+h3 {
+	font-family: 'Pacifico', cursive;
+	font-weight: normal;
+}
+h4 {
+	font-family: 'Pacifico', cursive;
+	font-weight: normal;
+}
+h5 {
+	font-family: 'Pacifico', cursive;
+	font-weight: normal;
+}
+h6 {
+	font-family: 'Pacifico', cursive;
+	font-weight: normal;
+}
+.section-title {
+	h2 {
+		font-size: 40px;
+		line-height: 60px;
+	}
+}
+#onepagenav {
+	.mega-menu {
+		.menu-links {
+			>li {
+				>a {
+					font-size: 17px;
+					text-transform: uppercase;
+					font-weight: bold;
+				}
+			}
+		}
+	}
+}
+.juice-menu {
+	position: relative;
+	&:before {
+		background: rgba(255, 204, 0, 0.8);
+		content: "";
+		height: 100%;
+		left: 0;
+		position: absolute;
+		top: 0;
+		width: 100%;
+		z-index: 0;
+	}
+	.menu-body {
+		.menu-thumbnail {
+			margin-bottom: 25px;
+			margin-right: 20px;
+			margin-bottom: 0;
+		}
+		.menu-title {
+			margin-bottom: 20px;
+			position: relative;
+			border-bottom: 2px dashed #323232;
+			padding-bottom: 15px;
+			h2 {
+				display: inline-block;
+			}
+		}
+		.menu-details {
+			.price {
+				position: absolute;
+				right: 0;
+				top: 0;
+				font-size: 30px;
+				line-height: 40px;
+				font-weight: 600;
+			}
+		}
+		.menu-description {
+			p {
+				font-size: 20px;
+			}
+		}
+	}
+}
+.tab {
+	.nav.nav-tabs {
+		>li {
+			>a.active {
+				background: #51e887;
+				border-color: transparent;
+			}
+		}
+	}
+}
+.nav.nav-tabs {
+	>li {
+		>a.active {
+			&:focus {
+				background: #51e887;
+				border-color: transparent;
+			}
+			&:hover {
+				background: #51e887;
+				border-color: transparent;
+			}
+		}
+	}
+}
+.make-call {
+	position: relative;
+	h2 {
+		font-size: 50px;
+		line-height: 60px;
+		position: relative;
+		z-index: 2;
+		&:before {
+			background: url(../../../demo-one-page/juice/images/arrow.png);
+			background-repeat: no-repeat;
+			content: "";
+			right: 0;
+			position: absolute;
+			bottom: 0;
+			width: 150px;
+			height: 50px;
+			z-index: 0;
+		}
+	}
+	.call {
+		position: relative;
+		z-index: 2;
+	}
+	strong {
+		font-size: 50px;
+		line-height: 50px;
+		color: #ffcc00;
+	}
+	span {
+		font-size: 40px;
+		line-height: 40px;
+		display: block;
+		margin-bottom: 30px;
+		position: relative;
+		z-index: 2;
+	}
+	.objects-right {
+		top: -30px;
+		z-index: 1;
+	}
+}
+.juice-footer.footer.footer-one-page {
+	h5 {
+		color: #ffffff;
+	}
+	p {
+		color: #ffffff;
+	}
+}
+.juice-footer.footer-Newsletter {
+	.button.button-border {
+		color: #ffffff;
+	}
+}
+.juice-footer.footer-widget-social {
+	a {
+		i {
+			color: #ffffff;
+		}
+	}
+}
+.juice-footer {
+	.footer-Newsletter {
+		.button.button-border {
+			border-color: #ffffff;
+		}
+		.form-control {
+			background: rgba(255, 255, 255, 0.5);
+			color: #ffffff;
+		}
+	}
+	.footer-widget {
+		border-color: rgba(255, 255, 255, 0.5);
+	}
+	.footer-widget-social {
+		a {
+			i {
+				&:hover {
+					background: rgba(0, 0, 0, 0.2);
+				}
+			}
+		}
+	}
+}
+

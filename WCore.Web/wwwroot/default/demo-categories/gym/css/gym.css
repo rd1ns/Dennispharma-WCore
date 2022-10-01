@@ -1,0 +1,35 @@
+/*
+Template:  Webster - Responsive Multi-purpose HTML5 Template
+Author: potenzaglobalsolutions.com
+Design and Developed by: potenzaglobalsolutions.com
+
+NOTE: This file contains the styling for the GYM Template. You can edit/add anything in this file!
+*/
+ 
+h1, h2, h3, h4, h5, h6 { font-family: 'Montserrat', sans-serif; font-weight: normal; color: #1d2152 !important; margin-top: 0px; text-transform: capitalize; font-weight: bold; }
+
+ /*table-gym*/
+.table-gym thead { background: transparent; }
+.table-gym thead tr th { padding: 20px 20px; text-align: left;font-weight: bold; background: #1d2152; border-color:#000; color: #d12326; text-transform: uppercase; }
+.table-gym tbody tr td { padding: 20px 20px; text-align: left;font-weight: bold;}
+.table-gym tbody tr td img { width: 30px; height: 30px; margin-right: 15px; }
+.black-bg, .price .header { background: #1d2152  !important; }
+.course-name { background: #ffffff !important; }
+.course-name a { color : #1d2152  !important;} 
+.text-white, .feature-box:hover h4, .feature-box.active h4, .feature-box:hover p, .feature-box.active p { color: #ffffff !important;}
+.success-stories .owl-carousel .owl-dots .owl-dot:hover span, .success-stories .owl-carousel .owl-dots .owl-dot.active span { background: #1d2152; }
+.gym-success .owl-carousel .owl-dots { bottom: 20px; }
+.tab .nav.nav-tabs > li > a.active, .nav.nav-tabs > li > a.active:focus, .nav.nav-tabs > li > a.active:hover { background: #d12326; border-color: transparent; }
+.feature-box .feature-border { background: #d12326; }
+
+/*name*/
+.course-name { background: #1d2152; padding:30px 20px;}
+.footer-widget { background: transparent; }
+.opening-time ul li, .footer-widget, .pricing-table.boxed { border-color: #141738;  }
+.button:hover, .button:focus { background: #1d2152; border-color: #1d2152; }
+
+.bg-overlay-theme-20:before {  background: rgba(29,33,82, 0.2); content: ""; height: 100%; left: 0; position: absolute; top: 0; width: 100%; z-index: 0; }
+.bg-overlay-theme-50:before {  background: rgba(29,33,82, 0.5); content: ""; height: 100%; left: 0; position: absolute; top: 0; width: 100%; z-index: 0; }
+.bg-overlay-theme-70:before {  background: rgba(29,33,82, 0.7); content: ""; height: 100%; left: 0; position: absolute; top: 0; width: 100%; z-index: 0; }
+.bg-overlay-theme-80:before {  background: rgba(29,33,82, 0.8); content: ""; height: 100%; left: 0; position: absolute; top: 0; width: 100%; z-index: 0; }
+.bg-overlay-theme-90:before {  background: rgba(29,33,82, 0.9); content: ""; height: 100%; left: 0; position: absolute; top: 0; width: 100%; z-index: 0; }

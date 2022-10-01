@@ -1,0 +1,367 @@
+/*
+Template:  Webster - Responsive Multi-purpose HTML5 Template
+Author: potenzaglobalsolutions.com
+Design and Developed by: potenzaglobalsolutions.com
+
+NOTE: This file contains the styling for the skateboard Template. You can edit/add anything in this file!
+*/
+
+h1 {
+	font-family: 'Permanent Marker', cursive;
+}
+h2 {
+	font-family: 'Permanent Marker', cursive;
+	font-size: 40px;
+	line-height: 40px;
+	font-weight: 300;
+}
+h3 {
+	font-family: 'Permanent Marker', cursive;
+}
+h4 {
+	font-family: 'Permanent Marker', cursive;
+}
+h5 {
+	font-family: 'Permanent Marker', cursive;
+}
+h6 {
+	font-family: 'Permanent Marker', cursive;
+}
+.button {
+	border-radius: 3px;
+}
+.mega-menu {
+	.menu-logo {
+		img {
+			height: 80px;
+		}
+	}
+}
+.bg-top-before {
+	position: relative;
+	&:before {
+		background-image: url(../../../demo-categories/skateboard/images/bg-02.png);
+		top: 0;
+		background-repeat: no-repeat;
+		content: "";
+		position: absolute;
+		height: 110px;
+		width: 100%;
+	}
+}
+.bg-bottom-before {
+	position: relative;
+	&:before {
+		background-image: url(../../../demo-categories/skateboard/images/bg.png);
+		bottom: 0;
+		background-repeat: no-repeat;
+		content: "";
+		position: absolute;
+		height: 110px;
+		width: 100%;
+	}
+}
+.skateboard-banner {
+	.container {
+		height: 100%;
+	}
+	.row {
+		height: 100%;
+	}
+	.slider-content-image {
+		position: absolute;
+		bottom: -50px;
+	}
+	.slider-content-text {
+		z-index: 5;
+		display: inline-block;
+		position: absolute;
+		top: 50%;
+		transform: translateY(-50%);
+		-webkit-transform: translateY(-50%);
+		-o-transform: translateY(-50%);
+		-ms-transform: translateY(-50%);
+		-moz-transform: translateY(-50%);
+	}
+	h1 {
+		font-size: 130px;
+		line-height: 130px;
+	}
+}
+.skateboard-about {
+	h2 {
+		font-size: 50px;
+		line-height: 60px;
+	}
+	.about-image {
+		width: 100%;
+		position: relative;
+		height: 430px;
+		.about-image-01 {
+			&:hover {
+				width: 70%;
+				height: 480px;
+				margin-top: 0;
+				+ {
+					.about-image-02 {
+						width: 30%;
+						height: 440px;
+						margin-top: 20px;
+					}
+				}
+			}
+		}
+	}
+	.about-image-01 {
+		background-size: cover;
+		display: table-cell;
+		width: 30%;
+		height: 440px;
+		margin-top: 20px;
+		position: absolute;
+		right: 0;
+		transition: all 1s cubic-bezier(.165,.84,.44,1);
+		background-size: cover;
+		background-position: center;
+	}
+	.about-image-02 {
+		background-size: cover;
+		display: table-cell;
+		width: 70%;
+		height: 480px;
+		position: absolute;
+		left: 0;
+		transition: all 1s cubic-bezier(.165,.84,.44,1);
+		background-size: cover;
+		background-position: center;
+	}
+	.bg-top-before {
+		&:before {
+			top: 80px;
+			z-index: 9;
+		}
+	}
+}
+.skateboard-gallery {
+	padding-top: 130px;
+	position: relative;
+	.section-title {
+		h2 {
+			font-size: 48px;
+			line-height: 60px;
+		}
+	}
+	.skateboard-gallery-top {
+		position: relative;
+	}
+	.owl-carousel {
+		position: relative;
+		bottom: -40px;
+		.owl-nav {
+			i {
+				background: #ffffff !important;
+				color: #323232 !important;
+			}
+		}
+	}
+}
+.skateboard-box {
+	padding: 30px 30px 30px 0px;
+	position: relative;
+	h2 {
+		display: block;
+		font-size: 44px;
+	}
+	strong {
+		display: block;
+		font-size: 20px;
+	}
+	.skateboard-box-image {
+		position: absolute;
+		bottom: 0;
+	}
+	.skateboard-box-content {
+		padding-left: 150px;
+		position: relative;
+		z-index: 1;
+	}
+}
+.skateboard-product {
+	padding-top: 200px;
+	.product-item {
+		text-align: center;
+		position: relative;
+		.product-title {
+			a {
+				font-size: 18px;
+				font-weight: 500;
+				margin: 20px 0px 10px;
+				display: block;
+			}
+		}
+		.product-price {
+			del {
+				background: transparent;
+				color: #323232;
+				font-size: 13px;
+			}
+			ins {
+				text-decoration: none;
+				font-size: 16px;
+				font-weight: bold;
+			}
+		}
+		.product-rating {
+			margin-bottom: 10px;
+			i {
+				color: #353535;
+			}
+		}
+	}
+}
+.skateboard-video {
+	.js-video {
+		position: relative;
+		margin-bottom: -100px;
+	}
+}
+.footer-widget {
+	border-top: 0;
+}
+.sidebar-widgets-wrap {
+	.recent-item {
+		margin-bottom: 20px;
+		.recent-image {
+			display: table-cell;
+			padding-right: 10px;
+			width: 50px;
+			float: left;
+		}
+		.recent-info {
+			display: table-cell;
+			vertical-align: top;
+		}
+		.recent-title {
+			a {
+				color: #353535;
+				font-weight: bold;
+				&:hover {
+					color: #84ba3f;
+				}
+			}
+		}
+		.recent-meta {
+			li {
+				display: inline-block;
+				color: #353535;
+			}
+		}
+	}
+}
+.shop-single {
+	.title {
+		padding-top: 40px;
+	}
+	.product-detail {
+		.product-detail-price {
+			display: inline-block;
+			ins {
+				text-decoration: none;
+				color: #84ba3f;
+				font-size: 16px;
+				font-weight: bold;
+			}
+			del {
+				background: transparent;
+				color: #333;
+				font-size: 14px;
+			}
+		}
+		.product-detail-rating {
+			i {
+				color: #353535;
+			}
+			display: inline-block;
+		}
+		.product-detail-quantity {
+			input {
+				box-shadow: none;
+				border: 1px solid #e0e0e0;
+				padding: 13px 18px 10px 24px;
+				border-radius: 3px;
+				box-shadow: none;
+			}
+		}
+		.input-group-append {
+			button {
+				background: transparent;
+				border-color: #e0e0e0;
+				&:hover {
+					color: #84ba3f;
+				}
+			}
+			&:first-child {
+				>.btn {
+					border-top-left-radius: 30px;
+					border-bottom-left-radius: 30px;
+				}
+			}
+			&:last-child {
+				>.btn {
+					border-top-right-radius: 30px;
+					border-bottom-right-radius: 30px;
+				}
+			}
+		}
+		.input-group {
+			width: 90px;
+			float: left;
+			margin-right: 20px;
+		}
+		.product-detail.add-to-cart {
+			.button {
+				display: inline-block;
+				font-size: 12px;
+			}
+		}
+		.product-detail-social {
+			border-top: 1px solid #e0e0e0;
+			padding-top: 20px;
+			margin-top: 20px;
+			span {
+				display: inline-block;
+				padding-right: 20px;
+				float: left;
+			}
+			ul {
+				li {
+					display: inline-block;
+					a {
+						display: block;
+						color: #aaaaaa;
+						font-size: 14px;
+						padding-right: 5px;
+						&:hover {
+							color: #84ba3f;
+						}
+					}
+				}
+			}
+		}
+		.product-detail-meta {
+			border-top: 1px solid #e0e0e0;
+			padding-top: 20px;
+			span {
+				display: block;
+				margin: 10px 0;
+				a {
+					padding-left: 5px;
+				}
+			}
+		}
+	}
+}
+.slider-slick {
+	overflow: hidden;
+}
+

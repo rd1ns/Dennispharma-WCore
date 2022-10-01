@@ -1,0 +1,537 @@
+﻿@inject WCore.Core.Domain.Settings.SeoSettings _seoSettings
+@inject WCore.Core.IWebHelper _webHelper
+@inject WCore.Core.IWorkContext _workContext
+@model WCore.Web.Models.Restaurants.RestaurantListModel
+@{
+    ViewBag.Title = T("common.restaurant.list.title");
+
+    ViewBag.Page = "RestaurantList";
+    ViewBag.Collapse = "Show";
+}
+<main>
+    <section class="hero_in hotels">
+        <div class="wrapper">
+            <div class="container">
+                <h1 class="fadeInUp"><span></span>@T("common.restaurant.list.title")</h1>
+            </div>
+        </div>
+    </section>
+    <div class="filters_listing sticky_horizontal">
+        <div class="container">
+            <ul class="clearfix">
+                <li>
+                    <div class="switch-field">
+                        <input type="radio" id="all" name="listing_filter" value="all" checked="" data-filter="*" class="selected">
+                        <label for="all">@T("common.view.all")</label>
+                        <input type="radio" id="popular" name="listing_filter" value="popular" data-filter=".popular">
+                        <label for="popular">@T("common.view.popular")</label>
+                        <input type="radio" id="latest" name="listing_filter" value="latest" data-filter=".latest">
+                        <label for="latest">@T("common.view.latest")</label>
+                    </div>
+                </li>
+                <li>
+                    <div class="layout_view">
+                        <a href="#"><i class="icon-th"></i></a>
+                        <a href="#" class="active"><i class="icon-th-list"></i></a>
+                    </div>
+                </li>
+                <li>
+                    <a class="btn_map" data-toggle="collapse" href="#collapseMap" aria-expanded="false" aria-controls="collapseMap" data-text-swap="@T("common.view.hidemap")" data-text-original="@T("common.view.viewonmap")">@T("common.view.viewonmap")</a>
+                </li>
+            </ul>
+        </div>
+        <!-- /container -->
+    </div>
+    <div class="collapse" id="collapseMap">
+        <div id="map" class="map"></div>
+    </div>
+
+    <div class="container margin_60_35">
+        <div class="row">
+            <aside class="col-lg-3" id="sidebar">
+                @await Component.InvokeAsync("Search")
+            </aside>
+            <div class="col-lg-9" id="list_sidebar">
+                @foreach (var item in Model.Restaurants)
+                {
+                    var url = "/" + _workContext.WorkingLanguage.UniqueSeoCode + "/" + item.SeName;
+                    var liked = Model.User.WishList.Wishes.Any(o => o.EntityGroup == WCore.Core.Domain.EntityGroup.Restaurant && o.EntityKey == item.Id);
+                    var rewiews = item.Reviews != null ? item.Reviews.Count() : 0;
+                    <div class="isotope-wrapper">
+                        <div class="box_list isotope-item" style="width:100%;">
+                            <div class="row no-gutters">
+                                <div class="col-lg-5">
+                                    <figure>
+                                        <small>@item.SkiResort.Country?.Name - @item.SkiResort.City?.Name</small>
+                                        <a href="@url"><img src="@item.Image" class="img-fluid" alt="" width="800" height="533"><div class="read_more"><span>@T("common.readmore")</span></div></a>
+                                    </figure>
+                                </div>
+                                <div class="col-lg-7">
+                                    <div class="wrapper">
+                                        <small>@item.SkiResort.Title</small>
+                                        <a href="#0" data-id="@item.Id" data-group="@EntityGroup.Restaurant" class="wish_bt @(liked ? "liked" : "")"></a>
+                                        <div class="cat_star"><i class="icon_star"></i><i class="icon_star"></i><i class="icon_star"></i><i class="icon_star"></i></div>
+                                        <h3><a href="@url">@item.Title</a></h3>
+                                        @if (!string.IsNullOrWhiteSpace(item.ShortBody))
+                                        {
+                                            <p>@(item.ShortBody.Length > 350 ? item.ShortBody.Substring(0,350)+"..." : item.ShortBody)</p>
+                                        }
+                                        @*<span class="price">From <strong>$54</strong> /per person</span>*@
+                                    </div>
+                                    <ul>
+                                        <li><i class="ti-eye"></i> 0 views</li>
+                                        <li><div class="score"><span>Superb<em>@rewiews Reviews</em></span><strong>8.9</strong></div></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+                <p class="text-center add_top_30"><a href="#0" class="btn_1 rounded">@T("common.loadmore")</a></p>
+            </div>
+        </div>
+    </div>
+    <div class="bg_color_1">
+        <div class="container margin_60_35">
+            <div class="row">
+                <div class="col-md-4">
+                    <a href="#0" class="boxed_list">
+                        <i class="pe-7s-help2"></i>
+                        <h4>@T("common.restaurant.list.bottom.box1.title")</h4>
+                        <p>@T("common.restaurant.list.bottom.box1.description")</p>
+                    </a>
+                </div>
+                <div class="col-md-4">
+                    <a href="#0" class="boxed_list">
+                        <i class="pe-7s-wallet"></i>
+                        <h4>@T("common.restaurant.list.bottom.box2.title")</h4>
+                        <p>@T("common.restaurant.list.bottom.box2.description")</p>
+                    </a>
+                </div>
+                <div class="col-md-4">
+                    <a href="#0" class="boxed_list">
+                        <i class="pe-7s-note2"></i>
+                        <h4>@T("common.restaurant.list.bottom.box3.title")</h4>
+                        <p>@T("common.restaurant.list.bottom.box3.description")</p>
+                    </a>
+                </div>
+            </div>
+            <!-- /row -->
+        </div>
+        <!-- /container -->
+    </div>
+</main>
+@section Scripts{
+    <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyApP5AHpxWoetYkls_eEWuXqpx3Fl6PJfg"></script>
+    <script>
+        $('#collapseMap').on('shown.bs.collapse', function (e) {
+            (function (A) {
+
+                if (!Array.prototype.forEach)
+                    A.forEach = A.forEach || function (action, that) {
+                        for (var i = 0, l = this.length; i < l; i++)
+                            if (i in this)
+                                action.call(that, this[i], i, this);
+                    };
+
+            })(Array.prototype);
+
+            var
+                mapObject,
+                markers = [],
+                markersData = {
+                    'Marker': [
+                        @foreach (var item in Model.Restaurants)
+                        {
+                            var url = "/" + _workContext.WorkingLanguage.UniqueSeoCode + "/" + item.SeName;
+                            <text>
+                            {
+                                type_point: '@item.SkiResort.City.Name ',
+                                name: '@item.Title',
+                                location_latitude: @item.Latitude,
+                                location_longitude: @item.Longtitude,
+                                map_image_url: '@item.Image',
+                                rate: 'Superb | 7.5',
+                                name_point: '@item.Title',
+                                get_directions_start_address: '',
+                                url_point: '@url'
+                            },
+                            </text>
+                        }
+                    ]
+
+                };
+
+            var mapOptions = {
+                zoom: 6,
+                center: new google.maps.LatLng(38.9365589, 35.5578316),
+                mapTypeId: google.maps.MapTypeId.ROADMAP,
+
+                mapTypeControl: false,
+                mapTypeControlOptions: {
+                    style: google.maps.MapTypeControlStyle.DROPDOWN_MENU,
+                    position: google.maps.ControlPosition.LEFT_CENTER
+                },
+                panControl: false,
+                panControlOptions: {
+                    position: google.maps.ControlPosition.TOP_RIGHT
+                },
+                zoomControl: true,
+                zoomControlOptions: {
+                    style: google.maps.ZoomControlStyle.LARGE,
+                    position: google.maps.ControlPosition.TOP_LEFT
+                },
+                scrollwheel: false,
+                scaleControl: false,
+                scaleControlOptions: {
+                    position: google.maps.ControlPosition.TOP_LEFT
+                },
+                streetViewControl: true,
+                streetViewControlOptions: {
+                    position: google.maps.ControlPosition.LEFT_TOP
+                },
+                styles: [
+                    {
+                        "featureType": "administrative.country",
+                        "elementType": "all",
+                        "stylers": [
+                            {
+                                "visibility": "off"
+                            }
+                        ]
+                    },
+                    {
+                        "featureType": "administrative.province",
+                        "elementType": "all",
+                        "stylers": [
+                            {
+                                "visibility": "off"
+                            }
+                        ]
+                    },
+                    {
+                        "featureType": "administrative.locality",
+                        "elementType": "all",
+                        "stylers": [
+                            {
+                                "visibility": "off"
+                            }
+                        ]
+                    },
+                    {
+                        "featureType": "administrative.neighborhood",
+                        "elementType": "all",
+                        "stylers": [
+                            {
+                                "visibility": "off"
+                            }
+                        ]
+                    },
+                    {
+                        "featureType": "administrative.land_parcel",
+                        "elementType": "all",
+                        "stylers": [
+                            {
+                                "visibility": "off"
+                            }
+                        ]
+                    },
+                    {
+                        "featureType": "landscape.man_made",
+                        "elementType": "all",
+                        "stylers": [
+                            {
+                                "visibility": "simplified"
+                            }
+                        ]
+                    },
+                    {
+                        "featureType": "landscape.natural.landcover",
+                        "elementType": "all",
+                        "stylers": [
+                            {
+                                "visibility": "on"
+                            }
+                        ]
+                    },
+                    {
+                        "featureType": "landscape.natural.terrain",
+                        "elementType": "all",
+                        "stylers": [
+                            {
+                                "visibility": "off"
+                            }
+                        ]
+                    },
+                    {
+                        "featureType": "poi.attraction",
+                        "elementType": "all",
+                        "stylers": [
+                            {
+                                "visibility": "off"
+                            }
+                        ]
+                    },
+                    {
+                        "featureType": "poi.business",
+                        "elementType": "all",
+                        "stylers": [
+                            {
+                                "visibility": "off"
+                            }
+                        ]
+                    },
+                    {
+                        "featureType": "poi.government",
+                        "elementType": "all",
+                        "stylers": [
+                            {
+                                "visibility": "off"
+                            }
+                        ]
+                    },
+                    {
+                        "featureType": "poi.medical",
+                        "elementType": "all",
+                        "stylers": [
+                            {
+                                "visibility": "off"
+                            }
+                        ]
+                    },
+                    {
+                        "featureType": "poi.park",
+                        "elementType": "all",
+                        "stylers": [
+                            {
+                                "visibility": "on"
+                            }
+                        ]
+                    },
+                    {
+                        "featureType": "poi.park",
+                        "elementType": "labels",
+                        "stylers": [
+                            {
+                                "visibility": "off"
+                            }
+                        ]
+                    },
+                    {
+                        "featureType": "poi.place_of_worship",
+                        "elementType": "all",
+                        "stylers": [
+                            {
+                                "visibility": "off"
+                            }
+                        ]
+                    },
+                    {
+                        "featureType": "poi.school",
+                        "elementType": "all",
+                        "stylers": [
+                            {
+                                "visibility": "off"
+                            }
+                        ]
+                    },
+                    {
+                        "featureType": "poi.sports_complex",
+                        "elementType": "all",
+                        "stylers": [
+                            {
+                                "visibility": "off"
+                            }
+                        ]
+                    },
+                    {
+                        "featureType": "road.highway",
+                        "elementType": "all",
+                        "stylers": [
+                            {
+                                "visibility": "off"
+                            }
+                        ]
+                    },
+                    {
+                        "featureType": "road.highway",
+                        "elementType": "labels",
+                        "stylers": [
+                            {
+                                "visibility": "off"
+                            }
+                        ]
+                    },
+                    {
+                        "featureType": "road.highway.controlled_access",
+                        "elementType": "all",
+                        "stylers": [
+                            {
+                                "visibility": "off"
+                            }
+                        ]
+                    },
+                    {
+                        "featureType": "road.arterial",
+                        "elementType": "all",
+                        "stylers": [
+                            {
+                                "visibility": "simplified"
+                            }
+                        ]
+                    },
+                    {
+                        "featureType": "road.local",
+                        "elementType": "all",
+                        "stylers": [
+                            {
+                                "visibility": "simplified"
+                            }
+                        ]
+                    },
+                    {
+                        "featureType": "transit.line",
+                        "elementType": "all",
+                        "stylers": [
+                            {
+                                "visibility": "off"
+                            }
+                        ]
+                    },
+                    {
+                        "featureType": "transit.station.airport",
+                        "elementType": "all",
+                        "stylers": [
+                            {
+                                "visibility": "off"
+                            }
+                        ]
+                    },
+                    {
+                        "featureType": "transit.station.bus",
+                        "elementType": "all",
+                        "stylers": [
+                            {
+                                "visibility": "off"
+                            }
+                        ]
+                    },
+                    {
+                        "featureType": "transit.station.rail",
+                        "elementType": "all",
+                        "stylers": [
+                            {
+                                "visibility": "off"
+                            }
+                        ]
+                    },
+                    {
+                        "featureType": "water",
+                        "elementType": "all",
+                        "stylers": [
+                            {
+                                "visibility": "on"
+                            }
+                        ]
+                    },
+                    {
+                        "featureType": "water",
+                        "elementType": "labels",
+                        "stylers": [
+                            {
+                                "visibility": "off"
+                            }
+                        ]
+                    }
+                ]
+            };
+            var
+                marker;
+            mapObject = new google.maps.Map(document.getElementById('map'), mapOptions);
+            for (var key in markersData)
+                markersData[key].forEach(function (item) {
+                    marker = new google.maps.Marker({
+                        position: new google.maps.LatLng(item.location_latitude, item.location_longitude),
+                        map: mapObject,
+                        icon: '/img/pins/' + key + '.png',
+                    });
+
+                    if ('undefined' === typeof markers[key])
+                        markers[key] = [];
+                    markers[key].push(marker);
+                    google.maps.event.addListener(marker, 'click', (function () {
+                        closeInfoBox();
+                        getInfoBox(item).open(mapObject, this);
+                        mapObject.setCenter(new google.maps.LatLng(item.location_latitude, item.location_longitude));
+                    }));
+
+                });
+            new MarkerClusterer(mapObject, markers[key]);
+            function hideAllMarkers() {
+                for (var key in markers)
+                    markers[key].forEach(function (marker) {
+                        marker.setMap(null);
+                    });
+            };
+            function closeInfoBox() {
+                $('div.infoBox').remove();
+            };
+            function getInfoBox(item) {
+                return new InfoBox({
+                    content:
+                        '<div class="marker_info" id="marker_info">' +
+                        '<img src="' + item.map_image_url + '" style="width:240px; height:140px;" alt=""/>' +
+                        '<span>' +
+                        '<span class="infobox_rate">' + item.rate + '</span>' +
+                        '<h3>' + item.name_point + '</h3>' +
+                        '<em>' + item.type_point + '</em>' +
+                        '<strong>' + item.description_point + '</strong>' +
+                        '<a href="' + item.url_point + '" class="btn_infobox_detail"></a>' +
+                        '</span>' +
+                        '</div>',
+                    disableAutoPan: false,
+                    maxWidth: 0,
+                    pixelOffset: new google.maps.Size(10, 65),
+                    closeBoxMargin: '',
+                    closeBoxURL: "/img/close_infobox.png",
+                    isHidden: false,
+                    alignBottom: true,
+                    pane: 'floatPane',
+                    enableEventPropagation: true
+                });
+
+
+            };
+
+        });
+    </script>
+    <script src="/panagea/js/infobox.js"></script>
+    <script src="/panagea/js/isotope.min.js"></script>
+    <script>
+        $(window).on('load', function () {
+            var $container = $('.isotope-wrapper');
+            $container.isotope({ itemSelector: '.isotope-item', layoutMode: 'masonry' });
+        });
+        $('.filters_listing').on('click', 'input', 'change', function () {
+            var selector = $(this).attr('data-filter');
+            $('.isotope-wrapper').isotope({ filter: selector });
+        });
+    </script>
+    <script>
+        $("#range").ionRangeSlider({
+            hide_min_max: true,
+            keyboard: true,
+            min: 30,
+            max: 180,
+            from: 60,
+            to: 130,
+            type: 'double',
+            step: 1,
+            prefix: "Min. ",
+            grid: false
+        });
+    </script>
+}
+
+@section Styles{
+}

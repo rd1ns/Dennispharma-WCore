@@ -1,0 +1,262 @@
+/*
+Template:  Webster - Responsive Multi-purpose HTML5 Template
+Author: potenzaglobalsolutions.com
+Design and Developed by: potenzaglobalsolutions.com
+
+NOTE: This file contains the styling for the medical Template. You can edit/add anything in this file!
+*/
+
+h1 {
+	font-family: 'Montserrat', sans-serif;
+	font-weight: normal;
+	color: #323232;
+	margin-top: 0px;
+	text-transform: capitalize;
+	font-weight: bold;
+}
+h2 {
+	font-family: 'Montserrat', sans-serif;
+	font-weight: normal;
+	color: #323232;
+	margin-top: 0px;
+	text-transform: capitalize;
+	font-weight: bold;
+}
+h3 {
+	font-family: 'Montserrat', sans-serif;
+	font-weight: normal;
+	color: #323232;
+	margin-top: 0px;
+	text-transform: capitalize;
+	font-weight: bold;
+}
+h4 {
+	font-family: 'Montserrat', sans-serif;
+	font-weight: normal;
+	color: #323232;
+	margin-top: 0px;
+	text-transform: capitalize;
+	font-weight: bold;
+}
+h5 {
+	font-family: 'Montserrat', sans-serif;
+	font-weight: normal;
+	color: #323232;
+	margin-top: 0px;
+	text-transform: capitalize;
+	font-weight: bold;
+}
+h6 {
+	font-family: 'Montserrat', sans-serif;
+	font-weight: normal;
+	color: #323232;
+	margin-top: 0px;
+	text-transform: capitalize;
+	font-weight: bold;
+}
+.form-control {
+	border-radius: 3px;
+}
+.nice-select {
+	border-radius: 3px;
+	.current {
+		color: #ffffff;
+	}
+}
+.button {
+	border-radius: 3px;
+}
+.social-icons.rounded {
+	li {
+		a {
+			border-radius: 3px;
+		}
+	}
+}
+.contact-form.border-form {
+	.nice-select {
+		&:after {
+			border-color: #ffffff;
+		}
+	}
+	.form-control {
+		color: #323232;
+	}
+}
+.appointment {
+	.appointment-bg {
+		margin-top: -80px;
+		position: relative;
+		z-index: 9;
+	}
+	ul {
+		li {
+			margin-bottom: 20px;
+		}
+	}
+}
+.appointment-bg {
+	padding: 50px 30px;
+	.contact-form.border-form {
+		.form-control {
+			&::-moz-placeholder {
+				color: #ffffff;
+			}
+			&::-ms-input-placeholder {
+				color: #ffffff;
+			}
+			&::-webkit-input-placeholder {
+				color: #ffffff;
+			}
+		}
+	}
+}
+.medical-tab {
+	.tab {
+		.nav.nav-tabs {
+			margin-bottom: 0;
+			li {
+				a {
+					i {
+						display: block;
+						margin-bottom: 15px;
+						padding-right: 0;
+					}
+					display: block;
+					font-size: 16px;
+					padding-bottom: 20px;
+					position: relative;
+					color: #ffffff;
+					padding: 12px 16px;
+				}
+				text-align: center;
+				a.active {
+					background: transparent;
+					&:before {
+						width: 0;
+						position: absolute;
+						content: "";
+						height: 0;
+						bottom: 0;
+						left: 46%;
+						border-style: solid;
+						border-width: 0 10px 10px 10px;
+						border-color: transparent transparent #fff transparent;
+					}
+				}
+			}
+		}
+	}
+	.nav-border {
+		.nav.nav-tabs {
+			li {
+				a {
+					border: 0;
+				}
+			}
+		}
+	}
+}
+.table-medical {
+	thead {
+		background: transparent;
+		tr {
+			th {
+				padding: 20px 20px;
+				text-align: left;
+				font-weight: bold;
+				background: #323232;
+				border-color: #000;
+				color: #ffffff;
+				text-transform: uppercase;
+			}
+		}
+	}
+	tbody {
+		tr {
+			td {
+				padding: 10px 20px;
+				text-align: left;
+			}
+		}
+	}
+	.table-bordered {
+		border-top: 0;
+	}
+}
+.bg-overlay-theme-20 {
+	&:before {
+		background: rgba(41, 155, 232, 0.2);
+		content: "";
+		height: 100%;
+		left: 0;
+		position: absolute;
+		top: 0;
+		width: 100%;
+		z-index: 0;
+	}
+}
+.bg-overlay-theme-50 {
+	&:before {
+		background: rgba(41, 155, 232, 0.5);
+		content: "";
+		height: 100%;
+		left: 0;
+		position: absolute;
+		top: 0;
+		width: 100%;
+		z-index: 0;
+	}
+}
+.bg-overlay-theme-70 {
+	&:before {
+		background: rgba(41, 155, 232, 0.7);
+		content: "";
+		height: 100%;
+		left: 0;
+		position: absolute;
+		top: 0;
+		width: 100%;
+		z-index: 0;
+	}
+}
+.bg-overlay-theme-90 {
+	&:before {
+		background: rgba(41, 155, 232, 0.9);
+		content: "";
+		height: 100%;
+		left: 0;
+		position: absolute;
+		top: 0;
+		width: 100%;
+		z-index: 0;
+	}
+}
+.author-info {
+	strong {
+		color: #000;
+	}
+}
+.emergency-cases-info {
+	i {
+		float: left;
+		padding-right: 40px;
+		font-size: 48px;
+		color: #000;
+	}
+	padding: 35px;
+}
+.addresss-info {
+	i {
+		color: #000;
+	}
+	p {
+		color: #000;
+	}
+	li {
+		a {
+			color: #000;
+		}
+		color: #000;
+	}
+}

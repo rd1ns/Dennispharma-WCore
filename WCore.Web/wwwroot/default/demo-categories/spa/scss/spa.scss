@@ -1,0 +1,159 @@
+/*
+Template:  Webster - Responsive Multi-purpose HTML5 Template
+Author: potenzaglobalsolutions.com
+Design and Developed by: potenzaglobalsolutions.com
+
+NOTE: This file contains the styling for the spa Template. You can edit/add anything in this file!
+*/
+
+body {
+	font-family: 'Source Sans Pro', sans-serif;
+	font-size: 16px;
+}
+h1 {
+	font-family: 'Playfair Display', serif;
+}
+h2 {
+	font-family: 'Playfair Display', serif;
+}
+h3 {
+	font-family: 'Playfair Display', serif;
+}
+h4 {
+	font-family: 'Playfair Display', serif;
+}
+h5 {
+	font-family: 'Playfair Display', serif;
+}
+h6 {
+	font-family: 'Playfair Display', serif;
+}
+.theme-color {
+	color: #eba8c7;
+}
+.theme-bg {
+	background: #eba8c7;
+}
+.header.text-dark {
+	.mega-menu {
+		.menu-links {
+			>li {
+				>a {
+					font-family: 'Playfair Display', serif;
+					text-transform: capitalize;
+					font-size: 18px;
+					font-weight: 600;
+				}
+			}
+		}
+	}
+}
+.mega-menu {
+	.menu-logo {
+		img {
+			height: 60px;
+		}
+	}
+}
+.spa-about {
+	.feature-step-box-2 {
+		padding: 40px 30px;
+	}
+}
+.promo {
+	h2 {
+		position: absolute;
+		top: 50%;
+		left: 0;
+		right: 0;
+		display: inline-block;
+		-webkit-transform: translateY(-50%);
+		-moz-transform: translateY(-50%);
+		-ms-transform: translateY(-50%);
+		-o-transform: translateY(-50%);
+		transform: translateY(-50%);
+	}
+}
+.promo-text {
+	h2 {
+		font-size: 42px;
+		line-height: 46px;
+	}
+}
+.spa-promotion {
+	.promo {
+		h2 {
+			font-size: 36px;
+		}
+	}
+}
+.spa-border {
+	position: relative;
+	&:before {
+		position: absolute;
+		border: 5px solid #e9457a;
+		width: 100%;
+		right: -15px;
+		top: -15px;
+		content: "";
+		height: 100%;
+	}
+}
+.team-content {
+	.button {
+		font-family: 'Playfair Display', serif;
+		font-weight: 700;
+	}
+	p {
+		font-size: 26px;
+	}
+}
+.spa-testimonial {
+	.owl-carousel {
+		.owl-dots {
+			.owl-dot {
+				span {
+					background: #ffffff;
+				}
+				&:hover {
+					span {
+						background: #323232;
+					}
+				}
+			}
+			.owl-dot.active {
+				span {
+					background: #323232;
+				}
+			}
+		}
+	}
+}
+.pricing-top {
+	border-top: 0;
+	box-shadow: inherit;
+	padding: 20px;
+}
+.counter {
+	.timer {
+		font-family: 'Playfair Display', serif;
+	}
+	label {
+		font-family: 'Playfair Display', serif;
+	}
+}
+.team {
+	.team-description {
+		padding: 30px 30px 10px;
+	}
+}
+.team.team-list {
+	border: 3px solid #e9457a;
+	padding: 10px;
+}
+.footer-logo {
+	img {
+		height: 60px;
+	}
+}
+

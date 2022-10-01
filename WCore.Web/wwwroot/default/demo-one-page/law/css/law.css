@@ -1,0 +1,66 @@
+/*
+Template:  Webster - Responsive Multi-purpose HTML5 Template
+Author: potenzaglobalsolutions.com
+Design and Developed by: potenzaglobalsolutions.com
+
+NOTE: This file contains the styling for the law Template. You can edit/add anything in this file!
+*/
+ 
+h1, h2, h3, h4, h5, h6 { font-family: 'PT Serif', serif; color: #363636; margin-top: 0px; text-transform: capitalize; }
+ 
+.button, .form-control, .nice-select, .footer-Newsletter .form-control { border-radius: 0; } 
+
+/*law-banner*/
+.law-banner .slider-content { padding: 0 100px; }
+.law-banner .slider-content h1 { font-size: 50px; line-height: 50px; }  
+.law-banner .slider-content p { font-size: 18px; }
+
+
+/*law-video*/
+.law-video .theme-bg { padding: 30px; box-shadow: 0px 7px 75px 0px rgba(0, 0, 0, 0.5); }
+
+/*************************************
+    			     timeline
+ **************************************/
+.law-timeline { margin-top: -100px; }
+.law-timeline .container > .row { padding-top: 100px; }
+.law-timeline .timeline-centered { position: relative; margin-bottom: 0px; margin-top: 4px; }
+.law-timeline .timeline-centered:before, .law-timeline .timeline-centered:after { content: " "; display: table; }
+.law-timeline .timeline-centered:after { clear: both; }
+.law-timeline .timeline-centered:before, .law-timeline .timeline-centered:after { content: " "; display: table; }
+.law-timeline .timeline-centered:before { content: ''; position: absolute; display: block; width: 2px; background: #e5e5e5; left: 72px; top: 20px; bottom: 20px; margin-left: -4px; }
+.law-timeline .timeline-centered .timeline-entry { position: relative; width: 85%; float: right; margin-bottom: 20px; clear: both; }
+.law-timeline .timeline-centered .timeline-entry .timeline-entry-inner { position: relative; margin-left: -22px; }
+.law-timeline .timeline-centered .timeline-entry .timeline-entry-inner .timeline-year { position: absolute; left: -65px; text-align: right; padding: 0px; top: -5px; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; } 
+.law-timeline .timeline-centered .timeline-entry .timeline-entry-inner .timeline-icon { background: #fff; color: #737881; display: block; width: 15px; height: 15px; -webkit-background-clip: padding-box; -moz-background-clip: padding; background-clip: padding-box; -webkit-border-radius: 20px; -moz-border-radius: 20px; border-radius: 20px; text-align: center; -moz-box-shadow: 0 0 0 5px #e5e5e5; -webkit-box-shadow: 0 0 0 5px #e5e5e5; box-shadow: 0 0 0 5px #e5e5e5; line-height: 15px; font-size: 15px; float: left; }
+.law-timeline .timeline-centered .timeline-entry .timeline-entry-inner .timeline-icon { background-color: #885830; color: #fff; }
+ .law-timeline .timeline-centered .timeline-entry .timeline-entry-inner .timeline-label { position: relative; background: transparent; margin-left: 50px; }
+
+/*counter-law*/
+.counter-law { display:block; padding:20px 20px 20px 80px; position: relative; }
+.counter-law .counter b { color: #fff;  display: block;  font-size: 20px;  line-height: 40px; text-align: left; font-weight:400; margin-top: 0;}
+.counter-law .counter .icon { padding: 5px; border: 1px solid rgba(255, 255, 255, 0.2); float: left; margin-right: 30px; }
+.counter-law .counter span { color: #fff; font-size: 20px; display: block; text-align: center;  width: 60px; height: 60px; line-height: 60px; background: rgba(255, 255, 255, 0.2);  }
+.counter-law .counter .content h5 { color: #fff; text-align: left; font-size: 14px; font-weight: 700; }
+.counter-law .counter .content { display: table-cell; }
+.border-tl { position: relative; }
+.border-tl:before { position: absolute; content:""; position:absolute; left:-4px; top:-4px; width:20px; height: 20px; border-left:1px solid #fff; border-top:1px solid #fff; }
+.border-tr { position: relative; }
+.border-tr:before { position: absolute; content:""; position:absolute; right:-4px; top:-4px; width:20px; height: 20px; border-right:1px solid #fff; border-top:1px solid #fff; }
+.border-bl { position: relative; }
+.border-bl:before { position: absolute; content:""; position:absolute; left:-4px; bottom:-4px; width:20px; height: 20px; border-left:1px solid #fff; border-bottom:1px solid #fff; }
+.border-br { position: relative; }
+.border-br:before { position: absolute; content:""; position:absolute; right:-4px; bottom:-4px; width:20px; height: 20px; border-right:1px solid #fff; border-bottom:1px solid #fff; }
+
+/*law-form*/
+.law-form { box-shadow: 0 0 1px rgba(0,0,0,.3); position: relative; }
+.law-form .theme-bg { padding: 30px 40px; }
+.law-form .register-form { padding: 30px; }
+.law-about .owl-carousel .owl-nav { top: 46%; }
+.law-about .owl-carousel .owl-dot, .law-about .owl-carousel .owl-nav .owl-next, .law-about .owl-carousel .owl-nav .owl-prev { margin: 0; }
+
+ /*law-contact*/
+ .law-contact { padding: 0px 40px; }
+ .law-contact .call { padding: 20px;  }
+ .law-contact .call h6 { font-size: 22px; line-height: 30px; margin-bottom: 0; }
+ .law-contact .addresss-info p, .addresss-info i, .addresss-info li { color: #323232; }

@@ -1,0 +1,52 @@
+﻿@model AcademyCategoryListModel
+@{
+
+    var _workContext = EngineContext.Current.Resolve<IWorkContext>();
+    var _themeProvider = EngineContext.Current.Resolve<IThemeProvider>();
+    var _seoSettings = EngineContext.Current.Resolve<SeoSettings>();
+    var _storeInformationSettings = EngineContext.Current.Resolve<StoreInformationSettings>();
+
+}
+@if (Model.AcademyCategories.Any() && Model.AcademyCategories.Count == 1)
+{
+    <section class="white-bg blog page-section-ptb">
+        <div class="container">
+            <div class="row">
+                <div class="container">
+
+                </div>
+            </div>
+        </div>
+    </section>
+}
+else if (Model.AcademyCategories.Any() && Model.AcademyCategories.Count >= 1)
+{
+    <section class="white-bg blog page-section-ptb">
+        <div class="container">
+            <div class="row">
+                @foreach (var academyCategory in Model.AcademyCategories)
+                {
+                    <div class="col-lg-6 pb-3">
+                        <div class="card">
+                            <div class="card-header">
+                                @academyCategory.Title
+                            </div>
+                            <ul class="list-group list-group-flush">
+                                @if (academyCategory.Academies.Academies != null)
+                                {
+                                    @foreach (var academy in academyCategory.Academies.Academies)
+                                    {
+                                        <li class="list-group-item"><a href="/@academy.SeName">@academy.Title</a></li>
+                                    }
+                                }
+                            </ul>
+                        </div>
+
+                    </div>
+                }
+            </div>
+        </div>
+    </section>
+}
+
+@Model.AcademyCategories.Count()

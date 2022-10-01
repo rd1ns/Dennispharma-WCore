@@ -1,0 +1,37 @@
+/*
+Template:  Webster - Responsive Multi-purpose HTML5 Template
+Author: potenzaglobalsolutions.com
+Design and Developed by: potenzaglobalsolutions.com
+
+NOTE: This file contains the styling for the tattoo Template. You can edit/add anything in this file!
+*/
+ 
+body { font-family: 'Source Sans Pro', sans-serif; font-size: 16px; }
+h1, h2, h3, h4, h5, h6 { font-family: 'Kaushan Script', cursive; }
+
+.tattoo-section-title:before{ width: 28%; content: ""; border:1px solid #303030; position: absolute; left: 100px; top: 94px; }
+.tattoo-section-title:after{ width: 28%; content: ""; border:1px solid #303030; position: absolute; right: 100px; top: 94px; }
+.tattoo-section-title-02:before{ width: 28%; content: ""; border:1px solid rgba(255,255,255,0.4); position: absolute; left: 100px; top: 94px; }
+.tattoo-section-title-02:after{ width: 28%; content: ""; border:1px solid rgba(255,255,255,0.4); position: absolute; right: 100px; top: 94px; }
+
+/*header */
+.tattoo-banner h1 { font-size: 80px; line-height: 100px; }
+.signature:before { position: absolute; border:1px solid #f2f2f2; width:60px;  content: ""; left: 50%; margin-left: -30px; }
+.header.burger .logo img { height: 60px;}
+
+.tattoo-content .rounded-bottom { border-bottom-right-radius: 10.25rem !important; border-bottom-left-radius: 10.25rem !important; }
+.tattoo-content .dropcap { font-size: 56px; background: inherit; }
+ 
+/*team */
+.tattoo-team .owl-carousel .owl-dots .owl-dot span { background: #ffffff; }
+.tattoo-team .owl-carousel .owl-dots .owl-dot.active span, .tattoo-team .owl-carousel .owl-dots .owl-dot:hover span { background: #323232; }
+
+/*testimonial */
+.owl-carousel .owl-dots .owl-dot:hover span, .owl-carousel .owl-dots .owl-dot.active span { background: #d92e37; }
+
+/*price list */
+.price-tattoo { padding: 30px; padding-left: 70px; }
+.price-tattoo ul li {  border-bottom: 1px solid #2c2c2c; display: inline-block;  float: left;  width: 100%; padding: 15px 0; color: #ffffff;  font-size: 16px; line-height: 24px;  font-family: 'Kaushan Script', cursive;  }
+
+/*footer */
+.footer.footer-topbar img{height: 44px; }

@@ -1,0 +1,538 @@
+﻿@inject SeoSettings _seoSettings
+@inject IWebHelper _webHelper
+@inject WCore.Core.IWorkContext _workContext
+
+@model SkiResortModel
+@{
+    ViewBag.Title = Model.Title;
+    ViewBag.MetaTitle = Model.MetaTitle;
+    ViewBag.MetaKeywords = Model.MetaKeywords;
+    ViewBag.MetaDescription = Model.MetaDescription;
+
+    @if (_seoSettings.TwitterMetaTags)
+    {
+        ViewBag.TwtterCard = "";
+        ViewBag.TwtterTitle = Model.MetaTitle;
+        ViewBag.TwtterDescription = Model.MetaDescription;
+        ViewBag.TwtterUrl = _webHelper.GetThisPageUrl(true);
+        ViewBag.TwtterImage = Model.Image;
+    }
+
+    @if (_seoSettings.OpenGraphMetaTags)
+    {
+        ViewBag.OgTitle = Model.MetaTitle;
+        ViewBag.OgDescription = Model.MetaDescription;
+        ViewBag.OgUrl = _webHelper.GetStoreLocation();
+        ViewBag.OgImage = Model.Image;
+    }
+
+    ViewBag.Page = "SkiResort";
+    ViewBag.Collapse = "Show";
+}
+<main>
+    <section class="hero_in hotels_detail">
+        <div class="wrapper">
+            <div class="container">
+                <h1 class="fadeInUp"><span></span>@Model.Title</h1>
+            </div>
+            <span class="magnific-gallery">
+                <a href="/panagea/img/gallery/hotel_list_1.jpg" class="btn_photos" title="Photo title" data-effect="mfp-zoom-in">@T("common.view.photos")</a>
+                <a href="/panagea/img/gallery/hotel_list_2.jpg" title="Photo title" data-effect="mfp-zoom-in"></a>
+                <a href="/panagea/img/gallery/hotel_list_3.jpg" title="Photo title" data-effect="mfp-zoom-in"></a>
+            </span>
+        </div>
+    </section>
+    <div class="bg_color_2">
+        <nav class="secondary_nav sticky_horizontal">
+            <div class="container">
+                <ul class="clearfix p-0">
+                    <li><a href="#description" class="active">@T("common.view.description")</a></li>
+                    @if (!string.IsNullOrEmpty(Model.Features))
+                    {
+                        <li><a href="#feature">@T("common.skiresort.feature")</a></li>
+                    }
+                    @if (Model.Hotels.Any())
+                    {
+                        <li><a href="#hotels">@T("common.skiresort.hotels")</a></li>
+                    }
+                    @if (Model.SkiSchools.Any())
+                    {
+                        <li><a href="#skischools">@T("common.skiresort.skischools")</a></li>
+                    }
+                    @if (Model.Restaurants.Any())
+                    {
+                        <li><a href="#restaurants">@T("common.skiresort.restaurants")</a></li>
+                    }
+                    @if (Model.Transfers.Any())
+                    {
+                        <li><a href="#transfers">@T("common.skiresort.transfers")</a></li>
+                    }
+                    <li><a href="#location">@T("common.skiresort.location")</a></li>
+                    <li><a href="#reviews">@T("common.skiresort.reviews")</a></li>
+                    <li><a href="#sidebar">@T("common.view.booking")</a></li>
+                </ul>
+            </div>
+        </nav>
+        <div id="video-content">
+
+            <video id="videobcg" preload="auto" autoplay="true" loop="loop" muted="muted" volume="0">
+                <source src="https://www.w3schools.com/howto/rain.mp4" type="video/mp4">
+                <source src="movie.webm" type="video/webm">Sorry, your browser does not support HTML5 video.
+            </video>
+            <div class="container margin_60_35 bg-white border-left border-right">
+                <div class="row">
+                    <div class="col-lg-8">
+                        <section id="description">
+                            <div class="slider slider-for">
+
+                                @foreach (var item in Model.Medias)
+                                {
+                                    <div><img class="w-100" style="height:500px;" data-lazy="@item.Original" /></div>
+                                }
+                            </div>
+                            <div class="slider slider-nav">
+                                @foreach (var item in Model.Medias)
+                                {
+                                    <div><img class="w-100" style="height:100px;" data-lazy="@item.Original" /></div>
+                                }
+                            </div>
+                            @Html.Raw(Model.ShortBody)
+                            <br />
+                            @Html.Raw(Model.Body)
+                            <hr>
+                            @if (!string.IsNullOrEmpty(Model.Features))
+                            {
+                                <div class="card">
+                                    <div class="card-header" id="feature">
+                                        @T("common.skiresort.feature")
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                @Html.Raw(Model.Features)
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr>
+                            }
+                            @if (Model.Descriptions.Any())
+                            {
+                                <div class="row">
+                                    @foreach (var description in Model.Descriptions)
+                                    {
+                                        <div class="col-12 isotope-item popular">
+                                            <div class="card">
+                                                <div class="card-header" id="description-@description.Id">
+                                                    @description.Title
+                                                </div>
+                                                <div class="card-body">
+                                                    @Html.Raw(description.Body)
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
+                                </div>
+                            }
+                            @if (Model.Hotels.Any())
+                            {
+                                <div class="card" id="hotels">
+                                    <div class="card-header">
+                                        <a class="card-link d-block collapsed" data-toggle="collapse" href="#hotelsAccordion">
+                                            @T("common.skiresort.hotels")
+                                        </a>
+                                    </div>
+                                    <div id="hotelsAccordion" class="collapse" data-parent="#skischools">
+                                        <div class="card-body">
+                                            <div class="row">
+                                                @foreach (var hotel in Model.Hotels)
+                                                {
+                                                    var url = "/" + _workContext.WorkingLanguage.UniqueSeoCode + "/" + hotel.SeName;
+                                                    var liked = Model.User.WishList.Wishes.Any(o => o.EntityGroup == WCore.Core.Domain.EntityGroup.Hotel && o.EntityKey == hotel.Id);
+                                                    <div class="box_list isotope-item" style="width:100%;">
+                                                        <div class="row no-gutters">
+                                                            <div class="col-lg-5">
+                                                                <figure>
+                                                                    <a href="@url"><img src="@hotel.Image" class="img-fluid" alt="" width="800" height="533"><div class="read_more"><span>@T("common.readmore")</span></div></a>
+                                                                </figure>
+                                                            </div>
+                                                            <div class="col-lg-7">
+                                                                <div class="wrapper">
+                                                                    <a href="#0" data-id="@hotel.Id" data-group="@EntityGroup.SkiResort" class="wish_bt @(liked ? "liked" : "")"></a>
+                                                                    <div class="cat_star"><i class="icon_star"></i><i class="icon_star"></i><i class="icon_star"></i><i class="icon_star"></i></div>
+                                                                    <h3><a href="@url">@hotel.Title</a></h3>
+                                                                    @if (!string.IsNullOrEmpty(hotel.ShortBody))
+                                                                    {
+                                                                        <p>@(hotel.ShortBody.Length > 350 ? hotel.ShortBody.Substring(0,350)+"..." : hotel.ShortBody)</p>
+                                                                    }
+                                                                </div>
+                                                                <ul>
+                                                                    <li><i class="ti-eye"></i> 0 views</li>
+                                                                    <li><div class="score"><span>Superb<em>Reviews</em></span><strong>8.9</strong></div></li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                        <div class="card m-3">
+                                                            <div class="card-header" id="activities">
+                                                                @T("common.skiresort.rooms")
+                                                            </div>
+                                                            <div class="card-body">
+                                                                <div class="row">
+                                                                    <div class="col-lg-12">
+                                                                        <div class="row" id="activity">
+                                                                            @if (hotel.RoomList.Rooms.Any())
+                                                                            {
+                                                                                foreach (var room in hotel.RoomList.Rooms)
+                                                                                {
+                                                                                    var roomUrl = "/" + _workContext.WorkingLanguage.UniqueSeoCode + "/" + room.SeName;
+                                                                                    <div class="col-xl-6 col-lg-6 col-md-6 isotope-item popular">
+                                                                                        <div class="box_grid">
+                                                                                            <figure>
+                                                                                                <a href="#0" data-id="@room.Id" data-group="@EntityGroup.Room" class="wish_bt @(liked ? "liked" : "")"></a>
+                                                                                                <a href="@roomUrl"><img src="@room.Image" class="img-fluid" alt="" width="800" height="533"><div class="read_more"><span>@T("common.readmore")</span></div></a>
+                                                                                                <small>@hotel.Title</small>
+                                                                                            </figure>
+                                                                                            <div class="wrapper">
+                                                                                                <h3><a href="@roomUrl">@room.Title</a></h3>
+                                                                                                @if (!string.IsNullOrEmpty(room.ShortBody))
+                                                                                                {
+                                                                                                    <p>@(room.ShortBody.Length > 350 ? room.ShortBody.Substring(0,350)+"..." : room.ShortBody)</p>
+                                                                                                }
+                                                                                                @if (room.Prices.Any())
+                                                                                                {
+                                                                                                    <select class="w-100" id="room-@room.Id-select">
+                                                                                                        @foreach (var price in room.Prices.Where(o => o.CurrencyId == hotel.DefaultCurrencyId))
+                                                                                                        {
+                                                                                                            <option value="@price.Id">
+                                                                                                                @price.PriceVariation.Name @(price.PriceParentVariation != null ? price.PriceParentVariation.Name  : "") - @price.Value @hotel.DefaultCurrency.CurrencyCode
+                                                                                                            </option>
+                                                                                                        }
+                                                                                                    </select>
+                                                                                                    <button type="button" class="btn btn-sm mt-3 w-100 btn-primary addToCart" data-currency="@hotel.DefaultCurrencyId" data-selectid="room-@room.Id-select"><i class="fa fa-fa-cart-plus"></i> @T("common.addtocart")</button>
+                                                                                                }
+                                                                                            </div>
+                                                                                            <ul>
+                                                                                                <li><i class="ti-eye"></i> 0 views</li>
+                                                                                                <li><div class="score"><span>Superb<em>3 Reviews</em></span><strong>8.9</strong></div></li>
+                                                                                            </ul>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                }
+                                                                            }
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                }
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                            @if (Model.SkiSchools.Any())
+                            {
+                                <div class="card" id="skischools">
+                                    <div class="card-header">
+                                        <a class="card-link d-block collapsed" data-toggle="collapse" href="#skischoolsAccordion">
+                                            @T("common.skiresort.skischools")
+                                        </a>
+                                    </div>
+                                    <div id="skischoolsAccordion" class="collapse" data-parent="#skischools">
+                                        <div class="card-body">
+                                            <div class="row">
+                                                @foreach (var skiSchool in Model.SkiSchools)
+                                                {
+                                                    var url = "/" + _workContext.WorkingLanguage.UniqueSeoCode + "/" + skiSchool.SeName;
+                                                    var liked = Model.User.WishList.Wishes.Any(o => o.EntityGroup == WCore.Core.Domain.EntityGroup.SkiSchool && o.EntityKey == skiSchool.Id);
+                                                    <div class="box_list isotope-item" style="width:100%;">
+                                                        <div class="row no-gutters">
+                                                            <div class="col-lg-5">
+                                                                <figure>
+                                                                    <a href="@url"><img src="@skiSchool.Image" class="img-fluid" alt="" width="800" height="533"><div class="read_more"><span>@T("common.readmore")</span></div></a>
+                                                                </figure>
+                                                            </div>
+                                                            <div class="col-lg-7">
+                                                                <div class="wrapper">
+                                                                    <a href="#0" data-id="@skiSchool.Id" data-group="@EntityGroup.SkiResort" class="wish_bt @(liked ? "liked" : "")"></a>
+                                                                    <div class="cat_star"><i class="icon_star"></i><i class="icon_star"></i><i class="icon_star"></i><i class="icon_star"></i></div>
+                                                                    <h3><a href="@url">@skiSchool.Title</a></h3>
+                                                                    @if (!string.IsNullOrEmpty(skiSchool.ShortBody))
+                                                                    {
+                                                                        <p>@(skiSchool.ShortBody.Length > 350 ? skiSchool.ShortBody.Substring(0,350)+"..." : skiSchool.ShortBody)</p>
+                                                                    }
+                                                                </div>
+                                                                <ul>
+                                                                    <li><i class="ti-eye"></i> 0 views</li>
+                                                                    <li><div class="score"><span>Superb<em>Reviews</em></span><strong>8.9</strong></div></li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                        <div class="card m-3">
+                                                            <div class="card-header" id="equipments">
+                                                                @T("common.skiresort.equipments")
+                                                            </div>
+                                                            <div class="card-body">
+                                                                <div class="row">
+                                                                    <div class="col-lg-12">
+                                                                        <div id="equipmentCategory">
+                                                                            @if (skiSchool.EquipmentCategoryList.EquipmentCategories.Any())
+                                                                            {
+                                                                                foreach (var equipmentCategory in skiSchool.EquipmentCategoryList.EquipmentCategories)
+                                                                                {
+                                                                                    <div class="card">
+                                                                                        <div class="card-header">
+                                                                                            <a class="card-link d-block collapsed" data-toggle="collapse" href="#ec-@equipmentCategory.Id">
+                                                                                                @equipmentCategory.Title
+                                                                                            </a>
+                                                                                        </div>
+                                                                                        <div id="ec-@equipmentCategory.Id" class="collapse" data-parent="#equipmentCategory">
+                                                                                            <div class="card-body">
+                                                                                                @if (equipmentCategory.EquipmentList.Equipments.Any())
+                                                                                                {
+                                                                                                    foreach (var equipment in equipmentCategory.EquipmentList.Equipments)
+                                                                                                    {
+                                                                                                        <span>@equipment.Title</span>
+                                                                                                        @foreach (var price in equipment.Prices)
+                                                                                                        {
+                                                                                                            <span>@price.PriceVariation.Name @(price.PriceParentVariation != null ? price.PriceParentVariation.Name  : "") - @price.Value @_workContext.WorkingCurrency.CurrencyCode</span>
+                                                                                                        }
+                                                                                                    }
+                                                                                                }
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                }
+                                                                            }
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="card m-3">
+                                                            <div class="card-header" id="activities">
+                                                                @T("common.skiresort.activities")
+                                                            </div>
+                                                            <div class="card-body">
+                                                                <div class="row">
+                                                                    <div class="col-lg-12">
+                                                                        <div class="row" id="activity">
+                                                                            @if (skiSchool.ActivityList.Activities.Any())
+                                                                            {
+                                                                                foreach (var activity in skiSchool.ActivityList.Activities)
+                                                                                {
+                                                                                    <div class="col-xl-6 col-lg-6 col-md-6 isotope-item popular">
+                                                                                        <div class="box_grid">
+                                                                                            <figure>
+                                                                                                <a href="#0" data-id="@activity.Id" data-group="@EntityGroup.Activity" class="wish_bt @(liked ? "liked" : "")"></a>
+                                                                                                <a href="@url"><img src="@activity.Image" class="img-fluid" alt="" width="800" height="533"><div class="read_more"><span>@T("common.readmore")</span></div></a>
+                                                                                                <small>@skiSchool.Title</small>
+                                                                                            </figure>
+                                                                                            <div class="wrapper">
+                                                                                                <h3><a href="@url">@activity.Title</a></h3>
+                                                                                                @if (!string.IsNullOrEmpty(activity.ShortBody))
+                                                                                                {
+                                                                                                    <p>@(activity.ShortBody.Length > 350 ? activity.ShortBody.Substring(0,350)+"..." : activity.ShortBody)</p>
+                                                                                                }
+                                                                                                @if (activity.Prices.Any())
+                                                                                                {
+                                                                                                    <select class="w-100" id="activity-@activity.Id-select">
+                                                                                                        @foreach (var price in activity.Prices)
+                                                                                                        {
+                                                                                                            <option value="@price.Id">
+                                                                                                                @price.PriceVariation.Name @(price.PriceParentVariation != null ? price.PriceParentVariation.Name  : "") - @price.Value @price.Currency.CurrencyCode
+                                                                                                            </option>
+                                                                                                        }
+                                                                                                    </select>
+                                                                                                    <button type="button" class="btn btn-sm mt-3 w-100 btn-primary addToCart" data-currency="@skiSchool.DefaultCurrencyId" data-selectid="activity-@activity.Id-select"><i class="fa fa-fa-cart-plus"></i> @T("common.addtocart")</button>
+                                                                                                }
+                                                                                            </div>
+                                                                                            <ul>
+                                                                                                <li><i class="ti-eye"></i> 0 views</li>
+                                                                                                <li><div class="score"><span>Superb<em>3 Reviews</em></span><strong>8.9</strong></div></li>
+                                                                                            </ul>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                }
+                                                                            }
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                }
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                            @if (Model.Restaurants.Any())
+                            {
+                                <div class="card" id="restaurants">
+                                    <div class="card-header">
+                                        <a class="card-link d-block collapsed" data-toggle="collapse" href="#restaurantsAccordion">
+                                            @T("common.skiresort.restaurants")
+                                        </a>
+                                    </div>
+                                    <div id="restaurantsAccordion" class="collapse" data-parent="#restaurants">
+                                        <div class="card-body">
+                                            <div class="row">
+                                                @foreach (var restaurant in Model.Restaurants)
+                                                {
+                                                    var url = "/" + _workContext.WorkingLanguage.UniqueSeoCode + "/" + restaurant.SeName;
+                                                    var liked = Model.User.WishList.Wishes.Any(o => o.EntityGroup == WCore.Core.Domain.EntityGroup.Restaurant && o.EntityKey == restaurant.Id);
+                                                    <div class="col-xl-6 col-lg-6 col-md-6 isotope-item popular">
+                                                        <div class="box_grid">
+                                                            <figure>
+                                                                <a href="#0" data-id="@restaurant.Id" data-group="@EntityGroup.Restaurant" class="wish_bt @(liked ? "liked" : "")"></a>
+                                                                <a href="@url"><img src="@restaurant.Image" class="img-fluid" alt="" width="800" height="533"><div class="read_more"><span>@T("common.readmore")</span></div></a>
+                                                                <small>@Model.Country?.Name - @Model.City?.Name</small>
+                                                            </figure>
+                                                            <div class="wrapper">
+                                                                <div class="cat_star"><i class="icon_star"></i><i class="icon_star"></i><i class="icon_star"></i><i class="icon_star"></i></div>
+                                                                <h3><a href="@url">@restaurant.Title</a></h3>
+                                                                <p>@restaurant.ShortBody</p>
+                                                            </div>
+                                                            <ul>
+                                                                <li><i class="ti-eye"></i> 0 views</li>
+                                                                <li><div class="score"><span>Superb<em>3 Reviews</em></span><strong>8.9</strong></div></li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                }
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                            @if (Model.Transfers.Any())
+                            {
+                                <div class="card" id="transfers">
+                                    <div class="card-header">
+                                        <a class="card-link d-block collapsed" data-toggle="collapse" href="#transfersAccordion">
+                                            @T("common.skiresort.transfers")
+                                        </a>
+                                    </div>
+                                    <div id="transfersAccordion" class="collapse" data-parent="#transfers">
+                                        <div class="card-body">
+                                            <div class="row">
+                                                @foreach (var transfer in Model.Transfers)
+                                                {
+                                                    var url = "/" + _workContext.WorkingLanguage.UniqueSeoCode;
+                                                    var liked = Model.User.WishList.Wishes.Any(o => o.EntityGroup == WCore.Core.Domain.EntityGroup.Transfer && o.EntityKey == transfer.Id);
+                                                    <div class="col-xl-6 col-lg-6 col-md-6 isotope-item popular">
+                                                        <div class="box_grid">
+                                                            <figure>
+                                                                <a href="#0" data-id="@transfer.Id" data-group="@EntityGroup.Transfer" class="wish_bt @(liked ? "liked" : "")"></a>
+                                                                <a href="@url"><img src="@transfer.Image" class="img-fluid" alt="" width="800" height="533"><div class="read_more"><span>@T("common.readmore")</span></div></a>
+                                                                <small>@Model.Country?.Name - @Model.City?.Name</small>
+                                                            </figure>
+                                                            <div class="wrapper">
+                                                                <div class="cat_star"><i class="icon_star"></i><i class="icon_star"></i><i class="icon_star"></i><i class="icon_star"></i></div>
+                                                                <h3><a href="@url">@transfer.Title</a></h3>
+                                                                @if (!string.IsNullOrEmpty(transfer.ShortBody))
+                                                                {
+                                                                    <p>@(transfer.ShortBody.Length > 350 ? transfer.ShortBody.Substring(0,350)+"..." : transfer.ShortBody)</p>
+                                                                }
+                                                                @if (transfer.Prices.Any())
+                                                                {
+                                                                    <select>
+                                                                        @foreach (var price in transfer.Prices)
+                                                                        {
+                                                                            <option>@price.PriceVariation.Name @(price.PriceParentVariation != null ? price.PriceParentVariation.Name  : "") - @price.Value @_workContext.WorkingCurrency.CurrencyCode</option>
+                                                                        }
+                                                                    </select>
+                                                                }
+                                                            </div>
+                                                            <ul>
+                                                                <li><i class="ti-eye"></i> 0 views</li>
+                                                                <li><div class="score"><span>Superb<em>3 Reviews</em></span><strong>8.9</strong></div></li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                }
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                            <div class="card">
+                                <div class="card-header" id="location">
+                                    @T("common.skiresort.location")
+                                </div>
+                                <div class="card-body">
+                                    <div id="map" class="map map_single"></div>
+                                </div>
+                            </div>
+                        </section>
+
+                        @await Component.InvokeAsync("Review", new { entityKey = Model.Id, entityGroup = EntityGroup.SkiResort })
+                    </div>
+                    <aside class="col-lg-4" id="sidebar">
+                        @await Component.InvokeAsync("Search")
+                        <div class="box_detail booking">
+                            <div class="box_style_cat" id="faq_box">
+                                <ul id="cat_nav">
+                                    @if (Model.Descriptions.Any())
+                                    {
+                                        foreach (var description in Model.Descriptions)
+                                        {
+                                            <li><a href="#description-@description.Id"><i class="icon_document_alt"></i> @description.Title</a></li>
+                                        }
+                                    }
+                                </ul>
+                            </div>
+                            <a href="javascript:void(0)" data-id="@Model.Id" data-group="@EntityGroup.SkiResort" class="btn_1 full-width outline wishlist wish_bt"><i class="icon_heart"></i>  @T("common.addtowhishlist")</a>
+                        </div>
+                        <ul class="share-buttons">
+                            <li><a class="fb-share" href="#0"><i class="social_facebook"></i> @T("common.share.facebook")</a></li>
+                            <li><a class="twitter-share" href="#0"><i class="social_twitter"></i> @T("common.share.tweet")</a></li>
+                        </ul>
+                    </aside>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</main>
+@section Scripts{
+    <!-- Map -->
+    <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyApP5AHpxWoetYkls_eEWuXqpx3Fl6PJfg"></script>
+    <script src="/panagea/js/map_single_hotel.js"></script>
+    <script src="/panagea/js/infobox.js"></script>
+
+    <!-- DATEPICKER  -->
+    <script>
+        $(function () {
+            $('input[name="dates"]').daterangepicker({
+                autoUpdateInput: false,
+                parentEl: '.scroll-fix',
+                minDate: new Date(),
+                opens: 'left',
+                locale: {
+                    cancelLabel: 'Clear'
+                }
+            });
+            $('input[name="dates"]').on('apply.daterangepicker', function (ev, picker) {
+                $(this).val(picker.startDate.format('MM-DD-YY') + ' > ' + picker.endDate.format('MM-DD-YY'));
+            });
+            $('input[name="dates"]').on('cancel.daterangepicker', function (ev, picker) {
+                $(this).val('');
+            });
+        });</script>
+
+    <!-- INPUT QUANTITY  -->
+    <script src="/panagea/js/input_qty.js"></script>
+
+}
+
+@section Styles{
+    <style>
+    .hero_in.hotels_detail::before {
+        background: url( @(string.IsNullOrEmpty(Model.Image) ? "/panagea/img/hero_in_hotels_detail.jpg" : Model.Image)) center center no-repeat !important;
+        background-size: cover;
+    }
+    </style>
+}

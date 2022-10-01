@@ -1,0 +1,87 @@
+/*
+Template:  Webster - Responsive Multi-purpose HTML5 Template
+Author: potenzaglobalsolutions.com
+Design and Developed by: potenzaglobalsolutions.com
+
+NOTE: This file contains the styling for the Constuction Template. You can edit/add anything in this file!
+*/
+
+h1 {
+	font-family: 'Roboto', sans-serif;
+	font-weight: normal;
+	color: #363636;
+	margin-top: 0px;
+	text-transform: uppercase;
+	font-weight: bold;
+}
+h2 {
+	font-family: 'Roboto', sans-serif;
+	font-weight: normal;
+	color: #363636;
+	margin-top: 0px;
+	text-transform: uppercase;
+	font-weight: bold;
+}
+h3 {
+	font-family: 'Roboto', sans-serif;
+	font-weight: normal;
+	color: #363636;
+	margin-top: 0px;
+	text-transform: uppercase;
+	font-weight: bold;
+}
+h4 {
+	font-family: 'Roboto', sans-serif;
+	font-weight: normal;
+	color: #363636;
+	margin-top: 0px;
+	text-transform: uppercase;
+	font-weight: bold;
+}
+h5 {
+	font-family: 'Roboto', sans-serif;
+	font-weight: normal;
+	color: #363636;
+	margin-top: 0px;
+	text-transform: uppercase;
+	font-weight: bold;
+}
+h6 {
+	font-family: 'Roboto', sans-serif;
+	font-weight: normal;
+	color: #363636;
+	margin-top: 0px;
+	text-transform: uppercase;
+	font-weight: bold;
+}
+.our-sercive1 {
+	position: relative;
+	z-index: 0;
+	overflow: hidden;
+	&:before {
+		content: "";
+		position: absolute;
+		z-index: -1;
+		background: url(../../../demo-categories/construction/images/element/02.png) no-repeat 0 0;
+		background-size: cover;
+		left: -70px;
+		top: 130px;
+		width: 350px;
+		height: 236px;
+	}
+	&:after {
+		content: "";
+		position: absolute;
+		z-index: -1;
+		background: url(../../../demo-categories/construction/images/element/03.png) no-repeat 0 0;
+		background-size: cover;
+		right: -60px;
+		top: 50px;
+		width: 280px;
+		height: 164px;
+	}
+}
+.top-info {
+	padding: 30px;
+}
+

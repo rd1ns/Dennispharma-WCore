@@ -1,0 +1,76 @@
+/*
+Template:  Webster - Responsive Multi-purpose HTML5 Template
+Author: potenzaglobalsolutions.com
+Design and Developed by: potenzaglobalsolutions.com
+
+NOTE: This file contains the styling for the barber Template. You can edit/add anything in this file!
+*/
+ 
+h1, h2, h3, h4, h5, h6 { font-family: 'Patua One', cursive; }
+body { font-family: 'Patua One', cursive; }
+
+.button { font-size: 18px;  font-family: 'Patua One', cursive; }
+
+/*barber-header*/
+
+@media (min-width: 992px){
+.barber-header .mega-menu li { display: inline-block; }
+.barber-header .mega-menu .topbar-social ul li { margin-right: 0; }
+.barber-header .mega-menu .menu-logo > li > a img { height: 90px; }
+.barber-header .mega-menu .topbar-social { position: absolute; left: 0; top: 50%; -webkit-transform: translateY(-50%); -moz-transform: translateY(-50%); -ms-transform: translateY(-50%); -o-transform: translateY(-50%); transform: translateY(-50%);}
+.barber-header .mega-menu .topbar-telephone { position: absolute; right: 0; top: 50%; -webkit-transform: translateY(-50%); -moz-transform: translateY(-50%); -ms-transform: translateY(-50%); -o-transform: translateY(-50%); transform: translateY(-50%);}
+.barber-header .mega-menu > section.menu-list-items .menu-bar > ul {  display: inline-block !important;  float: none; }
+.barber-header.logo-center .mega-menu > section.menu-list-items .menu-bar { text-align: center; display: inline-block; width: 100%; }
+.barber-header .mega-menu.desktopTopFixed > section.menu-list-items .menu-bar { text-align: inherit; display: inherit; width: auto; }
+.barber-header .mega-menu.desktopTopFixed > section.menu-list-items .menu-bar > ul {  display: inherit !important;  float: inherit; }
+.barber-header .mega-menu.desktopTopFixed .topbar-social {display: none; }
+.barber-header .mega-menu.desktopTopFixed .topbar-telephone { display: none; }
+}
+
+
+/*barber banner*/
+.barber-banner { height:70vh; position: relative; z-index: 9; }
+.barber-banner .slider-content h1 { font-size: 48px; line-height: 48px; position: relative; letter-spacing: 7px; }
+.barber-banner .slider-content p { font-size: 21px; line-height: 24px; letter-spacing: 6px; }
+.barber-banner .slider-content span { font-size: 20px; line-height: 20px; letter-spacing: 4px; }
+
+/*barber section title*/
+.barber-section-title { margin-bottom: 40px; }
+.barber-section-title h2 { position: relative; z-index: 9; }
+.barber-title span { position: absolute; font-size: 150px; color: rgba(0, 0, 0, 0.1); top: -50px; line-height: 150px; }
+
+/*about*/
+.barber .about-img-01 { position: absolute; top: -50px; z-index: 9; }
+.barber .about-img-02 { position: absolute; top: 310px; z-index: 9; right: -90px; }
+.barber .about-history { margin: 90px 40px 90px 150px; }
+.barber .barber-title span { left: 0px; }
+
+/*choose us*/
+.choose-us-bg { position: relative; padding: 100px 20px 100px 15px; }
+.choose-us-bg:before { position: absolute; width: 100%; height: 100%; content: ""; background: #f7f7f7; left: -100%; top: 0; }
+
+/*team*/
+.team .barber-title span, .service .barber-title span, .barber-contact .barber-title span { left: 0; right: 0; }
+.team .barber-section-title { position: absolute; left: 0; right: 0; bottom: 0; }
+.barber-team { background-position: center 15px; }
+
+/*price listing*/
+.price-listing { margin-top: -80px; }
+.listing ul li { display: inline-block; float: left; width: 100%; padding: 15px 0; color: #ffffff; font-size: 21px; line-height: 24px; }
+.listing ul li.divider.dashed { border-color: rgba(255, 255, 255, 0.1) }
+.pricing-divider { width: 100%; overflow: hidden; text-align: center; }
+.pricing-divider img { width: 50px; }
+.pricing-divider:before, .pricing-divider:after { border-bottom: 2px dashed rgba(255, 255, 255, 0.1); content: ""; display: inline-block; height: 10px; margin: 18px 25px 0 -100%; vertical-align: top; width: 50%; }
+.pricing-divider:after { margin: 18px -100% 0 25px; }
+
+/*contact*/
+.barber-contact i { font-size: 40px; }
+.barber-contact p { font-size: 16px; }
+
+/*footer*/
+.footer h6 { font-weight: 400; }
+
+/*theme color*/
+.theme-bg { background: #ba893f; }
+.theme-color { color: #ba893f; }
+ 

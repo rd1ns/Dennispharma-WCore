@@ -1,0 +1,73 @@
+/*
+Template:  Webster - Responsive Multi-purpose HTML5 Template
+Author: potenzaglobalsolutions.com
+Design and Developed by: potenzaglobalsolutions.com
+
+NOTE: This file contains the styling for the pizza Template. You can edit/add anything in this file!
+*/
+
+body { font-family: 'Oswald', sans-serif; }
+ 
+h1, h2, h3, h4, h5, h6 { font-family: 'Kaushan Script', cursive; color: #363636; margin-top: 0px; text-transform: capitalize; }
+ 
+.button, .form-control, .nice-select, .footer-Newsletter .form-control { border-radius: 0; } 
+
+.section-title h2 { font-size: 50px; line-height: 60px; }
+
+@media(min-width:1400px) { 
+.container { width: 1400px; }
+}
+
+
+#header.pizza-menu .container-fluid { padding: 0 100px; }
+#header.pizza-menu .mega-menu .menu-links > li > a { font-size: 22px; text-transform: uppercase; font-weight: 600; }
+#header.pizza-menu .mega-menu .menu-links > li.active > a, #header.pizza-menu .mega-menu .menu-links > li > a:hover { color: #f1a317 !important; }
+#header.pizza-menu .mega-menu .menu-logo img { height: 70px; }
+#header.pizza-menu .mega-menu.desktopTopFixed .menu-list-items .menu-logo > li > a img { height: 40px; }
+
+
+.rev-slider { margin: 0 100px; }
+
+.pizza-bg { background: -moz-linear-gradient(top,rgba(216,59,59,1) 0,rgba(241,163,23,1) 100%); background: -webkit-gradient(linear,left top,left bottom,color-stop(0,rgba(216,59,59,1)),color-stop(100%,rgba(241,163,23,1))); background: -webkit-linear-gradient(top,rgba(216,59,59,1) 0,rgba(241,163,23,1) 100%); background: -o-linear-gradient(top,rgba(216,59,59,1) 0,rgba(241,163,23,1) 100%); background: -ms-linear-gradient(top,rgba(216,59,59,1) 0,rgba(241,163,23,1) 100%);  background: linear-gradient(to bottom,rgba(216,59,59,1) 0,rgba(241,163,23,1) 100%);  } 
+
+/*pizza-about*/
+.pizza-about { background-position: top !important; }
+.pizza-about h2 { font-size: 50px; line-height: 60px; }
+.pizza-about p { font-size: 20px; }
+.pizza-about .pizza-about-content { padding: 80px 0 120px; }
+
+/*pizza-feature-content*/
+.pizza-feature-content { padding: 100px 80px; }
+
+/*menu*/
+.menu-body .menu-thumbnail { margin-bottom: 25px; margin-right: 20px; margin-bottom: 0 }
+.menu-body .menu-title { margin-bottom: 20px; position: relative; border-bottom: 2px dashed #ffffff; padding-bottom: 15px; }
+.menu-body .menu-title h2 { display: inline-block;  }
+.menu-body .menu-details .price { position: absolute; right: 0; top: 0; font-size: 30px; line-height: 40px; font-weight: 600; }
+.menu-body .menu-description p { font-size: 20px; }
+
+/*pizza-dish*/
+.pizza-dish-main .objects-left, .pizza-dish-main .objects-right { top: 0; }
+.pizza-dish-main .objects-left .objects-1 { left: 0; }
+.pizza-dish { font-size: 26px; font-family: 'Kaushan Script', cursive; }
+
+ /*pizza-contact*/
+ .pizza-form { box-shadow: 0 0 1px rgba(0,0,0,.3); position: relative; }
+ .pizza-form .theme-bg { padding: 30px 40px; }
+ .pizza-form .register-form { padding: 30px; }
+ .pizza-form .register-form .input-group-prepend { border-radius: 0; }
+ .pizza-contact { padding: 0px 40px; }
+ .pizza-contact .call { padding: 20px;  }
+ .pizza-contact .call h6 { font-size: 22px; line-height: 30px; margin-bottom: 0; }
+ .pizza-contact .addresss-info p, .pizza-contact .addresss-info i, .pizza-contact .addresss-info li { color: #323232; }
+
+
+ .bg-overlay-theme-10:before {  background: rgba(241,163,23, 0.1) !important; }
+ .bg-overlay-theme-20:before {  background: rgba(241,163,23, 0.2) !important; }
+ .bg-overlay-theme-30:before {  background: rgba(241,163,23, 0.3) !important; }
+ .bg-overlay-theme-40:before {  background: rgba(241,163,23, 0.4) !important; }
+ .bg-overlay-theme-50:before {  background: rgba(241,163,23, 0.5) !important; }
+ .bg-overlay-theme-60:before {  background: rgba(241,163,23, 0.6) !important; }
+ .bg-overlay-theme-70:before {  background: rgba(241,163,23, 0.7) !important; }
+ .bg-overlay-theme-80:before {  background: rgba(241,163,23, 0.8) !important; }
+ .bg-overlay-theme-90:before {  background: rgba(241,163,23, 0.9) !important; }

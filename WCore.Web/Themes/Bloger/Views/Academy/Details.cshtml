@@ -1,0 +1,124 @@
+﻿@inject SeoSettings _seoSettings
+@inject IWebHelper _webHelper
+@inject WCore.Core.IWorkContext _workContext
+
+@model AcademyViewModel
+@{
+    ViewBag.Title = Model.Academy.Title;
+
+    @if (_seoSettings.TwitterMetaTags)
+    {
+        ViewBag.TwtterCard = "";
+        ViewBag.TwtterUrl = _webHelper.GetThisPageUrl(true);
+        ViewBag.TwtterImage = _webHelper.GetStoreLocation().Substring(0, _webHelper.GetStoreLocation().Length - 1) + Model.Academy.Image;
+    }
+
+    @if (_seoSettings.OpenGraphMetaTags)
+    {
+        ViewBag.OgUrl = _webHelper.GetStoreLocation();
+        ViewBag.OgImage = _webHelper.GetStoreLocation().Substring(0, _webHelper.GetStoreLocation().Length - 1) + Model.Academy.Image;
+    }
+}
+<!--=================================
+page-title-->
+
+@await Component.InvokeAsync("PageTitle", Model.Academy.PageTitle)
+<!--=================================
+page-title -->
+<!--=================================
+content -->
+
+<section class="blog blog-single white-bg page-section-ptb">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3">
+                <div class="sidebar-widget">
+                    <h6 class="mb-20">@T("Common.Search")</h6>
+                    <div class="widget-search">
+                        <i class="fa fa-search"></i>
+                        <input type="search" class="form-control" placeholder="@T("Common.Academy.Search")">
+                    </div>
+                </div>
+                <div class="sidebar-widget clearfix">
+                    <h6 class="mt-40 mb-20">@T("Common.Academy.Categories")</h6>
+                    <ul class="widget-categories">
+                        @foreach (var item in Model.AcademyCategoryList.AcademyCategories)
+                        {
+
+                            <li><a href="/@item.SeName"><i class="fa fa-angle-double-right"></i> @item.Title</a></li>
+                        }
+                    </ul>
+                </div>
+            </div>
+            <!-- ========================== -->
+            <div class="col-lg-9">
+                <div class="blog-entry mb-10">
+                    <div class="blog-detail">
+                        <div class="entry-meta mb-10">
+                            <ul>
+                                <li> <i class="fa fa-folder-open-o"></i> <a href="@Model.Academy.AcademyCategory.SeName"> @Model.Academy.AcademyCategory.Title </a> </li>
+                            </ul>
+                        </div>
+                        <div class="entry-content">
+                            <div class="tab nav-bt border">
+                                <ul class="nav nav-tabs nav-fill mb-0" id="myTab" role="tablist">
+                                    <li class="nav-item">
+                                        <a class="nav-link active show" id="home-03-tab" data-toggle="tab" href="#home-03" role="tab" aria-controls="home-03" aria-selected="true">Videolar</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" id="profile-03-tab" data-toggle="tab" href="#profile-03" role="tab" aria-controls="profile-03" aria-selected="false">Fotoğraflar </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" id="portfolio-03-tab" data-toggle="tab" href="#portfolio-03" role="tab" aria-controls="portfolio-03" aria-selected="false">Dosyalar </a>
+                                    </li>
+                                </ul>
+                                <div class="tab-content p-2" id="myTabContent">
+                                    <div class="tab-pane fade active show" id="home-03" role="tabpanel" aria-labelledby="home-03-tab">
+                                        <div class="row">
+                                            <div class="col-lg-12">
+                                                @if (Model.Academy.AcademyVideos != null)
+                                                {
+                                                    foreach (var video in Model.Academy.AcademyVideos.AcademyVideos)
+                                                    {
+                                                        <p>@video.Path</p>
+                                                    }
+                                                }
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane fade" id="profile-03" role="tabpanel" aria-labelledby="profile-03-tab">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                @if (Model.Academy.AcademyImages != null)
+                                                {
+                                                    foreach (var video in Model.Academy.AcademyImages.AcademyImages)
+                                                    {
+                                                        <p>@video.Small</p>
+                                                    }
+                                                }
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane fade" id="portfolio-03" role="tabpanel" aria-labelledby="portfolio-03-tab">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                @if (Model.Academy.AcademyFiles != null)
+                                                {
+                                                    foreach (var video in Model.Academy.AcademyFiles.AcademyFiles)
+                                                    {
+                                                        <p>@video.Path</p>
+                                                    }
+                                                }
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            @Html.Raw(Model.Academy.Body)
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

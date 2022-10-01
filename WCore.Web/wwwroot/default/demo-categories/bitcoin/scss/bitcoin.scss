@@ -1,0 +1,564 @@
+/*
+Template:  Webster - Responsive Multi-purpose HTML5 Template
+Author: potenzaglobalsolutions.com
+Design and Developed by: potenzaglobalsolutions.com
+
+NOTE: This file contains the styling for the bitcoin Template. You can edit/add anything in this file!
+*/
+
+body {
+	font-family: 'Rubik', sans-serif;
+}
+h1 {
+	font-family: 'Rubik', sans-serif;
+}
+h2 {
+	font-family: 'Rubik', sans-serif;
+	font-size: 40px;
+	line-height: 40px;
+	font-weight: 500;
+}
+h3 {
+	font-family: 'Rubik', sans-serif;
+}
+h4 {
+	font-family: 'Rubik', sans-serif;
+}
+h5 {
+	font-family: 'Rubik', sans-serif;
+}
+h6 {
+	font-family: 'Rubik', sans-serif;
+}
+* {
+	&::-moz-selection {
+		background: #f7c605;
+		color: #fff;
+		text-shadow: none;
+	}
+}
+&::-moz-selection {
+	background: #f7c605;
+	color: #fff;
+	text-shadow: none;
+}
+&::selection {
+	background: #f7c605;
+	color: #fff;
+	text-shadow: none;
+}
+.button {
+	border: none;
+	background: #f7c605;
+	background: -webkit-gradient(linear, 100% 0, 0 0, from(#ff8850), to(#f7c605));
+	background: -webkit-linear-gradient(right, #ff8850, #f7c605) !important;
+	background: -moz-linear-gradient(right, #ff8850, #f7c605);
+	background: -o-linear-gradient(right, #ff8850, #f7c605);
+	background: linear-gradient(right, #ff8850, #f7c605);
+	border-radius: 3px;
+}
+.form-control {
+	border-radius: 3px;
+}
+.nice-select {
+	border-radius: 3px;
+}
+.bitcoin-banner {
+	h1 {
+		font-size: 100px;
+		line-height: 100px;
+		font-weight: 600;
+	}
+	h3 {
+		display: inline-block;
+		margin: 10px 15px;
+		span {
+			display: block;
+			text-align: left;
+			font-size: 20px;
+		}
+	}
+	p {
+		display: block;
+		font-size: 20px;
+	}
+	.button {
+		font-size: 18px;
+	}
+	.tab {
+		.nav-tabs {
+			>li {
+				>a {
+					border: none;
+					text-transform: uppercase;
+					font-size: 16px;
+					background: #ffffff;
+					font-weight: 600;
+				}
+			}
+		}
+		.nav.nav-tabs {
+			>li {
+				>a.active {
+					border: none;
+					background: #f7c605;
+					background: -webkit-gradient(linear, 100% 0, 0 0, from(#ff8850), to(#f7c605));
+					background: -webkit-linear-gradient(right, #ff8850, #f7c605) !important;
+					background: -moz-linear-gradient(right, #ff8850, #f7c605);
+					background: -o-linear-gradient(right, #ff8850, #f7c605);
+					background: linear-gradient(right, #ff8850, #f7c605);
+				}
+			}
+		}
+	}
+	.nav.nav-tabs {
+		>li {
+			>a.active {
+				&:focus {
+					border: none;
+					background: #f7c605;
+					background: -webkit-gradient(linear, 100% 0, 0 0, from(#ff8850), to(#f7c605));
+					background: -webkit-linear-gradient(right, #ff8850, #f7c605) !important;
+					background: -moz-linear-gradient(right, #ff8850, #f7c605);
+					background: -o-linear-gradient(right, #ff8850, #f7c605);
+					background: linear-gradient(right, #ff8850, #f7c605);
+				}
+				&:hover {
+					border: none;
+					background: #f7c605;
+					background: -webkit-gradient(linear, 100% 0, 0 0, from(#ff8850), to(#f7c605));
+					background: -webkit-linear-gradient(right, #ff8850, #f7c605) !important;
+					background: -moz-linear-gradient(right, #ff8850, #f7c605);
+					background: -o-linear-gradient(right, #ff8850, #f7c605);
+					background: linear-gradient(right, #ff8850, #f7c605);
+				}
+			}
+		}
+	}
+}
+.bitcoin-about-bg {
+	position: relative;
+	margin-top: -100px;
+	padding: 60px;
+	background: #f7c605;
+	background: -webkit-gradient(linear, 100% 0, 0 0, from(#ff8850), to(#f7c605));
+	background: -webkit-linear-gradient(right, #ff8850, #f7c605);
+	background: -moz-linear-gradient(right, #ff8850, #f7c605);
+	background: -o-linear-gradient(right, #ff8850, #f7c605);
+	background: linear-gradient(right, #ff8850, #f7c605);
+}
+.bitcoin-box {
+	span {
+		font-size: 40px;
+		line-height: 40px;
+		font-weight: 500;
+	}
+}
+.currency-calculator {
+	.cryptonatorwidget {
+		border: none !important;
+		padding: 0 !important;
+		margin-top: 20px;
+		input {
+			background: #f6f5f6;
+			padding: 19px;
+			border: none;
+			font-size: 16px !important;
+			color: #323232 !important;
+			text-transform: capitalize;
+		}
+		select {
+			background: #f6f5f6;
+			padding: 20px;
+			border: none;
+			font-size: 16px !important;
+		}
+		table {
+			tr {
+				td {
+					padding: 10px;
+				}
+			}
+			+ {
+				div {
+					display: none;
+				}
+			}
+		}
+	}
+	.feature-text {
+		position: relative;
+		.feature-icon {
+			border: 2px dashed rgba(0,0,0,0.1);
+			border-radius: 50%;
+			width: 180px;
+			height: 180px;
+			margin: 0 auto;
+			padding: 30px;
+		}
+		.feature-arrow {
+			position: absolute;
+			right: -12%;
+			top: 35%;
+			display: block;
+			transform: translateY(-50%);
+			-webkit-transform: translateY(-50%);
+			-o-transform: translateY(-50%);
+			-ms-transform: translateY(-50%);
+			-moz-transform: translateY(-50%);
+			transform: translateY(-50%);
+			opacity: 0.2;
+		}
+	}
+}
+.bitcoin-custom-conten-box {
+	padding: 100px;
+}
+.bitcoin-custom-content {
+	.counter {
+		span.icon {
+			font-size: 60px;
+			color: #f7c605;
+			background: -webkit-gradient(linear, 100% 0, 0 0, from(#ff8850), to(#f7c605));
+			background: -webkit-linear-gradient(right, #ff8850, #f7c605);
+			background: -moz-linear-gradient(right, #ff8850, #f7c605);
+			background: -o-linear-gradient(right, #ff8850, #f7c605);
+			background: linear-gradient(right, #ff8850, #f7c605);
+			-webkit-background-clip: text;
+			-webkit-text-fill-color: transparent;
+		}
+		label {
+			text-transform: capitalize;
+			font-size: 18px;
+		}
+	}
+}
+.choose-bitcoin {
+	position: relative;
+	.choose-bitcoin-content {
+		position: relative;
+		z-index: 2;
+	}
+	.feature-text {
+		.feature-icon {
+			span {
+				color: #f7c605;
+				background: -webkit-gradient(linear, 100% 0, 0 0, from(#ff8850), to(#f7c605));
+				background: -webkit-linear-gradient(right, #ff8850, #f7c605);
+				background: -moz-linear-gradient(right, #ff8850, #f7c605);
+				background: -o-linear-gradient(right, #ff8850, #f7c605);
+				background: linear-gradient(right, #ff8850, #f7c605);
+				-webkit-background-clip: text;
+				-webkit-text-fill-color: transparent;
+			}
+			i {
+				color: #f7c605;
+				background: -webkit-gradient(linear, 100% 0, 0 0, from(#ff8850), to(#f7c605));
+				background: -webkit-linear-gradient(right, #ff8850, #f7c605);
+				background: -moz-linear-gradient(right, #ff8850, #f7c605);
+				background: -o-linear-gradient(right, #ff8850, #f7c605);
+				background: linear-gradient(right, #ff8850, #f7c605);
+				-webkit-background-clip: text;
+				-webkit-text-fill-color: transparent;
+			}
+		}
+	}
+	.objects-left {
+		top: 0;
+		z-index: 0;
+		.objects-1 {
+			left: 0;
+		}
+	}
+	.objects-right {
+		bottom: 0;
+		z-index: 0;
+		top: inherit;
+		.objects-4 {
+			right: 0;
+			bottom: 0;
+			top: inherit;
+		}
+	}
+}
+.chart-bitcoin {
+	strong {
+		font-size: 18px;
+	}
+	.chart-bitcoin-content {
+		margin-top: 40px;
+	}
+	.table {
+		td {
+			img {
+				height: 30px;
+				margin-right: 10px;
+				display: inline-block;
+			}
+		}
+	}
+}
+.bitcoin-custom-content-02 {
+	.counter {
+		span {
+			font-size: 100px;
+			line-height: 100px;
+			font-weight: 900;
+			color: #f7c605;
+			background: -webkit-gradient(linear, 100% 0, 0 0, from(#ff8850), to(#f7c605));
+			background: -webkit-linear-gradient(right, #ff8850, #f7c605);
+			background: -moz-linear-gradient(right, #ff8850, #f7c605);
+			background: -o-linear-gradient(right, #ff8850, #f7c605);
+			background: linear-gradient(right, #ff8850, #f7c605);
+			-webkit-background-clip: text;
+			-webkit-text-fill-color: transparent;
+		}
+		label {
+			font-size: 24px;
+			text-transform: capitalize;
+		}
+	}
+	p {
+		font-size: 18px;
+	}
+	.button {
+		margin-top: 60px;
+	}
+}
+.bitcoin-price {
+	.tab {
+		.nav-tabs {
+			>li {
+				>a {
+					border: none;
+					text-transform: uppercase;
+					font-size: 16px;
+				}
+			}
+		}
+		.nav.nav-tabs {
+			>li {
+				>a.active {
+					border: none;
+					color: #f7c605;
+					background: -webkit-gradient(linear, 100% 0, 0 0, from(#ff8850), to(#f7c605));
+					background: -webkit-linear-gradient(right, #ff8850, #f7c605) !important;
+					background: -moz-linear-gradient(right, #ff8850, #f7c605);
+					background: -o-linear-gradient(right, #ff8850, #f7c605);
+					background: linear-gradient(right, #ff8850, #f7c605);
+					color: #ffffff;
+				}
+			}
+		}
+	}
+	.nav.nav-tabs {
+		>li {
+			>a.active {
+				&:focus {
+					border: none;
+					color: #f7c605;
+					background: -webkit-gradient(linear, 100% 0, 0 0, from(#ff8850), to(#f7c605));
+					background: -webkit-linear-gradient(right, #ff8850, #f7c605) !important;
+					background: -moz-linear-gradient(right, #ff8850, #f7c605);
+					background: -o-linear-gradient(right, #ff8850, #f7c605);
+					background: linear-gradient(right, #ff8850, #f7c605);
+					color: #ffffff;
+				}
+				&:hover {
+					border: none;
+					color: #f7c605;
+					background: -webkit-gradient(linear, 100% 0, 0 0, from(#ff8850), to(#f7c605));
+					background: -webkit-linear-gradient(right, #ff8850, #f7c605) !important;
+					background: -moz-linear-gradient(right, #ff8850, #f7c605);
+					background: -o-linear-gradient(right, #ff8850, #f7c605);
+					background: linear-gradient(right, #ff8850, #f7c605);
+					color: #ffffff;
+				}
+			}
+		}
+	}
+	.pricing-table.active {
+		.pricing-top {
+			border-color: #f7c605;
+		}
+	}
+}
+.footer {
+	.footer-social {
+		ul {
+			li {
+				a {
+					&:hover {
+						color: #f7c605 !important;
+					}
+				}
+			}
+		}
+	}
+}
+a {
+	color: #f7c605;
+	&:hover {
+		color: #f7c605;
+	}
+}
+.theme-color {
+	color: #f7c605;
+}
+.mega-menu {
+	.menu-links {
+		>li.active {
+			a {
+				color: #f7c605;
+			}
+			.drop-down-multilevel {
+				a {
+					&:hover {
+						color: #f7c605;
+					}
+				}
+			}
+		}
+		>li {
+			>a {
+				&:hover {
+					color: #f7c605;
+				}
+			}
+		}
+	}
+	.drop-down-multilevel {
+		li {
+			&:hover {
+				>a {
+					color: #f7c605;
+				}
+			}
+		}
+	}
+}
+.play-video {
+	&:hover {
+		color: #f7c605;
+	}
+	background: #f7c605;
+}
+.popup-video {
+	.play-video {
+		&:hover {
+			a {
+				color: #f7c605;
+			}
+		}
+	}
+}
+.footer-useful-link {
+	ul {
+		li {
+			a {
+				&:hover {
+					color: #f7c605;
+				}
+			}
+		}
+	}
+}
+.footer-widget {
+	a {
+		&:hover {
+			color: #f7c605;
+		}
+		color: #f7c605;
+	}
+}
+.blog {
+	.admin {
+		a {
+			color: #f7c605;
+		}
+	}
+	a {
+		&:hover {
+			color: #f7c605;
+		}
+	}
+}
+ul.list {
+	li {
+		&:after {
+			color: #f7c605;
+		}
+	}
+}
+ul.page-breadcrumb {
+	li {
+		a {
+			&:hover {
+				color: #f7c605;
+			}
+		}
+	}
+}
+.sidebar-widget {
+	.recent-post {
+		.recent-post-info {
+			a {
+				&:hover {
+					color: #f7c605;
+				}
+			}
+			span {
+				color: #f7c605;
+			}
+		}
+	}
+	.widget-categories {
+		li {
+			a {
+				&:hover {
+					color: #f7c605;
+					i {
+						color: #f7c605;
+					}
+				}
+			}
+		}
+	}
+}
+.blog-entry {
+	.blog-detail {
+		.entry-title {
+			a {
+				&:hover {
+					color: #f7c605;
+				}
+			}
+		}
+	}
+	.entry-meta {
+		ul {
+			li {
+				a {
+					i {
+						color: #f7c605;
+					}
+					&:hover {
+						color: #f7c605;
+					}
+				}
+				i {
+					color: #f7c605;
+				}
+			}
+		}
+	}
+}
+#back-to-top {
+	.top {
+		background: #f7c605;
+	}
+}
+
+
+
+

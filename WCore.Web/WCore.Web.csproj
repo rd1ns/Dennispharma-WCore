@@ -1,0 +1,209 @@
+﻿  <Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <!--Set this parameter to true to get the dlls copied from the NuGet cache to the output of your project-->
+    <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+    <!--<AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>-->
+    <AspNetCoreHostingModel>OutOfProcess</AspNetCoreHostingModel>
+    <AspNetCoreModuleName>AspNetCoreModule</AspNetCoreModuleName>
+    <!--When true, compiles and emits the Razor assembly as part of publishing the project-->
+    <RazorCompileOnBuild>false</RazorCompileOnBuild>
+    <RazorCompileOnPublish>false</RazorCompileOnPublish>
+    <RunAnalyzersDuringBuild>false</RunAnalyzersDuringBuild>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Themes\Default\**" />
+    <Compile Remove="Themes\Panagea\**" />
+    <Compile Remove="Themes\Veribase\**" />
+    <Compile Remove="wwwroot\admin\**" />
+    <Compile Remove="wwwroot\db_backups\**" />
+    <Compile Remove="wwwroot\editor\**" />
+    <Compile Remove="wwwroot\icons\**" />
+    <Compile Remove="wwwroot\images\**" />
+    <Compile Remove="wwwroot\img\**" />
+    <Compile Remove="wwwroot\lib\**" />
+    <Compile Remove="wwwroot\panagea\**" />
+    <Compile Remove="wwwroot\telerik\**" />
+    <Compile Remove="wwwroot\uploads\**" />
+    <Compile Remove="wwwroot\webster\**" />
+    <Content Remove="Themes\Default\**" />
+    <Content Remove="Themes\Panagea\**" />
+    <Content Remove="Themes\Veribase\**" />
+    <Content Remove="wwwroot\admin\**" />
+    <Content Remove="wwwroot\db_backups\**" />
+    <Content Remove="wwwroot\editor\**" />
+    <Content Remove="wwwroot\icons\**" />
+    <Content Remove="wwwroot\images\**" />
+    <Content Remove="wwwroot\img\**" />
+    <Content Remove="wwwroot\lib\**" />
+    <Content Remove="wwwroot\panagea\**" />
+    <Content Remove="wwwroot\telerik\**" />
+    <Content Remove="wwwroot\uploads\**" />
+    <Content Remove="wwwroot\webster\**" />
+    <EmbeddedResource Remove="Themes\Default\**" />
+    <EmbeddedResource Remove="Themes\Panagea\**" />
+    <EmbeddedResource Remove="Themes\Veribase\**" />
+    <EmbeddedResource Remove="wwwroot\admin\**" />
+    <EmbeddedResource Remove="wwwroot\db_backups\**" />
+    <EmbeddedResource Remove="wwwroot\editor\**" />
+    <EmbeddedResource Remove="wwwroot\icons\**" />
+    <EmbeddedResource Remove="wwwroot\images\**" />
+    <EmbeddedResource Remove="wwwroot\img\**" />
+    <EmbeddedResource Remove="wwwroot\lib\**" />
+    <EmbeddedResource Remove="wwwroot\panagea\**" />
+    <EmbeddedResource Remove="wwwroot\telerik\**" />
+    <EmbeddedResource Remove="wwwroot\uploads\**" />
+    <EmbeddedResource Remove="wwwroot\webster\**" />
+    <EntityDeploy Remove="Themes\Default\**" />
+    <EntityDeploy Remove="Themes\Panagea\**" />
+    <EntityDeploy Remove="Themes\Veribase\**" />
+    <EntityDeploy Remove="wwwroot\admin\**" />
+    <EntityDeploy Remove="wwwroot\db_backups\**" />
+    <EntityDeploy Remove="wwwroot\editor\**" />
+    <EntityDeploy Remove="wwwroot\icons\**" />
+    <EntityDeploy Remove="wwwroot\images\**" />
+    <EntityDeploy Remove="wwwroot\img\**" />
+    <EntityDeploy Remove="wwwroot\lib\**" />
+    <EntityDeploy Remove="wwwroot\panagea\**" />
+    <EntityDeploy Remove="wwwroot\telerik\**" />
+    <EntityDeploy Remove="wwwroot\uploads\**" />
+    <EntityDeploy Remove="wwwroot\webster\**" />
+    <None Remove="Themes\Default\**" />
+    <None Remove="Themes\Panagea\**" />
+    <None Remove="Themes\Veribase\**" />
+    <None Remove="wwwroot\admin\**" />
+    <None Remove="wwwroot\db_backups\**" />
+    <None Remove="wwwroot\editor\**" />
+    <None Remove="wwwroot\icons\**" />
+    <None Remove="wwwroot\images\**" />
+    <None Remove="wwwroot\img\**" />
+    <None Remove="wwwroot\lib\**" />
+    <None Remove="wwwroot\panagea\**" />
+    <None Remove="wwwroot\telerik\**" />
+    <None Remove="wwwroot\uploads\**" />
+    <None Remove="wwwroot\webster\**" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="_Startup.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Autofac" Version="6.0.0" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.0.0" />
+    <PackageReference Include="ImageProcessor" Version="2.9.1" />
+    <PackageReference Include="ImageProcessor.Plugins.WebP" Version="1.3.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.TagHelpers" Version="2.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.ViewFeatures" Version="2.2.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.5" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.5">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="3.1.8" />
+    <PackageReference Include="Microsoft.Extensions.Logging" Version="3.1.9" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.4" />
+    <PackageReference Include="RestSharp" Version="106.11.7" />
+    <PackageReference Include="SixLabors.ImageSharp" Version="1.0.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\WCore.Core\WCore.Core.csproj" />
+    <ProjectReference Include="..\WCore.Framework\WCore.Framework.csproj" />
+    <ProjectReference Include="..\WCore.Services\WCore.Services.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Areas\Admin\Models\Catalog\" />
+    <Folder Include="Plugins\" />
+    <Folder Include="wwwroot\uploads\formuploads\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Areas\Admin\Views\Menu\AddOrEdit.cshtml" />
+    <None Include="Areas\Admin\Views\Menu\List.cshtml" />
+    <None Include="Areas\Admin\Views\RoleGroup\AddOrEdit.cshtml" />
+    <None Include="Areas\Admin\Views\RoleGroup\List.cshtml" />
+    <None Include="Areas\Admin\Views\Shared\Components\LayoutSidebar\Default.cshtml" />
+    <None Include="Themes\Bloger\Views\AcademyCategory\Details.cshtml" />
+    <None Include="Themes\Bloger\Views\Academy\Details.cshtml" />
+    <None Include="Themes\Bloger\Views\Auth\Index.cshtml" />
+    <None Include="Themes\Bloger\Views\Auth\Login.cshtml" />
+    <None Include="Themes\Bloger\Views\Auth\PasswordRecovery.cshtml" />
+    <None Include="Themes\Bloger\Views\Auth\PasswordRecoveryConfirm.cshtml" />
+    <None Include="Themes\Bloger\Views\Auth\Register.cshtml" />
+    <None Include="Themes\Bloger\Views\Auth\RegisterResult.cshtml" />
+    <None Include="Themes\Bloger\Views\Common\Error.cshtml" />
+    <None Include="Themes\Bloger\Views\Common\PageNotFound.cshtml" />
+    <None Include="Themes\Bloger\Views\Congress\Details.cshtml" />
+    <None Include="Themes\Bloger\Views\Home\Index.cshtml" />
+    <None Include="Themes\Bloger\Views\Hotel\Details.cshtml" />
+    <None Include="Themes\Bloger\Views\Hotel\List.cshtml" />
+    <None Include="Themes\Bloger\Views\NewsCategory\Details.cshtml" />
+    <None Include="Themes\Bloger\Views\News\Details.cshtml" />
+    <None Include="Themes\Bloger\Views\Page\Details.cshtml" />
+    <None Include="Themes\Bloger\Views\Restaurant\Details.cshtml" />
+    <None Include="Themes\Bloger\Views\Restaurant\List.cshtml" />
+    <None Include="Themes\Bloger\Views\Room\Details.cshtml" />
+    <None Include="Themes\Bloger\Views\Room\List.cshtml" />
+    <None Include="Themes\Bloger\Views\Search\Index.cshtml" />
+    <None Include="Themes\Bloger\Views\Shared\Components\AcademyCategory\Default.cshtml" />
+    <None Include="Themes\Bloger\Views\Shared\Components\Congress\Default.cshtml" />
+    <None Include="Themes\Bloger\Views\Shared\Components\CurrencySelector\Default.cshtml" />
+    <None Include="Themes\Bloger\Views\Shared\Components\DynamicForm\Default.cshtml" />
+    <None Include="Themes\Bloger\Views\Shared\Components\Footer\Default.cshtml" />
+    <None Include="Themes\Bloger\Views\Shared\Components\Gallery\Default.cshtml" />
+    <None Include="Themes\Bloger\Views\Shared\Components\LanguageSelector\Default.cshtml" />
+    <None Include="Themes\Bloger\Views\Shared\Components\NewsCategory\Default.cshtml" />
+    <None Include="Themes\Bloger\Views\Shared\Components\PageTitle\Default.cshtml" />
+    <None Include="Themes\Bloger\Views\Shared\Components\Review\Default.cshtml" />
+    <None Include="Themes\Bloger\Views\Shared\Components\Search\Default.cshtml" />
+    <None Include="Themes\Bloger\Views\Shared\Components\ShoppingCart\Default.cshtml" />
+    <None Include="Themes\Bloger\Views\Shared\Components\Slider\Default.cshtml" />
+    <None Include="Themes\Bloger\Views\Shared\Components\TeamCategory\Default.cshtml" />
+    <None Include="Themes\Bloger\Views\Shared\Components\TopMenu\Default.cshtml" />
+    <None Include="Themes\Bloger\Views\Shared\Components\UserRegistration\Default.cshtml" />
+    <None Include="Themes\Bloger\Views\Shared\Error.cshtml" />
+    <None Include="Themes\Bloger\Views\Shared\_Bottom.cshtml" />
+    <None Include="Themes\Bloger\Views\Shared\_Head.cshtml" />
+    <None Include="Themes\Bloger\Views\Shared\_Header.cshtml" />
+    <None Include="Themes\Bloger\Views\Shared\_Layout.cshtml" />
+    <None Include="Themes\Bloger\Views\ShoppingCart\Completed.cshtml" />
+    <None Include="Themes\Bloger\Views\ShoppingCart\Index.cshtml" />
+    <None Include="Themes\Bloger\Views\ShoppingCart\Mail.cshtml" />
+    <None Include="Themes\Bloger\Views\ShoppingCart\MiniShoppingCart.cshtml" />
+    <None Include="Themes\Bloger\Views\SkiResort\Details.cshtml" />
+    <None Include="Themes\Bloger\Views\SkiResort\List.cshtml" />
+    <None Include="Themes\Bloger\Views\SkiSchool\Details.cshtml" />
+    <None Include="Themes\Bloger\Views\SkiSchool\List.cshtml" />
+    <None Include="Themes\Bloger\Views\TeamCategory\Details.cshtml" />
+    <None Include="Themes\Bloger\Views\TourCategory\Details.cshtml" />
+    <None Include="Themes\Bloger\Views\TourCategory\List.cshtml" />
+    <None Include="Themes\Bloger\Views\Tour\Details.cshtml" />
+    <None Include="Themes\Bloger\Views\Tour\List.cshtml" />
+    <None Include="Themes\Bloger\Views\User\Index.cshtml" />
+    <None Include="Themes\Bloger\Views\User\Orders.cshtml" />
+    <None Include="Themes\Bloger\Views\User\Reviews.cshtml" />
+    <None Include="Themes\Bloger\Views\User\Searches.cshtml" />
+    <None Include="Themes\Bloger\Views\User\Wishes.cshtml" />
+    <None Include="Themes\Bloger\Views\User\_UserSidebar.cshtml" />
+    <None Include="Themes\Bloger\Views\_ViewImports.cshtml" />
+    <None Include="Themes\Bloger\Views\_ViewStart.cshtml" />
+    <None Include="wwwroot\bloger\fonts\fontawesome-webfont.svg" />
+    <None Include="wwwroot\bloger\fonts\fontawesome-webfont.woff2" />
+    <None Include="wwwroot\bloger\fonts\glyphicons-halflings-regular.svg" />
+    <None Include="wwwroot\bloger\fonts\glyphicons-halflings-regular.woff2" />
+    <None Include="wwwroot\bloger\js\bootstrap.min.js" />
+    <None Include="wwwroot\bloger\js\jquery-2.2.0.min.js" />
+    <None Include="wwwroot\bloger\js\main.js" />
+    <None Include="wwwroot\bloger\vendors\counter-up\jquery.counterup.min.js" />
+    <None Include="wwwroot\bloger\vendors\counter-up\waypoints.min.js" />
+    <None Include="wwwroot\bloger\vendors\elegant-icon\fonts\ElegantIcons.svg" />
+    <None Include="wwwroot\bloger\vendors\imagesloaded\imagesloaded.pkgd.min.js" />
+    <None Include="wwwroot\bloger\vendors\isotope\isotope.min.js" />
+    <None Include="wwwroot\bloger\vendors\videojs\video.js" />
+    <None Include="wwwroot\bloger\vendors\videojs\videojs-ie8.min.js" />
+  </ItemGroup>
+
+</Project>

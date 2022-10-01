@@ -1,0 +1,76 @@
+/*
+Template:  Webster - Responsive Multi-purpose HTML5 Template
+Author: potenzaglobalsolutions.com
+Design and Developed by: potenzaglobalsolutions.com
+
+NOTE: This file contains the styling for the fish Template. You can edit/add anything in this file!
+*/
+
+body { font-family: 'Playfair Display', serif; font-size: 18px; line-height: 30px; }
+h1, h2, h3, h4, h5, h6 { font-family: 'Kaushan Script', cursive; color: #363636; margin-top: 0px; text-transform: capitalize; }
+
+h2 { font-size: 40px; line-height: 40px; font-weight: 300;}
+
+.button { padding: 4px 20px; }
+
+.one-page.light .container-fluid { padding: 0 100px; }
+
+/*header*/
+@media (min-width: 992px) {  
+#header { background: #e6ebf0; }
+.header.text-dark #onepagenav .mega-menu .menu-links > li.active > a { color: #ffffff; }
+#onepagenav .mega-menu .menu-links > li > a { font-size: 18px; font-weight: bold; display: inline; margin-left: 5px; margin-right: 5px; padding: 5px 10px; -o-transition: all 0.6s ease-out; -ms-transition: all 0.6s ease-out; -moz-transition: all 0.6s ease-out; -ms-transition: all 0.6s ease-out; }
+#onepagenav.onepage-hover-01 .mega-menu .menu-links > li > a:hover, #onepagenav.onepage-hover-01 .mega-menu .menu-links > li.active > a { color: #ffffff; box-shadow: inset 178px 0px 0px 0px #299be8;  -webkit-box-shadow: inset 178px 0px 0px 0px #299be8; -o-box-shadow: inset 178px 0px 0px 0px #299be8; -ms-box-shadow: inset 178px 0px 0px 0px #299be8; -moz-box-shadow: inset 178px 0px 0px 0px #299be8; color: #fff; transition: all 0.9s ease-in; -webkit-transition: all 0.9s ease-in; -webkit-transition: all 0.9s ease-in; -moz-transition: all 0.9s ease-in; -ms-transition: all 0.9s ease-in; -o-transition: all 0.9s ease-in; }
+}
+
+/*fish-banner*/
+.fish-banner { height: 80vh; background-position: bottom !important; }
+.fish-banner .slider-content-middle { top: 50%; }
+.fish-banner .slider-content h1 { font-size: 120px; font-weight: 600; line-height: 120px; background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #0ca1e6), color-stop(100%, #03e2dd)); background: -webkit-linear-gradient(-315deg, #0ca1e6 0%, #03e2dd 100%);  background: -webkit-linear-gradient(45deg, #0ca1e6 0%, #03e2dd 100%);  background: linear-gradient(45deg, #0ca1e6 0%, #03e2dd 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+.fish-banner .slider-content { margin:  0 100px; }
+.fish-banner .slider-content p { font-size: 30px; } 
+.fish-banner .fish-banner-content { padding-top: 200px;  }
+.fish-banner .fish-banner-image { margin-right: 100px;  }
+
+/*fish-about*/
+.fish-about i { font-size: 22px; display: block; font-weight: 600; }
+.fish-about strong { font-size: 26px; display: block; font-weight: 600; }
+.fish-about:before { background: url(../../../demo-one-page/fish/images/fish-about-bg.png); position: absolute; content: ""; width: 100%; height: 100%; left: 0; top: 0; z-index: 0; }
+
+/*company*/
+ .fish-company { padding-bottom: 300px; }
+ .fish-company .play-video { margin: 0; background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #0ca1e6), color-stop(100%, #03e2dd)); background: -webkit-linear-gradient(-315deg, #0ca1e6 0%, #03e2dd 100%);  background: -webkit-linear-gradient(45deg, #0ca1e6 0%, #03e2dd 100%);  background: linear-gradient(45deg, #0ca1e6 0%, #03e2dd 100%); box-shadow: 0px 5px 30px 0px rgba(0, 0, 0, 0.2); }
+ .fish-company .play-video:hover { box-shadow: 0px 5px 30px 0px rgba(0, 0, 0, 0.2); color: #ffffff; }
+ .fish-company-image { position: relative; height: 100%; }
+ .fish-company-image img { padding: 2px; }
+ .fish-company-image .company-img-01 { padding-left: 40px; }
+ .fish-company-image .company-img-03 { margin-top: 20px; }
+ .fish-company-image .company-img-02 { padding-left: 20px; }
+ .fish-company-image .company-img-03  { padding-right: 14px; }
+
+/*gallery*/
+.fish-gallery .section-title h2 { font-size: 48px; line-height: 60px; }
+.fish-gallery { position: relative; }
+.fish-gallery .fish-gallery-top { margin-top: -220px; position: relative; }
+.fish-gallery .owl-carousel .owl-nav { top: inherit; left: -300px; bottom: 50px; }
+.fish-gallery .owl-carousel .owl-nav .owl-next { right: 0; }
+.fish-gallery .owl-carousel .owl-nav i { background: #ffffff !important; color: #323232 !important; }
+
+/*fish-footer*/
+.fish-footer .footer-Newsletter .button.button-border { color: #ffffff; }
+.fish-footer .footer-Newsletter .button.button-border:hover { color: #299be8; }
+.fish-footer .fish-image { margin-top: -150px; }
+.fish-footer.footer.footer-one-page h5, .footer.footer-one-page p, .footer-widget-social a i, .footer-widget a:hover { color: #ffffff; }
+.fish-footer .footer-Newsletter .button.button-border { border-color: #ffffff; }
+.fish-footer .footer-widget { border-color: rgba(255, 255, 255, 0.5);  }
+.fish-footer .footer-Newsletter .form-control { background: rgba(255, 255, 255, 0.5); color: #ffffff; }
+.fish-footer .footer-widget-social a i:hover { background: rgba(0, 0, 0, 0.2); } 
+#back-to-top span { line-height: 0; }
+
+div.style-customizer ul.layoutstyle li { padding-top: 0 !important; }
+
+/*fish-banner boxed layout*/
+body.boxed-layout .fish-banner .slider-content { margin: 0 30px; }
+body.boxed-layout .fish-banner .fish-banner-content { padding-top: 80px; }
+body.boxed-layout .fish-banner .slider-content h1 { font-size: 80px; line-height: 80px; }
+body.boxed-layout .fish-about:before { background-position: -230px 10px !important; }

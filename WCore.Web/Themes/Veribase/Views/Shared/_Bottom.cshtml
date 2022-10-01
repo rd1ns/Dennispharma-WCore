@@ -1,0 +1,220 @@
+﻿@{
+
+    var _themeContext = EngineContext.Current.Resolve<IThemeContext>();
+    var _workContext = EngineContext.Current.Resolve<IWorkContext>();
+    var _storeInformationSettings = EngineContext.Current.Resolve<StoreInformationSettings>();
+}
+
+<div id="back-to-top"><a class="top arrow" href="#top"><i class="fa fa-angle-up"></i> <span>TOP</span></a></div>
+
+<!--=================================
+ javascripts -->
+<!-- jquery -->
+<script src="/@_storeInformationSettings.DefaultStoreTheme/js/jquery-3.4.1.min.js"></script>
+
+<!-- All plugins -->
+<script src="/@_storeInformationSettings.DefaultStoreTheme/js/plugins-jquery.js"></script>
+
+<!-- Plugins path -->
+<script>var plugin_path = '/@_storeInformationSettings.DefaultStoreTheme/js/';</script>
+
+<!-- REVOLUTION JS FILES -->
+<script src="/@_storeInformationSettings.DefaultStoreTheme/revolution/js/jquery.themepunch.tools.min.js"></script>
+<script src="/@_storeInformationSettings.DefaultStoreTheme/revolution/js/jquery.themepunch.revolution.min.js"></script>
+
+<!-- SLIDER REVOLUTION 5.0 EXTENSIONS  (Load Extensions only on Local File Systems !  The following part can be removed on Server for On Demand Loading) -->
+<script src="/@_storeInformationSettings.DefaultStoreTheme/revolution/js/extensions/revolution.extension.actions.min.js"></script>
+<script src="/@_storeInformationSettings.DefaultStoreTheme/revolution/js/extensions/revolution.extension.carousel.min.js"></script>
+<script src="/@_storeInformationSettings.DefaultStoreTheme/revolution/js/extensions/revolution.extension.kenburn.min.js"></script>
+<script src="/@_storeInformationSettings.DefaultStoreTheme/revolution/js/extensions/revolution.extension.layeranimation.min.js"></script>
+<script src="/@_storeInformationSettings.DefaultStoreTheme/revolution/js/extensions/revolution.extension.migration.min.js"></script>
+<script src="/@_storeInformationSettings.DefaultStoreTheme/revolution/js/extensions/revolution.extension.navigation.min.js"></script>
+<script src="/@_storeInformationSettings.DefaultStoreTheme/revolution/js/extensions/revolution.extension.parallax.min.js"></script>
+<script src="/@_storeInformationSettings.DefaultStoreTheme/revolution/js/extensions/revolution.extension.slideanims.min.js"></script>
+<script src="/@_storeInformationSettings.DefaultStoreTheme/revolution/js/extensions/revolution.extension.video.min.js"></script>
+
+<!-- revolution custom -->
+<script src="/@_storeInformationSettings.DefaultStoreTheme/revolution/js/revolution-custom.js"></script>
+
+<!-- custom -->
+<script src="/@_storeInformationSettings.DefaultStoreTheme/js/custom.js"></script>
+
+<script src="/admin/assets/js/linq/linq.min.js"></script>
+
+<script src="/@_storeInformationSettings.DefaultStoreTheme/js/sweetalert2.all.js"></script>
+<script src="/@_storeInformationSettings.DefaultStoreTheme/js/fancybox/dist/jquery.fancybox.min.js"></script>
+
+<script src='https://www.google.com/recaptcha/api.js'></script>
+<script>
+    const d = document.getElementsByClassName("star-img");
+
+    function filter(e) {
+        let target = e.target;
+
+        if (!target.classList.contains("star-img")) {
+            return;
+        }
+
+        target.moving = true;
+
+        //NOTICE THIS 👇
+        e.clientX ? // Check if Mouse events exist on user' device
+            (target.oldX = e.clientX, // If they exist then use Mouse input
+                target.oldY = e.clientY) :
+            (target.oldX = e.touches[0].clientX, // otherwise use touch input
+                target.oldY = e.touches[0].clientY)
+        //NOTICE THIS 👆 Since there can be multiple touches, you need to mention which touch to look for, we are using the first touch only in this case
+
+        target.oldLeft = window.getComputedStyle(target).getPropertyValue('left').split('px')[0] * 1;
+        target.oldTop = window.getComputedStyle(target).getPropertyValue('top').split('px')[0] * 1;
+
+        document.onmousemove = dr;
+        //NOTICE THIS 👇
+        document.ontouchmove = dr;
+        //NOTICE THIS 👆
+
+        function dr(event) {
+            event.preventDefault();
+
+            if (!target.moving) {
+                return;
+            }
+            //NOTICE THIS 👇
+            event.clientX ?
+                (target.distX = event.clientX - target.oldX,
+                    target.distY = event.clientY - target.oldY) :
+                (target.distX = event.touches[0].clientX - target.oldX,
+                    target.distY = event.touches[0].clientY - target.oldY)
+            //NOTICE THIS 👆
+
+            target.style.left = target.oldLeft + target.distX + "px";
+            target.style.top = target.oldTop + target.distY + "px";
+        }
+
+        function endDrag() {
+            target.moving = false;
+        }
+        target.onmouseup = endDrag;
+        //NOTICE THIS 👇
+        target.ontouchend = endDrag;
+        //NOTICE THIS 👆
+    }
+    document.onmousedown = filter;
+    document.ontouchstart = filter;
+</script>
+<script>
+    $(function () {
+        @if (ViewBag.Page != "ShoppingCart")
+        {
+            <text>
+                GetShppingCart();
+            </text>
+        }
+    })
+
+    $(".wish_bt").click(function () {
+        var id = $(this).attr("data-id");
+        var group = $(this).attr("data-group");
+        var data = { EntityKey: id, EntityGroup: group };
+        $.ajax({
+            type: "POST",
+            url: "/common/addorremovewishitem",
+            data: data,
+            success: function (data) {
+                switch (data) {
+                    case 0:
+                        $(this).addClass("liked");
+                        break;
+                    case 2:
+                        $(this).removeClass("liked");
+                        break;
+                }
+            }
+        });
+    })
+
+    $("body").delegate(".addToCart", "click", function () {
+        $(".btnDisabled").prop("disabled", true);
+        var selectId = $(this).attr("data-selectid");
+        var defaultCurrencyId = $(this).attr("data-currency");
+        var select = $("select#" + selectId + "");
+        $.ajax({
+            type: "POST",
+            url: "/ShoppingCart/AddShoppingCartItem",
+            data: { priceId: select.val(), currencyId:defaultCurrencyId, userId:@_workContext.CurrentUser.Id },
+            success: function (data) {
+                GetShppingCart("Y");
+            }
+        });
+
+
+    })
+
+    $("body").delegate(".removeToCart", "click", function () {
+        var selectId = $(this).attr("data-id");
+        $(".btnDisabled").prop("disabled", true);
+        $.ajax({
+            type: "POST",
+            url: "/ShoppingCart/RemoveShoppingCartItem",
+            data: { priceId: 0, id: selectId},
+            success: function (data) {
+                GetShppingCart();
+            }
+        });
+
+
+    });
+
+    $('.dismiss, .overlay').on('click', function () {
+        $('body').removeClass('sidebar-open');
+        $('.sidebar').removeClass('active');
+        $('.overlay').removeClass('active');
+    });
+
+    $('.open-menu').on('click', function (e) {
+        e.preventDefault();
+        $('body').addClass('sidebar-open');
+        $('.sidebar').addClass('active');
+        $('.overlay').addClass('active');
+    });
+
+    function GetShppingCart(open) {
+        @if (ViewBag.Page != "ShoppingCart")
+        {
+            <text>
+                $.ajax({
+                    type: "POST",
+                    url: "/ShoppingCart/MiniShoppingCart",
+                    success: function (data) {
+                        if (open == "Y") {
+                            $('.open-menu').click();
+                        }
+                        $("#divSideCart").html(data);
+                        $(".btnDisabled").prop("disabled", false);
+                    }
+                });
+            </text>
+        }
+        else
+        {
+            <text>
+                $.ajax({
+                    type: "POST",
+                    url: "/ShoppingCart/MiniShoppingCart?page=ShoppingCart",
+                    success: function (data) {
+                        if (open == "Y") {
+                            $('.open-menu').click();
+                        }
+                        $("#divShoppingCart").html(data);
+                        $(".btnDisabled").prop("disabled", false);
+                    }
+                });
+            </text>
+
+        }
+    }
+
+
+</script>
+
+

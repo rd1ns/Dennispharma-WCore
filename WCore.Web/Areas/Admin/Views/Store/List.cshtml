@@ -1,0 +1,125 @@
+﻿@model StoreSearchModel
+@{
+    ViewData["PageMainTitle"] = T("Admin.Configuration.Stores.Title");
+    ViewData["PageTitle"] = T("Admin.Configuration.Stores.List");
+    ViewData["SystemTitle"] = ViewData["PageTitle"] + " / " + ViewData["PageMainTitle"];
+    ViewData["ControllerName"] = "Store";
+}
+<div class="content  d-flex flex-column flex-column-fluid" id="kt_content">
+    <div class="subheader py-2 py-lg-6  subheader-solid " id="kt_subheader">
+        <div class=" container-fluid  d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
+            <div class="d-flex align-items-center flex-wrap mr-1">
+                <div class="d-flex align-items-baseline flex-wrap mr-5">
+                    <h5 class="text-dark font-weight-bold my-1 mr-5">
+                        @ViewData["PageTitle"]
+                    </h5>
+                    <ul class="breadcrumb breadcrumb-transparent breadcrumb-dot font-weight-bold p-0 my-2 font-size-sm">
+                        <li class="breadcrumb-item">
+                            <a href="" class="text-muted">
+                                @ViewData["PageMainTitle"]
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="d-flex align-items-center">
+                <a href="/Admin/@ViewData["ControllerName"]/AddOrEdit/0" class="btnDisableable btn btn-sm btn-success font-weight-bolder mr-2">
+                    <i class="ki ki-plus icon-xs"></i>
+                    @T("Admin.Configuration.AddNew")
+                </a>                
+            </div>
+        </div>
+    </div>
+    <div class="d-flex flex-column-fluid">
+        <div class="container-fluid">
+            <div class="card">
+                <div class="card-body">
+                    <div id="store_datatable"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+            var storeDatatable = $("#store_datatable").kendoGrid({
+                dataSource: {
+                    type: "json",
+                    transport: {
+                        read: {
+                            url: "/Admin/Store/GetFilteredItems",
+                            type: "POST",
+                            dataType: "json",
+                            data: additionalData
+                        }
+                    },
+                    schema: {
+                        data: "Data",
+                        total: "RecordsFiltered",
+                        errors: "Errors"
+                    },
+                    requestEnd: function (e) {
+                        if (e.type == "create" || e.type == "update") {
+                            this.read();
+                        }
+                    },
+                    error: function (e) {
+                        console.log(e);
+                        this.cancelChanges();
+                    },
+                    pageSize: 10,
+                    serverPaging: true,
+                    serverFiltering: true,
+                    serverSorting: true
+                },
+                pageable: {
+                    refresh: true,
+                    pageSizes: [10, 15, 20, 50, 100, 200, 300, 500, 1000, 3000],
+                    @Html.Partial("_GridPagerMessages")
+                },
+                filterable: true,
+                scrollable: false,
+                columns: [{
+                        title: "@T("Admin.Stores.Fields.Name")",
+                        field: "Name",
+                        template: '<a href="/admin/store/addoredit/#=Id#" class="btn btn-sm btn-link" title="Edit details"><i class="la la-edit"></i> #=Name#</a>'
+                    }, {
+                        title: "@T("Admin.Stores.Fields.DisplayOrder")",
+                        field: "DisplayOrder"
+                    },{
+                        field: "Id",
+                        title: "@T("admin.common.delete")",
+                        width: 80,
+                        filterable: false,
+                        headerAttributes: { style: "text-align:center" },
+                        attributes: { style: "text-align:center" },
+                        template: '<a href="javascript:void(0)" data-id="#=Id#" class="btn btn-sm btn-clean btn-icon btnDelete" title="Delete">\
+                                        <i class="la la-trash"></i>\
+                                    </a>'
+                    }]
+                });
+
+
+            $('#btnSearch').click(function () {
+                var grid = $('#store_datatable').data('kendoGrid');
+                grid.dataSource.page(1);
+                return false;
+            });
+            $('#btnClearSearch').click(function () {
+                $("#Name").val("");
+
+                var grid = $('#store_datatable').data('kendoGrid');
+                grid.dataSource.page(1);
+                return false;
+            });
+            function additionalData() {
+                var data = {
+                    "Name": $("#Name").val()
+                };
+                addAntiForgeryToken(data);
+                return data;
+            }
+        });
+    </script>
+}

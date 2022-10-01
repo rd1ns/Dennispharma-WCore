@@ -1,0 +1,92 @@
+/*
+Template:  Webster - Responsive Multi-purpose HTML5 Template
+Author: potenzaglobalsolutions.com
+Design and Developed by: potenzaglobalsolutions.com
+
+NOTE: This file contains the styling for the hotel Template. You can edit/add anything in this file!
+*/
+ 
+h1, h2, h3, h4, h5, h6 { font-family: 'Playfair Display', serif; margin-top: 0px; }
+ 
+.button, .form-control, .nice-select, .footer-Newsletter .form-control { border-radius: 0; } 
+.section-title h2 { font-size: 40px; line-height: 50px; }
+
+/*navbar*/
+#onepagenav .mega-menu .menu-links > li > a { font-family: 'Playfair Display', serif; text-transform: uppercase; font-weight: 800;  }
+
+/*hotel-banner*/
+.hotel-banner { height: 90vh; position: relative; z-index: 9; }
+.hotel-banner .slider-content h1 { font-size: 74px; line-height: 74px; position: relative; }
+.hotel-banner .slider-content p { font-size: 24px; line-height: 24px; letter-spacing: 6px; }
+.hotel-banner .slider-content span { font-size: 20px; line-height: 20px; letter-spacing: 4px; }
+
+/*checkout */
+.hotel-banner-checkout .checkout { border-top: 1px solid #ba893f; position: relative; margin-top: -133px; z-index: 9; }
+.hotel-banner-checkout .checkout .checkout-name { padding: 30px; }
+.hotel-banner-checkout .checkout .checkout-date { padding-top: 30px; }
+.hotel-banner-checkout .checkout .checkout-date > span { font-size: 16px; display: block; }
+.hotel-banner-checkout .checkout .checkout-date .form-control { padding: 0; cursor: pointer; background: transparent; color: #ffffff; font-family: 'Times New Roman'; font-size: 40px; line-height: 30px; }
+.hotel-banner-checkout .checkout .checkout-date .nice-select { background: transparent; border:0; line-height: 20px; padding-left: 0; height: 20px; }
+.hotel-banner-checkout .checkout .checkout-date .nice-select span { font-size: 40px; line-height: 0px; background: transparent; border:0; color: #ffffff; padding: 0; font-family: 'Times New Roman';  }
+.hotel-banner-checkout .checkout .checkout-date .nice-select:after {  width: 10px; height: 10px; right: 10px; border-color: #ffffff; top: 30%; }
+.hotel-banner-checkout .checkout .checkout-date { height: 100%; }
+.hotel-banner-checkout .checkout .checkout-date .button { height: 100%; font-size:30px; line-height: 30px; text-transform: uppercase; font-family: 'Times New Roman'; }
+.hotel-banner-checkout .checkout .checkout-date .button span { top: 40%; position: relative;   }
+
+
+/*about-image*/
+.about-image { width: 100%; position: relative; height: 430px; }
+.about-image-01 { background-size: cover; display: table-cell; width: 30%;  height: 440px; margin-top: 20px; position: absolute; right: 0; transition: all 1s cubic-bezier(.165,.84,.44,1);background-size: cover;background-position: center; }
+.about-image-02 {background-size: cover; display: table-cell; width: 70%; height: 480px; position: absolute; left: 0; transition: all 1s cubic-bezier(.165,.84,.44,1);background-size: cover;background-position: center; }
+.about-image .about-image-01:hover { width: 70%; height: 480px; margin-top: 0; }
+.about-image .about-image-01:hover + .about-image-02 { width: 30%; height: 440px; margin-top: 20px; }
+
+/*hotel-feature-step*/
+.hotel-feature-step .feature-step-2-box { padding: 70px 100px; }
+.hotel-feature-step span { font-size: 40px; }
+.feature-step-2.bg-01 { background: url(../../../demo-one-page/hotel/images/about/03.jpg); background-repeat: no-repeat; background-size: cover; } 
+.feature-step-2.bg-02 { background: url(../../../demo-one-page/hotel/images/about/04.jpg); background-repeat: no-repeat; background-size: cover; } 
+.feature-step-2.bg-03 { background: url(../../../demo-one-page/hotel/images/about/05.jpg); background-repeat: no-repeat; background-size: cover; } 
+.feature-step-2:before { position: absolute; content: ""; width: 100%; height: 100%; background: #f6f7f8; opacity: 0;  transition: all 0.5s ease-in-out; -webkit-transition: all 0.5s ease-in-out; -o-transition: all 0.5s ease-in-out; -ms-transition: all 0.5s ease-in-out; -moz-transition: all 0.5s ease-in-out;  }
+.feature-step-2.bg-02.active:hover:before {  opacity: 0; }
+.feature-step-2.bg-01:before {  opacity: 1;  }
+.feature-step-2.bg-03:before {  opacity: 1;  }
+.feature-step-2.bg-01:hover:before { opacity: 0; }
+.feature-step-2.bg-03:hover:before { opacity: 0; }
+.feature-step-2.bg-03:hover h2, .feature-step-2.bg-03:hover p, .feature-step-2.bg-01:hover h2, .feature-step-2.bg-01:hover p { color: #ffffff; }
+
+/*awards-certi*/
+.certi-bg { height: 100%; padding: 80px 150px; }
+.certi-bg p { font-size: 26px; font-style: italic; font-weight: 300; }
+.border-tl { position: relative; }
+.border-tl:before { position: absolute; content:""; position:absolute; left: 30px; top: 30px; width:20px; height: 20px; border-left:2px solid rgba(2555,255,255,.6); border-top:2px solid rgba(2555,255,255,.6); }
+.border-tr { position: relative; }
+.border-tr:before { position: absolute; content:""; position:absolute; right: 30px; top: 30px; width:20px; height: 20px; border-right:2px solid rgba(2555,255,255,.6); border-top:2px solid rgba(2555,255,255,.6); }
+.border-bl { position: relative; }
+.border-bl:before { position: absolute; content:""; position:absolute; left: 30px; bottom: 30px; width:20px; height: 20px; border-left:2px solid rgba(2555,255,255,.6); border-bottom:2px solid rgba(2555,255,255,.6); }
+.border-br { position: relative; }
+.border-br:before { position: absolute; content:""; position:absolute; right: 30px; bottom: 30px; width:20px; height: 20px; border-right:2px solid rgba(2555,255,255,.6); border-bottom:2px solid rgba(2555,255,255,.6); }
+
+.awards-bg { height: 100%; padding: 80px 150px; }
+.awards-bg .awards { position: relative; display: inline-block; margin-top: 40px; margin-bottom: 26px; }
+.awards-bg .awards:before { background: url(../../../demo-one-page/hotel/images/leaf-01.png); position: absolute; left: -40px; top: -20px; content: ""; width: 80px; height: 100px; }
+.awards-bg .awards:after { background: url(../../../demo-one-page/hotel/images/leaf-02.png); position: absolute; right: -40px; top: -20px; content: ""; width: 80px; height: 100px; }
+
+.book-now .book-now-box { background: #050801; padding: 30px; width: 50%; }
+.book-now .book-now-box span { font-size: 26px; line-height: 26px; }
+
+.book-now-slider { width: 100%; margin: 0 auto; }
+.book-now-slider .owl-carousel .owl-stage-outer { overflow: visible; }
+.book-now-slider .owl-carousel .owl-item { opacity: 0.2; }
+.book-now-slider .owl-carousel .owl-item.active { opacity: 1; height: 100%; }
+
+.hotel-countdown-main { padding: 100px 50px; }
+.hotel-countdown-main .hotel-countdown { padding: 20px 10px; }
+
+
+/*footer*/
+.footer .contact-form .section-field { width: 48%; }
+.contact-form .section-field:nth-child(2) { margin-right: 0; }
+.contact-form .section-field.textarea { width: 100%; }
+
+body.boxed-layout .hotel-banner-checkout .checkout .checkout-name h3 { font-size: 18px; }

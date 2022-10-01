@@ -1,0 +1,12 @@
+/*
+Template:  Webster - Responsive Multi-purpose HTML5 Template
+Author: potenzaglobalsolutions.com
+Design and Developed by: potenzaglobalsolutions.com
+
+NOTE: This file contains the styling for the band Template. You can edit/add anything in this file!
+*/
+ 
+ .ripple:before { position: absolute; content: ""; right: 0; left: 0; height: 100%; width: 100%; background: url(../../../demo-specialty-pages/error-07/images/bg-01.png); }
+
+ .error-07 h1 { font-size: 200px; line-height: 200px; }
+ .error-07 h2 { font-size: 40px; line-height: 40px; }

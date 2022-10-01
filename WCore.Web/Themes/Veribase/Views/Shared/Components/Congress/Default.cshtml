@@ -1,0 +1,27 @@
+﻿@model CongressListModel
+@{
+    var _workContext = EngineContext.Current.Resolve<IWorkContext>();
+    var _themeProvider = EngineContext.Current.Resolve<IThemeProvider>();
+    var _seoSettings = EngineContext.Current.Resolve<SeoSettings>();
+    var _storeInformationSettings = EngineContext.Current.Resolve<StoreInformationSettings>();
+}
+
+@if (Model != null)
+{
+    <section class="white-bg blog page-section-ptb">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <table class="table table-bordered">
+                        @foreach (var item in Model.Congresses)
+                        {
+                            <tr>
+                                <td><a class="d-block" href="/@item.SeName"><i class="fa fa-hand-o-right"></i> @item.Title </a></td>
+                            </tr>
+                        }
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+}

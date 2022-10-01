@@ -1,0 +1,122 @@
+﻿@model SearchViewModel
+@inject WCore.Core.IWorkContext _workContext
+@{
+    List<SelectListItem> adultCount = new List<SelectListItem>();
+    adultCount.Add(new SelectListItem() { Text = "1", Value = "1" });
+    adultCount.Add(new SelectListItem() { Text = "2", Value = "2" });
+    adultCount.Add(new SelectListItem() { Text = "3", Value = "3" });
+    adultCount.Add(new SelectListItem() { Text = "4", Value = "4" });
+    adultCount.Add(new SelectListItem() { Text = "5", Value = "5" });
+    adultCount.Add(new SelectListItem() { Text = "6", Value = "6" });
+    adultCount.Add(new SelectListItem() { Text = "7", Value = "7" });
+    adultCount.Add(new SelectListItem() { Text = "8", Value = "8" });
+    adultCount.Add(new SelectListItem() { Text = "9", Value = "9" });
+    adultCount.Add(new SelectListItem() { Text = "10", Value = "10" });
+
+    List<SelectListItem> childCount = new List<SelectListItem>();
+    childCount.Add(new SelectListItem() { Text = "0", Value = "0" });
+    childCount.Add(new SelectListItem() { Text = "1", Value = "1" });
+    childCount.Add(new SelectListItem() { Text = "2", Value = "2" });
+}
+
+<form action="/Search" enctype="multipart/form-data" method="GET" style="margin-top:10px;">
+    @if (ViewBag.Page == "Home")
+    {
+        <div class="row no-gutters custom-search-input-2">
+            <div class="col-lg-10">
+                <div class="col-lg-12">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <select class="wide" asp-for="SkiResortId" asp-items="Model.SkiResorts" style="display: none;"></select>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 mbt-5">
+                            <div class="form-group">
+                                <input asp-for="Dates" required class="form-control" type="text" autocomplete="off" value="@Model.Dates" placeholder="@T("common.when")..">
+                                <i class="icon_calendar"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="panel-dropdown">
+                                <a href="#">@T("common.guest") <span class="qtyTotal">1</span></a>
+                                <div class="panel-dropdown-content">
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <div class="qtyButtons adults">
+                                                <label>@T("common.adult")</label>
+                                                <input type="text" class="qtyInput" asp-for="AdultCount" value="1">
+                                            </div>
+                                            <div class="qtyButtons childs">
+                                                <label>@T("common.child")</label>
+                                                <input type="text" class="qtyInput" asp-for="ChildCount" value="0">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <input type="text" asp-for="Range" value="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-2">
+                <input type="submit" class="btn_search submitButton" value="@T("common.search")" style="height: 100%;border-radius: 0px;">
+            </div>
+        </div>
+    }
+
+    @if (ViewBag.Page == "SkiResort" || ViewBag.Page == "HotelList" || ViewBag.Page == "SkiSchoolList")
+    {
+        <div id="filters_col" class="custom-search-input-2 inner-2 searchBar">
+            <a data-toggle="collapse" href="#collapseFilters" aria-expanded="true" aria-controls="collapseFilters" id="filters_col_bt">@T("common.filters") </a>
+            <div class="collapse @(ViewBag.Collapse == "Show" ? "show":"")" id="collapseFilters">
+                <div class="filter_type row">
+                    <div class="col-lg-12">
+                        <div class="form-group">
+                            <h6>@T("common.when")</h6>
+                            <input asp-for="Dates" class="form-control" required type="text" autocomplete="off" value="@Model.Dates" placeholder="@T("common.when")..">
+                            <i class="icon_calendar"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="filter_type">
+                    <h6>@T("common.filters.skiresorts")</h6>
+                    <select class="wide" asp-for="SkiResortId" asp-items="Model.SkiResorts" style="display: none;"></select>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="filter_type">
+                            <h6>@T("common.filters.adult")</h6>
+                            <div class="form-group">
+                                <select class="wide" name="AdultCount" id="AdultCount" asp-for="AdultCount" asp-items="adultCount" style="display: none;">
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="filter_type">
+                            <h6>@T("common.filters.child")</h6>
+                            <div class="form-group">
+                                <select class="wide" name="ChildCount" id="ChildCount" asp-for="ChildCount" asp-items="childCount" style="display: none;"></select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="filter_type row">
+                    <div class="col-lg-12">
+                        <h6>@T("common.filters.range")</h6>
+                        <input type="text" asp-for="Range" value="@Model.Range">
+                    </div>
+                </div>
+                <div class="custom-search-input-2 inner-2 mt-3">
+                    <input type="submit" class="loaderButton submitButton btn_search" value="@T("common.search")">
+                </div>
+            </div>
+        </div>
+    }
+</form>

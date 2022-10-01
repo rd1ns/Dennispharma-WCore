@@ -1,0 +1,135 @@
+/*
+Template:  Webster - Responsive Multi-purpose HTML5 Template
+Author: potenzaglobalsolutions.com
+Design and Developed by: potenzaglobalsolutions.com
+
+NOTE: This file contains the styling for the architecture Template. You can edit/add anything in this file!
+*/
+
+h1 {
+	font-family: 'Roboto', sans-serif;
+	color: #363636;
+	margin-top: 0px;
+	text-transform: capitalize;
+}
+h2 {
+	font-family: 'Roboto', sans-serif;
+	color: #363636;
+	margin-top: 0px;
+	text-transform: capitalize;
+}
+h3 {
+	font-family: 'Roboto', sans-serif;
+	color: #363636;
+	margin-top: 0px;
+	text-transform: capitalize;
+}
+h4 {
+	font-family: 'Roboto', sans-serif;
+	color: #363636;
+	margin-top: 0px;
+	text-transform: capitalize;
+}
+h5 {
+	font-family: 'Roboto', sans-serif;
+	color: #363636;
+	margin-top: 0px;
+	text-transform: capitalize;
+}
+h6 {
+	font-family: 'Roboto', sans-serif;
+	color: #363636;
+	margin-top: 0px;
+	text-transform: capitalize;
+}
+.modal-header {
+	.close {
+		position: absolute;
+		z-index: 99;
+		right: 13px;
+		top: 10px;
+	}
+}
+.architecture-about {
+	h2 {
+		font-size: 50px;
+		line-height: 60px;
+	}
+}
+.about-image {
+	width: 100%;
+	position: relative;
+	height: 430px;
+	.about-image-01 {
+		&:hover {
+			width: 70%;
+			height: 480px;
+			margin-top: 0;
+			+ {
+				.about-image-02 {
+					width: 30%;
+					height: 440px;
+					margin-top: 20px;
+				}
+			}
+		}
+	}
+}
+.about-image-01 {
+	background-size: cover;
+	display: table-cell;
+	width: 30%;
+	height: 440px;
+	margin-top: 20px;
+	position: absolute;
+	right: 0;
+	transition: all 1s cubic-bezier(.165,.84,.44,1);
+	background-size: cover;
+	background-position: center;
+}
+.about-image-02 {
+	background-size: cover;
+	display: table-cell;
+	width: 70%;
+	height: 480px;
+	position: absolute;
+	left: 0;
+	transition: all 1s cubic-bezier(.165,.84,.44,1);
+	background-size: cover;
+	background-position: center;
+}
+.architecture-portfolio {
+	.isotope-filters {
+		margin: 0;
+		text-align: right;
+		display: inline-block;
+		margin-bottom: 00px;
+		margin-top: 10px;
+		button {
+			border: 0;
+			padding: 6.5px 5px;
+			&:hover {
+				background: transparent;
+				color: #84ba3f;
+			}
+		}
+		button.active {
+			background: transparent;
+			color: #84ba3f;
+		}
+	}
+}
+#contact-us {
+	.addresss-info {
+		li {
+			color: #ffffff;
+		}
+		p {
+			color: #ffffff;
+		}
+		i {
+			color: #ffffff;
+		}
+	}
+}
+

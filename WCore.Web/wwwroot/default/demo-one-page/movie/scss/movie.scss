@@ -1,0 +1,275 @@
+/*
+Template:  Webster - Responsive Multi-purpose HTML5 Template
+Author: potenzaglobalsolutions.com
+Design and Developed by: potenzaglobalsolutions.com
+
+NOTE: This file contains the styling for the movie Template. You can edit/add anything in this file!
+*/
+
+
+body {
+	font-family: 'Oswald', sans-serif;
+	font-size: 18px;
+}
+h1 {
+	font-family: 'Oswald', sans-serif;
+	color: #363636;
+	margin-top: 0px;
+	text-transform: uppercase;
+}
+h2 {
+	font-family: 'Oswald', sans-serif;
+	color: #363636;
+	margin-top: 0px;
+	text-transform: uppercase;
+}
+h3 {
+	font-family: 'Oswald', sans-serif;
+	color: #363636;
+	margin-top: 0px;
+	text-transform: uppercase;
+}
+h4 {
+	font-family: 'Oswald', sans-serif;
+	color: #363636;
+	margin-top: 0px;
+	text-transform: uppercase;
+}
+h5 {
+	font-family: 'Oswald', sans-serif;
+	color: #363636;
+	margin-top: 0px;
+	text-transform: uppercase;
+}
+h6 {
+	font-family: 'Oswald', sans-serif;
+	color: #363636;
+	margin-top: 0px;
+	text-transform: uppercase;
+}
+* {
+	&::-moz-selection {
+		background: #c9b281;
+		color: #fff;
+		text-shadow: none;
+	}
+}
+&::-moz-selection {
+	background: #c9b281;
+	color: #fff;
+	text-shadow: none;
+}
+&::selection {
+	background: #c9b281;
+	color: #fff;
+	text-shadow: none;
+}
+.movie-bg {
+	background: #000c1b;
+}
+.movie-light-bg {
+	background: #c9b281;
+}
+.button {
+	font-weight: bold;
+	border-radius: 0;
+	background: #c9b281;
+	border-color: #c9b281;
+}
+.form-control {
+	border-radius: 0;
+}
+#back-to-top {
+	.top {
+		border-radius: 0;
+		background: #c9b281;
+	}
+}
+.footer-Newsletter {
+	.form-control {
+		border-radius: 0;
+	}
+}
+#onepagenav {
+	.mega-menu {
+		.menu-links {
+			>li {
+				>a {
+					font-size: 18px;
+					text-transform: uppercase;
+				}
+			}
+		}
+	}
+}
+.section-title-movie {
+	padding: 20px;
+	background: #1f2834;
+	text-align: center;
+	display: inline-block;
+	margin-bottom: 40px;
+	h2 {
+		color: #fff;
+		text-transform: uppercase;
+		margin-bottom: 0;
+		border: 5px solid #ffffff;
+		padding: 10px 100px;
+		display: inline-block;
+	}
+}
+.movie-banner {
+	.slider-content-middle {
+		padding: 0 60px;
+		top: 80%;
+	}
+	.slider-content {
+		.banner-popup {
+			margin-top: -30px;
+			width: 52%;
+			float: right;
+			box-shadow: 5px 0 30px 0 rgba(0,0,0,9);
+		}
+	}
+}
+.movie-story {
+	b {
+		font-size: 32px;
+		line-height: 40px;
+		display: block;
+	}
+}
+.movie-about {
+	a {
+		color: #626262;
+	}
+}
+.movie-team {
+	a {
+		color: #ffffff;
+	}
+}
+.movie-videos {
+	.popup-video-image.bottom-button {
+		a {
+			i {
+				bottom: 0;
+				top: inherit;
+				right: inherit;
+				left: 0;
+				transform: inherit;
+				border-radius: 0;
+				background: #000c1b;
+			}
+		}
+	}
+	.popup-video-image {
+		&:before {
+			background: inherit;
+		}
+	}
+}
+.sponsors {
+	box-shadow: 0 0px 22px rgb(0, 0, 0);
+	padding: 30px 20px;
+	display: block;
+}
+.footer {
+	p {
+		font-size: 18px;
+	}
+}
+#footer-fixed {
+	box-shadow: none;
+}
+a {
+	&:hover {
+		color: #c9b281;
+	}
+}
+.navbar-inverse {
+	.navbar-nav {
+		>.active {
+			>a {
+				color: #c9b281;
+				&:focus {
+					color: #c9b281;
+				}
+				&:hover {
+					color: #c9b281;
+				}
+			}
+		}
+		>li {
+			>a {
+				&:hover {
+					color: #c9b281;
+				}
+			}
+		}
+	}
+}
+.theme-color {
+	color: #c9b281;
+}
+.footer-widget {
+	a {
+		color: #c9b281;
+	}
+}
+.mega-menu {
+	.menu-links {
+		>li.active {
+			a {
+				color: #c9b281;
+			}
+		}
+		>li {
+			>a {
+				&:hover {
+					color: #c9b281;
+				}
+			}
+		}
+	}
+}
+.owl-carousel {
+	.owl-dots {
+		.owl-dot {
+			&:hover {
+				span {
+					background: #c9b281;
+				}
+			}
+		}
+		.owl-dot.active {
+			span {
+				background: #c9b281;
+			}
+		}
+	}
+}
+.popup-video-image {
+	a {
+		i {
+			background: #c9b281;
+		}
+	}
+}
+.dropcap {
+	background: #c9b281;
+}
+.button.gray {
+	&:hover {
+		background: #c9b281;
+		border-color: #c9b281;
+	}
+	&:focus {
+		background: #c9b281;
+		border-color: #c9b281;
+	}
+}
+.button.gray.active {
+	background: #c9b281;
+	border-color: #c9b281;
+}
+

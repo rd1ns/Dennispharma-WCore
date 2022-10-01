@@ -1,0 +1,90 @@
+﻿@using WCore.Core.Domain.Settings
+@inject SeoSettings _seoSettings
+@inject StoreInformationSettings _storeInformationSettings;
+@inject IThemeContext _themeContext;
+
+@{ var pageTitleSeoAdjustment = _seoSettings.PageTitleSeoAdjustment;
+                var pageTitleSeparator = _seoSettings.PageTitleSeparator;
+                var defaultTitle = _seoSettings.DefaultTitle;
+                var defaultMetaDescription = _seoSettings.DefaultMetaDescription;
+                var defaultMetaKeywords = _seoSettings.DefaultMetaKeywords;
+                var Title = "";
+                switch (pageTitleSeoAdjustment)
+                {
+                    case PageTitleSeoAdjustment.PagenameAfterStorename:
+                        Title = defaultTitle + " " + pageTitleSeparator + " " + ViewBag.Title;
+                        break;
+                    case PageTitleSeoAdjustment.StorenameAfterPagename:
+                        Title = ViewBag.Title + " " + pageTitleSeparator + " " + defaultTitle;
+                        break;
+                } }
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="author" content="webupbilisim">
+<title>@Title</title>
+
+<meta name="keywords" content="@ViewBag.Keywords">
+<meta name="description" content="@ViewBag.Description">
+
+@if (_seoSettings.TwitterMetaTags)
+{
+<meta name="twitter:card" content="@ViewBag.TwtterCard" />
+                <meta name="twitter:title" content="@ViewBag.TwtterTitle" />
+                                <meta name="twitter:description" content="@ViewBag.TwtterDescription" />
+                                                <meta name="twitter:url" content="@ViewBag.TwtterUrl" />
+                                                                <meta name="twitter:image" content="@ViewBag.TwtterImage" />}
+@if (_seoSettings.OpenGraphMetaTags)
+{
+<meta property="og:title" content="@ViewBag.OgTitle" />
+                <meta property="og:description" content="@ViewBag.OgDescription" />
+                                <meta property="og:image" content="@ViewBag.OgImage" />
+                                                <meta property="og:url" content="@ViewBag.OgUrl" />}
+
+
+<!-- Favicons-->
+<link rel="shortcut icon" href="@_storeInformationSettings.LogoPicture" type="image/x-icon">
+<link rel="apple-touch-icon" type="image/x-icon" href="@_storeInformationSettings.LogoPicture">
+<link rel="apple-touch-icon" type="image/x-icon" sizes="72x72" href="@_storeInformationSettings.LogoPicture">
+<link rel="apple-touch-icon" type="image/x-icon" sizes="114x114" href="@_storeInformationSettings.LogoPicture">
+<link rel="apple-touch-icon" type="image/x-icon" sizes="144x144" href="@_storeInformationSettings.LogoPicture">
+
+<!-- font -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,500,500i,600,700,800,900|Poppins:200,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Dosis:300,400,500,600,700,800">
+
+<!-- Plugins -->
+<link rel="stylesheet" type="text/css" href="/@_storeInformationSettings.DefaultStoreTheme/css/plugins-css.css" />
+
+<!-- revoluation -->
+<link rel="stylesheet" type="text/css" href="/@_storeInformationSettings.DefaultStoreTheme/revolution/css/settings.css" media="screen"/>
+
+<!-- Typography -->
+<link rel="stylesheet" type="text/css" href="/@_storeInformationSettings.DefaultStoreTheme/css/typography.css"/>
+
+<!-- Shortcodes -->
+<link rel="stylesheet" type="text/css" href="/@_storeInformationSettings.DefaultStoreTheme/css/shortcodes/shortcodes.css"/>
+
+<!-- Style -->
+<link rel="stylesheet" type="text/css" href="/@_storeInformationSettings.DefaultStoreTheme/css/style.css"/>
+
+<!-- Responsive -->
+<link rel="stylesheet" type="text/css" href="/@_storeInformationSettings.DefaultStoreTheme/css/responsive.css"/>
+
+<!--Bootstrap Css Plugins-->
+<link rel="stylesheet" type="text/css" href="/@_storeInformationSettings.DefaultStoreTheme/css/plugins/bootstrap.min.css"/>
+
+<!--Bootstrap Css Plugins-->
+<link rel="stylesheet" type="text/css" href="/@_storeInformationSettings.DefaultStoreTheme/css/shortcodes/side-panel.css"/>
+
+
+<!-- multiplejs -->
+<link rel="stylesheet" type="text/css" href="/@_storeInformationSettings.DefaultStoreTheme/js/multiplescrolljs/dist/jquery.multiscroll.css"/>
+
+
+<link href="/@_storeInformationSettings.DefaultStoreTheme/css/sweetalert2.css" rel="stylesheet" />
+<link href="/@_storeInformationSettings.DefaultStoreTheme/js/fancybox/dist/jquery.fancybox.min.css" rel="stylesheet" />
+
+@if (!string.IsNullOrEmpty(_storeInformationSettings.DefaultStoreThemeColorScheme))
+{
+<link rel="stylesheet" type="text/css" href="/@_themeContext.WorkingThemeName/css/skins/@(_storeInformationSettings.DefaultStoreThemeColorScheme+".css")" data-style="styles">}

@@ -1,0 +1,43 @@
+﻿@inherits WCore.Framework.Mvc.Razor.WCoreRazorPages<TModel>
+@inject WCore.Services.Common.IGenericAttributeService genericAttributeService
+@inject IWorkContext workContext
+@{
+
+    var defaultGridPageSize = 10;
+    var gridPageSizes = "10, 15, 20, 50, 100, 200, 300, 500, 1000, 3000";
+}
+
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@addTagHelper *, WCore.Framework
+@addTagHelper *, WCore.Framework.TagHelpers
+@addTagHelper *, WCore.Framework.TagHelpers.Admin
+
+@using WCore.Core
+@using WCore.Core.Infrastructure
+@using WCore.Framework
+@using WCore.Framework.UI
+@using WCore.Framework.Extensions
+@using WCore.Core.Domain.Settings
+
+
+<!--Models-->
+@using WCore.Web.Areas.Admin.Models.Logs
+@using WCore.Web.Areas.Admin.Models.Directory
+@using WCore.Web.Areas.Admin.Models.Common
+@using WCore.Web.Areas.Admin.Models.Users
+@using WCore.Web.Areas.Admin.Models.Settings
+@using WCore.Web.Areas.Admin.Models.Localization
+
+@using WCore.Web.Areas.Admin.Models.Templates
+@using WCore.Web.Areas.Admin.Models.UserAgencies
+@using WCore.Web.Areas.Admin.Models.Pages
+@using WCore.Web.Areas.Admin.Models.DynamicForms
+@using WCore.Web.Areas.Admin.Models.Galleries
+@using WCore.Web.Areas.Admin.Models.Vendors
+@using WCore.Web.Areas.Admin.Models.Stores
+@using WCore.Web.Areas.Admin.Models.Congresses
+@using WCore.Web.Areas.Admin.Models.Newses
+@using WCore.Web.Areas.Admin.Models.Teams
+@using WCore.Web.Areas.Admin.Models.Academies
+@using WCore.Web.Areas.Admin.Models.Catalog

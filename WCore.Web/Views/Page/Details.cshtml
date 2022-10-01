@@ -1,0 +1,79 @@
+﻿@inject SeoSettings _seoSettings
+@inject IWebHelper _webHelper
+@inject WCore.Core.IWorkContext _workContext
+
+@model PageModel
+@{
+    ViewBag.Title = Model.Title;
+    ViewBag.MetaTitle = Model.MetaTitle;
+    ViewBag.MetaKeywords = Model.MetaKeywords;
+    ViewBag.MetaDescription = Model.MetaDescription;
+
+    @if (_seoSettings.TwitterMetaTags)
+    {
+        ViewBag.TwtterCard = "";
+        ViewBag.TwtterTitle = Model.MetaTitle;
+        ViewBag.TwtterDescription = Model.MetaDescription;
+        ViewBag.TwtterUrl = _webHelper.GetThisPageUrl(true);
+        ViewBag.TwtterImage = Model.Image;
+    }
+
+    @if (_seoSettings.OpenGraphMetaTags)
+    {
+        ViewBag.OgTitle = Model.MetaTitle;
+        ViewBag.OgDescription = Model.MetaDescription;
+        ViewBag.OgUrl = _webHelper.GetStoreLocation();
+        ViewBag.OgImage = Model.Image;
+    }
+}
+<main>
+    <section class="hero_in hotels_detail">
+        <div class="wrapper">
+            <div class="container">
+                <h1 class="fadeInUp"><span></span>@Model.Title</h1>
+            </div>
+            <span class="magnific-gallery">
+                <a href="/panagea/img/gallery/hotel_list_1.jpg" class="btn_photos" title="Photo title" data-effect="mfp-zoom-in">@T("common.view.photos")</a>
+                <a href="/panagea/img/gallery/hotel_list_2.jpg" title="Photo title" data-effect="mfp-zoom-in"></a>
+                <a href="/panagea/img/gallery/hotel_list_3.jpg" title="Photo title" data-effect="mfp-zoom-in"></a>
+            </span>
+        </div>
+    </section>
+    <div class="bg_color_2">
+        <div class="container margin_60_35 bg-white border-left border-right">
+            <div class="row">
+                <div class="col-lg-8">
+                    <section id="description">
+                        @Html.Raw(Model.ShortBody)
+                        <br />
+                        @Html.Raw(Model.Body)
+                    </section>
+                </div>
+                <aside class="col-lg-4" id="sidebar">
+                    <div class="box_detail booking">
+                        <div class="box_style_cat" id="faq_box">
+                            <ul id="cat_nav">
+                                @if (Model.SubPages.Any())
+                                {
+                                    foreach (var webpage in Model.SubPages)
+                                    {
+                                        <li><a href="@webpage.SeName"><i class="icon_document_alt"></i> @webpage.Title</a></li>
+                                    }
+                                }
+                            </ul>
+                        </div>
+                    </div>
+                </aside>
+            </div>
+        </div>
+    </div>
+</main>
+
+@section Styles{
+    <style>
+    .hero_in.hotels_detail::before {
+        background: url( @(string.IsNullOrEmpty(Model.Image) ? "/panagea/img/hero_in_hotels_detail.jpg" : Model.Image)) center center no-repeat !important;
+        background-size: cover;
+    }
+    </style>
+}

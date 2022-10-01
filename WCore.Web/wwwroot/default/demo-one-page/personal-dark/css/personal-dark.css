@@ -1,0 +1,35 @@
+/*
+Template:  Webster - Responsive Multi-purpose HTML5 Template
+Author: potenzaglobalsolutions.com
+Design and Developed by: potenzaglobalsolutions.com
+
+NOTE: This file contains the styling for the GYM Template. You can edit/add anything in this file!
+*/
+ 
+h1, h2, h3, h4, h5, h6 { font-family: 'Rancho', sans-serif; font-weight: normal; margin-top: 0px; text-transform: capitalize;  }
+
+.section-title .subtitle { text-transform: inherit; font-size: 20px; }
+.slider-parallax.banner-personal .slider-content { width: 70%; float: right; }
+.slider-parallax.banner-personal .slider-content h1 { font-size: 140px; line-height: 140px; margin-top: -60px; font-weight: 500; text-transform: uppercase; font-family: 'Montserrat', sans-serif; }
+.slider-parallax.banner-personal .slider-content h1 strong { font-weight: 800; font-size: 168px; line-height: 120px; font-family: 'Montserrat', sans-serif; }
+.slider-parallax.banner-personal .slider-content span { font-size: 130px; line-height: 130px; font-weight: 600; font-family: 'Rancho', sans-serif; }
+ 
+/*personal-about*/
+.personal-about .feature-text .feature-icon span, .personal-about .feature-text .feature-icon i { font-size: 24px; line-height: 28px; }
+.personal-about .feature-text.left-icon .feature-info { padding-left: 40px; vertical-align: middle; }
+.skill-bar { background: #ba893f; }
+
+
+ /*isotope-filters*/
+.isotope-filters.dark-bg  button { margin: 4px; cursor: pointer;  padding: 6.5px 10px; margin: 0 10px; font-size: 16px; border-radius:0px; background: transparent; color: #fff; font-weight: 600; border:0;    border-bottom: 2px solid transparent; text-transform: capitalize;  }
+.isotope-filters.dark-bg button:focus { outline: none;  outline-style: none; outline-offset:0; }
+.isotope-filters.dark-bg button.active, .isotope-filters  button:hover { background: transparent !important; border-bottom: 2px solid #ba893f; }
+
+/*blog-box blog-2*/
+.blog-box.blog-2, .blog-box.blog-2 .blog-info.dark-bg { background: #212121; }
+.blog-box.blog-2 .blog-info.dark-bg span { color: #ffffff; }
+.blog-box.blog-2 .blog-info.dark-bg .button.icon-color:hover { color: #ffffff;   }
+
+.dark-theme-bg .addresss-info li, .dark-theme-bg .addresss-info p { color: #ffffff; }
+.dark-theme-bg .addresss-info i { color: #84ba3f; }
+#services.dark-theme-bg .feature-info h5 { font-size: 22px; }

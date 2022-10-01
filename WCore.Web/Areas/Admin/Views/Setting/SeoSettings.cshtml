@@ -1,0 +1,166 @@
+﻿@model SeoSettingsModel
+@{
+
+    ViewData["PageMainTitle"] = T("Admin.Configuration.Settings");
+    ViewData["PageTitle"] = T("admin.configuration.settings.seo.title");
+    ViewData["SystemTitle"] = ViewData["PageTitle"] + " / " + ViewData["PageMainTitle"];
+    ViewData["ControllerName"] = "Setting";
+    ViewData["ActionName"] = "SeoSettings";
+}
+<div class="content  d-flex flex-column flex-column-fluid" id="kt_content">
+    <div class="subheader py-2 py-lg-6  subheader-solid " id="kt_subheader">
+        <div class=" container-fluid  d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
+            <div class="d-flex align-items-center flex-wrap mr-1">
+                <div class="d-flex align-items-baseline flex-wrap mr-5">
+                    <h5 class="text-dark font-weight-bold my-1 mr-5">
+                        @ViewData["PageTitle"]
+                    </h5>
+                    <ul class="breadcrumb breadcrumb-transparent breadcrumb-dot font-weight-bold p-0 my-2 font-size-sm">
+                        <li class="breadcrumb-item">
+                            @ViewData["PageMainTitle"]
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="d-flex align-items-center">
+                <partial name="_AddOrEditHeaderButtons" model="@Tuple.Create(0,"SeoSettingForm")" />
+            </div>
+        </div>
+    </div>
+    <div class="d-flex flex-column-fluid">
+        <div class="container-fluid">
+            <form id="SeoSettingForm" action="/admin/@ViewData["ControllerName"]/@ViewData["ActionName"]" method="post" enctype="multipart/form-data">
+                <div class="card card-custom">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-xl-12 my-2">
+                                <div class="form-group row">
+                                    <WCore-label asp-for="DefaultTitle" />
+                                    <div class="col-lg-10 col-md-6 col-sm-12">
+                                        <WCore-editor asp-for="DefaultTitle" />
+                                        <span asp-validation-for="DefaultTitle"></span>
+                                    </div>
+                                </div>
+                                <div class="form-group row ">
+                                    <WCore-label asp-for="PageTitleSeoAdjustment" />
+                                    <div class="col-lg-10 col-md-6 col-sm-12">
+                                        <WCore-select asp-for="PageTitleSeoAdjustment" asp-items="Model.PageTitleSeoAdjustmentValues" />
+                                        <span asp-validation-for="PageTitleSeoAdjustment"></span>
+                                    </div>
+                                </div>
+                                <div class="form-group row ">
+                                    <WCore-label asp-for="PageTitleSeparator" />
+                                    <div class="col-lg-10 col-md-6 col-sm-12">
+                                        <WCore-editor asp-for="PageTitleSeparator" />
+                                        <span asp-validation-for="PageTitleSeparator"></span>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <WCore-label asp-for="DefaultMetaKeywords" />
+                                    <div class="col-lg-10 col-md-6 col-sm-12">
+                                        <WCore-editor asp-for="DefaultMetaKeywords" />
+                                        <span asp-validation-for="DefaultMetaKeywords"></span>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <WCore-label asp-for="DefaultMetaDescription" />
+                                    <div class="col-lg-10 col-md-6 col-sm-12">
+                                        <WCore-editor asp-for="DefaultMetaDescription" />
+                                        <span asp-validation-for="DefaultMetaDescription"></span>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <WCore-label asp-for="ReservedUrlRecordSlugs" />
+                                    <div class="col-lg-10 col-md-6 col-sm-12">
+                                        <WCore-editor asp-for="ReservedUrlRecordSlugs" />
+                                        <span asp-validation-for="ReservedUrlRecordSlugs"></span>
+                                    </div>
+                                </div>
+                                <div class="form-group mb-0 row">
+                                    <WCore-label asp-for="GenerateProductMetaDescription" />
+                                    <div class="col-9">
+                                        <div class="checkbox-inline">
+                                            <label class="checkbox pt-3">
+                                                <input asp-for="GenerateProductMetaDescription" />
+                                                <span></span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group mb-0 row">
+                                    <WCore-label asp-for="ConvertNonWesternChars" />
+                                    <div class="col-9">
+                                        <div class="checkbox-inline">
+                                            <label class="checkbox pt-3">
+                                                <input asp-for="ConvertNonWesternChars" />
+                                                <span></span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group mb-0 row">
+                                    <WCore-label asp-for="CanonicalUrlsEnabled" />
+                                    <div class="col-9">
+                                        <div class="checkbox-inline">
+                                            <label class="checkbox pt-3">
+                                                <input asp-for="CanonicalUrlsEnabled" />
+                                                <span></span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group row ">
+                                    <WCore-label asp-for="WwwRequirement" />
+                                    <div class="col-lg-10 col-md-6 col-sm-12">
+                                        <WCore-select asp-for="WwwRequirement" asp-items="Model.WwwRequirementValues" />
+                                        <span asp-validation-for="WwwRequirement"></span>
+                                    </div>
+                                </div>
+                                <div class="form-group mb-0 row">
+                                    <WCore-label asp-for="TwitterMetaTags" />
+                                    <div class="col-9">
+                                        <div class="checkbox-inline">
+                                            <label class="checkbox pt-3">
+                                                <input asp-for="TwitterMetaTags" />
+                                                <span></span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group mb-0 row">
+                                    <WCore-label asp-for="OpenGraphMetaTags" />
+                                    <div class="col-9">
+                                        <div class="checkbox-inline">
+                                            <label class="checkbox pt-3">
+                                                <input asp-for="OpenGraphMetaTags" />
+                                                <span></span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <WCore-label asp-for="CustomHeadTags" />
+                                    <div class="col-lg-10 col-md-6 col-sm-12">
+                                        <WCore-editor asp-for="CustomHeadTags" />
+                                        <span asp-validation-for="CustomHeadTags"></span>
+                                    </div>
+                                </div>
+                                <div class="form-group mb-0 row">
+                                    <WCore-label asp-for="MicrodataEnabled" />
+                                    <div class="col-9">
+                                        <div class="checkbox-inline">
+                                            <label class="checkbox pt-3">
+                                                <input asp-for="MicrodataEnabled" />
+                                                <span></span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

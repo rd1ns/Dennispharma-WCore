@@ -1,0 +1,35 @@
+{
+  "SystemName": "Bloger",
+  "FriendlyName": "SecoundTheme",
+  "SupportRTL": true,
+  "PreviewImageUrl": "~/Themes/Bloger/preview.jpg",
+  "PreviewText": "The 'Bloger' site theme",
+  //Eðer yoksa [{"Type":"default"}] olacak.
+  "LayoutTypes": [
+    { "Type": "default" }
+  ],
+  //Eðer yoksa [{"Color":"default","CssPath":"Default"}] olacak.
+  "ColorSchemes": [],
+  //Eðer yoksa [{"Type":"default"}] olacak.
+  "HeaderTypes": [
+    { "Type": "center" },
+    { "Type": "full" }
+  ],
+  //Eðer yoksa [{"Type":"default"}] olacak.
+  "PageTitles": [
+    { "Type": "default" }
+  ],
+  //Eðer yoksa [{"Type":"default"}] olacak.
+  "GalleryTypes": [
+    { "Type": "classic" }
+  ],
+  //Eðer yoksa "Type":"Default",Features:[ { "Name":"Default"}] olacak.
+  "TemplateTypes": [
+    {
+      "Type": "multi pages",
+      "Features": [
+        { "Name": "bloger" }
+      ]
+    }
+  ]
+}

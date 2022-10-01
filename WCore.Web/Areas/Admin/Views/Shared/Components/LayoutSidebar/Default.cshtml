@@ -1,0 +1,20 @@
+﻿@model List<WCore.Web.Areas.Admin.Models.Roles.MenuModel>
+@{
+    var _workContext = EngineContext.Current.Resolve<WCore.Core.IWorkContext>();
+}
+@foreach (var menu in Model.Where(o => !o.IsHidden))
+{
+    var areaName = string.IsNullOrEmpty(menu.AreaName) ? "" : "/" + menu.AreaName;
+    <li class="menu-item  @(menu.SubMenus.Any(o => !o.IsHidden) ? "menu-item-submenu menu-item-rel" : "")" data-menu-toggle="click" aria-haspopup="true">
+        <a href="@(menu.SubMenus.Any(o => !o.IsHidden) ? "javascript:void(0)" : areaName+ menu.Slug)" class="menu-link @(menu.SubMenus.Any(o => !o.IsHidden) ? "menu-toggle" : "")"><span class="menu-text">@T(menu.Name)</span><span class="menu-desc"></span>@Html.Raw(menu.SubMenus.Any(o => !o.IsHidden) ? "<i class='menu-arrow'></i>" : "")</a>
+
+        @if (menu.SubMenus.Any(o => !o.IsHidden))
+        {
+            <div class="menu-submenu menu-submenu-classic menu-submenu-left">
+                <ul class="menu-subnav">
+                    @await Html.PartialAsync("/Areas/Admin/Views/Shared/Components/LayoutSidebar/Default.cshtml", menu.SubMenus)
+                </ul>
+            </div>
+        }
+    </li>
+}

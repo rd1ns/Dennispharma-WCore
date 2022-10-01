@@ -1,0 +1,116 @@
+﻿@{
+    var _workContext = EngineContext.Current.Resolve<IWorkContext>();
+    var _storeInformationSettings = EngineContext.Current.Resolve<StoreInformationSettings>();
+    var _themeContext = EngineContext.Current.Resolve<IThemeContext>();
+
+    var wrapperClassName = "wrapper";
+    @switch (_storeInformationSettings.DefaultStoreThemeHeaderType)
+    {
+        case "dark":
+            break;
+        case "dark topbar":
+            break;
+        case "dark with topbar":
+            break;
+        case "default":
+            break;
+        case "fancy":
+            break;
+        case "fancy topbar":
+            break;
+        case "full width":
+            break;
+        case "light":
+            break;
+        case "light topbar":
+            break;
+        case "left menu":
+            wrapperClassName = "wrapper vertical-header";
+            break;
+        case "left fixed":
+            break;
+        case "logo center":
+            break;
+        case "onepage":
+            break;
+        case "transparent":
+            break;
+        case "transparent fullwidth":
+            break;
+        case "transparent overlay":
+            break;
+        case "transparent topbar":
+            break;
+        case "vertical left":
+            wrapperClassName = "wrapper vertical-header";
+            break;
+        default:
+            break;
+    }
+
+    var bodyClass = "";
+
+    if (ViewBag.CurrentPageType != null)
+    {
+        if ((PageType)ViewBag.CurrentPageType == PageType.ScrollContent)
+        {
+            bodyClass = "st-container st-effect-1";
+        }
+    }
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <partial name="_Head" />
+    @RenderSection("Styles", required: false)
+
+    <style>
+        body.wcore-main-bg {
+            background-image: url(@_storeInformationSettings.BgImage);
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: cover;
+            position: relative;
+        }
+        body.wcore-pattern {
+            background-image: url( @_storeInformationSettings.BgPattern );
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: cover;
+            position: relative;
+        }
+    </style>
+
+
+</head>
+<body class="@bodyClass  @_storeInformationSettings.DefaultStoreThemeLayoutType-layout @(string.IsNullOrEmpty(_storeInformationSettings.BgImage) ? "":"wcore-main-bg") @(string.IsNullOrEmpty(_storeInformationSettings.BgPattern) ? "":"wcore-pattern")">
+    <!-- wrapper end -->
+    <input type="hidden" name="WorkingCurrency" id="WorkingCurrency" value="@_workContext.WorkingCurrency.Id" />
+    <input type="hidden" name="WorkingLanguage" id="WorkingLanguage" value="@_workContext.WorkingLanguage.Id" />
+    <input type="hidden" name="WorkingTheme" id="WorkingTheme" value="@_themeContext.WorkingThemeName" />
+    <!-- wrapper start -->
+    <div class="@wrapperClassName">
+        <!-- preloader start -->
+        <div id="pre-loader">
+            <img src="/@_themeContext.WorkingThemeName/images/pre-loader/loader-07.svg" alt="">
+        </div>
+
+        <partial name="_Header" />
+        @RenderBody()
+        @if (ViewBag.CurrentPageType != null)
+        {
+            if ((PageType)ViewBag.CurrentPageType != PageType.ScrollContent)
+            {
+                @await Component.InvokeAsync("Footer")
+            }
+        }
+        else
+        {
+            @await Component.InvokeAsync("Footer")
+        }
+    </div>
+    <partial name="_Bottom" />
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

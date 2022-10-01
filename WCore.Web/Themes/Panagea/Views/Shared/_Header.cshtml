@@ -1,0 +1,55 @@
+﻿@{
+    var _workContext = EngineContext.Current.Resolve<WCore.Core.IWorkContext>();
+    var _seoSettings = EngineContext.Current.Resolve<WCore.Core.Domain.Settings.SeoSettings>();
+    var _storeInformationSettings = EngineContext.Current.Resolve<StoreInformationSettings>();
+}
+<header class="header menu_fixed">
+    <div id="preloader"><div data-loader="circle-side"></div></div><!-- /Page Preload -->
+    <div id="logo">
+        <a href="/@_workContext.WorkingLanguage.UniqueSeoCode">
+            <img src="@_storeInformationSettings.LogoPicture" width="110" alt="" class="logo_normal">
+            <img src="@_storeInformationSettings.StickyPicture" width="110" alt="" class="logo_sticky">
+        </a>
+    </div>
+    <ul id="top_menu">
+        @if (ViewBag.Page != "ShoppingCart")
+        {
+            <li>
+                <a id="sidebarmenu-toggle" href="#" class="open-menu cart-menu-btn toggle" title="Cart"><strong>0</strong></a>
+            </li>
+        }
+        @if (_workContext.CurrentUser.UserType != WCore.Core.Domain.Users.UserType.Guest)
+        {
+            <li>
+                <div class="dropdown dropdown-user">
+                    <a href="#0" class="logged" data-toggle="dropdown" title="Logged"><img src="/panagea/img/avatar.jpg" alt=""></a>
+                    <div class="dropdown-menu">
+                        <ul>
+                            <li><a href="/admin">@_workContext.CurrentUser.FirstName @_workContext.CurrentUser.LastName</a></li>
+                            <li><a href="/user"><i class="icon-user"></i> @T("common.user.profile.title")</a></li>
+                            <li><a href="/user/reviews"><i class="icon-comment"></i>@T("common.user.profile.reviews")</a></li>
+                            <li><a href="/user/wishes"><i class=" icon-shop"></i>@T("common.user.profile.wishes")</a></li>
+                            <li><a href="/user/orders"><i class="icon-shop"></i>@T("common.user.profile.orders")</a></li>
+                            <li><a href="/user/searches"><i class="icon-shop"></i>@T("common.user.profile.searches")</a></li>
+                            <li><a href="/auth/logout"><i class="icon-logout"></i>@T("common.header.logout")</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </li>
+        }
+        else
+        {
+            <li><a href="/auth" id="" class="login" title="Sign In">@T("common.header.login")</a></li>
+        }
+        <li><a href="/user/wishes" class="wishlist_bt_top" title="Your wishlist">@T("common.header.yourwishlist")</a></li>
+    </ul>
+    <a href="#menu" class="btn_mobile">
+        <div class="hamburger hamburger--spin" id="hamburger">
+            <div class="hamburger-box">
+                <div class="hamburger-inner"></div>
+            </div>
+        </div>
+    </a>
+
+    @await Component.InvokeAsync("TopMenu")
+</header>

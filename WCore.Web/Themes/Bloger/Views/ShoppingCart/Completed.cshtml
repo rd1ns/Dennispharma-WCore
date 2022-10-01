@@ -1,0 +1,24 @@
+﻿@inject SeoSettings _seoSettings
+@inject IWebHelper _webHelper
+@inject WCore.Core.IWorkContext _workContext
+@model OrderModel
+@{
+    ViewBag.Title = Model.User.FirstName + " " + Model.User.LastName + " " + T("common.shoppingcart.success");
+    ViewBag.Page = "ShoppingCart";
+}
+<main class="shoppingcart-completed" style="transform:none">
+    <div class="hero_in cart_section start_bg_zoom"></div>
+    <div class="bg_color_1" style="transform: none;">
+        <div class="container margin_60_35" style="transform: none;">
+            <div class="row" style="transform: none;">
+                <div class="col-12">
+                    <div class="alert @(string.IsNullOrEmpty(ViewBag.Errors) ? "alert-success" :"alert-danger" )  text-center" role="alert">
+                        <h4 class="alert-heading mb-3">@T("common.shoppingcart.success")</h4>
+                        <p>@T("common.minishoppingcart.success.description")</p>
+                        <p>@ViewBag.Errors</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>

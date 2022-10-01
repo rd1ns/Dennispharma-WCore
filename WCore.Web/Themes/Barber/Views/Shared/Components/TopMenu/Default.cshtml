@@ -1,0 +1,238 @@
+﻿@model PageListModel
+@inject IWorkContext _workContext
+@inject SeoSettings _seoSettings
+@inject StoreInformationSettings _storeInformationSettings
+@using Microsoft.AspNetCore.Html
+
+@{
+
+    var hasTopbar = false;
+    var isFancy = false;
+    var isLeft = false;
+    var menuClassName = "";
+    var headerClassName = "";
+    var menuAttribute = "";
+    var menuListItemClass = "container";
+
+    @switch (_storeInformationSettings.DefaultStoreThemeHeaderType)
+    {
+        case "dark":
+            break;
+        case "dark topbar":
+            break;
+        case "dark with topbar":
+            break;
+        case "default":
+            break;
+        case "fancy":
+            isFancy = true;
+            break;
+        case "fancy topbar":
+            isFancy = true;
+            break;
+        case "full width":
+            menuListItemClass = "container-fluid";
+            break;
+        case "light":
+            break;
+        case "light topbar":
+            break;
+        case "left menu":
+            break;
+        case "left fixed":
+            isLeft = true;
+            break;
+        case "logo center":
+            break;
+        case "onepage":
+            break;
+        case "transparent":
+            break;
+        case "transparent fullwidth":
+            menuListItemClass = "container-fluid";
+            break;
+        case "transparent overlay":
+            break;
+        case "transparent topbar":
+            break;
+        case "vertical left":
+            menuClassName = "vertical-left";
+            menuAttribute = "data-pos='vertical-left'";
+            isLeft = true;
+            break;
+        default:
+            menuListItemClass = "container";
+            break;
+    }
+    @functions{
+
+        void GetSubPages(List<PageModel> Pages)
+        {
+            <ul class="drop-down-multilevel">
+                @foreach (var subPage in Pages)
+                {
+                    var link = "/" + subPage.SeName + "";
+                    <li>
+                        <a href="@link">@subPage.Title @Html.Raw((subPage.SubPages.Any() ? "<i class='fa fa-angle-down fa-indicator'></i>" : ""))</a>
+                        @if (subPage.SubPages.Any())
+                        {
+                            GetSubPages(subPage.SubPages);
+                        }
+                    </li>
+                }
+            </ul>
+        }
+        void GetMenu(string headerClassName = "", string menuClassName = "", string menuAttribute = "", bool hasTolbar = false, string menuListItemClass = "")
+        {
+            <header id="header" class="header default">
+                <div class="menu" id="onepagenav">
+                    <!-- menu start -->
+                    <nav id="menu" class="mega-menu">
+                        <!-- menu list items container -->
+                        <section class="menu-list-items">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-lg-12 col-md-12 position-relative">
+                                        <!-- menu logo -->
+                                        <ul class="menu-logo">
+                                            <li>
+                                                <a href="/@_workContext.WorkingLanguage.UniqueSeoCode/"><img class="logo-big" id="logo_img" src="@_storeInformationSettings.LogoPicture" alt="logo"> </a>
+                                            </li>
+                                        </ul>
+                                        <!-- menu links -->
+                                        <div class="menu-bar">
+                                            <ul class="menu-links">
+                                                @foreach (var item in Model.Pages.OrderBy(o => o.DisplayOrder))
+                                                {
+                                                    var link = "/" + item.SeName + "";
+                                                    if (item.HomePage)
+                                                    {
+                                                        link = "/";
+                                                    }
+                                                    <li>
+                                                        <a href="@link"> @item.Title @Html.Raw((item.SubPages.Any(o => !(o.PageType != PageType.ScrollContent || o.PageType != PageType.SubContent)) ? "<i class='fa fa-angle-down fa-indicator'></i>" : ""))</a>
+                                                        @if (item.SubPages.Any(o => !(o.PageType != PageType.ScrollContent || o.PageType != PageType.SubContent)))
+                                                        {
+                                                            GetSubPages(item.SubPages);
+                                                        }
+                                                    </li>
+
+                                                }
+                                                <li class="menu-bar">
+                                                <li>  <a class="menu-links" href="http://localhost:13531/tr/">TR</a></li>
+                                                <li>  <a class="menu-links" href="http://localhost:13531/en/">ENG</a></li>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    </nav>
+                    <!-- menu end -->
+                </div>
+            </header>
+            <!-- <nav id="menu" class="mega-menu menuFullWidth @menuClassName" @menuAttribute>
+                 <section class="menu-list-items">
+                     <div class="@menuListItemClass" style="background-color: black;">
+                         <div class="row">
+                             <div class="col-lg-12 col-md-12">
+                                 <ul class="menu-logo">
+                                     <li>
+                                         <a href="/@_workContext.WorkingLanguage.UniqueSeoCode/"><img class="logo-big" id="logo_img" src="@_storeInformationSettings.LogoPicture" alt="logo"> </a>
+                                     </li>
+                                 </ul>
+
+                                 <div class="menu-bar">
+                                     <ul class="menu-links">
+                                         @foreach (var item in Model.Pages.OrderBy(o => o.DisplayOrder))
+                                         {
+                                             var link = "/" + item.SeName + "";
+                                             if (item.HomePage)
+                                             {
+                                                 link = "/";
+                                             }
+                                             <li>
+                                                 <a href="@link"> @item.Title @Html.Raw((item.SubPages.Any(o => !(o.PageType != PageType.ScrollContent || o.PageType != PageType.SubContent)) ? "<i class='fa fa-angle-down fa-indicator'></i>" : ""))</a>
+                                                 @if (item.SubPages.Any(o => !(o.PageType != PageType.ScrollContent || o.PageType != PageType.SubContent)))
+                                                 {
+                                                     GetSubPages(item.SubPages);
+                                                 }
+                                             </li>
+                                         }
+                                         <li>
+                                             <a href="#" class="menu-icon medium side-panel-trigger"><span class="ti-menu"></span></a>
+                                         </li>
+                                         <li class="menu-bar">
+                                         <li>  <a class="menu-links"  href="http://localhost:13531/tr/">TR</a></li>
+                                         <li>  <a class="menu-links" href="http://localhost:13531/en/">ENG</a></li>
+
+                                     </ul>
+                                 </div>
+                             </div>
+                         </div>
+                     </div>
+                 </section>
+             </nav> -->
+
+        }
+        void GetLeftMenu(string headerClassName = "", string menuClassName = "", string menuAttribute = "", bool hasTolbar = false, string menuListItemClass = "")
+        {
+            <nav id="menu" class="mega-menu menuFullWidth @menuClassName" @menuAttribute>
+                <section class="menu-list-items">
+                    <ul class="menu-logo">
+                        <li>
+                            <a href="/@_workContext.WorkingLanguage.UniqueSeoCode/"><img class="logo-big" id="logo_img" src="@_storeInformationSettings.LogoPicture" alt="logo"> </a>
+                        </li>
+                    </ul>
+                    <div class="menu-bar">
+                        <ul class="menu-links">
+                            @foreach (var item in Model.Pages)
+                            {
+                                var link = "/" + item.SeName + "";
+                                if (item.HomePage)
+                                {
+                                    link = "/" + _workContext.WorkingLanguage.UniqueSeoCode;
+                                }
+                                <li>
+                                    <a href="@link"> @item.Title @Html.Raw((item.SubPages.Any() ? "<i class='fa fa-angle-down fa-indicator'></i>" : ""))</a>
+                                    @if (item.SubPages.Any())
+                                    {
+                                        GetSubPages(item.SubPages);
+                                    }
+                                </li>
+                            }
+                        </ul>
+                    </div>
+                </section>
+            </nav>
+        }
+    }
+}
+@if (isFancy)
+{
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12">
+                @{
+                    GetMenu(headerClassName, menuClassName, menuAttribute, hasTopbar, menuListItemClass);
+                }
+            </div>
+        </div>
+    </div>
+}
+else if (isLeft)
+{
+    GetLeftMenu(headerClassName, menuClassName, menuAttribute, hasTopbar, menuListItemClass);
+}
+else
+{
+    GetMenu(headerClassName, menuClassName, menuAttribute, hasTopbar, menuListItemClass);
+}
+
+<nav id="menu" class="main-menu d-none">
+    <ul>
+        @await Component.InvokeAsync("LanguageSelector")
+        @await Component.InvokeAsync("CurrencySelector")
+    </ul>
+</nav>

@@ -1,0 +1,172 @@
+﻿@model FooterViewModel
+@{
+    var _workContext = EngineContext.Current.Resolve<WCore.Core.IWorkContext>();
+    var _seoSettings = EngineContext.Current.Resolve<WCore.Core.Domain.Settings.SeoSettings>();
+    var _storeInformationSettings = EngineContext.Current.Resolve<StoreInformationSettings>();
+}
+
+<footer class="footer page-section-pt black-bg">
+    <div class="container">
+        <div class="row" style="justify-content: center;">
+            <div class="col-lg-2 col-sm-6 sm-mb-30">
+                <div class="footer-useful-link footer-hedding">
+                    <h6 class="text-white mb-30 mt-10 ">@T("common.footer.location.first.title")</h6>
+                    <ul>
+                        @foreach (var item in Model.PageList.Pages.Where(o => o.FooterLocation == WCore.Core.Domain.Pages.FooterLocation.First))
+                        {
+                            <li><a href="/@_workContext.WorkingLanguage.UniqueSeoCode/@item.SeName">@item.Title</a></li>
+                        }
+                    </ul>
+                </div>
+            </div>  
+            <div class="col-lg-4 col-sm-6 sm-mb-30">
+                <div class="footer-useful-link footer-hedding" style="display: flex;justify-content: center;">
+                    <img src="@_storeInformationSettings.LogoPicture" style=" width: 80%;">
+                    <ul>
+                        @foreach (var item in Model.PageList.Pages.Where(o => o.FooterLocation == WCore.Core.Domain.Pages.FooterLocation.Second))
+                        {
+                            <li><a href="/@item.SeName">@item.Title</a></li>
+                        }
+                    </ul>
+                </div>
+            </div>
+            <div class="col-lg-4 col-sm-6 xs-mb-30">
+                <h6 class="text-white mb-30 mt-10 ">@T("common.footer.contactus.title")</h6>
+                <ul class="addresss-info">
+                    <li><i class="fa fa-map-marker"></i> <p>@T("common.contactus.address.title")</p> </li>
+                    <li><i class="fa fa-phone"></i> <a href="tel://@T("common.contactus.phone")"> <span>@T("common.contactus.phone")</span> </a> </li>
+                    <li><i class="fa fa-envelope-o"></i><a href="mailto:@T("common.contactus.email")"></a>@T("common.contactus.email")</li>
+                </ul>
+            </div>
+            <!--
+
+            <div class="col-lg-4 col-sm-6">
+                <h6 class="text-white mb-30 mt-10 ">@T("common.footer.newsletter.title")</h6>
+                <p class="mb-30">@T("common.footer.newsletter.description")</p>
+                <div class="footer-Newsletter">
+                    <div id="mc_embed_signup_scroll">
+                        <form action="/common/addnewsletter" method="POST" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate">
+                            <div id="msg"> </div>
+                            <div id="mc_embed_signup_scroll_2">
+                                <input id="mce-EMAIL" class="form-control" type="text" placeholder="@T("common.footer.newsletter.email")" name="email" value="">
+                            </div>
+                            <div id="mce-responses" class="clear">
+                                <div class="response" id="mce-error-response" style="display:none"></div>
+                                <div class="response" id="mce-success-response" style="display:none"></div>
+                            </div>
+            <div style="position: absolute; left: -5000px;" aria-hidden="true">
+                <input type="text" name="b_b7ef45306f8b17781aa5ae58a_6b09f39a55" tabindex="-1" value="">
+            </div>
+            <div class="clear">
+                <button type="submit" name="submitbtn" id="mc-embedded-subscribe" class="button button-border mt-20 form-button">  @T("common.footer.newsletter.submit.text") </button>
+            </div>
+            </form>
+        </div>
+    </div>
+    </div>
+    -->
+
+        </div>
+    <div class="footer-widget mt-20">
+        <div class="row">
+            <div class="col-lg-6 col-md-6">
+                <p class="mt-15">
+                    &copy;Copyright <span id="copyright">
+                        <script>document.getElementById('copyright').appendChild(document.createTextNode(new Date().getFullYear()))</script>
+                    </span> <a href="#"> @_seoSettings.DefaultTitle </a> @T("common.allrightsreserved")
+                </p>
+            </div>
+            <div class="col-lg-6 col-md-6 text-left text-md-right">
+                <div class="social-icons color-hover mt-10">
+                    <ul>
+                        @foreach (var item in Model.PageList.Pages.Where(o => o.FooterLocation == WCore.Core.Domain.Pages.FooterLocation.Bottom))
+                        {
+                            <li><a href="/@item.SeName">@item.Title</a></li>
+                        }
+
+                        @if (!string.IsNullOrEmpty(_storeInformationSettings.FacebookLink))
+                        {
+                            <li class="social-facebook"><a target="_blank" href="@_storeInformationSettings.FacebookLink"><i class="ti-facebook"></i></a></li>
+                        }
+                        @if (!string.IsNullOrEmpty(_storeInformationSettings.YoutubeLink))
+                        {
+                            <li class="social-youtube"><a target="_blank" href="@_storeInformationSettings.YoutubeLink"><i class="ti-youtube"></i></a></li>
+                        }
+                        @if (!string.IsNullOrEmpty(_storeInformationSettings.TwitterLink))
+                        {
+                            <li class="social-twitter"><a target="_blank" href="@_storeInformationSettings.TwitterLink"><i class="ti-twitter-alt"></i></a></li>
+                        }
+                        @if (!string.IsNullOrEmpty(_storeInformationSettings.InstagramLink))
+                        {
+                            <li class="social-youtube"><a target="_blank" href="@_storeInformationSettings.InstagramLink"><span class="ti-instagram"></span></a></li>
+                        }
+                        @if (!string.IsNullOrEmpty(_storeInformationSettings.LinkedinLink))
+                        {
+                            <li class="social-youtube"><a target="_blank" href="@_storeInformationSettings.LinkedinLink"><span class="ti-linkedin"></span></a></li>
+                        }
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+</footer>
+
+<footer class="d-none">
+    <div class="container margin_60_35">
+        <div class="row">
+            <div class="col-lg-4 col-md-12 p-r-5">
+                <p><img class="img-fluid" src="@_storeInformationSettings.LogoPicture" alt=""></p>
+                <p>
+                    @T("common.footer.slogan")
+                    <div class="follow_us">
+                        <ul>
+                            <li>@T("common.footer.followus")</li>
+                            <li><a href="@_storeInformationSettings.FacebookLink"><i class="ti-facebook"></i></a></li>
+                            <li><a href="@_storeInformationSettings.TwitterLink"><i class="ti-twitter-alt"></i></a></li>
+                            <li><a href="@_storeInformationSettings.YoutubeLink"><i class="ti-youtube"></i></a></li>
+                        </ul>
+                    </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <h5>@T("common.footer.location.first.title")</h5>
+                <ul class="links">
+                    @foreach (var item in Model.PageList.Pages.Where(o => o.FooterLocation == WCore.Core.Domain.Pages.FooterLocation.First))
+                    {
+                        <li><a href="/@_workContext.WorkingLanguage.UniqueSeoCode/@item.SeName">@item.Title</a></li>
+                    }
+                </ul>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <h5>@T("common.footer.contactus.title")</h5>
+                <ul class="contacts">
+                    <li><a href="tel://@T("common.contactus.phone")"><i class="ti-mobile"></i> @T("common.contactus.phone")</a></li>
+                    <li><a href="mailto:@T("common.contactus.email")"><i class="ti-email"></i> @T("common.contactus.email")</a></li>
+                </ul>
+                <div id="newsletter">
+                    <h6>@T("common.footer.newsletter.title")</h6>
+                    <div id="message-newsletter"></div>
+                    <form method="post" action="#" name="newsletter_form" id="newsletter_form">
+                        <div class="form-group">
+                            <input type="email" name="email_newsletter" id="email_newsletter" class="form-control" placeholder="@T("common.footer.newsletter.email")">
+                            <input type="submit" value="@T("common.footer.newsletter.submit.text")" id="submit-newsletter">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!--/row-->
+        <hr>
+        <div class="row">
+            <div class="col-lg-12">
+                <ul id="additional_links">
+                    @foreach (var item in Model.PageList.Pages.Where(o => o.FooterLocation == WCore.Core.Domain.Pages.FooterLocation.Bottom))
+                    {
+                        <li><a href="/@item.SeName">@item.Title</a></li>
+                    }
+                    <li><span>© @DateTime.Now.Year @_seoSettings.DefaultTitle</span></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>

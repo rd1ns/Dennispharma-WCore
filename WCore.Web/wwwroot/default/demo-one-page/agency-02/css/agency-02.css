@@ -1,0 +1,60 @@
+/*
+Template:  Webster - Responsive Multi-purpose HTML5 Template
+Author: potenzaglobalsolutions.com
+Design and Developed by: potenzaglobalsolutions.com
+
+NOTE: This file contains the styling for the agency-02 Template. You can edit/add anything in this file!
+*/
+ 
+.button, .form-control, #back-to-top .top, .footer-Newsletter .form-control, .skill-bar, .nice-select { border-radius: 0; }
+
+ /*banner-agency-02*/
+ .banner-agency-02 { position: relative; }
+ .banner-agency-02:before { position: absolute; width: 100%; height: 100%; bottom: 0; content: ""; background: url(../../../demo-one-page/agency-02/images/white-overlay.png); background-repeat:repeat-x; background-position: bottom; }
+ .banner-agency-02 h1 { font-size: 50px; }
+ .banner-agency-02 p { font-size: 16px; }
+
+/*action-box */
+.agency-02-action-box .action-box { position: relative; margin-top: -70px; z-index: 9; padding: 50px 30px; box-shadow: 0px 15px 30px rgba(0, 0, 0, 0.1); }
+
+/*agency-02-about*/
+.agency-02-about-content-right { margin-left: -100px; }
+.agency-02-about h3 { position: relative; }
+.agency-02-about h3:before { position: absolute; content: ""; left: -50px; top: -20px; width: 116px; height: 90px; background: url(../../../demo-one-page/agency-02/images/pattern-02.png); }
+.agency-02-about .agency-02-about-content-right h3:before { left: inherit; position: absolute; content: ""; right: 0px; top: -30px; width: 116px; height: 90px; background: url(../../../demo-one-page/agency-02/images/pattern-02.png); }
+
+/*services-text */
+.services-text-box-black { background: #050801;  }
+.skill-bar { background: #d12326; }
+
+.agency-02-action-box .action-box.white-bg { box-shadow: 0px 15px 30px rgba(0, 0, 0, 0.1); padding: 50px 70px; }
+.agency-02-action-box .popup-video-image a i { left: inherit; top: -14px; }
+
+/*agency-02-history-who*/
+.agency-02-history-who { padding: 60px;  background: #ffffff url(../../../demo-one-page/agency-02/images/pattern-bg.png); }
+.agency-02-history-who p, .agency-02-history-who strong { line-height: 28px;  }
+
+/*agency-feature*/
+.agency-feature { padding: 60px 40px; position:relative; }
+.agency-feature span { position: absolute; font-size: 60px; line-height: 60px; color: rgba(0, 0, 0, .2); } 
+.agency-feature h3 { line-height: 60px; }
+.agency-bg { background: rgba(0, 0, 0, 0.06); }
+.black-bg .agency-feature span { color: rgba(255, 255, 255, 0.2); }
+.agency-02-contact-title { padding-bottom: 300px; }
+
+/*************************************
+           footer
+**************************************/
+.agency-02-contact .footer-contact { margin-top: -370px; }
+.footer.gray-footer .footer-Newsletter .form-control { background: #ffffff; color: #323232; height: 60px; line-height: 60px; box-shadow: 0px 6px 30px rgba(0, 0, 0, 0.1); }
+.footer.gray-footer .footer-widget  { border-top: none; }
+.footer.gray-footer .footer-widget p { color: #323232; }
+.footer.gray-footer .footer-Newsletter .form-control::-moz-placeholder { color: #323232; }
+.footer.gray-footer .footer-Newsletter .form-control::-ms-input-placeholder { color: #323232; }
+.footer.gray-footer .footer-Newsletter .form-control::-webkit-input-placeholder { color: #323232; }
+
+
+
+
+
+

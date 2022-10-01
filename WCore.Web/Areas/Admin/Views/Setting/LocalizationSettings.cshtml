@@ -1,0 +1,128 @@
+﻿@model LocalizationSettingsModel
+@{
+
+    ViewData["PageMainTitle"] = T("Admin.Configuration.Settings");
+    ViewData["PageTitle"] = T("admin.configuration.settings.localization.title");
+    ViewData["SystemTitle"] = ViewData["PageTitle"] + " / " + ViewData["PageMainTitle"];
+    ViewData["ControllerName"] = "Setting";
+    ViewData["ActionName"] = "localizationsettings";
+}
+<div class="content  d-flex flex-column flex-column-fluid" id="kt_content">
+    <div class="subheader py-2 py-lg-6  subheader-solid " id="kt_subheader">
+        <div class=" container-fluid  d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
+            <div class="d-flex align-items-center flex-wrap mr-1">
+                <div class="d-flex align-items-baseline flex-wrap mr-5">
+                    <h5 class="text-dark font-weight-bold my-1 mr-5">
+                        @ViewData["PageTitle"]
+                    </h5>
+                    <ul class="breadcrumb breadcrumb-transparent breadcrumb-dot font-weight-bold p-0 my-2 font-size-sm">
+                        <li class="breadcrumb-item">
+                            @ViewData["PageMainTitle"]
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="d-flex align-items-center">
+                <partial name="_AddOrEditHeaderButtons" model="@Tuple.Create(0,"LocalizationSettingsForm")" />
+            </div>
+        </div>
+    </div>
+    <div class="d-flex flex-column-fluid">
+        <div class="container-fluid">
+            <form id="LocalizationSettingsForm" action="/admin/@ViewData["ControllerName"]/@ViewData["ActionName"]" method="post" enctype="multipart/form-data">
+                <div class="card card-custom">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-xl-12 my-2">
+                                <div class="form-group row ">
+                                    <WCore-label asp-for="UseImagesForLanguageSelection" />
+                                    <div class="col-lg-10 col-md-6 col-sm-12">
+                                        <div class="checkbox-inline">
+                                            <label class="checkbox pt-3">
+                                                <input asp-for="UseImagesForLanguageSelection" />
+                                                <span></span>
+                                            </label>
+                                        </div>
+                                        <span asp-validation-for="UseImagesForLanguageSelection"></span>
+                                    </div>
+                                </div>
+                                <div class="form-group row ">
+                                    <WCore-label asp-for="SeoFriendlyUrlsForLanguagesEnabled" />
+                                    <div class="col-lg-10 col-md-6 col-sm-12">
+                                        <div class="checkbox-inline">
+                                            <label class="checkbox pt-3">
+                                                <input asp-for="SeoFriendlyUrlsForLanguagesEnabled" />
+                                                <span></span>
+                                            </label>
+                                        </div>
+                                        <span asp-validation-for="SeoFriendlyUrlsForLanguagesEnabled"></span>
+                                    </div>
+                                </div>
+                                <div class="form-group row ">
+                                    <WCore-label asp-for="AutomaticallyDetectLanguage" />
+                                    <div class="col-lg-10 col-md-6 col-sm-12">
+                                        <div class="checkbox-inline">
+                                            <label class="checkbox pt-3">
+                                                <input asp-for="AutomaticallyDetectLanguage" />
+                                                <span></span>
+                                            </label>
+                                        </div>
+                                        <span asp-validation-for="AutomaticallyDetectLanguage"></span>
+                                    </div>
+                                </div>
+                                <div class="form-group row ">
+                                    <WCore-label asp-for="LoadAllLocaleRecordsOnStartup" />
+                                    <div class="col-lg-10 col-md-6 col-sm-12">
+                                        <div class="checkbox-inline">
+                                            <label class="checkbox pt-3">
+                                                <input asp-for="LoadAllLocaleRecordsOnStartup" />
+                                                <span></span>
+                                            </label>
+                                        </div>
+                                        <span asp-validation-for="LoadAllLocaleRecordsOnStartup"></span>
+                                    </div>
+                                </div>
+                                <div class="form-group row ">
+                                    <WCore-label asp-for="LoadAllLocalizedPropertiesOnStartup" />
+                                    <div class="col-lg-10 col-md-6 col-sm-12">
+                                        <div class="checkbox-inline">
+                                            <label class="checkbox pt-3">
+                                                <input asp-for="LoadAllLocalizedPropertiesOnStartup" />
+                                                <span></span>
+                                            </label>
+                                        </div>
+                                        <span asp-validation-for="LoadAllLocalizedPropertiesOnStartup"></span>
+                                    </div>
+                                </div>
+                                <div class="form-group row ">
+                                    <WCore-label asp-for="LoadAllUrlRecordsOnStartup" />
+                                    <div class="col-lg-10 col-md-6 col-sm-12">
+                                        <div class="checkbox-inline">
+                                            <label class="checkbox pt-3">
+                                                <input asp-for="LoadAllUrlRecordsOnStartup" />
+                                                <span></span>
+                                            </label>
+                                        </div>
+                                        <span asp-validation-for="LoadAllUrlRecordsOnStartup"></span>
+                                    </div>
+                                </div>
+                                <div class="form-group row ">
+                                    <WCore-label asp-for="IgnoreRtlPropertyForAdminArea" />
+                                    <div class="col-lg-10 col-md-6 col-sm-12">
+                                        <div class="checkbox-inline">
+                                            <label class="checkbox pt-3">
+                                                <input asp-for="IgnoreRtlPropertyForAdminArea" />
+                                                <span></span>
+                                            </label>
+                                        </div>
+                                        <span asp-validation-for="IgnoreRtlPropertyForAdminArea"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

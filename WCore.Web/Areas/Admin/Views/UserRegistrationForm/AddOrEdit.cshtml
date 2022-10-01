@@ -1,0 +1,215 @@
+﻿@model UserRegistrationFormModel
+@{
+    ViewData["PageMainTitle"] = T("Admin.Configuration.UserRegistrationForms.Title");
+    ViewData["PageTitle"] = T("Admin.Configuration.UserRegistrationForms.View");
+    ViewData["SystemTitle"] = ViewData["PageTitle"] + " / " + ViewData["PageMainTitle"];
+    ViewData["ControllerName"] = "UserRegistrationForm";
+}
+<div class="content  d-flex flex-column flex-column-fluid" id="kt_content">
+    <div class="subheader py-2 py-lg-6  subheader-solid " id="kt_subheader">
+        <div class=" container-fluid  d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
+            <div class="d-flex align-items-center flex-wrap mr-1">
+                <div class="d-flex align-items-baseline flex-wrap mr-5">
+                    <h5 class="text-dark font-weight-bold my-1 mr-5">
+                        @ViewData["PageTitle"]
+                    </h5>
+                    <ul class="breadcrumb breadcrumb-transparent breadcrumb-dot font-weight-bold p-0 my-2 font-size-sm">
+                        <li class="breadcrumb-item">
+                            <a href="/admin/@ViewData["ControllerName"]" class="text-muted">
+                                @ViewData["PageMainTitle"]
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="d-flex align-items-center">
+                <partial name="_AddOrEditHeaderButtons" model="@Tuple.Create(Model.Id,"UserRegistrationFormForm")" />
+            </div>
+        </div>
+    </div>
+    <div class="d-flex flex-column-fluid">
+        <div class="container-fluid">
+            <div class="card card-custom">
+                <div class="card-body">
+                    <WCore-tabs id="userRegistrationForm-edit" asp-tab-name-to-select="tab-details" asp-render-selected-tab-input="false">
+                        <WCore-tab asp-name="tab-details" asp-title="Detaylar" asp-default="true">
+                            <form id="UserRegistrationFormForm" asp-action="AddOrEdit" asp-controller="@ViewData["ControllerName"]" enctype="multipart/form-data">
+                                <div class="form-group row">
+                                    <WCore-label asp-for="Title" />
+                                    <div class="col-lg-10 col-md-6 col-sm-12">
+                                        <p class="form-control-plaintext">@Model.Title</p>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <WCore-label asp-for="Gender" />
+                                    <div class="col-lg-10 col-md-6 col-sm-12">
+                                        <p class="form-control-plaintext">@Model.Title</p>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <WCore-label asp-for="FirstName" />
+                                    <div class="col-lg-10 col-md-6 col-sm-12">
+                                        <p class="form-control-plaintext">@Model.FirstName</p>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <WCore-label asp-for="LastName" />
+                                    <div class="col-lg-10 col-md-6 col-sm-12">
+                                        <p class="form-control-plaintext">@Model.LastName</p>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <WCore-label asp-for="IdNo" />
+                                    <div class="col-lg-10 col-md-6 col-sm-12">
+                                        <p class="form-control-plaintext">@Model.IdNo</p>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <WCore-label asp-for="BirthDate" />
+                                    <div class="col-lg-10 col-md-6 col-sm-12">
+                                        <p class="form-control-plaintext">@Model.BirthDate</p>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <WCore-label asp-for="BirthPlace" />
+                                    <div class="col-lg-10 col-md-6 col-sm-12">
+                                        <p class="form-control-plaintext">@Model.BirthPlace</p>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <WCore-label asp-for="MotherName" />
+                                    <div class="col-lg-10 col-md-6 col-sm-12">
+                                        <p class="form-control-plaintext">@Model.MotherName</p>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <WCore-label asp-for="FatherName" />
+                                    <div class="col-lg-10 col-md-6 col-sm-12">
+                                        <p class="form-control-plaintext">@Model.FatherName</p>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <WCore-label asp-for="Email" />
+                                    <div class="col-lg-10 col-md-6 col-sm-12">
+                                        <p class="form-control-plaintext">@Model.Email</p>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <WCore-label asp-for="Phone" />
+                                    <div class="col-lg-10 col-md-6 col-sm-12">
+                                        <p class="form-control-plaintext">@Model.Phone</p>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <WCore-label asp-for="CompanyName" />
+                                    <div class="col-lg-10 col-md-6 col-sm-12">
+                                        <p class="form-control-plaintext">@Model.CompanyName</p>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <WCore-label asp-for="CompanyDepartment" />
+                                    <div class="col-lg-10 col-md-6 col-sm-12">
+                                        <p class="form-control-plaintext">@Model.CompanyDepartment</p>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <WCore-label asp-for="CompanyAddress" />
+                                    <div class="col-lg-10 col-md-6 col-sm-12">
+                                        <p class="form-control-plaintext">@Model.CompanyAddress</p>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <WCore-label asp-for="HomeAddress" />
+                                    <div class="col-lg-10 col-md-6 col-sm-12">
+                                        <p class="form-control-plaintext">@Model.HomeAddress</p>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <WCore-label asp-for="City" />
+                                    <div class="col-lg-10 col-md-6 col-sm-12">
+                                        <p class="form-control-plaintext">@Model.City</p>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <WCore-label asp-for="Profession" />
+                                    <div class="col-lg-10 col-md-6 col-sm-12">
+                                        <p class="form-control-plaintext">@Model.Profession</p>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <WCore-label asp-for="ProfessionDate" />
+                                    <div class="col-lg-10 col-md-6 col-sm-12">
+                                        <p class="form-control-plaintext">@Model.ProfessionDate</p>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <WCore-label asp-for="ProfessionDocumentNo" />
+                                    <div class="col-lg-10 col-md-6 col-sm-12">
+                                        <p class="form-control-plaintext">@Model.ProfessionDocumentNo</p>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <WCore-label asp-for="HistoryOfExpertise" />
+                                    <div class="col-lg-10 col-md-6 col-sm-12">
+                                        <p class="form-control-plaintext">@Model.HistoryOfExpertise</p>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <WCore-label asp-for="InstitutionExpert" />
+                                    <div class="col-lg-10 col-md-6 col-sm-12">
+                                        <p class="form-control-plaintext">@Model.InstitutionExpert</p>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <WCore-label asp-for="SideBranch" />
+                                    <div class="col-lg-10 col-md-6 col-sm-12">
+                                        <p class="form-control-plaintext">@Model.SideBranch</p>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <WCore-label asp-for="SideBranchDocumentDate" />
+                                    <div class="col-lg-10 col-md-6 col-sm-12">
+                                        <p class="form-control-plaintext">@Model.SideBranchDocumentDate</p>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <WCore-label asp-for="SideBranchDocumentNo" />
+                                    <div class="col-lg-10 col-md-6 col-sm-12">
+                                        <p class="form-control-plaintext">@Model.SideBranchDocumentNo</p>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <WCore-label asp-for="ReferenceEmail" />
+                                    <div class="col-lg-10 col-md-6 col-sm-12">
+                                        <p class="form-control-plaintext">@Model.ReferenceEmail</p>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <WCore-label asp-for="ReferenceName" />
+                                    <div class="col-lg-10 col-md-6 col-sm-12">
+                                        <p class="form-control-plaintext">@Model.ReferenceName</p>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <WCore-label asp-for="ShareInfo" />
+                                    <div class="col-lg-10 col-md-6 col-sm-12">
+                                        <p class="form-control-plaintext">@Model.ShareInfo</p>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <WCore-label asp-for="CreatedOn" />
+                                    <div class="col-lg-10 col-md-6 col-sm-12">
+                                        <p class="form-control-plaintext">@Model.CreatedOn</p>
+                                    </div>
+                                </div>
+                                <input type="hidden" asp-for="Id" />
+                            </form>
+                        </WCore-tab>
+                    </WCore-tabs>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

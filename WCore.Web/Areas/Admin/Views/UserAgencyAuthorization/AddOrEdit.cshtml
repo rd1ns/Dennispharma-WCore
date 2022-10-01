@@ -1,0 +1,340 @@
+﻿@model UserAgencyAuthorizationModel
+@{
+    ViewData["PageMainTitle"] = T("Admin.Configuration.UserAgencyAuthorizations.Title");
+    ViewData["PageTitle"] = Model.Id == 0 ? T("Admin.Configuration.UserAgencyAuthorizations.Add") : T("Admin.Configuration.UserAgencyAuthorizations.Edit");
+    ViewData["SystemTitle"] = ViewData["PageTitle"] + " / " + ViewData["PageMainTitle"];
+    ViewData["ControllerName"] = "UserAgencyAuthorization";
+
+    if (Model.Id == 0)
+    {
+        Model.IsCreate = true;
+        Model.IsRead = true;
+        Model.IsUpdate = true;
+        Model.IsDelete = true;
+    }
+}
+<div class="content  d-flex flex-column flex-column-fluid" id="kt_content">
+    <div class="subheader py-2 py-lg-6  subheader-solid " id="kt_subheader">
+        <div class=" container-fluid  d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
+            <div class="d-flex align-items-center flex-wrap mr-1">
+                <div class="d-flex align-items-baseline flex-wrap mr-5">
+                    <h5 class="text-dark font-weight-bold my-1 mr-5">
+                        @ViewData["PageTitle"]
+                    </h5>
+                    <ul class="breadcrumb breadcrumb-transparent breadcrumb-dot font-weight-bold p-0 my-2 font-size-sm">
+                        <li class="breadcrumb-item">
+                            <a href="/admin/@ViewData["ControllerName"]" class="text-muted">
+                                @ViewData["PageMainTitle"]
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="d-flex align-items-center">
+                <partial name="_AddOrEditHeaderButtons" model="@Tuple.Create(Model.Id,"UserAgencyAuthorizationForm")" />
+            </div>
+        </div>
+    </div>
+    <div class="d-flex flex-column-fluid">
+        <div class="container-fluid">
+            <div class="card card-custom">
+                <div class="card-body">
+                    <WCore-tabs id="skiresort-edit" asp-tab-name-to-select="tab-details" asp-render-selected-tab-input="false">
+                        <WCore-tab asp-name="tab-details" asp-title="@T("Admin.Configuration.Details")">
+                            <form id="UserAgencyAuthorizationForm" asp-action="AddOrEdit" asp-controller="@ViewData["ControllerName"]" enctype="multipart/form-data">
+                                <div class="card card-custom">
+                                    <div class="card-body">
+                                        <div class="form-group row">
+                                            <WCore-label asp-for="UserAgencyId" />
+                                            <div class="col-lg-10 col-md-6 col-sm-12">
+                                                <select asp-for="UserAgencyId" asp-items="Model.UserAgencies" class="form-control form-control-sm form-control-solid"></select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group mb-0 row">
+                                            <WCore-label asp-for="IsRead" />
+                                            <div class="col-lg-4 col-md-6 col-sm-12">
+                                                <div class="checkbox-inline">
+                                                    <label class="checkbox pt-3">
+                                                        <input asp-for="IsRead" />
+                                                        <span></span>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <WCore-label asp-for="IsUpdate" />
+                                            <div class="col-lg-4 col-md-6 col-sm-12">
+                                                <div class="checkbox-inline">
+                                                    <label class="checkbox pt-3">
+                                                        <input asp-for="IsUpdate" />
+                                                        <span></span>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group mb-0 row">
+                                            <WCore-label asp-for="IsDelete" />
+                                            <div class="col-lg-4 col-md-6 col-sm-12">
+                                                <div class="checkbox-inline">
+                                                    <label class="checkbox pt-3">
+                                                        <input asp-for="IsDelete" />
+                                                        <span></span>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <WCore-label asp-for="IsCreate" />
+                                            <div class="col-lg-4 col-md-6 col-sm-12">
+                                                <div class="checkbox-inline">
+                                                    <label class="checkbox pt-3">
+                                                        <input asp-for="IsCreate" />
+                                                        <span></span>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-12 my-2">
+                                            <div class="row">
+                                                <div class="border col-lg-4 col-md-6 col-sm-12 pt-3 pb-3" id="skiResorts">
+                                                </div>
+                                                <div class="border col-lg-8 col-md-6 col-sm-12 pt-3 pb-3" id="others">
+                                                    <div id='hotels' class="mb-3"></div>
+                                                    <div id='skiSchools' class="mb-3"></div>
+                                                    <div id='restaurants' class="mb-3"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <input id="send-info" name="send-info" type="hidden" value="false" />
+                                <input type="hidden" asp-for="Id" />
+                            </form>
+                        </WCore-tab>
+                    </WCore-tabs>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts{
+    <script>
+        var _SkiResortId = $("#SkiResortId");
+        var _HotelId = $("#HotelId");
+        var _SkiSchoolId = $("#SkiSchoolId");
+        var _RestaurantId = $("#RestaurantId");
+
+        var tabAuthorization = $("#tab-details");
+        $(document).ready(function () {
+            GetSkiResorts();
+        });
+
+        function GetSkiResorts() {
+            $("#tab-details #skiResorts").html("");
+            $.ajax({
+                type: "POST",
+                url: "/admin/skiresort/getfiltereditems?take=100",
+                processData: false,
+                contentType: false,
+                data: {},
+                success: function (data) {
+                    var li = "";
+                    var firstId = 0;
+                    li += '<button type="button" class="list-group-item list-group-item-action bg-dark text-light">Kayak Merkezleri</button>';
+                    if (data.Data.length == 0) {
+                        li += '<button type="button" class="list-group-item list-group-item-action">Kayak Merkezi Bulunamadı</button>';
+                    }
+                    for (var i = 0; i < data.Data.length; i++) {
+                        var skiResort = data.Data[i];
+                        if (i == 0) { firstId = skiResort.Id; }
+                        li += '<button type="button" class="btnDisableable ' + (_SkiResortId.val() == skiResort.Id  ? 'active' : '') +' list-group-item list-group-item-action" data-type="SkiResort" data-id="' + skiResort.Id + '" data-title="' + skiResort.Title + '" href="#">' + skiResort.Title + '</button>';
+                    }
+                    $("#tab-details [id='skiResorts']").append($("<div class='list-group'>" + li + "</div>"));
+                }
+            });
+            if (_SkiResortId.val() != 0) {
+                GetHotels("", _SkiResortId.val());
+                GetSkiSchools("", _SkiResortId.val());
+                GetRestaurants("", _SkiResortId.val());
+            }
+        }
+        function GetHotels(title, skiResortId) {
+            $("#tab-details #others #hotels").html("");
+            $.ajax({
+                type: "POST",
+                url: "/admin/hotel/getfiltereditems?skiResortId=" + skiResortId + "&take=100",
+                processData: false,
+                contentType: false,
+                data: {},
+                success: function (data) {
+                    var li = "";
+                    var firstId = 0;
+                    li += '<button type="button" class="list-group-item list-group-item-action bg-dark text-light">OTELLER - ' + title + '</button>';
+                    if (data.Data.length == 0) {
+                        li += '<button type="button" class="list-group-item list-group-item-action">Otel Bulunamadı</button>';
+                    }
+                    for (var i = 0; i < data.Data.length; i++) {
+                        var hotel = data.Data[i];
+                        if (i == 0) { firstId = hotel.Id; }
+                        li += '<button type="button" class="list-group-item list-group-item-action ' + (_HotelId.val() == hotel.Id ? 'active' : '') +'" data-type="Hotel" data-id="' + hotel.Id + '" data-title="' + hotel.Title + '">' + hotel.Title + '</button>';
+                    }
+                    $("#tab-details #others #hotels").append($("<div id='hotels'><div class='list-group'>" + li + "</div></div>"));
+                }
+            });
+        }
+        function GetSkiSchools(title, skiResortId) {
+            $("#tab-details #others #skiSchools").html("");
+            $.ajax({
+                type: "POST",
+                url: "/admin/skiSchool/getfiltereditems?skiResortId=" + skiResortId + "&take=100",
+                processData: false,
+                contentType: false,
+                data: {},
+                success: function (data) {
+                    var li = "";
+                    var firstId = 0;
+                    li += '<button type="button" class="list-group-item list-group-item-action bg-dark text-light">KAYAK OKULLARI - ' + title + '</button>';
+                    if (data.Data.length == 0) {
+                        li += '<button type="button" class="list-group-item list-group-item-action">Kayak Okulu Bulunamadı</button>';
+                    }
+                    for (var i = 0; i < data.Data.length; i++) {
+                        var skiSchool = data.Data[i];
+                        if (i == 0) { firstId = skiSchool.Id; }
+                        li += '<button type="button" class="list-group-item list-group-item-action ' + (_SkiSchoolId.val() == skiSchool.Id ? 'active' : '') + '" data-type="SkiSchool" data-id="' + skiSchool.Id + '" data-title="' + skiSchool.Title + '">' + skiSchool.Title + '</button>';
+                    }
+                    $("#tab-details #others #skiSchools").append($("<div class='list-group'>" + li + "</div>"));
+                }
+            });
+        }
+        function GetRestaurants(title, skiResortId) {
+            $("#tab-details #others #restaurants").html("");
+            $.ajax({
+                type: "POST",
+                url: "/admin/restaurant/getfiltereditems?skiResortId=" + skiResortId + "&take=100",
+                processData: false,
+                contentType: false,
+                data: {},
+                success: function (data) {
+                    var li = "";
+                    var firstId = 0;
+                    li += '<button type="button" class="list-group-item list-group-item-action bg-dark text-light">RESTORANLAR - ' + title + '</button>';
+                    if (data.Data.length == 0) {
+                        li += '<button type="button" class="list-group-item list-group-item-action">Restauran Bulunamadı</button>';
+                    }
+                    for (var i = 0; i < data.Data.length; i++) {
+                        var restaurant = data.Data[i];
+                        if (i == 0) { firstId = restaurant.Id; }
+                        li += '<button type="button" class="list-group-item list-group-item-action ' + (_RestaurantId.val() == restaurant.Id ? 'active' : '') + '" data-type="Restaurant" data-id="' + restaurant.Id + '" data-title="' + restaurant.Title + '">' + restaurant.Title + '</button>';
+                    }
+                    $("#tab-details #others #restaurants").append($("<div id='restaurants'><div class='list-group'>" + li + "</div></div>"));
+                }
+            });
+        }
+
+        $("#tab-details").delegate("button[data-type='SkiResort']", "click", function () {
+            var id = $(this).attr("data-id");
+            var title = $(this).attr("data-title");
+
+            $("button[data-type='SkiResort']").removeClass("active");
+            $(this).addClass("active");
+            GetHotels(title, id);
+            GetSkiSchools(title, id);
+            GetRestaurants(title, id);
+
+            $("#SkiResortId").val(id);
+            $("#SkiSchoolId").val(0);
+            $("#RestaurantId").val(0);
+            $("#HotelId").val(0);
+        });
+        $("#tab-details").delegate("button[data-type='Hotel']", "click", function () {
+            var id = $(this).attr("data-id");
+            var title = $(this).attr("data-title");
+
+            var elements = $("button[data-type='Hotel']");
+
+            if ($(this).hasClass("active")) {
+                elements.removeClass("active");
+                $("#HotelId").val(0);
+            } else {
+                elements.removeClass("active");
+                $(this).addClass("active");
+                $("#HotelId").val(id);
+            }
+        });
+        $("#tab-details").delegate("button[data-type='SkiSchool']", "click", function () {
+            var id = $(this).attr("data-id");
+            var title = $(this).attr("data-title");
+
+            var elements = $("button[data-type='SkiSchool']");
+
+            if ($(this).hasClass("active")) {
+                elements.removeClass("active");
+                $("#SkiSchoolId").val(0);
+            } else {
+                elements.removeClass("active");
+                $(this).addClass("active");
+                $("#SkiSchoolId").val(id);
+            }
+
+        });
+        $("#tab-details").delegate("button[data-type='Restaurant']", "click", function () {
+            var id = $(this).attr("data-id");
+            var title = $(this).attr("data-title");
+
+            var elements = $("button[data-type='Restaurant']");
+
+            if ($(this).hasClass("active")) {
+                elements.removeClass("active");
+                $("#RestaurantId").val(0);
+            } else {
+                elements.removeClass("active");
+                $(this).addClass("active");
+                $("#RestaurantId").val(id);
+            }
+        });
+    </script>
+    <script>
+        $("#UserAgencyAuthorizationForm").submit(function (e) {
+            e.preventDefault();
+            var data = new FormData();
+
+            //Form data
+            var form_data = $('#UserAgencyAuthorizationForm').serializeArray();
+            $.each(form_data, function (key, input) {
+                data.append(input.name, input.value);
+            });
+
+            var url = $(this).attr('action');
+            var id = @Model.Id;
+
+            $.ajax({
+                type: "POST",
+                url: "/admin/"+url,
+                processData: false,
+                contentType: false,
+                data: data,
+                success: function (data) {
+                    if (id == 0) {
+                        window.location.href = "/admin/@ViewData["ControllerName"]";
+                    }
+                    else {
+                        Swal.fire({
+                            title: '@T("admin.notification.success")',
+                            text: "@T("admin.notification.editcontinue")",
+                            icon: 'success',
+                            showCancelButton: true,
+                            confirmButtonColor: '#3085d6',
+                            cancelButtonColor: '#d33',
+                            confirmButtonText: 'Evet',
+                            cancelButtonText: 'Hayır',
+                            timer: 3000,
+                            timerProgressBar: true
+                        }).then((result) => {
+                            if (!result.value) {
+                                window.location.href = "/admin/@ViewData["ControllerName"]";
+                            }
+                        })
+                    }
+                }
+            });
+        });
+    </script>
+}

@@ -1,0 +1,145 @@
+/*
+Template:  Webster - Responsive Multi-purpose HTML5 Template
+Author: potenzaglobalsolutions.com
+Design and Developed by: potenzaglobalsolutions.com
+
+NOTE: This file contains the styling for the Consulting Template. You can edit/add anything in this file!
+*/
+
+h1 {
+	font-family: 'Playfair Display', serif;
+	font-weight: normal;
+	color: #354a6b;
+	margin-top: 0px;
+	text-transform: capitalize;
+	font-weight: bold;
+}
+h2 {
+	font-family: 'Playfair Display', serif;
+	font-weight: normal;
+	color: #354a6b;
+	margin-top: 0px;
+	text-transform: capitalize;
+	font-weight: bold;
+}
+h3 {
+	font-family: 'Playfair Display', serif;
+	font-weight: normal;
+	color: #354a6b;
+	margin-top: 0px;
+	text-transform: capitalize;
+	font-weight: bold;
+}
+h4 {
+	font-family: 'Playfair Display', serif;
+	font-weight: normal;
+	color: #354a6b;
+	margin-top: 0px;
+	text-transform: capitalize;
+	font-weight: bold;
+}
+h5 {
+	font-family: 'Playfair Display', serif;
+	font-weight: normal;
+	color: #354a6b;
+	margin-top: 0px;
+	text-transform: capitalize;
+	font-weight: bold;
+}
+h6 {
+	font-family: 'Playfair Display', serif;
+	font-weight: normal;
+	color: #354a6b;
+	margin-top: 0px;
+	text-transform: capitalize;
+	font-weight: bold;
+}
+.agency-counter {
+	.row {
+		background: #354a6b;
+	}
+	.counter {
+		&:nth-child(1) {
+			background: rgba(53, 74, 107, 0.2);
+			padding: 60px 60px;
+		}
+		&:nth-child(2) {
+			background: rgba(0, 0, 0, 0.1);
+			padding: 60px 60px;
+		}
+		&:nth-child(3) {
+			background: rgba(0, 0, 0, 0.2);
+			padding: 60px 60px;
+		}
+	}
+}
+.agency-form {
+	.contact-form {
+		padding: 30px;
+		background: #354a6b;
+	}
+}
+.footer-Newsletter {
+	.form-control {
+		background: #152338;
+	}
+}
+.footer.black-bg {
+	background: #20314c;
+}
+.footer-widget {
+	background: transparent;
+	border-top-color: #152338;
+	a {
+		color: #fff !important;
+	}
+}
+.bg-overlay-theme-20 {
+	&:before {
+		background: rgba(53, 74, 107, 0.2);
+		content: "";
+		height: 100%;
+		left: 0;
+		position: absolute;
+		top: 0;
+		width: 100%;
+		z-index: -1;
+	}
+}
+.bg-overlay-theme-50 {
+	&:before {
+		background: rgba(53, 74, 107, 0.5);
+		content: "";
+		height: 100%;
+		left: 0;
+		position: absolute;
+		top: 0;
+		width: 100%;
+		z-index: -1;
+	}
+}
+.bg-overlay-theme-70 {
+	&:before {
+		background: rgba(53, 74, 107, 0.7);
+		content: "";
+		height: 100%;
+		left: 0;
+		position: absolute;
+		top: 0;
+		width: 100%;
+		z-index: -1;
+	}
+}
+.bg-overlay-theme-90 {
+	&:before {
+		background: rgba(53, 74, 107, 0.9);
+		content: "";
+		height: 100%;
+		left: 0;
+		position: absolute;
+		top: 0;
+		width: 100%;
+		z-index: -1;
+	}
+}
+

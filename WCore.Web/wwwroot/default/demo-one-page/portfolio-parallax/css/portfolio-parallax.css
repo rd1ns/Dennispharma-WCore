@@ -1,0 +1,16 @@
+/*
+Template:  Webster - Responsive Multi-purpose HTML5 Template
+Author: potenzaglobalsolutions.com
+Design and Developed by: potenzaglobalsolutions.com
+
+NOTE: This file contains the styling for the portfolio-parallax Template. You can edit/add anything in this file!
+*/
+ 
+
+
+.button, .footer-Newsletter .form-control { border-radius: 0; }
+.button.black { background: #000; border-color: #000; }
+.portfolio-parallax-banner h2 { font-size: 120px; line-height: 120px; font-weight: bold; }
+.portfolio-parallax-banner p { padding-right: 600px; }
+.portfolio-parallax-banner a.teg { background: #ffffff; padding: 4px 14px; color: #323232; display: inline-block; }
+ 

@@ -1,0 +1,24 @@
+﻿@model Tuple<int, string>
+
+@{
+    if (ViewData["DeleteActionName"] == null)
+        ViewData["DeleteActionName"] = "AddOrEdit";
+}
+@if (ViewBag.IsPopup == false)
+{
+    <button type="button" onclick="window.history.back();" class="btnEntity btnDisableable btn btn-smn btn-light-primary font-weight-bolder mr-2">
+        <i class="ki ki-long-arrow-back icon-xs"></i>
+        @T("Admin.Configuration.Back")
+    </button>
+}
+<button type="submit" id="btnEntitySave" data-form-id="@Model.Item2" class="btnEntity btnDisableable btn btn-sm btn-info font-weight-bolder mr-2">
+    <i class="ki ki-check icon-xs"></i>
+    @T("Admin.Configuration.Save")
+</button>
+@if (Model.Item1 != 0)
+{
+<button type="button" data-id="@Model.Item1" data-controller="@ViewData["ControllerName"]" data-action="@ViewData["DeleteActionName"]" class="btnEntity btnRecordDelete btnDisableable ml-1 btn  btn-sm btn-danger font-weight-bolder">
+    <i class="fa fa-trash icon-xs"></i>
+    @T("Admin.Configuration.Delete")
+</button>
+}

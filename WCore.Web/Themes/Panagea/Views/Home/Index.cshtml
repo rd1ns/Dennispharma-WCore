@@ -1,0 +1,157 @@
+﻿@model HomeViewModel
+@inject WCore.Core.IWorkContext _workContext
+@{
+    ViewBag.Title = T("common.home.page.title");
+    ViewBag.Page = "Home";
+}
+<main>
+    <section class="hero_single version_2">
+        <div class="wrapper">
+            <div class="container">
+                <h3>@T("common.slider.title")</h3>
+                <p>@T("common.slider.description")</p>
+                @await Component.InvokeAsync("Search")
+            </div>
+        </div>
+    </section>
+    @if (Model.Tours.Any())
+    {
+        <div class="container container-custom margin_80_0">
+            <div class="main_title_2">
+                <span><em></em></span>
+                <h2>@T("common.home.tour.title")</h2>
+                <p>@T("common.home.tour.description")</p>
+            </div>
+            <div id="reccomended" class="reccomended owl-carousel owl-theme">
+                @foreach (var tour in Model.Tours)
+                {
+                    var liked = Model.User.WishList.Wishes.Any(o => o.EntityGroup == WCore.Core.Domain.EntityGroup.Hotel && o.EntityKey == tour.Id);
+                    var url = "/" + _workContext.WorkingLanguage.UniqueSeoCode + "/" + tour.SeName;
+                    <div class="item">
+                        <div class="box_grid">
+                            <figure>
+                                <a href="#0" data-id="@tour.Id" data-group="@EntityGroup.Hotel" class="wish_bt @(liked ? "liked" : "")"></a>
+                                <a href="@url"><img src="@tour.Image" class="img-fluid" alt="" width="800" height="533"><div class="read_more"><span>@T("common.readmore")</span></div></a>
+                                <small>@tour.TourCategory.Title</small>
+                            </figure>
+                            <div class="wrapper">
+                                <div class="cat_star"><i class="icon_star"></i><i class="icon_star"></i><i class="icon_star"></i><i class="icon_star"></i></div>
+                                <h3><a href="@url">@tour.Title</a></h3>
+                            </div>
+                            <ul>
+                                <li><i class="ti-eye"></i> 0 views</li>
+                                <li><div class="score"><span>Superb<em>3 Reviews</em></span><strong>8.9</strong></div></li>
+                            </ul>
+                        </div>
+                    </div>
+                }
+            </div>
+            <!-- /carousel -->
+            <p class="btn_home_align"><a href="/@_workContext.WorkingLanguage.UniqueSeoCode/tours" class="btn_1 rounded">@T("common.home.viewall")</a></p>
+            <hr class="large">
+        </div>
+
+    }
+    <div class="container container-custom margin_80_0">
+        <div class="main_title_2">
+            <span><em></em></span>
+            <h2>@T("common.home.skiresort.title")</h2>
+            <p>@T("common.home.skiresort.description")</p>
+        </div>
+        <div id="reccomended" class="reccomended owl-carousel owl-theme">
+            @foreach (var skiresort in Model.SkiResorts)
+            {
+                var liked = Model.User.WishList.Wishes.Any(o => o.EntityGroup == WCore.Core.Domain.EntityGroup.Hotel && o.EntityKey == skiresort.Id);
+                var url = "/" + _workContext.WorkingLanguage.UniqueSeoCode + "/" + skiresort.SeName;
+                <div class="item">
+                    <div class="box_grid">
+                        <figure>
+                            <a href="#0" data-id="@skiresort.Id" data-group="@EntityGroup.Hotel" class="wish_bt @(liked ? "liked" : "")"></a>
+                            <a href="@url"><img src="@skiresort.Image" class="img-fluid" alt="" width="800" height="533"><div class="read_more"><span>@T("common.readmore")</span></div></a>
+                            <small>@skiresort.Country.Name - @skiresort.City.Name </small>
+                        </figure>
+                        <div class="wrapper">
+                            <div class="cat_star"><i class="icon_star"></i><i class="icon_star"></i><i class="icon_star"></i><i class="icon_star"></i></div>
+                            <h3><a href="@url">@skiresort.Title</a></h3>
+                        </div>
+                        <ul>
+                            <li><i class="ti-eye"></i> 0 views</li>
+                            <li><div class="score"><span>Superb<em>3 Reviews</em></span><strong>8.9</strong></div></li>
+                        </ul>
+                    </div>
+                </div>
+            }
+        </div>
+        <!-- /carousel -->
+        <p class="btn_home_align"><a href="/@_workContext.WorkingLanguage.UniqueSeoCode/tours" class="btn_1 rounded">@T("common.home.viewall")</a></p>
+        <hr class="large">
+    </div>
+    <div class="container container-custom margin_30_95">
+        <section class="add_bottom_45">
+            <div class="main_title_3">
+                <span><em></em></span>
+                <h2>@T("common.home.hotel.title")</h2>
+                <p>@T("common.home.hotel.description")</p>
+            </div>
+            <div class="row">
+                <div id="reccomended" class="reccomended owl-carousel owl-theme mt-0">
+                    @foreach (var hotel in Model.Hotels)
+                    {
+                        var liked = Model.User.WishList.Wishes.Any(o => o.EntityGroup == WCore.Core.Domain.EntityGroup.Hotel && o.EntityKey == hotel.Id);
+                        var url = "/" + _workContext.WorkingLanguage.UniqueSeoCode + "/" + hotel.SeName;
+
+                        <a href="@url" class="grid_item">
+                            <figure>
+                                <div class="score"><strong>8.9</strong></div>
+                                <img src="@hotel.Image" class="img-fluid" alt="">
+                                <div class="info">
+                                    <div class="cat_star"><i class="icon_star"></i><i class="icon_star"></i><i class="icon_star"></i><i class="icon_star"></i></div>
+                                    <h3>@hotel.Title</h3>
+                                </div>
+                            </figure>
+                        </a>
+                    }
+                </div>
+            </div>
+            <a href="hotels-grid-isotope.html"><strong>@T("common.home.viewall") <i class="arrow_carrot-right"></i></strong></a>
+        </section>
+        <section class="add_bottom_45">
+            <div class="main_title_3">
+                <span><em></em></span>
+                <h2>@T("common.home.restaurant.title")</h2>
+                <p>@T("common.home.restaurant.description")</p>
+            </div>
+            <div class="row">
+                <div id="reccomended" class="reccomended owl-carousel owl-theme mt-0">
+                    @foreach (var restaurant in Model.Restaurants)
+                    {
+                        var liked = Model.User.WishList.Wishes.Any(o => o.EntityGroup == WCore.Core.Domain.EntityGroup.Hotel && o.EntityKey == restaurant.Id);
+                        var url = "/" + _workContext.WorkingLanguage.UniqueSeoCode + "/" + restaurant.SeName;
+
+                        <a href="@url" class="grid_item">
+                            <figure>
+                                <div class="score"><strong>8.9</strong></div>
+                                <img src="@restaurant.Image" class="img-fluid" alt="">
+                                <div class="info">
+                                    <div class="cat_star"><i class="icon_star"></i><i class="icon_star"></i><i class="icon_star"></i><i class="icon_star"></i></div>
+                                    <h3>@restaurant.Title</h3>
+                                </div>
+                            </figure>
+                        </a>
+                    }
+                </div>
+            </div>
+            <!-- /row -->
+            <a href="restaurants-grid-isotope.html"><strong>@T("common.home.viewall") <i class="arrow_carrot-right"></i></strong></a>
+        </section>
+        <!-- /section -->
+        <!-- /banner -->
+
+    </div>
+</main>
+@section Scripts{
+
+}
+
+@section Styles{
+}

@@ -1,0 +1,387 @@
+﻿@model VendorModel
+@{
+    ViewData["PageMainTitle"] = T("Admin.Configuration.Vendors.Title");
+    ViewData["PageTitle"] = Model.Id == 0 ? T("Admin.Configuration.Vendors.Add") : T("Admin.Configuration.Vendors.Edit");
+    ViewData["SystemTitle"] = ViewData["PageTitle"] + " / " + ViewData["PageMainTitle"];
+    ViewData["ControllerName"] = "Vendor";
+
+    @if (Model.Id == 0)
+    {
+        Model.DisplayOrder = 0;
+    }
+}
+<div class="content  d-flex flex-column flex-column-fluid" id="kt_content">
+    <div class="subheader py-2 py-lg-6  subheader-solid " id="kt_subheader">
+        <div class=" container-fluid  d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
+            <div class="d-flex align-items-center flex-wrap mr-1">
+                <div class="d-flex align-items-baseline flex-wrap mr-5">
+                    <h5 class="text-dark font-weight-bold my-1 mr-5">
+                        @ViewData["PageTitle"]
+                    </h5>
+                    <ul class="breadcrumb breadcrumb-transparent breadcrumb-dot font-weight-bold p-0 my-2 font-size-sm">
+                        <li class="breadcrumb-item">
+                            <a href="/admin/@ViewData["ControllerName"]" class="text-muted">
+                                @ViewData["PageMainTitle"]
+                            </a>
+                        </li>
+                        <li class="breadcrumb-item">
+                            @if (Model.Id == 0)
+                            {
+                                <b>@T("admin.common.new")</b>
+                            }
+                            else
+                            {
+                                @Model.Name
+                            }
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="d-flex align-items-center">
+                <partial name="_AddOrEditHeaderButtons" model="@Tuple.Create(Model.Id,"VendorForm")" />
+            </div>
+        </div>
+    </div>
+    <div class="d-flex flex-column-fluid">
+        <div class="container-fluid">
+            <div class="card card-custom">
+                <div class="card-body">
+                    <WCore-tabs id="activity-edit" asp-tab-name-to-select="tab-details" asp-render-selected-tab-input="false">
+                        <WCore-tab asp-name="tab-details" asp-title="@T("Admin.Configuration.Details")" asp-default="true">
+                            <form id="VendorForm" asp-action="AddOrEdit" asp-controller="@ViewData["ControllerName"]" enctype="multipart/form-data">
+                                @(Html.LocalizedEditor<WCore.Web.Areas.Admin.Models.Vendors.VendorModel, WCore.Web.Areas.Admin.Models.Vendors.VendorLocalizedModel>("skiresort-localized",
+                                @<div>
+                                    <div class="form-group row">
+                                        <WCore-label asp-for="Locales[item].Name" />
+                                        <div class="col-lg-10 col-md-6 col-sm-12">
+                                            <WCore-editor asp-for="Locales[item].Name"  asp-type="form-control form-control-sm form-control-solid" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group row mb-3">
+                                        <WCore-label asp-for="Locales[item].Description" />
+                                        <div class="col-lg-10 col-md-6 col-sm-12">
+                                            <WCore-editor asp-for="Locales[item].Description" asp-template="RichEditor" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <WCore-label asp-for="Locales[item].MetaTitle" />
+                                        <div class="col-lg-10 col-md-6 col-sm-12">
+                                            <WCore-editor asp-for="Locales[item].MetaTitle"  asp-type="form-control form-control-sm form-control-solid" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <WCore-label asp-for="Locales[item].MetaDescription" />
+                                        <div class="col-lg-10 col-md-6 col-sm-12">
+                                            <WCore-editor asp-for="Locales[item].MetaDescription"  asp-type="form-control form-control-sm form-control-solid" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <WCore-label asp-for="Locales[item].MetaKeywords" />
+                                        <div class="col-lg-10 col-md-6 col-sm-12">
+                                            <WCore-editor asp-for="Locales[item].MetaKeywords"  asp-type="form-control form-control-sm form-control-solid" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <WCore-label asp-for="Locales[item].SeName" />
+                                        <div class="col-lg-10 col-md-6 col-sm-12">
+                                            <WCore-editor asp-for="Locales[item].SeName" asp-type="form-control form-control-sm form-control-solid" />
+                                        </div>
+                                    </div>
+                                     <input type="hidden" asp-for="@Model.Locales[item].LanguageId" />
+                                </div>,
+                                @<div>
+                                    <div class="form-group row">
+                                        <WCore-label asp-for="Name" />
+                                        <div class="col-lg-10 col-md-6 col-sm-12">
+                                            <WCore-editor asp-for="Name"   asp-required="true" asp-type="form-control form-control-sm form-control-solid" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <WCore-label asp-for="Email" />
+                                        <div class="col-lg-10 col-md-6 col-sm-12">
+                                            <WCore-editor asp-for="Email" asp-required="true" asp-type="form-control form-control-sm form-control-solid" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <WCore-label asp-for="MetaTitle" />
+                                        <div class="col-lg-10 col-md-6 col-sm-12">
+                                            <WCore-editor asp-for="MetaTitle" asp-type="form-control form-control-sm form-control-solid" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <WCore-label asp-for="MetaDescription" />
+                                        <div class="col-lg-10 col-md-6 col-sm-12">
+                                            <WCore-editor asp-for="MetaDescription" asp-type="form-control form-control-sm form-control-solid" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <WCore-label asp-for="MetaKeywords" />
+                                        <div class="col-lg-10 col-md-6 col-sm-12">
+                                            <WCore-editor asp-for="MetaKeywords" asp-type="form-control form-control-sm form-control-solid" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group row mb-3">
+                                        <WCore-label asp-for="Description" />
+                                        <div class="col-lg-10 col-md-6 col-sm-12">
+                                            <WCore-editor asp-for="Description"  asp-template="RichEditor"  />
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <WCore-label asp-for="SeName" />
+                                        <div class="col-lg-10 col-md-6 col-sm-12">
+                                            <WCore-editor asp-for="SeName" asp-type="form-control form-control-sm form-control-solid" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <WCore-label asp-for="DisplayOrder" />
+                                        <div class="col-lg-10 col-md-6 col-sm-12">
+                                            <WCore-editor asp-for="DisplayOrder" asp-type="form-control form-control-sm form-control-solid" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group mb-0 row">
+                                        <WCore-label asp-for="IsActive" />
+                                        <div class="col-lg-10 col-md-6 col-sm-12">
+                                            <div class="checkbox-inline">
+                                                <label class="checkbox pt-3">
+                                                    <input asp-for="IsActive" />
+                                                    <span></span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group mb-0 row">
+                                        <WCore-label asp-for="Deleted" />
+                                        <div class="col-lg-10 col-md-6 col-sm-12">
+                                            <div class="checkbox-inline">
+                                                <label class="checkbox pt-3">
+                                                    <input asp-for="Deleted" />
+                                                    <span></span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group mb-0 row">
+                                        <WCore-label asp-for="ShowOn" />
+                                        <div class="col-lg-10 col-md-6 col-sm-12">
+                                            <div class="checkbox-inline">
+                                                <label class="checkbox pt-3">
+                                                    <input asp-for="ShowOn" />
+                                                    <span></span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>))
+                                <input type="hidden" asp-for="Id" />
+                            </form>
+                        </WCore-tab>
+                        @if (Model.Id != 0)
+                        {
+                            <WCore-tab asp-name="tab-prices" asp-title="@T("Admin.Configuration.Notes")">
+                                <div id="price_datatable" class="pTable"></div>
+                            </WCore-tab>
+                        }
+                    </WCore-tabs>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+@section Scripts{
+    <script>
+        $("#VendorForm").submit(function (e) {
+            e.preventDefault();
+            if ($("#SkiSchoolId").val() == "") {
+                alert("@T("admin.configuration.skischool") @T("admin.configuration.notbeempty")");
+                return;
+            }
+            var data = new FormData();
+            //Form data
+            var form_data = $('#VendorForm').serializeArray();
+            $.each(form_data, function (key, input) {
+                var inputId = $("[name='" + input.name + "']").attr("id");
+                var editor = tinyMCE.editors[inputId];
+                var IsEditor = editor == null ? false : true;
+                if (IsEditor) {
+                    var myContent = editor.getContent();
+                    data.append(input.name, myContent);
+                }
+                else {
+                    data.append(input.name, input.value);
+                }
+            });
+            //File data
+            var file_data = $("#Image")[0].files;
+            for (var i = 0; i < file_data.length; i++) {
+                data.append("file", file_data[i]);
+            }
+            var url = $(this).attr('action');
+            var id = @Model.Id;
+            $.ajax({
+                type: "POST",
+                url: "/admin/"+url,
+                processData: false,
+                contentType: false,
+                data: data,
+                success: function (data) {
+                    if (id == 0) {
+                        window.location.href = "/admin/skischool/addoredit/" + $("#SkiSchoolId").val();
+                    }
+                    else if (!data.continueEditing) {
+                        Swal.fire({
+                            title: '@T("admin.notification.success")',
+                            text: "@T("admin.notification.editcontinue")",
+                            icon: 'success',
+                            showCancelButton: true,
+                            confirmButtonColor: '#3085d6',
+                            cancelButtonColor: '#d33',
+                            confirmButtonText: 'Evet',
+                            cancelButtonText: 'Hayır',
+                            timer: 3000,
+                            timerProgressBar: true
+                        }).then((result) => {
+                            if (!result.value) {
+                                window.location.href = "/admin/skischool/addoredit/" + $("#SkiSchoolId").val();
+                            }
+                        })
+                    }
+                }
+            });
+        });
+    </script>
+    <script>
+        $(document).ready(function () {
+            $.ajax({
+                url: "/admin/common/GetAllCurrencies",
+                type: 'POST',
+                dataType: 'json',
+                data: {},
+                success: function (response) {
+                    $.each(response, function (Index, Object) {
+                        $("#Price_Currency").append('<option value=' + Object.Value + '>' + Object.Text + '</option>');
+                    });
+                    $('#btnSearch').click();
+                }
+            });
+
+            $("#Price_Currency").val("");
+            var priceDatatable = $("#price_datatable").kendoGrid({
+                dataSource: {
+                    type: "json",
+                    transport: {
+                        read: {
+                            url: "/Admin/Price/GetFilteredItems",
+                            type: "POST",
+                            dataType: "json",
+                            data: additionalData
+                        }
+                    },
+                    schema: {
+                        data: "Data",
+                        total: "RecordsFiltered",
+                        errors: "Errors"
+                    },
+                    requestEnd: function (e) {
+                        if (e.type == "create" || e.type == "update") {
+                            this.read();
+                        }
+                    },
+                    error: function (e) {
+                        console.log(e);
+                        this.cancelChanges();
+                    },
+                    pageSize: 10,
+                    serverPaging: true,
+                    serverFiltering: true,
+                    serverSorting: true
+                },
+                pageable: {
+                    refresh: true,
+                    pageSizes: [10, 15, 20, 50, 100, 200, 300, 500, 1000, 3000],
+                    @Html.Partial("_GridPagerMessages")
+                },
+                filterable: true,
+                scrollable: false,
+                columns: [{
+                        field: "Id",
+                        title: "@T("admin.common.delete")",
+                        width: 80,
+                        filterable: false,
+                        headerAttributes: { style: "text-align:center" },
+                        attributes: { style: "text-align:center" },
+                        template: '<a href="javascript:void(0)" data-id="#=Id#" data-key="#=EntityKey#" data-group="#=EntityGroup#" class="btn btn-sm btn-clean btn-icon btnPriceDelete" title="Delete">\
+                                        <i class="la la-trash"></i>\
+                                    </a>'
+                    }
+                ]
+            });
+            $("body").on("click", "#price_datatable .btnPriceDelete", function () {
+                Swal.fire({
+                    title: 'Eminmisiniz?',
+                    text: "Kaydı silmek istediğiniz eminmisiniz?",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Evet',
+                    cancelButtonText: 'Hayır',
+                    timer: 3000,
+                    timerProgressBar: true
+                }).then((result) => {
+                    if (result.value) {
+                        var id = $(this).attr("data-id");
+                        var entityKey = $(this).attr("data-key");
+                        var entityGrop = $(this).attr("data-group");
+                        $.ajax({
+                            type: "POST",
+                            url: '/admin/price/AddOrEdit',
+                            data: { id: id, entityKey: entityKey, entityGrop: entityGrop, delete: true },
+                            success: function (data) {
+                                priceDatatable.data("kendoGrid").dataSource.read();
+                                Swal.fire({
+                                    title: 'Başarılı',
+                                    icon: 'success',
+                                    showCancelButton: false,
+                                    showConfirmButton: false,
+                                    timer: 1000,
+                                    timerProgressBar: true
+                                });
+                            },
+                            error: function (d) {
+                                console.log(d);
+                            }
+                        });
+                    }
+                })
+            });
+
+            $('#btnSearch').click(function () {
+                var grid = $('#price_datatable').data('kendoGrid');
+                grid.dataSource.page(1);
+                return false;
+            });
+            $('#btnClearSearch').click(function () {
+                $("#Price_Currency").val("");
+                $("#PriceVariationId").val("");
+
+                var grid = $('#price_datatable').data('kendoGrid');
+                grid.dataSource.page(1);
+                return false;
+            });
+            function additionalData() {
+                var data = {
+                    "CurrencyId": $("#Price_Currency").val(),
+                    "EntityKey": '@Model.Id'
+                };
+                addAntiForgeryToken(data);
+                return data;
+            }
+
+
+        });
+    </script>
+}

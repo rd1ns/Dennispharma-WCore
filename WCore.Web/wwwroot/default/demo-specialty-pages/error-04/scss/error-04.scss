@@ -1,0 +1,69 @@
+/*
+Template:  Webster - Responsive Multi-purpose HTML5 Template
+Author: potenzaglobalsolutions.com
+Design and Developed by: potenzaglobalsolutions.com
+
+NOTE: This file contains the styling for the band Template. You can edit/add anything in this file!
+*/
+
+h1 {
+	font-family: 'Poppins', sans-serif;
+}
+h2 {
+	font-family: 'Poppins', sans-serif;
+}
+h3 {
+	font-family: 'Poppins', sans-serif;
+}
+h4 {
+	font-family: 'Poppins', sans-serif;
+}
+h5 {
+	font-family: 'Poppins', sans-serif;
+}
+h6 {
+	font-family: 'Poppins', sans-serif;
+}
+.error-04 {
+	background: #d3304d;
+	h1 {
+		font-size: 200px;
+		color: #fff;
+		text-transform: uppercase;
+		font-weight: bold;
+		margin-top: 0px;
+		line-height: 170px;
+	}
+	h2 {
+		font-size: 70px;
+		color: #232a4b;
+		text-transform: uppercase;
+		font-weight: bold;
+		margin-top: 0px;
+		line-height: 70px;
+		margin-bottom: 0px;
+	}
+	p {
+		font-size: 24px;
+		color: #fff;
+		font-weight: 500;
+	}
+}
+footer.error-04 {
+	background: #232a4b;
+	ul {
+		li {
+			a {
+				color: #ffffff;
+				&:hover {
+					color: rgba(255, 255, 255, 0.4);
+				}
+			}
+		}
+	}
+	.social-icons {
+		display: inline-block;
+		text-align: center;
+	}
+}
+

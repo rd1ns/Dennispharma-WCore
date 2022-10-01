@@ -1,0 +1,35 @@
+﻿@inject WCore.Core.Domain.Settings.SeoSettings _seoSettings
+@inject WCore.Core.IWebHelper _webHelper
+@inject WCore.Core.IWorkContext _workContext
+@{
+    ViewBag.Title = T("common.user.profile.wishes");
+}
+<main>
+    <section class="hero_in hotels">
+        <div class="wrapper">
+            <div class="container">
+                <h1 class="fadeInUp"><span></span>@T("common.user.profile.wishes")</h1>
+            </div>
+        </div>
+    </section>
+    <div class="container margin_60_35">
+        <div class="row">
+            <partial name="_UserSidebar" />
+            <div class="col-lg-9">
+                <div class="card">
+                    <div class="card-header border-top border-left border-right" role="tab">
+                        @_workContext.CurrentUser.FirstName @_workContext.CurrentUser.LastName (@_workContext.CurrentUser.EMail)
+                    </div>
+                    <div class="card-body border-bottom border-left border-right">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+@section Scripts{
+}
+
+@section Styles{
+}

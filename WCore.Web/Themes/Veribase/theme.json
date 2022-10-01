@@ -1,0 +1,226 @@
+{
+  "SystemName": "Veribase",
+  "FriendlyName": "Webster Theme",
+  "SupportRTL": true,
+  "PreviewImageUrl": "~/Themes/Veribase/preview.jpg",
+  "PreviewText": "The 'Veribase' site theme",
+  //Eðer yoksa [{"Type":"default"}] olacak.
+  "LayoutTypes": [
+    { "Type": "wide" },
+    { "Type": "boxed" },
+    { "Type": "frame" }
+  ],
+  //Eðer yoksa [{"Color":"default","CssPath":"Default"}] olacak.
+  "ColorSchemes": [
+    {
+      "Color": "skin-blue",
+      "CssPath": "/Themes/Veribase/Css/Skin/skin-blue.css"
+    },
+    {
+      "Color": "skin-blue-gem",
+      "CssPath": "/Themes/Veribase/Css/Skin/skin-blue-gem.css"
+    },
+    {
+      "Color": "skin-brown",
+      "CssPath": "/Themes/Veribase/Css/Skin/skin-brown.css"
+    },
+    {
+      "Color": "skin-chestnut-rose",
+      "CssPath": "/Themes/Veribase/Css/Skin/skin-chestnut-rose.css"
+    },
+    {
+      "Color": "skin-cyan",
+      "CssPath": "/Themes/Veribase/Css/Skin/skin-cyan.css"
+    },
+    {
+      "Color": "skin-dark-pink",
+      "CssPath": "/Themes/Veribase/Css/Skin/skin-dark-pink.css"
+    },
+    {
+      "Color": "skin-default",
+      "CssPath": "/Themes/Veribase/Css/Skin/skin-default.css"
+    },
+    {
+      "Color": "skin-gold",
+      "CssPath": "/Themes/Veribase/Css/Skin/skin-gold.css"
+    },
+    {
+      "Color": "skin-gray",
+      "CssPath": "/Themes/Veribase/Css/Skin/skin-gray.css"
+    },
+    {
+      "Color": "skin-green-dark",
+      "CssPath": "/Themes/Veribase/Css/Skin/skin-green-dark.css"
+    },
+    {
+      "Color": "skin-green",
+      "CssPath": "/Themes/Veribase/Css/Skin/skin-green.css"
+    },
+    {
+      "Color": "skin-lime",
+      "CssPath": "/Themes/Veribase/Css/Skin/skin-lime.css"
+    },
+    {
+      "Color": "skin-malachite",
+      "CssPath": "/Themes/Veribase/Css/Skin/skin-malachite.css"
+    },
+    {
+      "Color": "skin-olive",
+      "CssPath": "/Themes/Veribase/Css/Skin/skin-olive.css"
+    },
+    {
+      "Color": "skin-orange",
+      "CssPath": "/Themes/Veribase/Css/Skin/skin-orange.css"
+    },
+    {
+      "Color": "skin-pink",
+      "CssPath": "/Themes/Veribase/Css/Skin/skin-pink.css"
+    },
+    {
+      "Color": "skin-persian-green",
+      "CssPath": "/Themes/Veribase/Css/Skin/skin-persian-green.css"
+    },
+    {
+      "Color": "skin-perfume",
+      "CssPath": "/Themes/Veribase/Css/Skin/skin-perfume.css"
+    },
+    {
+      "Color": "skin-purple",
+      "CssPath": "/Themes/Veribase/Css/Skin/skin-purple.css"
+    },
+    {
+      "Color": "skin-red",
+      "CssPath": "/Themes/Veribase/Css/Skin/skin-red.css"
+    },
+    {
+      "Color": "skin-salmon",
+      "CssPath": "/Themes/Veribase/Css/Skin/skin-salmon.css"
+    },
+    {
+      "Color": "skin-steelblue",
+      "CssPath": "/Themes/Veribase/Css/Skin/skin-steelblue.css"
+    },
+    {
+      "Color": "skin-yellow",
+      "CssPath": "/Themes/Veribase/Css/Skin/skin-yellow.css"
+    },
+    {
+      "Color": "skin-water-blue",
+      "CssPath": "/Themes/Veribase/Css/Skin/skin-water-blue.css"
+    }
+  ],
+  //Eðer yoksa [{"Type":"default"}] olacak.
+  "HeaderTypes": [
+    { "Type": "dark" },
+    { "Type": "dark topbar" },
+    { "Type": "dark with topbar" },
+    { "Type": "default" },
+    { "Type": "fancy" },
+    { "Type": "fancy topbar" },
+    { "Type": "full width" },
+    { "Type": "light" },
+    { "Type": "light topbar" },
+    { "Type": "light transparent topbar" },
+    { "Type": "light transparent topbar fullwidth" },
+    { "Type": "left menu" },
+    { "Type": "left fixed" },
+    { "Type": "logo center" },
+    { "Type": "onepage" },
+    { "Type": "transparent" },
+    { "Type": "transparent fullwidth" },
+    { "Type": "transparent overlay" },
+    { "Type": "transparent topbar" },
+    { "Type": "vertical left" }
+  ],
+  //Eðer yoksa [{"Type":"default"}] olacak.
+  "PageTitles": [
+    { "Type": "center" },
+    { "Type": "dark bg" },
+    { "Type": "dark overlay" },
+    { "Type": "default" },
+    { "Type": "light bg" },
+    { "Type": "light overlay" },
+    { "Type": "pattern" },
+    { "Type": "parallax" },
+    { "Type": "right" },
+    { "Type": "small" }
+  ],
+  //Eðer yoksa [{"Type":"default"}] olacak.
+  "GalleryTypes": [
+    { "Type": "classic" },
+    { "Type": "grid" },
+    { "Type": "masonry" }
+  ],
+  //Eðer yoksa "Type":"Default",Features:[ { "Name":"Default"}] olacak.
+  "TemplateTypes": [
+    {
+      "Type": "multi pages",
+      "Features": [
+        { "Name": "default" },
+        { "Name": "marketing" },
+        { "Name": "conference" },
+        { "Name": "cafe" },
+        { "Name": "construction" },
+        { "Name": "medical" },
+        { "Name": "barber" },
+        { "Name": "bitcoin" },
+        { "Name": "interior Design" },
+        { "Name": "skateboard" },
+        { "Name": "spa" },
+        { "Name": "tattoo" }
+      ]
+    },
+    {
+      "Type": "one page",
+      "Features": [
+        { "Name": "bg video" },
+        { "Name": "typer" },
+        { "Name": "portfolio/CV" },
+        { "Name": "wedding card" },
+        { "Name": "pizza" },
+        { "Name": "product launch" },
+        { "Name": "juice" },
+        { "Name": "plumber" },
+        { "Name": "book" },
+        { "Name": "fish" },
+        { "Name": "product" },
+        { "Name": "hotel" },
+        { "Name": "agency" },
+        { "Name": "agency 2" },
+        { "Name": "burger" },
+        { "Name": "law" },
+        { "Name": "portfolio" },
+        { "Name": "christmas" },
+        { "Name": "architecture" },
+        { "Name": "movie" },
+        { "Name": "personal dark" }
+      ]
+    },
+    {
+      "Type": "e-commerce",
+      "Features": [
+        { "Name": "fashion" },
+        { "Name": "trendy" },
+        { "Name": "lookBook" },
+        { "Name": "modern" },
+        { "Name": "creative" },
+        { "Name": "minimal" },
+        { "Name": "classic" },
+        { "Name": "simple" }
+      ]
+
+    },
+    {
+      "Type": "blog / magazine",
+      "Features": [
+        { "Name": "blog" },
+        { "Name": "blog 2" },
+        { "Name": "blog Boxed" },
+        { "Name": "magazine" },
+        { "Name": "magazine 2" },
+        { "Name": "magazine 3" }
+      ]
+
+    }
+  ]
+}

@@ -1,0 +1,170 @@
+/*
+Template:  Webster - Responsive Multi-purpose HTML5 Template
+Author: potenzaglobalsolutions.com
+Design and Developed by: potenzaglobalsolutions.com
+
+NOTE: This file contains the styling for the wedding card Template. You can edit/add anything in this file!
+*/
+body {
+	font-family: 'IBM Plex Mono', monospace;
+	color: #3a2c4d;
+	background: url(../../../demo-one-page/wedding-card/images/main-bg.jpg);
+}
+h2 {
+	font-family: 'IBM Plex Mono', monospace;
+	color: #3a2c4d;
+	font-weight: 500;
+}
+h3 {
+	font-family: 'IBM Plex Mono', monospace;
+	color: #3a2c4d;
+	font-weight: 500;
+}
+h4 {
+	font-family: 'IBM Plex Mono', monospace;
+	color: #3a2c4d;
+	font-weight: 500;
+}
+h5 {
+	font-family: 'IBM Plex Mono', monospace;
+	color: #3a2c4d;
+	font-weight: 500;
+}
+h6 {
+	font-family: 'IBM Plex Mono', monospace;
+	color: #3a2c4d;
+	font-weight: 500;
+}
+h1 {
+	font-family: 'Tangerine', cursive;
+	font-size: 90px;
+	color: #3a2c4d;
+	line-height: 90px;
+}
+&::selection {
+	background: #e2407e;
+	color: #fff;
+	text-shadow: none;
+}
+.button {
+	border-radius: 0px;
+}
+.btn {
+	border-radius: 0px;
+}
+.theme-color {
+	color: #e2407e;
+}
+.wedding-card {
+	position: relative;
+	background: transparent;
+	.wedding-invitation {
+		margin-top: 40px;
+	}
+	[class*="col-"] {
+		position: inherit;
+	}
+	.rsvp-btn {
+		background: #3a2c4d;
+		color: #fff;
+		position: relative;
+		z-index: 9;
+	}
+	.map-btn {
+		background: none;
+		position: relative;
+		z-index: 9;
+	}
+	.btn {
+		&:focus {
+			box-shadow: none;
+		}
+	}
+	.contact-form {
+		.section-field.submit-button {
+			width: 100%;
+			text-align: left;
+		}
+	}
+	.button {
+		background: #3a2c4d;
+		border-color: #3a2c4d;
+		&:hover {
+			background: #e2407e;
+			border-color: #e2407e;
+		}
+	}
+}
+.wedding-card-head {
+	position: absolute;
+	top: 20px;
+	right: 0;
+	left: 0;
+}
+.wedding-card-footer {
+	position: absolute;
+	bottom: -10px;
+	right: 0;
+	left: 0;
+	z-index: 2;
+}
+.wedding-card-date {
+	[class*="col-"] {
+		font-size: 22px;
+	}
+	.date {
+		font-size: 60px;
+		line-height: 60px;
+		font-weight: bold;
+	}
+}
+.wedding-card-body {
+	padding: 140px 0;
+}
+@media ( max-width: 991px ) {
+	.wedding-card-head {
+		top: 44px;
+		top: 40px;
+	}
+	.wedding-card {
+		img {
+			width: 100%;
+		}
+	}
+	.wedding-card-body {
+		padding: 15% 0;
+	}
+	.wedding-card.page-section-ptb {
+		padding-top: 10px;
+	}
+}
+@media ( max-width: 767px ) {
+	.wedding-card {
+		h1 {
+			font-size: 75px;
+			line-height: 75px;
+		}
+	}
+	.wedding-card-date {
+		[class*="col-"] {
+			text-align: center !important;
+		}
+	}
+}
+@media (max-width: 500px) {
+	.wedding-card {
+		h1 {
+			font-size: 60px;
+			line-height: 60px;
+		}
+	}
+}
+@media (max-width: 479px) {
+	.wedding-card {
+		h1 {
+			font-size: 39px;
+			line-height: 39px;
+		}
+	}
+}
+

@@ -1,0 +1,226 @@
+﻿@inject WCore.Core.IWorkContext _workContext
+@inject StoreInformationSettings _storeInformationSettings
+
+<nav class="sidebar">
+    <div class="dismiss">
+        <i class="icon_close"></i>
+    </div>
+    <div class="logo">
+        <img src="@_storeInformationSettings.LogoPicture" class="w-100" />
+    </div>
+    <div id="divSideCart">
+
+    </div>
+</nav>
+<div id="toTop"></div>
+<!-- Back to top button -->
+<!-- COMMON SCRIPTS -->
+<script src="/panagea/js/jquery-2.2.4.min.js"></script>
+<script src="/panagea/js/common_scripts.js"></script>
+<script src="/panagea/js/main.js"></script>
+<script src="/panagea/js/input_qty.js"></script>
+<script src="/panagea/assets/validate.js"></script>
+<script src="/panagea/js/jquery.mCustomScrollbar.concat.min.js"></script>
+
+<script src="/admin/assets/js/linq/linq.min.js"></script>
+<script src="/panagea/js/sweetalert2.all.js"></script>
+<script src="/panagea/slick/slick.js"></script>
+
+<script>
+    $(function () {
+        SetDatePickers("Dates", "@DateTime.Now.ToString("MM-dd-yyyy")", "@DateTime.Now.AddYears(1).ToString("MM-dd-yyyy")");
+
+        @if (ViewBag.Page != "ShoppingCart")
+        {
+            <text>
+                GetShppingCart();
+            </text>
+        }
+    })
+    function SetDatePickers(DatePickerName,minDate,maxDate) {
+            $('input[name="'+DatePickerName+'"]').daterangepicker({
+                linkedCalendars: false,
+                autoUpdateInput: false,
+                locale: {
+                    cancelLabel: '@T("common.clear")',
+                    separator: ' > ',
+                    applyLabel: '@T("common.apply")',
+                    cancelLabel: '@T("common.cancel")',
+                },
+                "minDate": minDate,
+                "maxDate": maxDate
+            });
+            $('input[name="'+DatePickerName+'"]').on('apply.daterangepicker', function (ev, picker) {
+                $(this).val(picker.startDate.format('MM-DD-YYYY') + ' > ' + picker.endDate.format('MM-DD-YYYY'));
+            });
+            $('input[name="'+DatePickerName+'"]').on('cancel.daterangepicker', function (ev, picker) {
+                $(this).val('');
+            });
+    }
+    $("#Range").ionRangeSlider({
+        hide_min_max: true,
+        keyboard: true,
+        min: 30,
+        max: 1000,
+        from: 60,
+        to: 500,
+        type: 'double',
+        step: 1,
+        prefix: "@_workContext.WorkingCurrency.CurrencyCode ",
+        grid: false,
+        prettify_enabled: true,
+        prettify_separator: "-"
+    })
+
+    $(".wish_bt").click(function () {
+        var id = $(this).attr("data-id");
+        var group = $(this).attr("data-group");
+        var data = { EntityKey: id, EntityGroup: group };
+        $.ajax({
+            type: "POST",
+            url: "/common/addorremovewishitem",
+            data: data,
+            success: function (data) {
+                switch (data) {
+                    case 0:
+                        $(this).addClass("liked");
+                        break;
+                    case 2:
+                        $(this).removeClass("liked");
+                        break;
+                }
+            }
+        });
+    })
+
+    $("body").delegate(".addToCart", "click", function () {
+        $(".btnDisabled").prop("disabled", true);
+        var selectId = $(this).attr("data-selectid");
+        var defaultCurrencyId = $(this).attr("data-currency");
+        var select = $("select#" + selectId + "");
+        $.ajax({
+            type: "POST",
+            url: "/ShoppingCart/AddShoppingCartItem",
+            data: { priceId: select.val(), currencyId:defaultCurrencyId, userId:@_workContext.CurrentUser.Id },
+            success: function (data) {
+                GetShppingCart("Y");
+            }
+        });
+
+
+    })
+
+    $("body").delegate(".removeToCart", "click", function () {
+        var selectId = $(this).attr("data-id");
+        $(".btnDisabled").prop("disabled", true);
+        $.ajax({
+            type: "POST",
+            url: "/ShoppingCart/RemoveShoppingCartItem",
+            data: { priceId: 0, id: selectId},
+            success: function (data) {
+                GetShppingCart();
+            }
+        });
+
+
+    });
+
+    $('.dismiss, .overlay').on('click', function () {
+        $('body').removeClass('sidebar-open');
+        $('.sidebar').removeClass('active');
+        $('.overlay').removeClass('active');
+    });
+
+    $('.open-menu').on('click', function (e) {
+        e.preventDefault();
+        $('body').addClass('sidebar-open');
+        $('.sidebar').addClass('active');
+        $('.overlay').addClass('active');
+    });
+
+    function GetShppingCart(open) {
+        @if (ViewBag.Page != "ShoppingCart")
+        {
+            <text>
+                $.ajax({
+                    type: "POST",
+                    url: "/ShoppingCart/MiniShoppingCart",
+                    success: function (data) {
+                        if (open == "Y") {
+                            $('.open-menu').click();
+                        }
+                        $("#divSideCart").html(data);
+                        $(".btnDisabled").prop("disabled", false);
+                    }
+                });
+            </text>
+        }
+        else
+        {
+            <text>
+                $.ajax({
+                    type: "POST",
+                    url: "/ShoppingCart/MiniShoppingCart?page=ShoppingCart",
+                    success: function (data) {
+                        if (open == "Y") {
+                            $('.open-menu').click();
+                        }
+                        $("#divShoppingCart").html(data);
+                        $(".btnDisabled").prop("disabled", false);
+                    }
+                });
+            </text>
+
+        }
+    }
+</script>
+
+
+<!-- SLICK SLIDE  -->
+<script>
+    $('.slider-for').slick({
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        arrows: true,
+        fade: true,
+        asNavFor: '.slider-nav',
+        prevArrow: "<button type='button' class='slick-nav slick-prev pull-left'><i class='fa fa-angle-left' aria-hidden='true'></i></button>",
+        nextArrow: "<button type='button' class='slick-nav slick-next pull-right'><i class='fa fa-angle-right' aria-hidden='true'></i></button>",
+        autoplay: true,
+        autoplaySpeed: 2000,
+        adaptiveHeight: true
+    });
+    $('.slider-nav').slick({
+        slidesToShow: 5,
+        slidesToScroll: 1,
+        asNavFor: '.slider-for',
+        dots: false,
+        arrows: true,
+        centerMode: true,
+        centerPadding: 60,
+        focusOnSelect: true,
+        adaptiveHeight: true,
+        prevArrow: "<button type='button' class='slick-nav slick-prev pull-left'><i class='fa fa-angle-left' aria-hidden='true'></i></button>",
+        nextArrow: "<button type='button' class='slick-nav slick-next pull-right'><i class='fa fa-angle-right' aria-hidden='true'></i></button>"
+    });
+
+    $('a[data-slide]').click(function (e) {
+        e.preventDefault();
+        var slideno = $(this).data('slide');
+        $('.slider-nav').slick('slickGoTo', slideno - 1);
+    });
+    $('[data-space]').each(function () {
+        var $this = $(this),
+            $space = $this.attr('data-space');
+
+        $('.slick-slide').css({
+            marginLeft: $space + 'px',
+            marginRight: $space + 'px'
+        });
+
+        $('.slick-list').css({
+            marginLeft: -$space + 'px',
+            marginRight: -$space / 2 + 'px'
+        })
+    });
+</script>

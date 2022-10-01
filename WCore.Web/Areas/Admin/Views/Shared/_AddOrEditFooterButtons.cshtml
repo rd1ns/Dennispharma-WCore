@@ -1,0 +1,26 @@
+﻿@model int
+
+
+@if (ViewBag.IsPopup == true)
+{
+    <button type="button" class="btnEntity btn btn-sm btn-secondary float-left" data-dismiss="modal">Kapat</button>
+}
+
+@if (ViewBag.IsPopup == false)
+{
+    <button type="button" onclick="window.history.back();" class="btnEntity btn btn-smn btn-light-primary font-weight-bolder mr-2">
+        <i class="ki ki-long-arrow-back icon-xs"></i>
+        Geri
+    </button>
+}
+<button type="submit" class="btnEntity btn btn-sm btn-info font-weight-bolder mr-2">
+    <i class="ki ki-check icon-xs"></i>
+    Kaydet
+</button>
+@if (Model != 0)
+{
+    <button type="button" data-id="@Model" data-controll="@ViewData["ControllerName"]" data-action="@ViewData["DeleteActionName"]" class="btnEntity btnRecordDelete ml-1 btn  btn-sm btn-danger font-weight-bolder">
+        <i class="fa fa-trash icon-xs"></i>
+        Sil
+    </button>
+}

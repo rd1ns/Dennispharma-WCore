@@ -1,0 +1,101 @@
+/*
+Template:  Webster - Responsive Multi-purpose HTML5 Template
+Author: potenzaglobalsolutions.com
+Design and Developed by: potenzaglobalsolutions.com
+
+NOTE: This file contains the styling for the skateboard Template. You can edit/add anything in this file!
+*/
+ 
+h1, h2, h3, h4, h5, h6 { font-family: 'Permanent Marker', cursive; }
+
+h2 { font-size: 40px; line-height: 40px; font-weight: 300;}
+
+.button { border-radius: 3px; }
+.mega-menu .menu-logo img { height: 80px; }
+
+.bg-top-before, .bg-bottom-before { position: relative; }
+.bg-top-before:before { background-image: url(../../../demo-categories/skateboard/images/bg-02.png); top: 0; background-repeat: no-repeat;  content: ""; position: absolute; height: 110px; width: 100%; }
+.bg-bottom-before:before { background-image: url(../../../demo-categories/skateboard/images/bg.png); bottom: 0; background-repeat: no-repeat;  content: ""; position: absolute; height: 110px; width: 100%; }
+
+/*banner */
+.skateboard-banner .container, .skateboard-banner .row { height: 100%; }
+.skateboard-banner .slider-content-image {  position: absolute; bottom: -50px; }
+.skateboard-banner .slider-content-text { z-index: 5; display: inline-block;  position: absolute; top: 50%; transform: translateY(-50%); -webkit-transform: translateY(-50%); -o-transform: translateY(-50%); -ms-transform: translateY(-50%); -moz-transform: translateY(-50%);  }
+.skateboard-banner h1 { font-size: 130px; line-height: 130px; }
+ 
+/*architecture-about*/
+.skateboard-about h2 { font-size: 50px; line-height: 60px;  }
+.skateboard-about .about-image { width: 100%; position: relative; height: 430px; }
+.skateboard-about .about-image-01 { background-size: cover; display: table-cell; width: 30%;  height: 440px; margin-top: 20px; position: absolute; right: 0; transition: all 1s cubic-bezier(.165,.84,.44,1);background-size: cover;background-position: center; }
+.skateboard-about .about-image-02 {background-size: cover; display: table-cell; width: 70%; height: 480px; position: absolute; left: 0; transition: all 1s cubic-bezier(.165,.84,.44,1);background-size: cover;background-position: center; }
+.skateboard-about .about-image .about-image-01:hover { width: 70%; height: 480px; margin-top: 0; }
+.skateboard-about .about-image .about-image-01:hover + .about-image-02 { width: 30%; height: 440px; margin-top: 20px; }
+
+.skateboard-about .bg-top-before:before  { top: 80px; z-index: 9; }
+
+/*skateboard gallery*/
+.skateboard-gallery { padding-top: 130px; }
+.skateboard-gallery .section-title h2 { font-size: 48px; line-height: 60px; }
+.skateboard-gallery { position: relative; }
+.skateboard-gallery .skateboard-gallery-top {  position: relative; }
+.skateboard-gallery .owl-carousel { position: relative;  bottom: -40px; }
+.skateboard-gallery .owl-carousel .owl-nav i { background: #ffffff !important; color: #323232 !important; }
+
+/*skateboard-box*/
+.skateboard-box { padding: 30px 30px 30px 0px; position: relative; }
+.skateboard-box h2 { display: block;  font-size: 44px;}
+.skateboard-box strong { display: block;  font-size: 20px;}
+.skateboard-box .skateboard-box-image { position: absolute; bottom: 0; }
+.skateboard-box .skateboard-box-content { padding-left: 150px; position: relative; z-index: 1; }
+
+
+/*skateboard-product*/
+.skateboard-product { padding-top: 200px; }
+.skateboard-product .product-item { text-align: center; position: relative;  }
+.skateboard-product .product-item .product-title a { font-size: 18px; font-weight: 500; margin: 20px 0px 10px; display: block; }
+.skateboard-product .product-item .product-price del { background: transparent; color: #323232; font-size: 13px; }
+.skateboard-product .product-item .product-price ins { text-decoration: none; font-size: 16px; font-weight: bold; }
+.skateboard-product .product-item .product-rating { margin-bottom: 10px; }
+.skateboard-product .product-item .product-rating i { color: #353535; }
+
+
+/*skateboard-video*/
+.skateboard-video .js-video { position: relative; margin-bottom: -100px; }
+.footer-widget { border-top: 0; }
+
+
+/*sidebar-widgets-wrap*/
+.sidebar-widgets-wrap .recent-item  { margin-bottom: 20px; }
+.sidebar-widgets-wrap .recent-item .recent-image  { display: table-cell; padding-right: 10px; width: 50px; float: left; }
+.sidebar-widgets-wrap .recent-item .recent-info { display: table-cell; vertical-align: top; }
+.sidebar-widgets-wrap .recent-item .recent-title a { color: #353535; font-weight: bold; }
+.sidebar-widgets-wrap .recent-item .recent-title a:hover { color: #84ba3f;}
+.sidebar-widgets-wrap .recent-item .recent-meta li { display: inline-block; color: #353535; } 
+
+
+/*shop-single*/
+.shop-single .title {  padding-top: 40px; }
+.shop-single .product-detail .product-detail-price { display: inline-block; }
+.shop-single .product-detail .product-detail-price ins { text-decoration: none; color: #84ba3f; font-size: 16px; font-weight: bold; }
+.shop-single .product-detail .product-detail-rating i { color: #353535; }
+.shop-single .product-detail .product-detail-rating { display: inline-block; }
+.shop-single .product-detail .product-detail-quantity input { box-shadow: none; border:1px solid #e0e0e0; padding: 13px 18px 10px 24px; border-radius: 3px; box-shadow: none; }
+.shop-single .product-detail .input-group-append button { background: transparent; border-color: #e0e0e0; }
+.shop-single .product-detail .input-group-append button:hover { color: #84ba3f; }
+.shop-single .product-detail .input-group { width: 90px; float: left; margin-right: 20px; }
+.shop-single .product-detail .product-detail.add-to-cart .button { display: inline-block; font-size: 12px; }
+.shop-single .product-detail .input-group-append:first-child>.btn {  border-top-left-radius: 30px; border-bottom-left-radius: 30px; }
+.shop-single .product-detail .input-group-append:last-child>.btn {  border-top-right-radius: 30px; border-bottom-right-radius: 30px; }
+.shop-single .product-detail .product-detail-price del { background: transparent;  color: #333; font-size: 14px; }
+
+.shop-single .product-detail .product-detail-social { border-top: 1px solid #e0e0e0; padding-top: 20px; margin-top: 20px; }
+.shop-single .product-detail .product-detail-social span { display: inline-block; padding-right: 20px; float: left; }
+.shop-single .product-detail .product-detail-social ul li { display: inline-block; }
+.shop-single .product-detail .product-detail-social ul li a { display: block; color: #aaaaaa; font-size: 14px; padding-right: 5px; }
+.shop-single .product-detail .product-detail-social ul li a:hover { color: #84ba3f; }
+
+.shop-single .product-detail .product-detail-meta { border-top: 1px solid #e0e0e0; padding-top: 20px; }
+.shop-single .product-detail .product-detail-meta span { display: block; margin: 10px 0; }
+.shop-single .product-detail .product-detail-meta span a { padding-left: 5px; }
+
+.slider-slick { overflow: hidden; }

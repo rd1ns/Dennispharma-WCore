@@ -1,0 +1,154 @@
+﻿@inject WCore.Core.Domain.Settings.SeoSettings _seoSettings
+@inject WCore.Core.IWebHelper _webHelper
+@inject WCore.Core.IWorkContext _workContext
+@model WCore.Web.Models.ViewModels.WishViewModel
+@{
+    ViewBag.Title = T("common.user.profile.wishes");
+}
+<main>
+    <section class="hero_in hotels">
+        <div class="wrapper">
+            <div class="container">
+                <h1 class="fadeInUp"><span></span>@T("common.user.profile.wishes")</h1>
+            </div>
+        </div>
+    </section>
+    <div class="container margin_60_35">
+        <div class="row">
+            <partial name="_UserSidebar" />
+            <div class="col-lg-9">
+                <div class="card mb-3">
+                    <div class="card-header border-top border-left border-right" role="tab">
+                        @EntityGroup.SkiResort
+                    </div>
+                    <div class="card-body border-bottom border-left border-right">
+                        @if (Model.WishList != null)
+                        {
+                            @foreach (var item in Model.WishList.Wishes.Where(o => o.EntityGroup == EntityGroup.SkiResort))
+                            {
+                                <p>@item.EntityName</p>
+                            }
+                        }
+                        else
+                        {
+                            @T("common.user.wishes.skiresort.empty")
+                        }
+                    </div>
+                </div>
+                <div class="card mb-3">
+                    <div class="card-header border-top border-left border-right" role="tab">
+                        @EntityGroup.Hotel
+                    </div>
+                    <div class="card-body border-bottom border-left border-right">
+                        @if (Model.WishList != null)
+                        {
+                            @foreach (var item in Model.WishList.Wishes.Where(o => o.EntityGroup == EntityGroup.Hotel))
+                            {
+                                <p>@item.EntityName</p>
+                            }
+                        }
+                        else
+                        {
+                            @T("common.user.wishes.hotel.empty")
+                        }
+                    </div>
+                </div>
+                <div class="card mb-3">
+                    <div class="card-header border-top border-left border-right" role="tab">
+                        @EntityGroup.SkiSchool
+                    </div>
+                    <div class="card-body border-bottom border-left border-right">
+                        @if (Model.WishList != null)
+                        {
+                            @foreach (var item in Model.WishList.Wishes.Where(o => o.EntityGroup == EntityGroup.SkiSchool))
+                            {
+                                <p>@item.EntityName</p>
+                            }
+                        }
+                        else
+                        {
+                            @T("common.user.wishes.skiSchool.empty")
+                        }
+                    </div>
+                </div>
+                <div class="card mb-3">
+                    <div class="card-header border-top border-left border-right" role="tab">
+                        @EntityGroup.Tour
+                    </div>
+                    <div class="card-body border-bottom border-left border-right">
+                        @if (Model.WishList != null)
+                        {
+                            @foreach (var item in Model.WishList.Wishes.Where(o => o.EntityGroup == EntityGroup.Tour))
+                            {
+                                <p>@item.EntityName</p>
+                            }
+                        }
+                        else
+                        {
+                            @T("common.user.wishes.tour.empty")
+                        }
+                    </div>
+                </div>
+                <div class="card mb-3">
+                    <div class="card-header border-top border-left border-right" role="tab">
+                        @EntityGroup.Equipment
+                    </div>
+                    <div class="card-body border-bottom border-left border-right">
+                        @if (Model.WishList != null)
+                        {
+                            @foreach (var item in Model.WishList.Wishes.Where(o => o.EntityGroup == EntityGroup.Equipment))
+                            {
+                                <p>@item.EntityName</p>
+                            }
+                        }
+                        else
+                        {
+                            @T("common.user.wishes.equipment.empty")
+                        }
+                    </div>
+                </div>
+                <div class="card mb-3">
+                    <div class="card-header border-top border-left border-right" role="tab">
+                        @EntityGroup.Restaurant
+                    </div>
+                    <div class="card-body border-bottom border-left border-right">
+                        @if (Model.WishList != null)
+                        {
+                            @foreach (var item in Model.WishList.Wishes.Where(o => o.EntityGroup == EntityGroup.Restaurant))
+                            {
+                                <p>@item.EntityName</p>
+                            }
+                        }
+                        else
+                        {
+                            @T("common.user.wishes.restaurant.empty")
+                        }
+                    </div>
+                </div>
+                <div class="card mb-3">
+                    <div class="card-header border-top border-left border-right" role="tab">
+                        @EntityGroup.Room
+                    </div>
+                    <div class="card-body border-bottom border-left border-right">
+                        @if (Model.WishList != null)
+                        {
+                            @foreach (var item in Model.WishList.Wishes.Where(o => o.EntityGroup == EntityGroup.Room))
+                            {
+                                <p>@item.EntityName</p>
+                            }
+                        }
+                        else
+                        {
+                            @T("common.user.wishes.room.empty")
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>    
+</main>
+@section Scripts{
+}
+
+@section Styles{
+}

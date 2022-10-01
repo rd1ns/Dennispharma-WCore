@@ -1,0 +1,167 @@
+/*
+Template:  Webster - Responsive Multi-purpose HTML5 Template
+Author: potenzaglobalsolutions.com
+Design and Developed by: potenzaglobalsolutions.com
+
+NOTE: This file contains the styling for the GYM Template. You can edit/add anything in this file!
+*/
+
+h1 {
+	font-family: 'Rancho', sans-serif;
+	font-weight: normal;
+	margin-top: 0px;
+	text-transform: capitalize;
+}
+h2 {
+	font-family: 'Rancho', sans-serif;
+	font-weight: normal;
+	margin-top: 0px;
+	text-transform: capitalize;
+}
+h3 {
+	font-family: 'Rancho', sans-serif;
+	font-weight: normal;
+	margin-top: 0px;
+	text-transform: capitalize;
+}
+h4 {
+	font-family: 'Rancho', sans-serif;
+	font-weight: normal;
+	margin-top: 0px;
+	text-transform: capitalize;
+}
+h5 {
+	font-family: 'Rancho', sans-serif;
+	font-weight: normal;
+	margin-top: 0px;
+	text-transform: capitalize;
+}
+h6 {
+	font-family: 'Rancho', sans-serif;
+	font-weight: normal;
+	margin-top: 0px;
+	text-transform: capitalize;
+}
+.section-title {
+	.subtitle {
+		text-transform: inherit;
+		font-size: 20px;
+	}
+}
+.slider-parallax.banner-personal {
+	.slider-content {
+		width: 70%;
+		float: right;
+		h1 {
+			font-size: 140px;
+			line-height: 140px;
+			margin-top: -60px;
+			font-weight: 500;
+			text-transform: uppercase;
+			font-family: 'Montserrat', sans-serif;
+			strong {
+				font-weight: 800;
+				font-size: 168px;
+				line-height: 120px;
+				font-family: 'Montserrat', sans-serif;
+			}
+		}
+		span {
+			font-size: 130px;
+			line-height: 130px;
+			font-weight: 600;
+			font-family: 'Rancho', sans-serif;
+		}
+	}
+}
+.personal-about {
+	.feature-text {
+		.feature-icon {
+			span {
+				font-size: 24px;
+				line-height: 28px;
+			}
+			i {
+				font-size: 24px;
+				line-height: 28px;
+			}
+		}
+	}
+	.feature-text.left-icon {
+		.feature-info {
+			padding-left: 40px;
+			vertical-align: middle;
+		}
+	}
+}
+.skill-bar {
+	background: #ba893f;
+}
+.isotope-filters.dark-bg {
+	button {
+		margin: 4px;
+		cursor: pointer;
+		padding: 6.5px 10px;
+		margin: 0 10px;
+		font-size: 16px;
+		border-radius: 0px;
+		background: transparent;
+		color: #fff;
+		font-weight: 600;
+		border: 0;
+		border-bottom: 2px solid transparent;
+		text-transform: capitalize;
+		&:focus {
+			outline: none;
+			outline-style: none;
+			outline-offset: 0;
+		}
+	}
+	button.active {
+		background: transparent !important;
+		border-bottom: 2px solid #ba893f;
+	}
+}
+.isotope-filters {
+	button {
+		&:hover {
+			background: transparent !important;
+			border-bottom: 2px solid #ba893f;
+		}
+	}
+}
+.blog-box.blog-2 {
+	background: #212121;
+	.blog-info.dark-bg {
+		background: #212121;
+		span {
+			color: #ffffff;
+		}
+		.button.icon-color {
+			&:hover {
+				color: #ffffff;
+			}
+		}
+	}
+}
+.dark-theme-bg {
+	.addresss-info {
+		li {
+			color: #ffffff;
+		}
+		p {
+			color: #ffffff;
+		}
+		i {
+			color: #84ba3f;
+		}
+	}
+}
+#services.dark-theme-bg {
+	.feature-info {
+		h5 {
+			font-size: 22px;
+		}
+	}
+}
+

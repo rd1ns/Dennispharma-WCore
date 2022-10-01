@@ -1,0 +1,63 @@
+﻿@model FooterViewModel
+@{
+    var _workContext = EngineContext.Current.Resolve<WCore.Core.IWorkContext>();
+    var _seoSettings = EngineContext.Current.Resolve<WCore.Core.Domain.Settings.SeoSettings>();
+    var _storeInformationSettings = EngineContext.Current.Resolve<StoreInformationSettings>();
+}
+<footer>
+    <div class="container margin_60_35">
+        <div class="row">
+            <div class="col-lg-4 col-md-12 p-r-5">
+                <p><img class="img-fluid" src="@_storeInformationSettings.LogoPicture" alt=""></p>
+                <p>@T("common.footer.slogan")
+                <div class="follow_us">
+                    <ul>
+                        <li>@T("common.footer.followus")</li>
+                        <li><a href="@_storeInformationSettings.FacebookLink"><i class="ti-facebook"></i></a></li>
+                        <li><a href="@_storeInformationSettings.TwitterLink"><i class="ti-twitter-alt"></i></a></li>
+                        <li><a href="@_storeInformationSettings.YoutubeLink"><i class="ti-youtube"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <h5>@T("common.footer.location.first.title")</h5>
+                <ul class="links">
+                    @foreach (var item in Model.PageList.Pages.Where(o => o.FooterLocation == WCore.Core.Domain.Pages.FooterLocation.First))
+                    {
+                        <li><a href="/@_workContext.WorkingLanguage.UniqueSeoCode/@item.SeName">@item.Title</a></li>
+                    }
+                </ul>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <h5>@T("common.footer.contactus.title")</h5>
+                <ul class="contacts">
+                    <li><a href="tel://@T("common.contactus.phone")"><i class="ti-mobile"></i> @T("common.contactus.phone")</a></li>
+                    <li><a href="mailto:@T("common.contactus.email")"><i class="ti-email"></i> @T("common.contactus.email")</a></li>
+                </ul>
+                <div id="newsletter">
+                    <h6>@T("common.footer.newsletter.title")</h6>
+                    <div id="message-newsletter"></div>
+                    <form method="post" action="#" name="newsletter_form" id="newsletter_form">
+                        <div class="form-group">
+                            <input type="email" name="email_newsletter" id="email_newsletter" class="form-control" placeholder="@T("common.footer.newsletter.email")">
+                            <input type="submit" value="@T("common.footer.newsletter.submit.text")" id="submit-newsletter">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!--/row-->
+        <hr>
+        <div class="row">
+            <div class="col-lg-12">
+                <ul id="additional_links">
+                    @foreach (var item in Model.PageList.Pages.Where(o => o.FooterLocation == WCore.Core.Domain.Pages.FooterLocation.Bottom))
+                    {
+                        <li><a href="/@_workContext.WorkingLanguage.UniqueSeoCode/@item.SeName">@item.Title</a></li>
+                    }
+                    <li><span>© @DateTime.Now.Year @_seoSettings.DefaultTitle</span></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>

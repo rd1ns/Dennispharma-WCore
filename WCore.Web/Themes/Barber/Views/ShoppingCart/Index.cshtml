@@ -1,0 +1,302 @@
+﻿@inject SeoSettings _seoSettings
+@inject IWebHelper _webHelper
+@inject WCore.Core.IWorkContext _workContext
+@model ShoppingCartViewModel
+@{
+    ViewBag.Title = T("common.shoppingcart.title");
+    ViewBag.Page = "ShoppingCart";
+}
+<main class="shoppingcart-index" style="transform:none">
+    <div class="hero_in cart_section start_bg_zoom" style="height:100px;"></div>
+    <div class="bg_color_1" style="transform: none;" id="divShoppingCart">
+        <div class="container margin_60_35" style="transform: none;">
+            <div class="row" style="transform: none;">
+                @if (!Model.ShoppingCart.ShoppingCartItems.Any())
+                {
+                    <div class="col-12">
+                        <div class="alert alert-danger text-center" role="alert">
+                            <h4 class="alert-heading">@T("common.minishoppingcart.empty")</h4>
+                            <p>@T("common.minishoppingcart.empty.description")</p>
+                        </div>
+                    </div>
+                }
+                else
+                {
+                    <div class="col-lg-8">
+                        <div class="box_cart">
+                            <div class="card border">
+                                <div class="card-header">
+                                    <h6 class="my-0 font-weight-normal">@T("common.shoppingcart.details")</h6>
+                                </div>
+                                <div class="card-body">
+                                    <div class="card card-sm border">
+                                        <div class="card-header">
+                                            <span class="my-0 font-weight-normal">@T("common.shoppingcart.room")</span>
+                                        </div>
+                                        <div class="card-body">
+                                            @{
+                                                var rooms = Model.ShoppingCart.ShoppingCartItems.Where(o => o.EntityGroup == EntityGroup.Room);
+                                                @if (rooms.Any())
+                                                {
+                                                    @foreach (var item in rooms)
+                                                    {
+                                                        <div class="btn-group btn-group-sm w-100 mb-1" role="group" aria-label="Basic example">
+                                                            <button type="button" class="btn btn-clean border"><img src="@item.Room.Image" style="width:73px; height:73px;" /></button>
+                                                            <button class="btn btn-clean border btn-sm w-100" type="button">
+                                                                <span class="d-block text-left">
+                                                                    <i>@item.Room.Hotel.SkiResort.Title </i><br />
+                                                                    <i>@item.Room.Hotel.Title </i><br />
+                                                                    @(item.PriceVariation != null ? item.PriceVariation.Name : "") @(item.PriceParentVariation != null ? item.PriceParentVariation.Name : "")
+                                                                    @item.Room.Title
+                                                                    <span class="float-right">@item.Price.ToString("C2")</span>
+                                                                </span>
+                                                            </button>
+                                                            <button class="btn btn-danger removeToCart btnDisabled" data-id="@item.Id" type="button"><i class="ti ti-trash"></i></button>
+                                                        </div>
+
+                                                    }
+                                                }
+                                                else
+                                                {
+                                                    <span>@T("common.shoppingcart.room.empty")</span>
+                                                }
+                                            }
+                                        </div>
+                                    </div>
+                                    <div class="card card-sm border">
+                                        <div class="card-header">
+                                            <span class="my-0 font-weight-normal">@T("common.shoppingcart.transfers")</span>
+                                        </div>
+                                        <div class="card-body">
+                                            @{
+                                                var transfers = Model.ShoppingCart.ShoppingCartItems.Where(o => o.EntityGroup == EntityGroup.Transfer);
+                                                @if (transfers.Any())
+                                                {
+                                                    @foreach (var item in transfers)
+                                                    {
+                                                        <div class="btn-group btn-group-sm w-100 mb-1" role="group" aria-label="Basic example">
+                                                            <button type="button" class="btn btn-clean border"><img src="@item.Transfer.Image" style="width:73px; height:73px;" /></button>
+                                                            <button class="btn btn-clean border btn-sm w-100" type="button">
+                                                                <span class="d-block text-left">
+                                                                    <i>@item.Transfer.SkiResort.Title </i><br />
+                                                                    @(item.PriceVariation != null ? item.PriceVariation.Name : "") @(item.PriceParentVariation != null ? item.PriceParentVariation.Name : "")
+                                                                    @item.Transfer.Title
+                                                                    <span class="float-right">@item.Price.ToString("C2")</span>
+                                                                </span>
+                                                            </button>
+                                                            <button class="btn btn-danger removeToCart btnDisabled" data-id="@item.Id" type="button"><i class="ti ti-trash"></i></button>
+                                                        </div>
+                                                    }
+                                                }
+                                                else
+                                                {
+                                                    <span>@T("common.shoppingcart.transfers.empty")</span>
+                                                }
+                                            }
+                                        </div>
+                                    </div>
+                                    <div class="card card-sm border">
+                                        <div class="card-header">
+                                            <span class="my-0 font-weight-normal">@T("common.shoppingcart.activities")</span>
+                                        </div>
+                                        <div class="card-body">
+                                            @{
+                                                var activities = Model.ShoppingCart.ShoppingCartItems.Where(o => o.EntityGroup == EntityGroup.Activity);
+                                                @if (activities.Any())
+                                                {
+                                                    @foreach (var item in activities)
+                                                    {
+                                                        <div class="btn-group btn-group-sm w-100 mb-1" role="group" aria-label="Basic example">
+                                                            <button type="button" class="btn btn-clean border"><img src="@item.Activity.Image" style="width:73px; height:73px;" /></button>
+                                                            <button class="btn btn-clean border btn-sm w-100" type="button">
+                                                                <span class="d-block text-left">
+                                                                    <i>@item.Activity.SkiSchool.SkiResort.Title </i><br />
+                                                                    <i>@item.Activity.SkiSchool.Title </i><br />
+                                                                    @(item.PriceVariation != null ? item.PriceVariation.Name : "") @(item.PriceParentVariation != null ? item.PriceParentVariation.Name : "")
+                                                                    @item.Activity.Title
+                                                                    <span class="float-right">@item.Price.ToString("C2")</span>
+                                                                </span>
+                                                            </button>
+                                                            <button class="btn btn-danger removeToCart btnDisabled" data-id="@item.Id" type="button"><i class="ti ti-trash"></i></button>
+                                                        </div>
+                                                    }
+                                                }
+                                                else
+                                                {
+                                                    <span>@T("common.shoppingcart.activities.empty")</span>
+                                                }
+                                            }
+                                        </div>
+                                    </div>
+                                    <div class="card card-sm border">
+                                        <div class="card-header">
+                                            <span class="my-0 font-weight-normal">@T("common.shoppingcart.equipments")</span>
+                                        </div>
+                                        <div class="card-body">
+                                            @{
+                                                var equipments = Model.ShoppingCart.ShoppingCartItems.Where(o => o.EntityGroup == EntityGroup.Equipment);
+                                                @if (equipments.Any())
+                                                {
+                                                    @foreach (var item in equipments)
+                                                    {
+
+                                                        <div class="btn-group btn-group-sm w-100 mb-1" role="group" aria-label="Basic example">
+                                                            <button type="button" class="btn btn-clean border"><img src="@item.Equipment.Image" style="width:73px; height:73px;" /></button>
+                                                            <button class="btn btn-clean border btn-sm w-100" type="button">
+                                                                <span class="d-block text-left">
+                                                                    <i>@item.Equipment.EquipmentCategory.SkiSchool.SkiResort.Title </i><br />
+                                                                    <i>@item.Equipment.EquipmentCategory.SkiSchool.Title </i><br />
+                                                                    <i>@item.Equipment.EquipmentCategory.Title</i><br />
+                                                                    @(item.PriceVariation != null ? item.PriceVariation.Name : "") @(item.PriceParentVariation != null ? item.PriceParentVariation.Name : "")
+                                                                    @item.Equipment.Title
+                                                                    <span class="float-right">@item.Price.ToString("C2")</span>
+                                                                </span>
+                                                            </button>
+                                                            <button class="btn btn-danger removeToCart btnDisabled" data-id="@item.Id" type="button"><i class="ti ti-trash"></i></button>
+                                                        </div>
+                                                    }
+                                                }
+                                                else
+                                                {
+                                                    <span>@T("common.shoppingcart.equipments.empty")</span>
+                                                }
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <aside class="col-lg-4" id="sidebar">
+                        <div class="theiaStickySidebar">
+                            <div class="box_detail p-0">
+                                <div class="card border">
+                                    <div class="card-header">
+                                        <span class="my-0 font-weight-normal">@T("common.shoppingcart.summary")</span>
+                                    </div>
+                                    <div class="card-body">
+                                        @if (Model.ShoppingCart.ShoppingCartItems.Any())
+                                        {
+
+                                            <form id="ShoppingForm" asp-action="Index" asp-controller="ShoppingCart" enctype="multipart/form-data">
+                                                <div class="card card-sm border border-secondary">
+                                                    <div class="card-header border-dark">
+                                                        <span class="my-0 font-weight-normal">@T("common.shoppingcart.information")</span>
+                                                    </div>
+                                                    <div class="card-body border-dark">
+                                                        <span class="d-block mb-3">@T("common.shoppingcart.information.description")</span>
+                                                        <div class="form-group">
+                                                            <label for="scNameSurname">@T("common.shoppingcart.information.form.firstname")</label>
+                                                            <input asp-for="@Model.User.FirstName" required autocomplete="off" class="form-control form-control-sm" placeholder="@T("common.shoppingcart.information.form.firstname")" />
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="scNameSurname">@T("common.shoppingcart.information.form.lastname")</label>
+                                                            <input asp-for="@Model.User.LastName" required autocomplete="off" class="form-control form-control-sm" placeholder="@T("common.shoppingcart.information.form.lastname")" />
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="scPhone">@T("common.shoppingcart.information.form.phone")</label>
+                                                            <input asp-for="@Model.User.Phone" required autocomplete="off" class="form-control form-control-sm" placeholder="@T("common.shoppingcart.information.form.phone")" />
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="scEmail">@T("common.shoppingcart.information.form.email")</label>
+                                                            @if (_workContext.CurrentUser.UserType == WCore.Core.Domain.Users.UserType.Guest)
+                                                            {
+                                                                <input asp-for="@Model.User.EMail" required autocomplete="off" class="form-control form-control-sm" placeholder="@T("common.shoppingcart.information.form.email")" />
+                                                            }
+                                                            else
+                                                            {
+                                                                <input asp-for="@Model.User.EMail" readonly autocomplete="off" class="form-control form-control-sm" placeholder="@T("common.shoppingcart.information.form.email")" />
+                                                            }
+                                                        </div>
+                                                        <div class="form-group form-check">
+                                                            <input type="checkbox" class="form-check-input" name="scKvkk" id="scKvkk">
+                                                            <label class="form-check-label" for="scKvkk">@T("common.shoppingcart.information.form.kvkk")</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="card-footer border-dark">
+                                                        <button type="submit" class="btn btn-sm btn-primary w-100 rounded-0">@T("common.shoppingcart.information.form.button")</button>
+                                                    </div>
+                                                    <input type="hidden" asp-for="ShoppingCart.Id" />
+                                                    <input type="hidden" asp-for="User.Id" />
+                                                </div>
+                                            </form>
+                                            <div class="card card-sm border border-secondary">
+                                                <div class="card-header border-secondary">
+                                                    <span class="my-0 font-weight-normal">@T("common.shoppingcart.checkincheckout")</span>
+                                                </div>
+                                                <div class="card-body border-secondary">
+                                                    @if (Model.ShoppingCart.UserSearch != null)
+                                                    {
+                                                        <span class="d-block mb-2">@T("common.shoppingcart.checkin") <span class="float-right">@Model.ShoppingCart.UserSearch.StartDate</span></span>
+                                                        <span class="d-block mb-2">@T("common.shoppingcart.checkout") <span class="float-right">@Model.ShoppingCart.UserSearch.EndDate</span></span>
+                                                    }
+                                                    else
+                                                    {
+                                                        <span>@T("common.shoppingcart.checkincheckout.empty")</span>
+                                                    }
+                                                </div>
+                                                <div class="card-footer border-secondary">
+                                                    <button type="button" class="btn btn-sm btn-danger w-100 rounded-0">@T("common.shoppingcart.checkincheckout.button")</button>
+                                                </div>
+                                            </div>
+                                            <div class="card card-sm border border-secondary">
+                                                <div class="card-header border-secondary">
+                                                    <span class="my-0 font-weight-normal">@T("common.shoppingcart.participants")</span>
+                                                </div>
+                                                <div class="card-body border-secondary">
+                                                    @if (Model.ShoppingCart.UserSearch != null)
+                                                    {
+                                                        <span class="d-block mb-2">@T("common.shoppingcart.adult") <span class="float-right">@Model.ShoppingCart.UserSearch.AdultCount</span></span>
+                                                        <span class="d-block mb-2">@T("common.shoppingcart.child") <span class="float-right">@Model.ShoppingCart.UserSearch.ChildCount</span></span>
+                                                        <span class="d-block mb-2">@T("common.shoppingcart.pricerange") <span class="float-right">@Model.ShoppingCart.UserSearch.MinPrice - @Model.ShoppingCart.UserSearch.MaxPrice @Model.ShoppingCart.UserSearch.Currency.CurrencyCode</span></span>
+                                                    }
+                                                    else
+                                                    {
+                                                        <span>@T("common.shoppingcart.participants.empty")</span>
+                                                    }
+                                                </div>
+                                                <div class="card-footer border-secondary">
+                                                    <button type="button" class="btn btn-sm btn-danger w-100 rounded-0">@T("common.shoppingcart.participants.button")</button>
+                                                </div>
+                                            </div>
+                                        }
+                                    </div>
+                                </div>
+                                <div class="card card-sm border">
+                                    <div class="card-header">
+                                        <span class="my-0 font-weight-normal">@T("common.shoppingcart.total")</span>
+                                    </div>
+                                    <div class="card-body">
+                                        <span class="d-block mb-2">@T("common.shoppingcart.subtotal") <span class="float-right">@(Model.ShoppingCart.ShoppingCartItems.Sum(o => o.Price).ToString("C2"))</span></span>
+                                        <span class="d-block mb-2">@T("common.shoppingcart.total") <span class="float-right">@(Model.ShoppingCart.ShoppingCartItems.Sum(o => o.Price).ToString("C2"))</span></span>
+                                    </div>
+                                    <div class="card-footer">
+                                        @if (Model.ShoppingCart.ShoppingCartItems.Any())
+                                        {
+                                            <button class="btn btn-sm btn-success w-100 d-block" type="submit">@T("common.go.topayment")</button>
+                                            <div class="text-center">
+                                                <small>@T("common.shoppingcart.button.description")</small>
+                                            </div>
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </aside>
+                }
+            </div>
+        </div>
+    </div>
+</main>
+
+@section Scripts{
+    <script>
+        $("#sidebarmenu-toggle strong").html(@Model.ShoppingCart.ShoppingCartItems.Count());
+        window.addEventListener('resize', reportWindowSize);
+        function reportWindowSize() {
+            var w = window.innerWidth;
+            var h = window.innerHeight;
+            $('.sidebar').css({ 'height': h});
+        }
+    </script>
+}

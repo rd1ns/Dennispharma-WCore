@@ -1,0 +1,99 @@
+/*
+Template:  Webster - Responsive Multi-purpose HTML5 Template
+Author: potenzaglobalsolutions.com
+Design and Developed by: potenzaglobalsolutions.com
+
+NOTE: This file contains the styling for the bitcoin Template. You can edit/add anything in this file!
+*/
+ 
+body { font-family: 'Rubik', sans-serif; }
+h1, h2, h3, h4, h5, h6 { font-family: 'Rubik', sans-serif;  }
+
+/** selection **/
+*::-moz-selection { background: #f7c605; color: #fff; text-shadow: none; }
+::-moz-selection { background: #f7c605; color: #fff; text-shadow: none; }
+::selection { background: #f7c605; color: #fff; text-shadow: none; }
+
+h2 { font-size: 40px; line-height: 40px; font-weight: 500;}
+
+.button { border:none; background: #f7c605; background: -webkit-gradient(linear, 100% 0, 0 0, from(#ff8850), to(#f7c605)); background: -webkit-linear-gradient(right, #ff8850, #f7c605) !important; background: -moz-linear-gradient(right, #ff8850, #f7c605); background: -o-linear-gradient(right, #ff8850, #f7c605);
+	background: linear-gradient(right, #ff8850, #f7c605); }
+.button, .form-control, .nice-select { border-radius: 3px; }
+
+/*banner */
+.bitcoin-banner h1 { font-size: 100px; line-height: 100px; font-weight: 600; }
+.bitcoin-banner h3 { display: inline-block; margin: 10px 15px;  }
+.bitcoin-banner h3 span { display: block; text-align: left; font-size: 20px; }
+.bitcoin-banner p { display: block;  font-size: 20px; }
+.bitcoin-banner .button {  font-size: 18px; }
+.bitcoin-banner .tab .nav-tabs > li > a { border:none; text-transform: uppercase; font-size: 16px; background: #ffffff; font-weight: 600; }
+.bitcoin-banner .tab .nav.nav-tabs > li > a.active, .bitcoin-banner .nav.nav-tabs > li > a.active:focus, .bitcoin-banner .nav.nav-tabs > li > a.active:hover
+ { border:none;  background: #f7c605; background: -webkit-gradient(linear, 100% 0, 0 0, from(#ff8850), to(#f7c605)); background: -webkit-linear-gradient(right, #ff8850, #f7c605) !important; background: -moz-linear-gradient(right, #ff8850, #f7c605); background: -o-linear-gradient(right, #ff8850, #f7c605);
+	background: linear-gradient(right, #ff8850, #f7c605); }
+
+/*bitcoin-about*/
+.bitcoin-about-bg { position: relative; margin-top: -100px; padding: 60px; background: #f7c605; background: -webkit-gradient(linear, 100% 0, 0 0, from(#ff8850), to(#f7c605));
+	background: -webkit-linear-gradient(right, #ff8850, #f7c605); background: -moz-linear-gradient(right, #ff8850, #f7c605); background: -o-linear-gradient(right, #ff8850, #f7c605);
+	background: linear-gradient(right, #ff8850, #f7c605); }
+.bitcoin-box span {  font-size: 40px; line-height: 40px; font-weight: 500; }
+
+/*currency-calculator*/
+ .currency-calculator .cryptonatorwidget { border:none !important; padding: 0 !important; margin-top: 20px; }
+ .currency-calculator .cryptonatorwidget input { background: #f6f5f6; padding: 19px; border:none;  font-size: 16px !important; color: #323232 !important; text-transform: capitalize; }
+ .currency-calculator .cryptonatorwidget select { background: #f6f5f6; padding: 20px; border:none; font-size: 16px !important;  }
+ .currency-calculator .cryptonatorwidget table tr td { padding: 10px; }
+ .currency-calculator .cryptonatorwidget table + div { display: none; }
+
+.currency-calculator .feature-text  { position: relative; }
+.currency-calculator .feature-text .feature-icon { border:2px dashed rgba(0,0,0,0.1); border-radius: 50%; width: 180px; height: 180px; margin: 0 auto; padding: 30px; }
+.currency-calculator .feature-text .feature-arrow { position: absolute; right: -12%; top: 35%; display: block; transform: translateY(-50%); -webkit-transform: translateY(-50%); -o-transform: translateY(-50%); -ms-transform: translateY(-50%); -moz-transform: translateY(-50%); transform: translateY(-50%); opacity: 0.2; }  
+
+
+/*bitcoin-custom-conten*/
+.bitcoin-custom-conten-box { padding: 100px; }
+.bitcoin-custom-content .counter span.icon { font-size: 60px; color: #f7c605; background: -webkit-gradient(linear, 100% 0, 0 0, from(#ff8850), to(#f7c605));
+	background: -webkit-linear-gradient(right, #ff8850, #f7c605); background: -moz-linear-gradient(right, #ff8850, #f7c605); background: -o-linear-gradient(right, #ff8850, #f7c605);
+	background: linear-gradient(right, #ff8850, #f7c605);-webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+.bitcoin-custom-content .counter label { text-transform: capitalize; font-size: 18px; }
+
+
+/*choose-bitcoin*/
+.choose-bitcoin { position: relative; }
+.choose-bitcoin .choose-bitcoin-content { position: relative; z-index: 2; }
+.choose-bitcoin .feature-text .feature-icon span, .choose-bitcoin .feature-text .feature-icon i { color: #f7c605; background: -webkit-gradient(linear, 100% 0, 0 0, from(#ff8850), to(#f7c605));
+	background: -webkit-linear-gradient(right, #ff8850, #f7c605); background: -moz-linear-gradient(right, #ff8850, #f7c605); background: -o-linear-gradient(right, #ff8850, #f7c605);
+	background: linear-gradient(right, #ff8850, #f7c605);-webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+
+.choose-bitcoin .objects-left { top: 0; z-index: 0; }
+.choose-bitcoin .objects-left .objects-1 { left: 0; }
+.choose-bitcoin .objects-right  { bottom: 0; z-index: 0; top: inherit;}
+.choose-bitcoin .objects-right .objects-4 { right: 0; bottom: 0;top: inherit; }
+
+/*chart-bitcoin*/
+.chart-bitcoin strong { font-size: 18px; }
+.chart-bitcoin .chart-bitcoin-content { margin-top: 40px; }
+.chart-bitcoin .table td  img { height: 30px; margin-right: 10px; display: inline-block; }
+
+/*bitcoin-custom-content-02*/
+.bitcoin-custom-content-02 .counter span { font-size: 100px; line-height: 100px; font-weight: 900; color: #f7c605; background: -webkit-gradient(linear, 100% 0, 0 0, from(#ff8850), to(#f7c605));
+	background: -webkit-linear-gradient(right, #ff8850, #f7c605); background: -moz-linear-gradient(right, #ff8850, #f7c605); background: -o-linear-gradient(right, #ff8850, #f7c605);
+	background: linear-gradient(right, #ff8850, #f7c605);-webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+.bitcoin-custom-content-02 .counter label { font-size: 24px; text-transform: capitalize; }
+.bitcoin-custom-content-02 p { font-size: 18px; }
+.bitcoin-custom-content-02 .button { margin-top: 60px; }
+
+/*bitcoin-price*/
+.bitcoin-price .tab .nav-tabs > li > a { border:none; text-transform: uppercase; font-size: 16px; }
+.bitcoin-price .tab .nav.nav-tabs > li > a.active, .bitcoin-price .nav.nav-tabs > li > a.active:focus, .bitcoin-price .nav.nav-tabs > li > a.active:hover { border:none; color: #f7c605; background: -webkit-gradient(linear, 100% 0, 0 0, from(#ff8850), to(#f7c605)); background: -webkit-linear-gradient(right, #ff8850, #f7c605) !important; background: -moz-linear-gradient(right, #ff8850, #f7c605); background: -o-linear-gradient(right, #ff8850, #f7c605);
+	background: linear-gradient(right, #ff8850, #f7c605); color: #ffffff; }
+.bitcoin-price .pricing-table.active .pricing-top { border-color: #f7c605; }
+
+
+.footer .footer-social ul li a:hover { color: #f7c605 !important; }
+/*color*/
+  a, a:hover, .theme-color, .mega-menu .menu-links > li.active a, .mega-menu .drop-down-multilevel li:hover > a, .mega-menu .menu-links > li > a:hover, .play-video:hover, .popup-video .play-video:hover a, .footer-useful-link ul li a:hover, .footer-widget a:hover, .footer-widget a, .blog .admin a, .blog a:hover, ul.list li:after, ul.page-breadcrumb li a:hover, .sidebar-widget .recent-post .recent-post-info a:hover, .sidebar-widget .recent-post .recent-post-info span, .sidebar-widget .widget-categories li a:hover, .sidebar-widget .widget-categories li a:hover i, .blog-entry .blog-detail .entry-title a:hover, .blog-entry .entry-meta ul li a i, .blog-entry .entry-meta ul li a:hover, .blog-entry .entry-meta ul li i, .mega-menu .menu-links > li.active .drop-down-multilevel a:hover { color: #f7c605; }
+ .play-video, #back-to-top .top { background: #f7c605; }
+
+ 
+
+ 

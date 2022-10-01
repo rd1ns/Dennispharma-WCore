@@ -1,0 +1,159 @@
+﻿@model AcademyImageModel
+@{
+    ViewData["PageMainTitle"] = T("Admin.Configuration.AcademyImages.Title");
+    ViewData["PageTitle"] = Model.Id == 0 ? T("Admin.Configuration.AcademyImages.Add") : T("Admin.Configuration.AcademyImages.Edit");
+    ViewData["SystemTitle"] = ViewData["PageTitle"] + " / " + ViewData["PageMainTitle"];
+    ViewData["ControllerName"] = "AcademyImage";
+
+    @if (Model.Id == 0)
+    {
+        Model.DisplayOrder = 0;
+    }
+}
+<div class="modal fade" id="AcademyModal" role="dialog" aria-labelledby="UserBranchModalTitle" aria-hidden="true">
+    <div class="modal-dialog modal-xl" role="document">
+        <div class="modal-content">
+            <div class="modal-body modal-load p-0">
+                <div class="card card-custom">
+                    <div class="card-header" style="">
+                        <div class="card-title">
+                            @(Model.Id == 0 ? T("Admin.Configuration.AcademyImage.Add") : T("Admin.Configuration.AcademyImage.Edit"))
+                        </div>
+                        <div class="card-toolbar">
+                            <partial name="_AddOrEditHeaderButtons" model="@Tuple.Create(Model.Id,"AcademyImageForm")" />
+                        </div>
+                    </div>
+                    <form id="AcademyImageForm" asp-action="AcademyImage" asp-controller="Academy" enctype="multipart/form-data">
+                        <div class="card card-custom">
+                            <div class="card-body">
+                                <WCore-tabs id="AcademyImage-edit" asp-tab-name-to-select="tab-details" asp-render-selected-tab-input="false">
+                                    <WCore-tab asp-name="tab-details" asp-title="@T("Admin.Configuration.Details")" asp-default="true">
+                                        <div class="form-group row">
+                                            <WCore-label asp-for="Small" />
+                                            <div class="col-lg-10 col-md-6 col-sm-12">
+                                                <img src="@Model.Small" />
+                                            </div>
+                                        </div>
+                                        @(Html.LocalizedEditor<AcademyImageModel, AcademyImageLocalizedModel>("academyimage-localized",
+                                                @<div>
+                                                    <div class="form-group row">
+                                                        <WCore-label asp-for="Locales[item].Title" />
+                                                        <div class="col-lg-10 col-md-6 col-sm-12">
+                                                            <WCore-editor asp-for="Locales[item].Title"  asp-type="form-control form-control-sm form-control-solid" />
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <WCore-label asp-for="Locales[item].Slogan" />
+                                                        <div class="col-lg-10 col-md-6 col-sm-12">
+                                                            <WCore-editor asp-for="Locales[item].Slogan" asp-type="form-control form-control-sm form-control-solid" />
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <WCore-label asp-for="Locales[item].Description" />
+                                                        <div class="col-lg-10 col-md-6 col-sm-12">
+                                                            <WCore-editor asp-for="Locales[item].Description" asp-type="form-control form-control-sm form-control-solid" />
+                                                        </div>
+                                                    </div>
+                                                     <input type="hidden" asp-for="@Model.Locales[item].LanguageId" />
+                                                </div>,
+                                                @<div>
+                                                    <div class="form-group row">
+                                                        <WCore-label asp-for="Title" />
+                                                        <div class="col-lg-10 col-md-6 col-sm-12">
+                                                            <WCore-editor asp-for="Title"    asp-type="form-control form-control-sm form-control-solid" />
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <WCore-label asp-for="Slogan " />
+                                                        <div class="col-lg-10 col-md-6 col-sm-12">
+                                                            <WCore-editor asp-for="Slogan"    asp-type="form-control form-control-sm form-control-solid" />
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <WCore-label asp-for="Description" />
+                                                        <div class="col-lg-10 col-md-6 col-sm-12">
+                                                            <WCore-editor asp-for="Description"    asp-type="form-control form-control-sm form-control-solid" />
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <WCore-label asp-for="DisplayOrder" />
+                                                        <div class="col-lg-10 col-md-6 col-sm-12">
+                                                            <WCore-editor asp-for="DisplayOrder" asp-type="form-control form-control-sm form-control-solid" />
+                                                        </div>
+                                                    </div>
+                                                </div>))
+                                        <input type="hidden" asp-for="Id" />
+                                        <input type="hidden" asp-for="AcademyId" />
+                                        <input type="hidden" asp-for="Small" />
+                                        <input type="hidden" asp-for="Medium" />
+                                        <input type="hidden" asp-for="Big" />
+                                        <input type="hidden" asp-for="Original" />
+                                    </WCore-tab>
+                                </WCore-tabs>
+
+                            </div>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts{
+    <script>
+
+        $(function () {
+            $('#AcademyModal').modal('show');
+        })
+        $("#AcademyImageForm").submit(function (e) {
+            e.preventDefault();
+            var data = new FormData();
+            //Form data
+            var form_data = $('#AcademyImageForm').serializeArray();
+            $.each(form_data, function (key, input) {
+                var inputId = $("[name='" + input.name + "']").attr("id");
+                var editor = tinyMCE.editors[inputId];
+                var IsEditor = editor == null ? false : true;
+                if (IsEditor) {
+                    var myContent = editor.getContent();
+                    data.append(input.name, myContent);
+                }
+                else {
+                    data.append(input.name, input.value);
+                }
+            });
+            //File data
+            var file_data = $("#Image")[0].files;
+            for (var i = 0; i < file_data.length; i++) {
+                data.append("file", file_data[i]);
+            }
+            var url = $(this).attr('action');
+            var id = @Model.Id;
+            $.ajax({
+                type: "POST",
+                url: "/admin/"+url,
+                processData: false,
+                contentType: false,
+                data: data,
+                success: function (data) {
+                    Swal.fire({
+                        title: '@T("admin.notification.success")',
+                        icon: 'success',
+                        showCancelButton: false,
+                        showConfirmButton: false,
+                        confirmButtonColor: '#3085d6',
+                        cancelButtonColor: '#d33',
+                        confirmButtonText: 'Evet',
+                        cancelButtonText: 'Hayır',
+                        timer: 1000,
+                        timerProgressBar: true
+                    }).then((result) => {
+                        $('#AcademyModal').modal('hide');
+                        $("#academyimage_datatable").data("kendoGrid").dataSource.read();
+                    });
+                }
+            });
+        });
+    </script>
+}

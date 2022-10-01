@@ -1,0 +1,75 @@
+﻿@model HomeViewModel
+@inject WCore.Core.IWorkContext _workContext
+@{
+    ViewBag.Title = T("common.home.page.title");
+    ViewBag.Page = "Home";
+}
+@await Component.InvokeAsync("Slider")
+<div style="background-image">
+
+</div>
+@if (Model.Page != null)
+{
+    @if (Model.Page.DynamicFormId != 0)
+    {
+        @await Component.InvokeAsync("DynamicForm", new { dynamicFormId = Model.Page.DynamicFormId })
+    }
+    @Html.Raw(Model.Page.Body)
+    @foreach (var item in Model.Page.SubPages)
+    {
+        @Html.Raw(item.Body)
+    }
+}
+@if (Model.NewsList.Newses.Any())
+{
+    <section class="page-section-ptb popup-gallery corporate-02-portfolio">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="section-title text-center">
+                        <h2 class="title">@T("Common.News.Title")</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="owl-carousel" data-items="4" data-md-items="4" data-sm-items="3" data-xs-items="2" data-xx-items="1" data-space="40">
+                        @foreach (var item in Model.NewsList.Newses)
+                        {
+                            <div class="item">
+                                <div class="portfolio-item image-text">
+                                    <img src="@item.Image" alt="">
+                                    <div class="portfolio-overlay">
+                                        <h4 class="text-white"> <a href="/@_workContext.WorkingLanguage.UniqueSeoCode/@item.SeName">@item.Title</a> </h4>
+                                        @if (item.NewsCategory != null)
+                                        {
+                                            <span class="text-white"> <a href="/@_workContext.WorkingLanguage.UniqueSeoCode/@item.NewsCategory.SeName"> @item.NewsCategory.Title  </a> </span>
+                                        }
+                                    </div>
+                                    <a class="popup portfolio-img" href="@item.Image"><i class="fa fa-arrows-alt"></i></a>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+}
+@section Scripts{
+
+
+}
+
+@section Styles{
+<style>
+
+    .triangle {
+        width: 0;
+        height: 0;
+        border-style: solid;
+        border-width: 0 100px 100px 100px;
+        border-color: transparent transparent #007bff transparent;
+    }
+</style>
+}
